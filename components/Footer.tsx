@@ -10,9 +10,7 @@ const navLinks = [
 ]
 
 const socialLinks = [
-  { label: 'Instagram', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Twitter', href: '#' },
+  { label: 'Instagram', href: 'https://www.instagram.com/leadscalesystems/' },
 ]
 
 export default function Footer() {
@@ -61,10 +59,10 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="mailto:hello@leadscalesystems.com"
+                  href="mailto:admin@leadscalesystems.net"
                   className="text-[#4a5568] hover:text-white text-sm transition-colors duration-200"
                 >
-                  hello@leadscalesystems.com
+                  admin@leadscalesystems.net
                 </a>
               </li>
             </ul>
