@@ -11,6 +11,8 @@ const navLinks = [
 
 const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/leadscalesystems/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585639113200' },
+  { label: 'Client Portal', href: 'https://onboarding-funnel-teal.vercel.app/' },
 ]
 
 export default function Footer() {
