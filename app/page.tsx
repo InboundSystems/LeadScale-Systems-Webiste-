@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Hero from '@/components/home/Hero'
+import WebsiteBuilds from '@/components/home/WebsiteBuilds'
 import Services from '@/components/home/Services'
 import Process from '@/components/home/Process'
 import Expectations from '@/components/home/Expectations'
@@ -21,6 +22,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <WebsiteBuilds />
         <Services />
         <Process />
         <Expectations />
