@@ -7,7 +7,7 @@ const features = [
   {
     title: 'Fast & Mobile-Optimised',
     description:
-      'Built for speed on every device. Your site loads in seconds — because slow sites lose jobs before you ever get the call.',
+      'Built for speed on every device. Your site loads in seconds — because slow sites lose bookings before a client ever reaches out.',
     color: 'from-blue-600/30 to-blue-400/10',
     borderHover: 'hover:border-blue-500/40',
     icon: (
@@ -84,7 +84,7 @@ export default function WebsiteBuilds() {
             <span className="text-[#2e3650] font-bold">We Build the Machine.</span>
           </h2>
           <p className="text-[#6b7a99] text-lg md:text-xl max-w-2xl leading-relaxed">
-            We design and build conversion-focused websites for tradespeople and service businesses. Not template
+            We design and build conversion-focused websites for salons, clinics and beauty businesses. Not template
             sites — purpose-built client acquisition assets that turn visitors into paying customers.
           </p>
         </motion.div>

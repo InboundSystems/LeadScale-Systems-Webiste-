@@ -46,11 +46,11 @@ const keyAreas = [
     description:
       'Consistency is one of the most important factors for maintaining an effective social media presence. We keep your social pages active by posting content that reflects your services and ongoing work.',
     checklist: [
-      'Project highlights',
+      'Treatment & service highlights',
       'Before and after photos',
       'Updates about your business',
       'Industry tips and advice',
-      'Create client video content',
+      'Client testimonial content',
     ],
   },
   {
@@ -59,8 +59,8 @@ const keyAreas = [
     description:
       'An active social media presence acts as a form of social proof for potential customers. When people discover your business online, they often check the company&apos;s social media pages to confirm the quality and legitimacy of your work.',
     checklist: [
-      'Star quality of your work',
-      'Examples of past projects',
+      'Showcasing the quality of your work',
+      'Before and after results',
       'Customer feedback and engagement',
       'Maintaining professional tone and style throughout',
     ],

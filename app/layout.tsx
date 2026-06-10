@@ -11,11 +11,11 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'LeadScale Systems | Digital Marketing for Tradespeople & Local Businesses',
+    default: 'LeadScale Systems | Digital Marketing for Beauty Businesses & Salons',
     template: '%s | LeadScale Systems',
   },
   description:
-    'LeadScale Systems helps tradespeople, contractors and local service businesses get more enquiries through SEO, paid advertising, and social media — built as a system, not a one-off campaign.',
+    'LeadScale Systems helps salons, clinics, spas and beauty businesses get more bookings through SEO, paid advertising, and social media — built as a system, not a one-off campaign.',
   keywords: [
     'digital marketing',
     'SEO',

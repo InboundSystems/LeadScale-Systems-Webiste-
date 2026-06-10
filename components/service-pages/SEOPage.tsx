@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const problemStats = [
-  { label: 'Tradie services' },
-  { label: 'Trade directory' },
-  { label: 'Landscaping services' },
-  { label: 'Property services' },
-  { label: 'Local specialised services' },
+  { label: 'Nail salons' },
+  { label: 'Hair salons' },
+  { label: 'Skin clinics' },
+  { label: 'Massage spas' },
+  { label: 'Beauty therapists' },
 ]
 
 const methodology = [
@@ -20,7 +20,7 @@ const methodology = [
     checklist: [
       'Business listing configuration',
       'Business categories optimisation',
-      'Project or service photo uploads',
+      'Treatment or service photo uploads',
       'Profile completeness review',
       'Creating business information is accurate',
       'Optimising profile and cover images',

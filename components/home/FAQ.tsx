@@ -22,7 +22,7 @@ const faqs = [
   {
     question: 'What makes LeadScale Systems different from other agencies?',
     answer:
-      'Most agencies sell individual services and report on vanity metrics. We build integrated systems focused on one outcome: qualified enquiries that turn into booked jobs and paying clients. We work with a limited number of clients at a time to maintain quality, and we give you full access and transparency to everything we do on your behalf.',
+      'Most agencies sell individual services and report on vanity metrics. We build integrated systems focused on one outcome: qualified enquiries that turn into booked appointments and paying clients. We work with a limited number of clients at a time to maintain quality, and we give you full access and transparency to everything we do on your behalf.',
   },
   {
     question: 'How long before I start seeing results?',

@@ -62,7 +62,7 @@ export default function Hero() {
         >
           More Enquiries.
           <br />
-          More Booked Jobs.
+          More Booked Appointments.
           <br />
           <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent">
             More Growth.
@@ -76,8 +76,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22 }}
           className="text-[#6b7a99] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 font-medium"
         >
-          We help tradespeople, contractors and local service businesses get found online — and turn their
-          traffic into real, paying customers. Built as a system, not a one-off campaign.
+          We help salons, clinics, spas and beauty businesses get found online — and turn that
+          traffic into real, paying clients. Built as a system, not a one-off campaign.
         </motion.p>
 
         {/* CTAs */}
