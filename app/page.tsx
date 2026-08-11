@@ -1,36 +1,38 @@
 import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Hero from '@/components/home/Hero'
-import WebsiteBuilds from '@/components/home/WebsiteBuilds'
-import Services from '@/components/home/Services'
-import Process from '@/components/home/Process'
-import Expectations from '@/components/home/Expectations'
-import About from '@/components/home/About'
-import FAQ from '@/components/home/FAQ'
-import CTA from '@/components/home/CTA'
+import BrandChooser from '@/components/chooser/BrandChooser'
 
 export const metadata: Metadata = {
-  title: 'LeadScale Systems | More Enquiries. More Booked Jobs. More Growth.',
+  title: 'LeadScale Systems | Media Systems & AI Systems',
   description:
-    'We help tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising and social media.',
+    'LeadScale Systems is the parent company behind LeadScale Media Systems (SEO, paid traffic, social media and websites) and LeadScale AI Systems (launching soon).',
+  alternates: { canonical: '/' },
 }
 
-export default function HomePage() {
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'LeadScale Systems',
+  url: 'https://leadscalesystems.net',
+  logo: 'https://leadscalesystems.net/logo-icon-transparent.png',
+  email: 'admin@leadscalesystems.net',
+  sameAs: [
+    'https://www.instagram.com/leadscalesystems/',
+    'https://www.facebook.com/profile.php?id=61585639113200',
+  ],
+  subOrganization: [
+    { '@type': 'Organization', name: 'LeadScale Media Systems', url: 'https://leadscalesystems.net/media' },
+    { '@type': 'Organization', name: 'LeadScale AI Systems', url: 'https://leadscalesystems.net/ai' },
+  ],
+}
+
+export default function Home() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <WebsiteBuilds />
-        <Services />
-        <Process />
-        <Expectations />
-        <About />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <BrandChooser />
     </>
   )
 }

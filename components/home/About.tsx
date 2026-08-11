@@ -33,7 +33,7 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
             <p className="text-[#6b7a99] text-base leading-relaxed mb-6">
-              LeadScale Systems was founded on a simple belief: marketing should be a{' '}
+              LeadScale Media Systems was founded on a simple belief: marketing should be a{' '}
               <span className="text-white font-semibold">predictable, engineered system</span> — not a guessing
               game. We don&apos;t do &quot;social media management.&quot; We build client acquisition infrastructure.
             </p>

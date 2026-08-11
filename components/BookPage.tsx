@@ -59,14 +59,14 @@ export default function BookPage() {
               Booking calendar coming soon.
             </p>
             <a
-              href="mailto:hello@leadscalesystems.com"
-              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-10 py-4 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:shadow-[0_0_50px_rgba(37,99,235,0.6)] hover:scale-[1.04]"
+              href="mailto:admin@leadscalesystems.net"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-10 py-4 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_50px_rgb(var(--accent-1-rgb)/0.6)] hover:scale-[1.04]"
             >
               EMAIL US TO BOOK
               <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
             </a>
             <p className="text-[#374151] text-xs mt-5">
-              hello@leadscalesystems.com
+              admin@leadscalesystems.net
             </p>
           </motion.div>
 
@@ -84,7 +84,7 @@ export default function BookPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Link href="/" className="text-[#4a5568] hover:text-white text-xs font-semibold tracking-widest transition-colors duration-200">
+            <Link href="/media" className="text-[#4a5568] hover:text-white text-xs font-semibold tracking-widest transition-colors duration-200">
               ← BACK TO HOME
             </Link>
           </motion.div>

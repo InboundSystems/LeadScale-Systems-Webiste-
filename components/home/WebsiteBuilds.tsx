@@ -84,8 +84,9 @@ export default function WebsiteBuilds() {
             <span className="text-[#2e3650] font-bold">We Build the Machine.</span>
           </h2>
           <p className="text-[#6b7a99] text-lg md:text-xl max-w-2xl leading-relaxed">
-            We design and build conversion-focused websites for salons, clinics and beauty businesses. Not template
-            sites — purpose-built client acquisition assets that turn visitors into paying customers.
+            We design and build conversion-focused websites for tradespeople, contractors and local service
+            businesses. Not template sites — purpose-built client acquisition assets that turn visitors into paying
+            customers.
           </p>
         </motion.div>
 
@@ -130,8 +131,8 @@ export default function WebsiteBuilds() {
           transition={{ duration: 0.6 }}
         >
           <Link
-            href="/book"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgba(37,99,235,0.4)] hover:shadow-[0_0_55px_rgba(37,99,235,0.65)] hover:scale-[1.04]"
+            href="/media/book"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-1-rgb)/0.65)] hover:scale-[1.04]"
           >
             GET A WEBSITE QUOTE
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>

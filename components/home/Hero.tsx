@@ -76,8 +76,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22 }}
           className="text-[#6b7a99] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 font-medium"
         >
-          We help salons, clinics, spas and beauty businesses get found online — and turn that
-          traffic into real, paying clients. Built as a system, not a one-off campaign.
+          We help tradespeople, contractors and local service businesses get found online — and turn that
+          traffic into real, paying customers. Built as a system, not a one-off campaign.
         </motion.p>
 
         {/* CTAs */}
@@ -88,14 +88,14 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
-            href="/book"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgba(37,99,235,0.4)] hover:shadow-[0_0_55px_rgba(37,99,235,0.65)] hover:scale-[1.04]"
+            href="/media/book"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-1-rgb)/0.65)] hover:scale-[1.04]"
           >
             BOOK A FREE STRATEGY CALL
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Link>
           <Link
-            href="/#services"
+            href="/media#services"
             className="inline-flex items-center gap-2 text-[#6b7a99] hover:text-white font-semibold text-sm px-7 py-4 rounded-xl border border-white/[0.08] hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
           >
             See our services

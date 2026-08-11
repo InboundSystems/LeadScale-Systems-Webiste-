@@ -4,15 +4,20 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const navLinks = [
-  { label: 'SERVICES', href: '/#services' },
-  { label: 'PROCESS', href: '/#process' },
-  { label: 'EXPECTATIONS', href: '/#expectations' },
-  { label: 'FAQ', href: '/#faq' },
-  { label: 'ABOUT', href: '/#about' },
-]
+interface NavLink {
+  label: string
+  href: string
+}
 
-export default function Navbar() {
+interface NavbarProps {
+  homeHref: string
+  wordmark: string
+  navLinks: NavLink[]
+  ctaHref: string
+  ctaLabel: string
+}
+
+export default function Navbar({ homeHref, wordmark, navLinks, ctaHref, ctaLabel }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -32,9 +37,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-          <Image src="/logo-icon-transparent.png" alt="LeadScale Systems" width={32} height={32} className="object-contain" />
-          <span className="text-white font-bold text-lg tracking-tight">LeadScale Systems</span>
+        <Link href={homeHref} className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+          <Image src="/logo-icon-transparent.png" alt={wordmark} width={32} height={32} className="object-contain" />
+          <span className="text-white font-bold text-lg tracking-tight">{wordmark}</span>
         </Link>
 
         {/* Desktop nav */}
@@ -46,7 +51,7 @@ export default function Navbar() {
               className="relative text-[#64748b] hover:text-white text-xs font-semibold tracking-widest transition-colors duration-200 group"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-blue-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
         </div>
@@ -54,10 +59,10 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:block">
           <Link
-            href="/book"
-            className="relative inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white text-xs font-bold tracking-widest px-5 py-2.5 rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] hover:scale-[1.04]"
+            href={ctaHref}
+            className="relative inline-flex items-center gap-1.5 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white text-xs font-bold tracking-widest px-5 py-2.5 rounded-lg transition-all duration-300 shadow-[0_0_20px_rgb(var(--accent-1-rgb)/0.3)] hover:shadow-[0_0_30px_rgb(var(--accent-1-rgb)/0.5)] hover:scale-[1.04]"
           >
-            GET STARTED
+            {ctaLabel}
           </Link>
         </div>
 
@@ -87,11 +92,11 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/book"
+            href={ctaHref}
             onClick={() => setMenuOpen(false)}
-            className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white text-xs font-bold tracking-widest px-5 py-3 rounded-lg transition-all duration-300 text-center mt-2 shadow-[0_0_20px_rgba(37,99,235,0.3)]"
+            className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] text-white text-xs font-bold tracking-widest px-5 py-3 rounded-lg transition-all duration-300 text-center mt-2 shadow-[0_0_20px_rgb(var(--accent-1-rgb)/0.3)]"
           >
-            GET STARTED
+            {ctaLabel}
           </Link>
         </div>
       )}

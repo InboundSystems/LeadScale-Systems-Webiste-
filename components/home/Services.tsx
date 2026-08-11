@@ -9,7 +9,7 @@ const services = [
     title: 'Search Engine Optimisation',
     description:
       'Position your business at the top of local search results and bring in enquiries without paying per click. Own your market through organic visibility.',
-    href: '/seo',
+    href: '/media/seo',
     color: 'from-blue-600/30 to-blue-400/10',
     borderHover: 'hover:border-blue-500/40',
     glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.18)]',
@@ -24,7 +24,7 @@ const services = [
     title: 'Paid Traffic',
     description:
       'Data-driven Google and Meta ad campaigns that put your business in front of the right market at the right time. Predictable spend, predictable returns.',
-    href: '/paid-traffic',
+    href: '/media/paid-traffic',
     color: 'from-cyan-600/30 to-cyan-400/10',
     borderHover: 'hover:border-cyan-500/40',
     glow: 'hover:shadow-[0_8px_40px_rgba(6,182,212,0.15)]',
@@ -39,7 +39,7 @@ const services = [
     title: 'Social Media Management',
     description:
       'Consistent, on-brand content across your platforms that builds trust and keeps your business top of mind every single month.',
-    href: '/social-media',
+    href: '/media/social-media',
     color: 'from-violet-600/30 to-violet-400/10',
     borderHover: 'hover:border-violet-500/40',
     glow: 'hover:shadow-[0_8px_40px_rgba(139,92,246,0.15)]',

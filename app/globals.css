@@ -21,6 +21,12 @@ body {
   color: #fff;
 }
 
+/* Brand-themed selection/scrollbar inside a BrandProvider wrapper (see components/brand/BrandProvider.tsx) */
+[data-brand] ::selection {
+  background: var(--accent-1, #2563EB);
+  color: #fff;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -33,6 +39,10 @@ html {
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #2563EB, #06B6D4);
+  border-radius: 10px;
+}
+[data-brand] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-1, #2563EB), var(--accent-2, #06B6D4));
   border-radius: 10px;
 }
 

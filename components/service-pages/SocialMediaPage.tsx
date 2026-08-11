@@ -382,7 +382,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5 }}
           >
             <Link
-              href="/book"
+              href="/media/book"
               className="inline-block bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold tracking-widest text-xs px-8 py-4 rounded transition-all duration-200 hover:scale-105"
             >
               BOOK A FREE STRATEGY CALL

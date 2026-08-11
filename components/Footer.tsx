@@ -1,37 +1,44 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-const navLinks = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Process', href: '/#process' },
-  { label: 'Results', href: '/#expectations' },
-  { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/book' },
-]
+interface NavLink {
+  label: string
+  href: string
+}
 
+interface FooterProps {
+  homeHref: string
+  wordmark: string
+  tagline: string
+  navLinks: NavLink[]
+  crossBrand: NavLink
+}
+
+// Shared across both brands — update once here, both /media and /ai pick it up.
 const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/leadscalesystems/' },
   { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585639113200' },
   { label: 'Client Portal', href: 'https://onboarding-funnel-teal.vercel.app/' },
 ]
 
-export default function Footer() {
+const contactEmail = 'admin@leadscalesystems.net'
+const displayDomain = 'leadscalesystems.net'
+
+export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBrand }: FooterProps) {
   return (
     <footer className="bg-[#05050f] border-t border-white/[0.05] pt-20 pb-10 px-6 relative overflow-hidden">
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-1)]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5 mb-5 hover:opacity-80 transition-opacity w-fit">
-              <Image src="/logo-icon-transparent.png" alt="LeadScale Systems" width={30} height={30} className="object-contain" />
-              <span className="text-white font-bold text-sm tracking-tight">LEADSCALE SYSTEMS</span>
+            <Link href={homeHref} className="flex items-center gap-2.5 mb-5 hover:opacity-80 transition-opacity w-fit">
+              <Image src="/logo-icon-transparent.png" alt={wordmark} width={30} height={30} className="object-contain" />
+              <span className="text-white font-bold text-sm tracking-tight">{wordmark.toUpperCase()}</span>
             </Link>
-            <p className="text-[#4a5568] text-sm leading-relaxed max-w-xs">
-              Performance-accelerated marketing systems for businesses that refuse to rely on word of mouth alone.
-            </p>
+            <p className="text-[#4a5568] text-sm leading-relaxed max-w-xs">{tagline}</p>
           </div>
 
           {/* Navigation */}
@@ -45,6 +52,11 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href={crossBrand.href} className="text-[#4a5568] hover:text-white text-sm transition-colors duration-200">
+                  {crossBrand.label}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -61,10 +73,10 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="mailto:admin@leadscalesystems.net"
+                  href={`mailto:${contactEmail}`}
                   className="text-[#4a5568] hover:text-white text-sm transition-colors duration-200"
                 >
-                  admin@leadscalesystems.net
+                  {contactEmail}
                 </a>
               </li>
             </ul>
@@ -75,7 +87,7 @@ export default function Footer() {
           <p className="text-[#2e3650] text-xs">
             © {new Date().getFullYear()} LeadScale Systems. All rights reserved.
           </p>
-          <p className="text-[#2e3650] text-xs">leadscalesystems.com</p>
+          <p className="text-[#2e3650] text-xs">{displayDomain}</p>
         </div>
       </div>
     </footer>

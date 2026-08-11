@@ -11,25 +11,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'LeadScale Systems | Digital Marketing for Beauty Businesses & Salons',
-    template: '%s | LeadScale Systems',
+    default: 'LeadScale Systems',
+    template: '%s',
   },
-  description:
-    'LeadScale Systems helps salons, clinics, spas and beauty businesses get more bookings through SEO, paid advertising, and social media — built as a system, not a one-off campaign.',
-  keywords: [
-    'digital marketing',
-    'SEO',
-    'paid traffic',
-    'social media management',
-    'local business marketing',
-    'lead generation',
-    'LeadScale Systems',
-  ],
-  metadataBase: new URL('https://leadscalesystems.com'),
+  description: 'LeadScale Systems is the parent company behind LeadScale Media Systems and LeadScale AI Systems.',
+  metadataBase: new URL('https://leadscalesystems.net'),
   openGraph: {
     type: 'website',
     siteName: 'LeadScale Systems',
-    url: 'https://leadscalesystems.com',
+    url: 'https://leadscalesystems.net',
   },
 }
 

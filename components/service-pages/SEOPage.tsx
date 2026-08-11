@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 const problemStats = [
-  { label: 'Nail salons' },
-  { label: 'Hair salons' },
-  { label: 'Skin clinics' },
-  { label: 'Massage spas' },
-  { label: 'Beauty therapists' },
+  { label: 'Electricians' },
+  { label: 'Plumbers' },
+  { label: 'Roofers' },
+  { label: 'HVAC contractors' },
+  { label: 'Local service businesses' },
 ]
 
 const methodology = [
@@ -331,7 +331,7 @@ export default function SEOPage() {
             transition={{ duration: 0.5 }}
           >
             <Link
-              href="/book"
+              href="/media/book"
               className="inline-block bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold tracking-widest text-xs px-8 py-4 rounded transition-all duration-200 hover:scale-105"
             >
               BOOK A FREE STRATEGY CALL
