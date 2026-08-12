@@ -60,12 +60,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[88px] font-extrabold leading-[1.0] tracking-tight mb-8"
         >
-          More Enquiries.
+          More enquiries.
           <br />
-          More Booked Appointments.
+          More booked appointments.
           <br />
           <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent">
-            More Growth.
+            More growth.
           </span>
         </motion.h1>
 

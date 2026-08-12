@@ -79,9 +79,9 @@ export default function WebsiteBuilds() {
         >
           <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">THE FOUNDATION</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            Before We Scale You,
+            Before we scale you,
             <br />
-            <span className="text-[#2e3650] font-bold">We Build the Machine.</span>
+            <span className="text-[#2e3650] font-bold">we build the machine.</span>
           </h2>
           <p className="text-[#6b7a99] text-lg md:text-xl max-w-2xl leading-relaxed">
             We design and build conversion-focused websites for tradespeople, contractors and local service

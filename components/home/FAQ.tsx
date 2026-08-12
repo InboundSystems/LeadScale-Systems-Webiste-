@@ -54,7 +54,7 @@ export default function FAQ() {
             >
               <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-5">COMMON QUESTIONS</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Digital Marketing
+                Digital marketing
                 <br />
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                   — FAQ

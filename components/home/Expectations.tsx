@@ -79,9 +79,9 @@ export default function Expectations() {
         >
           <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">WORKING WITH US</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            What You Can Expect.
+            What you can expect.
             <br />
-            <span className="text-[#2e3650] font-bold">Every Single Month.</span>
+            <span className="text-[#2e3650] font-bold">Every single month.</span>
           </h2>
         </motion.div>
 

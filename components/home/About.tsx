@@ -16,11 +16,11 @@ export default function About() {
           >
             <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-6">WHO WE ARE</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
-              We&apos;re Not an Agency.
+              We&apos;re not an agency.
               <br />
               We&apos;re a{' '}
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Growth Engine.
+                growth engine.
               </span>
             </h2>
           </motion.div>

@@ -75,9 +75,9 @@ export default function Services() {
         >
           <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">WHAT WE DO</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Three Growth Levers.
+            Three growth levers.
             <br />
-            <span className="text-[#2e3650] font-bold">One Unified System.</span>
+            <span className="text-[#2e3650] font-bold">One unified system.</span>
           </h2>
         </motion.div>
 

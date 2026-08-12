@@ -45,10 +45,10 @@ export default function Process() {
         >
           <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">OUR PROCESS</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Three Phases to
+            Three phases to
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Predictable Revenue
+              predictable revenue
             </span>
           </h2>
         </motion.div>

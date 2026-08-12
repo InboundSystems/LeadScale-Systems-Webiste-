@@ -33,10 +33,10 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.08 }}
           className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
         >
-          Let&apos;s Build Your
+          Let&apos;s build your
           <br />
           <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent">
-            Client Acquisition Machine
+            client acquisition machine
           </span>
         </motion.h2>
 
