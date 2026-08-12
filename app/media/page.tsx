@@ -9,7 +9,7 @@ import FAQ from '@/components/home/FAQ'
 import CTA from '@/components/home/CTA'
 
 export const metadata: Metadata = {
-  title: 'LeadScale Media Systems | More Enquiries. More Booked Jobs. More Growth.',
+  title: { absolute: 'LeadScale Media Systems | More Enquiries. More Booked Jobs. More Growth.' },
   description:
     'We help tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising and social media.',
   alternates: { canonical: '/media' },
