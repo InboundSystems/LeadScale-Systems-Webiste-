@@ -30,3 +30,6 @@ next-env.d.ts
 
 # scripts (dev only)
 /scripts
+
+# internal docs (business model, pricing hypotheses, briefs — not for publication)
+/docs
