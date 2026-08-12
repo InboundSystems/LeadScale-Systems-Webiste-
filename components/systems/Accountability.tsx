@@ -37,7 +37,7 @@ const items = [
 
 export default function Accountability() {
   return (
-    <section id="accountability" className="py-28 px-6 bg-[#05050f]">
+    <section id="accountability" className="py-28 px-6 bg-[var(--ink)]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ export default function Accountability() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">ACCOUNTABILITY</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">ACCOUNTABILITY</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             What we&apos;re on the hook for.
             <br />

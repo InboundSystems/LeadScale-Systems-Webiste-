@@ -1,26 +1,39 @@
+'use client'
+
+import { createContext, useContext } from 'react'
 import type { CSSProperties, ReactNode } from 'react'
 
 export type Brand = 'media' | 'systems'
 
-// Colour values are unmigrated pending the brand token pass (see docs/brand/) —
-// "systems" still carries the old AI-era amber accent. Do not touch these values here.
-const THEMES: Record<Brand, CSSProperties> = {
-  media: {
-    '--accent-1': '#2563EB',
-    '--accent-1-hover': '#1D4ED8',
-    '--accent-1-rgb': '37 99 235',
-    '--accent-2': '#06B6D4',
-    '--accent-2-hover': '#0891B2',
-    '--accent-2-rgb': '6 182 212',
-  } as CSSProperties,
+// Accent-only overrides. Shared base tokens (ink, surface, slate, green, amber,
+// card-fill, hairline, radii — see docs/brand/shared-system.md) live once in
+// app/globals.css :root and never vary by brand. Adding a third sibling brand
+// means adding one entry here — nothing else in the token system changes.
+const ACCENTS: Record<Brand, CSSProperties> = {
   systems: {
-    '--accent-1': '#F59E0B',
-    '--accent-1-hover': '#D97706',
-    '--accent-1-rgb': '245 158 11',
-    '--accent-2': '#FB923C',
-    '--accent-2-hover': '#EA580C',
-    '--accent-2-rgb': '251 146 60',
+    '--accent': '#2563EB',
+    '--accent-deep': '#1D4ED8',
+    '--accent-light': '#60A5FA',
+    '--accent-rgb': '37 99 235',
   } as CSSProperties,
+  media: {
+    '--accent': '#4F46E5',
+    '--accent-deep': '#4338CA',
+    '--accent-light': '#818CF8',
+    '--accent-rgb': '79 70 229',
+  } as CSSProperties,
+}
+
+// Wordmark config per brand — see docs/brand/*.md "Wordmark" sections.
+export const WORDMARKS: Record<Brand, { prefix: string; minWidth: number }> = {
+  systems: { prefix: 'LeadScale', minWidth: 140 },
+  media: { prefix: 'LeadScale Media', minWidth: 190 },
+}
+
+const BrandContext = createContext<Brand>('systems')
+
+export function useBrand() {
+  return useContext(BrandContext)
 }
 
 export default function BrandProvider({
@@ -31,8 +44,10 @@ export default function BrandProvider({
   children: ReactNode
 }) {
   return (
-    <div data-brand={brand} style={THEMES[brand]}>
-      {children}
-    </div>
+    <BrandContext.Provider value={brand}>
+      <div data-brand={brand} style={ACCENTS[brand]}>
+        {children}
+      </div>
+    </BrandContext.Provider>
   )
 }

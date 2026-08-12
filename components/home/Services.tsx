@@ -63,7 +63,7 @@ const cardVariants = {
 
 export default function Services() {
   return (
-    <section id="services" className="py-28 px-6 bg-[#05050f]">
+    <section id="services" className="py-28 px-6 bg-[var(--ink)]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -73,7 +73,7 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">WHAT WE DO</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">WHAT WE DO</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             Three growth levers.
             <br />
@@ -93,18 +93,18 @@ export default function Services() {
             <motion.div
               key={service.number}
               variants={cardVariants}
-              className={`group relative bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-8 flex flex-col ${service.borderHover} ${service.glow} hover:bg-white/[0.05] transition-all duration-500 hover:-translate-y-1.5`}
+              className={`group relative bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 flex flex-col ${service.borderHover} ${service.glow} hover:bg-white/[0.05] transition-all duration-500 hover:-translate-y-1.5`}
             >
               {/* Top gradient bar */}
               <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${service.color} opacity-60`} />
 
               {/* Icon */}
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} border border-white/10 flex items-center justify-center mb-7 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-12 h-12 rounded-[var(--radius-btn)] bg-gradient-to-br ${service.color} border border-white/10 flex items-center justify-center mb-7 group-hover:scale-110 transition-transform duration-300`}>
                 {service.icon}
               </div>
 
               {/* Number + title */}
-              <p className="text-[#374151] text-xs font-bold tracking-[0.2em] mb-3">{service.number}</p>
+              <p className="text-[#374151] text-xs font-bold tracking-[3px] mb-3">{service.number}</p>
               <h3 className="text-white text-xl font-bold mb-4 leading-snug">{service.title}</h3>
               <p className="text-[#6b7a99] text-sm leading-relaxed flex-1">{service.description}</p>
 

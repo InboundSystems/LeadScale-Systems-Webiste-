@@ -5,24 +5,24 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-20 overflow-hidden bg-[#05050f]">
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-20 overflow-hidden bg-[var(--ink)]">
 
       {/* Animated gradient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ x: [0, 50, -30, 0], y: [0, -70, 40, 0], scale: [1, 1.15, 0.92, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-[250px] -left-[150px] w-[750px] h-[750px] rounded-full bg-blue-600/[0.14] blur-[130px]"
+          className="absolute -top-[250px] -left-[150px] w-[750px] h-[750px] rounded-full bg-[var(--accent)]/[0.14] blur-[130px]"
         />
         <motion.div
           animate={{ x: [0, -70, 40, 0], y: [0, 60, -50, 0], scale: [1, 0.88, 1.12, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-          className="absolute top-[15%] -right-[180px] w-[650px] h-[650px] rounded-full bg-cyan-500/[0.09] blur-[130px]"
+          className="absolute top-[15%] -right-[180px] w-[650px] h-[650px] rounded-full bg-[var(--accent-deep)]/[0.09] blur-[130px]"
         />
         <motion.div
           animate={{ x: [0, 35, -50, 0], y: [0, 45, -30, 0] }}
           transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 8 }}
-          className="absolute -bottom-[150px] left-[25%] w-[550px] h-[550px] rounded-full bg-violet-700/[0.08] blur-[120px]"
+          className="absolute -bottom-[150px] left-[25%] w-[550px] h-[550px] rounded-full bg-[var(--accent)]/[0.08] blur-[120px]"
         />
       </div>
 
@@ -47,8 +47,8 @@ export default function Hero() {
           className="inline-flex items-center gap-2.5 bg-white/[0.05] border border-white/[0.08] rounded-full px-5 py-2 mb-10 backdrop-blur-sm"
         >
           <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-light)] opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--accent-light)]" />
           </span>
           <span className="text-[#94a3b8] text-xs font-semibold tracking-[0.2em]">NOW ACCEPTING NEW CLIENTS</span>
         </motion.div>
@@ -64,7 +64,7 @@ export default function Hero() {
           <br />
           More booked appointments.
           <br />
-          <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
             More growth.
           </span>
         </motion.h1>
@@ -89,14 +89,14 @@ export default function Hero() {
         >
           <Link
             href="/media/book"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-1-rgb)/0.65)] hover:scale-[1.04]"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-8 py-4 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-rgb)/0.65)] hover:scale-[1.04]"
           >
             BOOK A FREE STRATEGY CALL
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Link>
           <Link
             href="/media#services"
-            className="inline-flex items-center gap-2 text-[#6b7a99] hover:text-white font-semibold text-sm px-7 py-4 rounded-xl border border-white/[0.08] hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
+            className="inline-flex items-center gap-2 text-[#6b7a99] hover:text-white font-semibold text-sm px-7 py-4 rounded-[var(--radius-btn)] border border-white/[0.08] hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
           >
             See our services
             <span className="opacity-60">↓</span>
@@ -105,7 +105,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#05050f] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[var(--ink)] to-transparent pointer-events-none" />
     </section>
   )
 }

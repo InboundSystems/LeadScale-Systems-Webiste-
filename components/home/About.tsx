@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-6 bg-[#080814] overflow-hidden">
+    <section id="about" className="py-28 px-6 bg-[var(--surface)] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left: headline */}
@@ -14,12 +14,12 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
-            <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-6">WHO WE ARE</p>
+            <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6">WHO WE ARE</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
               We&apos;re not an agency.
               <br />
               We&apos;re a{' '}
-              <span className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
                 growth engine.
               </span>
             </h2>
@@ -55,9 +55,9 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-6"
+                  className="bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-6"
                 >
-                  <p className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
+                  <p className="text-4xl font-extrabold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent mb-1">
                     {stat.value}
                   </p>
                   <p className="text-[#6b7a99] text-sm">{stat.label}</p>

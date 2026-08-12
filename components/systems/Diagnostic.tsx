@@ -28,7 +28,7 @@ const steps = [
 
 export default function Diagnostic() {
   return (
-    <section id="diagnostic" className="py-28 px-6 bg-[#080814]">
+    <section id="diagnostic" className="py-28 px-6 bg-[var(--surface)]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,11 +37,11 @@ export default function Diagnostic() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">THE DIAGNOSTIC</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">THE DIAGNOSTIC</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             Two hours on site.
             <br />
-            <span className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
               One report you keep.
             </span>
           </h2>
@@ -65,7 +65,7 @@ export default function Diagnostic() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="border-l-2 border-[var(--accent-1)] pl-6 py-2"
+          className="border-l-2 border-[var(--accent)] pl-6 py-2"
         >
           <p className="text-white text-xl md:text-2xl font-bold leading-snug max-w-2xl">
             You keep the report on what&apos;s leaking. Hire us or don&apos;t. That&apos;s the whole point.

@@ -15,15 +15,15 @@ interface CTAProps {
 
 export default function CTA({ eyebrow, headingLine1, headingAccent, body, buttonLabel, buttonHref, reassurance }: CTAProps) {
   return (
-    <section id="cta" className="py-28 px-6 bg-[#080814] relative overflow-hidden">
+    <section id="cta" className="py-28 px-6 bg-[var(--surface)] relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[var(--accent-1)]/[0.08] rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-[var(--accent-2)]/[0.06] rounded-full blur-[80px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[var(--accent)]/[0.08] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-[var(--accent-deep)]/[0.06] rounded-full blur-[80px]" />
       </div>
 
       {/* Border top gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-1)]/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/40 to-transparent" />
 
       <div className="max-w-4xl mx-auto text-center relative">
         <motion.p
@@ -31,7 +31,7 @@ export default function CTA({ eyebrow, headingLine1, headingAccent, body, button
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-6"
+          className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
         >
           {eyebrow}
         </motion.p>
@@ -45,7 +45,7 @@ export default function CTA({ eyebrow, headingLine1, headingAccent, body, button
         >
           {headingLine1}
           <br />
-          <span className="bg-gradient-to-r from-[var(--accent-1)] via-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
             {headingAccent}
           </span>
         </motion.h2>
@@ -68,7 +68,7 @@ export default function CTA({ eyebrow, headingLine1, headingAccent, body, button
         >
           <Link
             href={buttonHref}
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-10 py-5 rounded-xl transition-all duration-300 shadow-[0_0_40px_rgb(var(--accent-1-rgb)/0.45)] hover:shadow-[0_0_60px_rgb(var(--accent-1-rgb)/0.7)] hover:scale-[1.04]"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-10 py-5 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-rgb)/0.65)] hover:scale-[1.04]"
           >
             {buttonLabel}
             <span className="group-hover:translate-x-1.5 transition-transform duration-200">→</span>

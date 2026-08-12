@@ -129,7 +129,7 @@ export default function PaidTrafficPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-[#2563EB] text-xs font-semibold tracking-[0.2em] mb-6"
+            className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
           >
             SERVICE 02
           </motion.p>
@@ -195,7 +195,7 @@ export default function PaidTrafficPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-[#111118] border border-white/5 rounded-xl p-7"
+                className="bg-[var(--surface)] border border-white/5 rounded-xl p-7"
               >
                 <h3 className="text-white font-bold mb-3">{problem.title}</h3>
                 <p className="text-[#94a3b8] text-sm leading-relaxed">{problem.description}</p>
@@ -276,7 +276,7 @@ export default function PaidTrafficPage() {
               'Rather than guessing what might work, this approach builds a data-driven advertising system that improves over time',
             ].map((point) => (
               <div key={point} className="flex items-start gap-3">
-                <span className="text-[#2563EB] mt-0.5 flex-shrink-0">▸</span>
+                <span className="text-[var(--accent)] mt-0.5 flex-shrink-0">▸</span>
                 <p className="text-[#94a3b8] text-sm leading-relaxed">{point}</p>
               </div>
             ))}
@@ -323,11 +323,11 @@ export default function PaidTrafficPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-[#111118] border border-white/5 rounded-xl p-8"
+                className="bg-[var(--surface)] border border-white/5 rounded-xl p-8"
               >
                 <div className="flex items-start gap-5 mb-5">
-                  <div className="w-10 h-10 bg-[#2563EB]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-[#2563EB] text-sm font-bold">{area.number}</span>
+                  <div className="w-10 h-10 bg-[var(--accent)]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-[var(--accent)] text-sm font-bold">{area.number}</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-white text-xl font-bold mb-3">{area.title}</h3>
@@ -335,7 +335,7 @@ export default function PaidTrafficPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {area.checklist.map((check) => (
                         <div key={check} className="flex items-center gap-2">
-                          <svg className="w-4 h-4 text-[#2563EB] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg className="w-4 h-4 text-[var(--accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           <span className="text-[#94a3b8] text-xs">{check}</span>
@@ -380,9 +380,9 @@ export default function PaidTrafficPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.07 }}
-                className="bg-[#111118] border border-white/5 rounded-lg px-5 py-4 flex items-center gap-3"
+                className="bg-[var(--surface)] border border-white/5 rounded-lg px-5 py-4 flex items-center gap-3"
               >
-                <svg className="w-4 h-4 text-[#2563EB] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-4 h-4 text-[var(--accent)] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span className="text-[#94a3b8] text-sm">{item}</span>
@@ -427,9 +427,9 @@ export default function PaidTrafficPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="bg-[#111118] border border-white/5 rounded-lg px-6 py-5 flex items-center gap-5"
+                className="bg-[var(--surface)] border border-white/5 rounded-lg px-6 py-5 flex items-center gap-5"
               >
-                <span className="text-[#2563EB] text-sm font-bold flex-shrink-0">{step.num}</span>
+                <span className="text-[var(--accent)] text-sm font-bold flex-shrink-0">{step.num}</span>
                 <span className="text-[#94a3b8] text-sm">{step.text}</span>
               </motion.div>
             ))}
@@ -440,7 +440,7 @@ export default function PaidTrafficPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-[#111118] border border-white/5 rounded-lg px-6 py-5 mb-10"
+            className="bg-[var(--surface)] border border-white/5 rounded-lg px-6 py-5 mb-10"
           >
             <p className="text-[#94a3b8] text-sm leading-relaxed">
               Once onboarding is complete, we begin building the advertising system designed to generate consistent,
@@ -456,7 +456,7 @@ export default function PaidTrafficPage() {
           >
             <Link
               href="/media/book"
-              className="inline-block bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold tracking-widest text-xs px-8 py-4 rounded transition-all duration-200 hover:scale-105"
+              className="inline-block bg-[var(--accent)] hover:bg-[var(--accent-deep)] text-white font-bold tracking-widest text-xs px-8 py-4 rounded transition-all duration-200 hover:scale-105"
             >
               BOOK A FREE STRATEGY CALL
             </Link>

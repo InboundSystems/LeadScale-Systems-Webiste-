@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 export default function BookPage() {
   return (
-    <div className="pt-28 min-h-screen bg-[#05050f] relative overflow-hidden">
+    <div className="pt-28 min-h-screen bg-[var(--ink)] relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/[0.07] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[var(--accent)]/[0.07] rounded-full blur-[120px] pointer-events-none" />
 
       <section className="py-20 px-6 relative">
         <div className="max-w-2xl mx-auto text-center">
@@ -15,7 +15,7 @@ export default function BookPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-6"
+            className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
           >
             NEXT STEPS
           </motion.p>
@@ -28,7 +28,7 @@ export default function BookPage() {
           >
             Book your free
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
               strategy call
             </span>
           </motion.h1>
@@ -48,10 +48,10 @@ export default function BookPage() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.24 }}
-            className="bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-12 mb-8"
+            className="bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-12 mb-8"
           >
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center mx-auto mb-6">
-              <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <div className="w-14 h-14 rounded-[var(--radius-card)] bg-gradient-to-br from-[var(--accent)]/30 to-[var(--accent-deep)]/20 border border-[var(--accent)]/20 flex items-center justify-center mx-auto mb-6">
+              <svg className="w-6 h-6 text-[var(--accent-light)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
               </svg>
             </div>
@@ -60,7 +60,7 @@ export default function BookPage() {
             </p>
             <a
               href="mailto:admin@leadscalesystems.net"
-              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-10 py-4 rounded-xl transition-all duration-300 shadow-[0_0_30px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_50px_rgb(var(--accent-1-rgb)/0.6)] hover:scale-[1.04]"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-10 py-4 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_30px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_50px_rgb(var(--accent-rgb)/0.6)] hover:scale-[1.04]"
             >
               EMAIL US TO BOOK
               <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>

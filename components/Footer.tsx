@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Wordmark from '@/components/brand/Wordmark'
 
 interface NavLink {
   label: string
@@ -26,9 +27,9 @@ const displayDomain = 'leadscalesystems.net'
 
 export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBrand }: FooterProps) {
   return (
-    <footer className="bg-[#05050f] border-t border-white/[0.05] pt-20 pb-10 px-6 relative overflow-hidden">
+    <footer className="bg-[var(--ink)] border-t border-white/[0.05] pt-20 pb-10 px-6 relative overflow-hidden">
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-1)]/30 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -36,7 +37,7 @@ export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBra
           <div>
             <Link href={homeHref} className="flex items-center gap-2.5 mb-5 hover:opacity-80 transition-opacity w-fit">
               <Image src="/logo-icon-transparent.png" alt={wordmark} width={30} height={30} className="object-contain" />
-              <span className="text-white font-bold text-sm tracking-tight">{wordmark.toUpperCase()}</span>
+              <Wordmark className="text-sm uppercase" />
             </Link>
             <p className="text-[#4a5568] text-sm leading-relaxed max-w-xs">{tagline}</p>
           </div>

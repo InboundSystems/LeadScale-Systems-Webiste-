@@ -66,7 +66,7 @@ const cardVariants = {
 
 export default function WebsiteBuilds() {
   return (
-    <section className="py-28 px-6 bg-[#080814]">
+    <section className="py-28 px-6 bg-[var(--surface)]">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -77,7 +77,7 @@ export default function WebsiteBuilds() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">THE FOUNDATION</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">THE FOUNDATION</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
             Before we scale you,
             <br />
@@ -102,14 +102,14 @@ export default function WebsiteBuilds() {
             <motion.div
               key={feature.title}
               variants={cardVariants}
-              className={`group relative bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-8 flex items-start gap-6 ${feature.borderHover} hover:bg-white/[0.05] transition-all duration-500`}
+              className={`group relative bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 flex items-start gap-6 ${feature.borderHover} hover:bg-white/[0.05] transition-all duration-500`}
             >
               {/* Top gradient bar */}
               <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${feature.color} opacity-60`} />
 
               {/* Icon */}
               <div
-                className={`shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                className={`shrink-0 w-12 h-12 rounded-[var(--radius-btn)] bg-gradient-to-br ${feature.color} border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
               >
                 {feature.icon}
               </div>
@@ -132,7 +132,7 @@ export default function WebsiteBuilds() {
         >
           <Link
             href="/media/book"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-1-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-1-rgb)/0.65)] hover:scale-[1.04]"
+            className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-8 py-4 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-rgb)/0.65)] hover:scale-[1.04]"
           >
             GET A WEBSITE QUOTE
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>

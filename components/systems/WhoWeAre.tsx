@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function WhoWeAre() {
   return (
-    <section id="about" className="py-28 px-6 bg-[#080814] overflow-hidden">
+    <section id="about" className="py-28 px-6 bg-[var(--surface)] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left: headline */}
@@ -14,12 +14,12 @@ export default function WhoWeAre() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
           >
-            <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-6">WHO WE ARE</p>
+            <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6">WHO WE ARE</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
               We&apos;re not a software company.
               <br />
               We&apos;re{' '}
-              <span className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
                 the sparky.
               </span>
             </h2>

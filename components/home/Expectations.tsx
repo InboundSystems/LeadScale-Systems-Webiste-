@@ -68,7 +68,7 @@ const features = [
 
 export default function Expectations() {
   return (
-    <section id="expectations" className="py-28 px-6 bg-[#05050f]">
+    <section id="expectations" className="py-28 px-6 bg-[var(--ink)]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Expectations() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">WORKING WITH US</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">WORKING WITH US</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             What you can expect.
             <br />
@@ -93,9 +93,9 @@ export default function Expectations() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="group bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-7 hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-400 hover:-translate-y-1"
+              className="group bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-7 hover:border-white/[0.15] hover:bg-white/[0.04] transition-all duration-400 hover:-translate-y-1"
             >
-              <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${feature.gradient} border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-11 h-11 rounded-[var(--radius-btn)] bg-gradient-to-br ${feature.gradient} border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
                 {feature.icon}
               </div>
               <h3 className="text-white text-base font-bold mb-3">{feature.title}</h3>

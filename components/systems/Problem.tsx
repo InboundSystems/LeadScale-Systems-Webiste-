@@ -28,7 +28,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section id="problem" className="py-28 px-6 bg-[#080814]">
+    <section id="problem" className="py-28 px-6 bg-[var(--surface)]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,7 +37,7 @@ export default function Problem() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">WHERE IT GOES WRONG</p>
+          <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">WHERE IT GOES WRONG</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
             Before we fix anything,
             <br />

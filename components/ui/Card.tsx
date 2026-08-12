@@ -19,8 +19,8 @@ export default function Card({ children, className = '', delay = 0, hover = true
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay, ease: EASE }}
-      className={`bg-white/[0.025] backdrop-blur-xl border border-white/[0.07] rounded-2xl p-8 ${
-        hover ? 'hover:border-white/[0.12] hover:bg-white/[0.04] hover:-translate-y-1 transition-all duration-400' : ''
+      className={`bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 ${
+        hover ? 'hover:border-white/[0.15] hover:bg-white/[0.04] hover:-translate-y-1 transition-all duration-400' : ''
       } ${className}`}
     >
       {children}

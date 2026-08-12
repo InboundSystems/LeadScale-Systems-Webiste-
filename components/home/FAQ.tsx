@@ -20,7 +20,7 @@ export default function FAQ({ eyebrow, headingLine1, headingAccent, intro, faqs 
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="py-28 px-6 bg-[#05050f]">
+    <section id="faq" className="py-28 px-6 bg-[var(--ink)]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
           {/* Left */}
@@ -32,11 +32,11 @@ export default function FAQ({ eyebrow, headingLine1, headingAccent, intro, faqs 
               transition={{ duration: 0.6 }}
               className="lg:sticky lg:top-28"
             >
-              <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-5">{eyebrow}</p>
+              <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-5">{eyebrow}</p>
               <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
                 {headingLine1}
                 <br />
-                <span className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
                   {headingAccent}
                 </span>
               </h2>
@@ -61,7 +61,7 @@ export default function FAQ({ eyebrow, headingLine1, headingAccent, intro, faqs 
                   <span className={`text-sm font-semibold leading-snug transition-colors duration-200 ${openIndex === i ? 'text-white' : 'text-[#6b7a99] group-hover:text-[#94a3b8]'}`}>
                     {faq.question}
                   </span>
-                  <span className={`flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${openIndex === i ? 'bg-gradient-to-br from-[var(--accent-1)] to-[var(--accent-2)] border-transparent rotate-45' : 'border-white/[0.1] group-hover:border-white/20'}`}>
+                  <span className={`flex-shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${openIndex === i ? 'bg-gradient-to-br from-[var(--accent)] to-[var(--accent-deep)] border-transparent rotate-45' : 'border-white/[0.1] group-hover:border-white/20'}`}>
                     <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
