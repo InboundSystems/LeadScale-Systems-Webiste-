@@ -27,6 +27,7 @@ const navLinks = [
   { label: 'ACCOUNTABILITY', href: '/#accountability' },
   { label: 'WHO WE ARE', href: '/#about' },
   { label: 'FAQ', href: '/#faq' },
+  { label: 'MEDIA SYSTEMS', href: '/media' },
 ]
 
 const footerNavLinks = [

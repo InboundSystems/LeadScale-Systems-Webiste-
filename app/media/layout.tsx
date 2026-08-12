@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 }
 
 const navLinks = [
+  { label: 'LEADSCALE SYSTEMS', href: '/' },
   { label: 'SERVICES', href: '/media#services' },
   { label: 'PROCESS', href: '/media#process' },
   { label: 'EXPECTATIONS', href: '/media#expectations' },
@@ -53,7 +54,7 @@ export default function MediaLayout({ children }: { children: React.ReactNode })
         wordmark="LeadScale Media Systems"
         tagline="Performance-accelerated marketing systems for businesses that refuse to rely on word of mouth alone."
         navLinks={footerNavLinks}
-        crossBrand={{ label: 'LeadScale AI Systems', href: '/ai' }}
+        crossBrand={{ label: 'LeadScale Systems', href: '/' }}
       />
     </BrandProvider>
   )
