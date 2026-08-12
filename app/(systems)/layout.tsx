@@ -6,16 +6,18 @@ import Footer from '@/components/Footer'
 // Structurally ready, not launched — the vertical hasn't locked yet (see docs/business-model.md).
 // Keep noindex/nofollow and the sitemap/robots exclusion until the business decides to go live.
 export const metadata: Metadata = {
-  title: 'LeadScale AI Systems | Launching Soon',
-  description: 'LeadScale AI Systems is the second division of LeadScale Systems, launching soon.',
+  title: "LeadScale Systems | Find What's Leaking in Your Back Office",
+  description:
+    "We measure exactly what's leaking in your trade or contracting business — admin hours, response time, quotes, invoicing — and stay accountable for the number every month.",
   robots: { index: false, follow: false },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    siteName: 'LeadScale AI Systems',
+    siteName: 'LeadScale Systems',
     url: 'https://leadscalesystems.net',
-    title: 'LeadScale AI Systems | Launching Soon',
-    description: 'LeadScale AI Systems is the second division of LeadScale Systems, launching soon.',
+    title: "LeadScale Systems | Find What's Leaking in Your Back Office",
+    description:
+      "We measure exactly what's leaking in your trade or contracting business — admin hours, response time, quotes, invoicing — and stay accountable for the number every month.",
   },
 }
 
@@ -35,12 +37,12 @@ const footerNavLinks = [
   { label: 'Get In Touch', href: '/enquire' },
 ]
 
-export default function AiLayout({ children }: { children: React.ReactNode }) {
+export default function SystemsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <BrandProvider brand="ai">
+    <BrandProvider brand="systems">
       <Navbar
         homeHref="/"
-        wordmark="LeadScale AI Systems"
+        wordmark="LeadScale Systems"
         navLinks={navLinks}
         ctaHref="/enquire"
         ctaLabel="GET IN TOUCH"
@@ -48,8 +50,8 @@ export default function AiLayout({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       <Footer
         homeHref="/"
-        wordmark="LeadScale AI Systems"
-        tagline="The second division of LeadScale Systems. Details coming soon."
+        wordmark="LeadScale Systems"
+        tagline="We measure what's leaking in trade and contracting back offices, then stay accountable for fixing it."
         navLinks={footerNavLinks}
         crossBrand={{ label: 'LeadScale Media Systems', href: '/media' }}
       />

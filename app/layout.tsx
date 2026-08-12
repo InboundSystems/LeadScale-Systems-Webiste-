@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'LeadScale Systems',
     template: '%s',
   },
-  description: 'LeadScale Systems is the parent company behind LeadScale Media Systems and LeadScale AI Systems.',
+  description: 'LeadScale Systems helps trade and contracting businesses find and fix what\'s costing them money, with LeadScale Media Systems as its marketing arm.',
   metadataBase: new URL('https://leadscalesystems.net'),
   openGraph: {
     type: 'website',

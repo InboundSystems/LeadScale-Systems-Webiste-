@@ -1,9 +1,9 @@
-import Hero from '@/components/ai/Hero'
-import Problem from '@/components/ai/Problem'
-import Ladder from '@/components/ai/Ladder'
-import Diagnostic from '@/components/ai/Diagnostic'
-import Accountability from '@/components/ai/Accountability'
-import WhoWeAre from '@/components/ai/WhoWeAre'
+import Hero from '@/components/systems/Hero'
+import Problem from '@/components/systems/Problem'
+import Ladder from '@/components/systems/Ladder'
+import Diagnostic from '@/components/systems/Diagnostic'
+import Accountability from '@/components/systems/Accountability'
+import WhoWeAre from '@/components/systems/WhoWeAre'
 import FAQ from '@/components/home/FAQ'
 import CTA from '@/components/home/CTA'
 
@@ -40,7 +40,7 @@ const faqs = [
   },
 ]
 
-export default function AiHomePage() {
+export default function SystemsHomePage() {
   return (
     <>
       <Hero />
