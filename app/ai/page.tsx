@@ -51,9 +51,9 @@ export default function AiHomePage() {
       <WhoWeAre />
       <FAQ
         eyebrow="COMMON QUESTIONS"
-        headingLine1="Trade back-office"
-        headingAccent="— FAQ"
-        intro="Everything you need to know before you get in touch."
+        headingLine1="The questions"
+        headingAccent="you'd actually ask."
+        intro="Not sales copy — the practical stuff, before you reach out."
         faqs={faqs}
       />
       <CTA
