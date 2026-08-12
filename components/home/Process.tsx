@@ -9,8 +9,6 @@ const phases = [
     title: 'Audit',
     description:
       'We review your current marketing, identify gaps, and map out exactly where growth is being left on the table. You get clarity on what to fix first and why.',
-    gradient: 'from-blue-600 to-blue-400',
-    glow: 'shadow-[0_0_30px_rgba(37,99,235,0.25)]',
   },
   {
     num: '02',
@@ -18,8 +16,6 @@ const phases = [
     title: 'Build',
     description:
       'We build the infrastructure — funnels, campaigns, content systems, and automations — designed to attract the right audience and convert them into enquiries.',
-    gradient: 'from-cyan-600 to-cyan-400',
-    glow: 'shadow-[0_0_30px_rgba(6,182,212,0.2)]',
   },
   {
     num: '03',
@@ -27,8 +23,6 @@ const phases = [
     title: 'Scale',
     description:
       'Weekly reporting, continuous testing, and month-over-month growth. We track what matters and scale what works — turning marketing into a predictable revenue engine.',
-    gradient: 'from-violet-600 to-violet-400',
-    glow: 'shadow-[0_0_30px_rgba(139,92,246,0.2)]',
   },
 ]
 
@@ -69,7 +63,7 @@ export default function Process() {
               </div>
 
               {/* Step badge */}
-              <div className={`w-12 h-12 rounded-[var(--radius-btn)] bg-gradient-to-br ${phase.gradient} flex items-center justify-center mb-7 ${phase.glow} group-hover:scale-110 transition-transform duration-300`}>
+              <div className="w-12 h-12 rounded-[var(--radius-btn)] bg-white/[0.06] border border-white/10 flex items-center justify-center mb-7 group-hover:scale-110 transition-transform duration-300">
                 <span className="text-white text-sm font-extrabold">{phase.num}</span>
               </div>
 

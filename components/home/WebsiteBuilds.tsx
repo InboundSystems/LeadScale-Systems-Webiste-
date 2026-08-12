@@ -8,10 +8,8 @@ const features = [
     title: 'Fast & Mobile-Optimised',
     description:
       'Built for speed on every device. Your site loads in seconds — because slow sites lose bookings before a client ever reaches out.',
-    color: 'from-blue-600/30 to-blue-400/10',
-    borderHover: 'hover:border-blue-500/40',
     icon: (
-      <svg className="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-5 h-5 text-[var(--slate)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     ),
@@ -20,10 +18,8 @@ const features = [
     title: 'Built for SEO From Day One',
     description:
       'Clean code structure, optimised copy and the right technical foundations to rank on Google — not bolted on as an afterthought.',
-    color: 'from-cyan-600/30 to-cyan-400/10',
-    borderHover: 'hover:border-cyan-500/40',
     icon: (
-      <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-5 h-5 text-[var(--slate)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
       </svg>
     ),
@@ -32,10 +28,8 @@ const features = [
     title: 'Conversion-Focused Layout',
     description:
       'Every element is placed to turn visitors into enquiries. No pretty portfolios — purpose-built client acquisition assets.',
-    color: 'from-violet-600/30 to-violet-400/10',
-    borderHover: 'hover:border-violet-500/40',
     icon: (
-      <svg className="w-5 h-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-5 h-5 text-[var(--slate)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
       </svg>
     ),
@@ -44,10 +38,8 @@ const features = [
     title: 'Fully Handed Over — You Own It',
     description:
       'Full access, no lock-in. We build it, hand it over completely, and you keep it — with or without an ongoing relationship.',
-    color: 'from-emerald-600/30 to-emerald-400/10',
-    borderHover: 'hover:border-emerald-500/40',
     icon: (
-      <svg className="w-5 h-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <svg className="w-5 h-5 text-[var(--slate)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     ),
@@ -102,14 +94,14 @@ export default function WebsiteBuilds() {
             <motion.div
               key={feature.title}
               variants={cardVariants}
-              className={`group relative bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 flex items-start gap-6 ${feature.borderHover} hover:bg-white/[0.05] transition-all duration-500`}
+              className="group relative bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-8 flex items-start gap-6 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500"
             >
-              {/* Top gradient bar */}
-              <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${feature.color} opacity-60`} />
+              {/* Top bar */}
+              <div className="absolute top-0 left-6 right-6 h-px bg-white/10" />
 
               {/* Icon */}
               <div
-                className={`shrink-0 w-12 h-12 rounded-[var(--radius-btn)] bg-gradient-to-br ${feature.color} border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                className="shrink-0 w-12 h-12 rounded-[var(--radius-btn)] bg-white/[0.06] border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
               >
                 {feature.icon}
               </div>
