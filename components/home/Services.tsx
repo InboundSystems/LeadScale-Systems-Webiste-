@@ -73,7 +73,7 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">WHAT WE DO</p>
+          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">WHAT WE DO</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             Three growth levers.
             <br />

@@ -3,17 +3,27 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-export default function CTA() {
+interface CTAProps {
+  eyebrow: string
+  headingLine1: string
+  headingAccent: string
+  body: string
+  buttonLabel: string
+  buttonHref: string
+  reassurance: string
+}
+
+export default function CTA({ eyebrow, headingLine1, headingAccent, body, buttonLabel, buttonHref, reassurance }: CTAProps) {
   return (
     <section id="cta" className="py-28 px-6 bg-[#080814] relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/[0.08] rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-cyan-500/[0.06] rounded-full blur-[80px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[var(--accent-1)]/[0.08] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-[var(--accent-2)]/[0.06] rounded-full blur-[80px]" />
       </div>
 
       {/* Border top gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-1)]/40 to-transparent" />
 
       <div className="max-w-4xl mx-auto text-center relative">
         <motion.p
@@ -21,9 +31,9 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-6"
+          className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-6"
         >
-          READY TO SCALE?
+          {eyebrow}
         </motion.p>
 
         <motion.h2
@@ -33,10 +43,10 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.08 }}
           className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
         >
-          Let&apos;s build your
+          {headingLine1}
           <br />
-          <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-400 bg-clip-text text-transparent">
-            client acquisition machine
+          <span className="bg-gradient-to-r from-[var(--accent-1)] via-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
+            {headingAccent}
           </span>
         </motion.h2>
 
@@ -47,8 +57,7 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.16 }}
           className="text-[#6b7a99] text-lg leading-relaxed mb-12 max-w-xl mx-auto"
         >
-          Book a free 30-minute strategy call. We&apos;ll audit your current marketing, identify gaps, and show
-          you exactly how to generate more qualified leads.
+          {body}
         </motion.p>
 
         <motion.div
@@ -58,10 +67,10 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.24 }}
         >
           <Link
-            href="/media/book"
+            href={buttonHref}
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-1-hover)] hover:from-[var(--accent-1-hover)] hover:to-[var(--accent-2-hover)] text-white font-bold tracking-wider text-sm px-10 py-5 rounded-xl transition-all duration-300 shadow-[0_0_40px_rgb(var(--accent-1-rgb)/0.45)] hover:shadow-[0_0_60px_rgb(var(--accent-1-rgb)/0.7)] hover:scale-[1.04]"
           >
-            BOOK YOUR FREE CALL
+            {buttonLabel}
             <span className="group-hover:translate-x-1.5 transition-transform duration-200">→</span>
           </Link>
         </motion.div>
@@ -73,7 +82,7 @@ export default function CTA() {
           transition={{ duration: 0.5, delay: 0.35 }}
           className="text-[#374151] text-xs mt-8 tracking-wide"
         >
-          No commitment required. No sales pressure. Just a conversation about your growth.
+          {reassurance}
         </motion.p>
       </div>
     </section>

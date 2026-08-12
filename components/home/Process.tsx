@@ -43,11 +43,11 @@ export default function Process() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <p className="text-blue-400 text-xs font-semibold tracking-[0.25em] mb-4">OUR PROCESS</p>
+          <p className="text-[var(--accent-1)] text-xs font-semibold tracking-[0.25em] mb-4">OUR PROCESS</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
             Three phases to
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--accent-1)] to-[var(--accent-2)] bg-clip-text text-transparent">
               predictable revenue
             </span>
           </h2>
