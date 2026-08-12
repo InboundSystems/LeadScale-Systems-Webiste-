@@ -6,6 +6,8 @@ const nextConfig = {
       { source: '/paid-traffic', destination: '/media/paid-traffic', permanent: true },
       { source: '/social-media', destination: '/media/social-media', permanent: true },
       { source: '/book', destination: '/media/book', permanent: true },
+      { source: '/ai', destination: '/', permanent: true },
+      { source: '/ai/enquire', destination: '/enquire', permanent: true },
     ]
   },
 }

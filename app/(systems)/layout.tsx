@@ -9,45 +9,45 @@ export const metadata: Metadata = {
   title: 'LeadScale AI Systems | Launching Soon',
   description: 'LeadScale AI Systems is the second division of LeadScale Systems, launching soon.',
   robots: { index: false, follow: false },
-  alternates: { canonical: '/ai' },
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: 'LeadScale AI Systems',
-    url: 'https://leadscalesystems.net/ai',
+    url: 'https://leadscalesystems.net',
     title: 'LeadScale AI Systems | Launching Soon',
     description: 'LeadScale AI Systems is the second division of LeadScale Systems, launching soon.',
   },
 }
 
 const navLinks = [
-  { label: 'THE LADDER', href: '/ai#ladder' },
-  { label: 'THE DIAGNOSTIC', href: '/ai#diagnostic' },
-  { label: 'ACCOUNTABILITY', href: '/ai#accountability' },
-  { label: 'WHO WE ARE', href: '/ai#about' },
-  { label: 'FAQ', href: '/ai#faq' },
+  { label: 'THE LADDER', href: '/#ladder' },
+  { label: 'THE DIAGNOSTIC', href: '/#diagnostic' },
+  { label: 'ACCOUNTABILITY', href: '/#accountability' },
+  { label: 'WHO WE ARE', href: '/#about' },
+  { label: 'FAQ', href: '/#faq' },
 ]
 
 const footerNavLinks = [
-  { label: 'The Ladder', href: '/ai#ladder' },
-  { label: 'The Diagnostic', href: '/ai#diagnostic' },
-  { label: 'Accountability', href: '/ai#accountability' },
-  { label: 'Who We Are', href: '/ai#about' },
-  { label: 'Get In Touch', href: '/ai/enquire' },
+  { label: 'The Ladder', href: '/#ladder' },
+  { label: 'The Diagnostic', href: '/#diagnostic' },
+  { label: 'Accountability', href: '/#accountability' },
+  { label: 'Who We Are', href: '/#about' },
+  { label: 'Get In Touch', href: '/enquire' },
 ]
 
 export default function AiLayout({ children }: { children: React.ReactNode }) {
   return (
     <BrandProvider brand="ai">
       <Navbar
-        homeHref="/ai"
+        homeHref="/"
         wordmark="LeadScale AI Systems"
         navLinks={navLinks}
-        ctaHref="/ai/enquire"
+        ctaHref="/enquire"
         ctaLabel="GET IN TOUCH"
       />
       <main>{children}</main>
       <Footer
-        homeHref="/ai"
+        homeHref="/"
         wordmark="LeadScale AI Systems"
         tagline="The second division of LeadScale Systems. Details coming soon."
         navLinks={footerNavLinks}

@@ -75,7 +75,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.34 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button href="/ai/enquire">
+          <Button href="/enquire">
             GET IN TOUCH ABOUT A DIAGNOSTIC
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Button>

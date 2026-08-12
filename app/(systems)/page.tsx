@@ -62,10 +62,10 @@ export default function AiHomePage() {
         headingAccent="what it's costing you."
         body="Two hours on site. A one-page report with a number attached. You keep it either way — get in touch and we'll set up a time."
         buttonLabel="GET IN TOUCH"
-        buttonHref="/ai/enquire"
+        buttonHref="/enquire"
         reassurance="No sales pitch. No pressure. Just two hours and a report with your name on it."
       />
-      {/* Real service pages (app/ai/<service>/page.tsx) slot in here once the offering is finalised. */}
+      {/* Real service pages slot in here once the offering is finalised. */}
     </>
   )
 }
