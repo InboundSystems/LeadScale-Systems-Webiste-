@@ -7,6 +7,22 @@ import WhoWeAre from '@/components/systems/WhoWeAre'
 import FAQ from '@/components/home/FAQ'
 import CTA from '@/components/home/CTA'
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'LeadScale Systems',
+  url: 'https://leadscalesystems.net',
+  logo: 'https://leadscalesystems.net/logo-icon-transparent.png',
+  email: 'admin@leadscalesystems.net',
+  sameAs: [
+    'https://www.instagram.com/leadscalesystems/',
+    'https://www.facebook.com/profile.php?id=61585639113200',
+  ],
+  subOrganization: [
+    { '@type': 'Organization', name: 'LeadScale Media Systems', url: 'https://leadscalesystems.net/media' },
+  ],
+}
+
 const faqs = [
   {
     question: 'What does the diagnostic actually involve, and what does it cost me in time?',
@@ -43,6 +59,10 @@ const faqs = [
 export default function SystemsHomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       <Hero />
       <Problem />
       <Ladder />
