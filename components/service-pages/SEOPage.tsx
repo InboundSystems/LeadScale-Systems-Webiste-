@@ -84,9 +84,9 @@ export default function SEOPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            Search engine
+            Search Engine
             <br />
-            optimisation
+            Optimisation
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -155,7 +155,7 @@ export default function SEOPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-6"
           >
-            A consistent stream of local enquiries
+            A Consistent Stream of Local Enquiries
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -207,7 +207,7 @@ export default function SEOPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-12"
           >
-            Three core areas that drive rankings
+            Three Core Areas That Drive Rankings
           </motion.h2>
           <p className="text-[#94a3b8] text-base leading-relaxed mb-12 max-w-2xl">
             Our SEO strategy focuses on the three core areas that determine how Google ranks local businesses like yours.
@@ -267,7 +267,7 @@ export default function SEOPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-6"
           >
-            What you can expect
+            What You Can Expect
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -303,7 +303,7 @@ export default function SEOPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-10"
           >
-            Everything handled for you
+            Everything Handled For You
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">

@@ -71,15 +71,15 @@ export default function SystemsHomePage() {
       <WhoWeAre />
       <FAQ
         eyebrow="COMMON QUESTIONS"
-        headingLine1="The questions"
-        headingAccent="you'd actually ask."
+        headingLine1="The Questions"
+        headingAccent="You'd Actually Ask."
         intro="Not sales copy — the practical stuff, before you reach out."
         faqs={faqs}
       />
       <CTA
         eyebrow="THE FIRST TWO HOURS"
-        headingLine1="Let's find"
-        headingAccent="what it's costing you."
+        headingLine1="Let's Find"
+        headingAccent="What It's Costing You."
         body="Two hours on site. A one-page report with a number attached. You keep it either way — get in touch and we'll set up a time."
         buttonLabel="GET IN TOUCH"
         buttonHref="/enquire"

@@ -16,11 +16,11 @@ export default function WhoWeAre() {
           >
             <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6">WHO WE ARE</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.05]">
-              We&apos;re not a software company.
+              We&apos;re Not a Software Company.
               <br />
               We&apos;re{' '}
               <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-                the sparky.
+                The Sparky.
               </span>
             </h2>
           </motion.div>

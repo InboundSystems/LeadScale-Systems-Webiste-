@@ -59,15 +59,15 @@ export default function MediaHomePage() {
       <About />
       <FAQ
         eyebrow="COMMON QUESTIONS"
-        headingLine1="Digital marketing"
+        headingLine1="Digital Marketing"
         headingAccent="— FAQ"
         intro="Everything you need to know about working with LeadScale Systems."
         faqs={faqs}
       />
       <CTA
         eyebrow="READY TO SCALE?"
-        headingLine1="Let's build your"
-        headingAccent="client acquisition machine"
+        headingLine1="Let's Build Your"
+        headingAccent="Client Acquisition Machine"
         body="Book a free 30-minute strategy call. We'll audit your current marketing, identify gaps, and show you exactly how to generate more qualified leads."
         buttonLabel="BOOK YOUR FREE CALL"
         buttonHref="/media/book"

@@ -7,21 +7,21 @@ const steps = [
   {
     num: '01',
     label: 'ON SITE',
-    title: 'Two hours',
+    title: 'Two Hours',
     description:
       'We walk your operation for two hours — how enquiries come in, how quotes go out, how jobs get invoiced. No prep required on your end.',
   },
   {
     num: '02',
     label: 'MEASURED',
-    title: 'Four numbers',
+    title: 'Four Numbers',
     description:
       'Admin hours per week. Inbound response time. Quote-to-job conversion. Time-to-invoice. The same four, every time, so the numbers actually mean something.',
   },
   {
     num: '03',
     label: 'REPORT',
-    title: 'Yours either way',
+    title: 'Yours Either Way',
     description: 'A one-page report with a dollar figure attached to it. You keep it whether you hire us or not.',
   },
 ]
@@ -39,10 +39,10 @@ export default function Diagnostic() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">THE DIAGNOSTIC</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Two hours on site.
+            Two Hours on Site.
             <br />
             <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-              One report you keep.
+              One Report You Keep.
             </span>
           </h2>
         </motion.div>

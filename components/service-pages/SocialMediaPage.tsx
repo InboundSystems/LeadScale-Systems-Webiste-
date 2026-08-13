@@ -95,9 +95,9 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            Social media
+            Social Media
             <br />
-            management
+            Management
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -131,7 +131,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-4"
           >
-            What most businesses get wrong
+            What Most Businesses Get Wrong
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -181,7 +181,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-6"
           >
-            A consistent, professional online presence
+            A Consistent, Professional Online Presence
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -251,7 +251,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-4"
           >
-            Three key areas that build trust
+            Three Key Areas That Build Trust
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -317,7 +317,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-6"
           >
-            What you can expect
+            What You Can Expect
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -354,7 +354,7 @@ export default function SocialMediaPage() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-3xl md:text-4xl font-extrabold text-white mb-10"
           >
-            Everything handled for you
+            Everything Handled For You
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">

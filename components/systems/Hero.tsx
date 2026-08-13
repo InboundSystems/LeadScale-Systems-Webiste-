@@ -49,12 +49,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[76px] font-extrabold leading-[1.05] tracking-tight mb-8 text-white"
         >
-          Somewhere in your back office,
+          Somewhere In Your Back Office,
           <br />
-          money is leaking.
+          Money Is Leaking.
           <br />
           <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-            We find it, then we&apos;re on the hook for it.
+            We Find It, Then We&apos;re on the Hook For It.
           </span>
         </motion.h1>
 

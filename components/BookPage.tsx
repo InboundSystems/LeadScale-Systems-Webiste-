@@ -26,10 +26,10 @@ export default function BookPage() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight"
           >
-            Book your free
+            Book Your Free
             <br />
             <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-              strategy call
+              Strategy Call
             </span>
           </motion.h1>
 

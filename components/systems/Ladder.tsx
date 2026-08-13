@@ -37,10 +37,10 @@ export default function Ladder() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">HOW WE WORK</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Three steps.
+            Three Steps.
             <br />
             <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-              One number we own.
+              One Number We Own.
             </span>
           </h2>
         </motion.div>

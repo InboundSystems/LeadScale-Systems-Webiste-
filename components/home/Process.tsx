@@ -39,10 +39,10 @@ export default function Process() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">OUR PROCESS</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Three phases to
+            Three Phases to
             <br />
             <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-              predictable revenue
+              Predictable Revenue
             </span>
           </h2>
         </motion.div>

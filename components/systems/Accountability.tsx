@@ -5,31 +5,31 @@ import Card from '@/components/ui/Card'
 
 const items = [
   {
-    title: 'We own one number',
+    title: 'We Own One Number',
     description:
       "Not a dashboard full of metrics. One number, the one the diagnostic measured, and we're the ones accountable for moving it.",
   },
   {
-    title: 'Reported against your baseline',
+    title: 'Reported Against Your Baseline',
     description:
       'Every month, against the number we captured on day one — not a vague trend, a specific before-and-after.',
   },
   {
-    title: "Nothing you can't check",
+    title: "Nothing You Can't Check",
     description:
       "Because it's a configured module and not a custom build, there's nothing running that only we understand. If something needs checking, it can be checked — by you, or by whoever you bring in next.",
   },
   {
-    title: 'Full visibility',
+    title: 'Full Visibility',
     description:
       "You see what we see. Access to the system, the reporting, all of it — nothing running in the background you can't check.",
   },
   {
-    title: 'No lock-in',
+    title: 'No Lock-In',
     description: 'The system is yours to run with or without us. If the retainer stops, the install stays.',
   },
   {
-    title: 'Local, in person',
+    title: 'Local, In Person',
     description:
       'SEQ-based, on site for the diagnostic and available in person after. Not a call centre in another timezone.',
   },
@@ -48,9 +48,9 @@ export default function Accountability() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">ACCOUNTABILITY</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            What we&apos;re on the hook for.
+            What We&apos;re on the Hook For.
             <br />
-            <span className="text-[#2e3650] font-bold">Every single month.</span>
+            <span className="text-[#2e3650] font-bold">Every Single Month.</span>
           </h2>
         </motion.div>
 
