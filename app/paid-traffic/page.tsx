@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import PaidTrafficPage from '@/components/service-pages/PaidTrafficPage'
 
 export const metadata: Metadata = {
-  title: 'Paid Traffic Advertising | LeadScale Systems',
+  title: 'Paid Traffic Advertising',
   description:
     'Our advertising service manages the full process — from account setup and strategy through to ongoing optimisation across Facebook, Instagram, and Google.',
 }
