@@ -57,7 +57,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryRes
       from: 'LeadScale Enquiries <enquiries@leadscalesystems.net>',
       to: 'admin@leadscalesystems.net',
       replyTo: payload.email,
-      subject: `New enquiry — ${payload.brandLabel}`,
+      subject: `New enquiry — ${payload.name}, ${payload.business} (${payload.brandLabel})`,
       text: lines.join('\n'),
     })
 
