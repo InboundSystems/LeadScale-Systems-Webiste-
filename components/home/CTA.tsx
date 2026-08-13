@@ -47,7 +47,7 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.16 }}
           className="text-[#6b7a99] text-lg leading-relaxed mb-12 max-w-xl mx-auto"
         >
-          Book a free 30-minute strategy call. We&apos;ll audit your current marketing, identify gaps, and show
+          Get in touch and we&apos;ll audit your current marketing, identify gaps, and show
           you exactly how to generate more qualified leads.
         </motion.p>
 
@@ -58,10 +58,10 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.24 }}
         >
           <Link
-            href="/book"
+            href="/enquire"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-10 py-5 rounded-xl transition-all duration-300 shadow-[0_0_40px_rgba(37,99,235,0.45)] hover:shadow-[0_0_60px_rgba(37,99,235,0.7)] hover:scale-[1.04]"
           >
-            BOOK YOUR FREE CALL
+            GET IN TOUCH
             <span className="group-hover:translate-x-1.5 transition-transform duration-200">→</span>
           </Link>
         </motion.div>

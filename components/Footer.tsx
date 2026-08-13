@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Process', href: '/#process' },
   { label: 'Results', href: '/#expectations' },
   { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/book' },
+  { label: 'Contact', href: '/enquire' },
 ]
 
 const socialLinks = [
