@@ -123,7 +123,7 @@ export default function WebsiteBuilds() {
           transition={{ duration: 0.6 }}
         >
           <Link
-            href="/media/book"
+            href="/media/enquire"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-8 py-4 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-rgb)/0.65)] hover:scale-[1.04]"
           >
             GET A WEBSITE QUOTE

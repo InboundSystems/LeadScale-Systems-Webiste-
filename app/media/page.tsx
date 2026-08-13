@@ -70,7 +70,7 @@ export default function MediaHomePage() {
         headingAccent="Client Acquisition Machine"
         body="Book a free 30-minute strategy call. We'll audit your current marketing, identify gaps, and show you exactly how to generate more qualified leads."
         buttonLabel="BOOK YOUR FREE CALL"
-        buttonHref="/media/book"
+        buttonHref="/media/enquire"
         reassurance="No commitment required. No sales pressure. Just a conversation about your growth."
       />
     </>
