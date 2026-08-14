@@ -12,6 +12,8 @@ const navLinks = [
   { label: 'ABOUT', href: '/#about' },
 ]
 
+const contactEmail = 'admin@leadscalesystems.net'
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -52,13 +54,19 @@ export default function Navbar() {
         </div>
 
         {/* CTA */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex flex-col items-end gap-1.5">
           <Link
-            href="/enquire"
+            href={`mailto:${contactEmail}`}
             className="relative inline-flex items-center gap-1.5 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white text-xs font-bold tracking-widest px-5 py-2.5 rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] hover:scale-[1.04]"
           >
             GET STARTED
           </Link>
+          <a
+            href={`mailto:${contactEmail}`}
+            className="text-[#4a5568] hover:text-white text-[10px] tracking-wide transition-colors"
+          >
+            {contactEmail}
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -87,12 +95,19 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/enquire"
+            href={`mailto:${contactEmail}`}
             onClick={() => setMenuOpen(false)}
             className="bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] text-white text-xs font-bold tracking-widest px-5 py-3 rounded-lg transition-all duration-300 text-center mt-2 shadow-[0_0_20px_rgba(37,99,235,0.3)]"
           >
             GET STARTED
           </Link>
+          <a
+            href={`mailto:${contactEmail}`}
+            onClick={() => setMenuOpen(false)}
+            className="text-[#4a5568] hover:text-white text-xs text-center transition-colors"
+          >
+            {contactEmail}
+          </a>
         </div>
       )}
     </nav>

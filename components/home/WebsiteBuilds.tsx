@@ -130,12 +130,18 @@ export default function WebsiteBuilds() {
           transition={{ duration: 0.6 }}
         >
           <Link
-            href="/enquire"
+            href="mailto:admin@leadscalesystems.net"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-8 py-4 rounded-xl transition-all duration-300 shadow-[0_0_35px_rgba(37,99,235,0.4)] hover:shadow-[0_0_55px_rgba(37,99,235,0.65)] hover:scale-[1.04]"
           >
             GET A WEBSITE QUOTE
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Link>
+          <p className="text-[#4a5568] text-xs mt-4 tracking-wide">
+            Or email us directly at{' '}
+            <a href="mailto:admin@leadscalesystems.net" className="text-blue-400 hover:text-cyan-300 transition-colors">
+              admin@leadscalesystems.net
+            </a>
+          </p>
         </motion.div>
 
       </div>

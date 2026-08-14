@@ -331,11 +331,17 @@ export default function SEOPage() {
             transition={{ duration: 0.5 }}
           >
             <Link
-              href="/enquire"
+              href="mailto:admin@leadscalesystems.net"
               className="inline-block bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold tracking-widest text-xs px-8 py-4 rounded transition-all duration-200 hover:scale-105"
             >
               GET IN TOUCH
             </Link>
+            <p className="text-[#6b7a99] text-xs mt-4 tracking-wide">
+              Or email us directly at{' '}
+              <a href="mailto:admin@leadscalesystems.net" className="text-blue-400 hover:text-cyan-300 transition-colors">
+                admin@leadscalesystems.net
+              </a>
+            </p>
           </motion.div>
         </div>
       </section>

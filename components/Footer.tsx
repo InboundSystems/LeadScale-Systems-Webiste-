@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Process', href: '/#process' },
   { label: 'Results', href: '/#expectations' },
   { label: 'About', href: '/#about' },
-  { label: 'Contact', href: '/enquire' },
+  { label: 'Contact', href: 'mailto:admin@leadscalesystems.net' },
 ]
 
 const socialLinks = [
