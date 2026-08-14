@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Process', href: '/#process' },
   { label: 'Results', href: '/#expectations' },
   { label: 'About', href: '/#about' },
-  { label: 'Contact', href: 'mailto:admin@leadscalesystems.net' },
+  { label: 'Contact', href: 'mailto:admin@leadscalesystems.net?subject=Website%20enquiry' },
 ]
 
 const socialLinks = [
@@ -61,7 +61,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="mailto:admin@leadscalesystems.net"
+                  href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
                   className="text-[#4a5568] hover:text-white text-sm transition-colors duration-200"
                 >
                   admin@leadscalesystems.net

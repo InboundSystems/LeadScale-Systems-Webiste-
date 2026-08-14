@@ -58,7 +58,7 @@ export default function CTA() {
           transition={{ duration: 0.65, delay: 0.24 }}
         >
           <Link
-            href="mailto:admin@leadscalesystems.net"
+            href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[#2563EB] to-[#1D4ED8] hover:from-[#1D4ED8] hover:to-[#0891b2] text-white font-bold tracking-wider text-sm px-10 py-5 rounded-xl transition-all duration-300 shadow-[0_0_40px_rgba(37,99,235,0.45)] hover:shadow-[0_0_60px_rgba(37,99,235,0.7)] hover:scale-[1.04]"
           >
             GET IN TOUCH
@@ -74,7 +74,7 @@ export default function CTA() {
           className="text-[#6b7a99] text-sm mt-6 tracking-wide"
         >
           Or email us directly at{' '}
-          <a href="mailto:admin@leadscalesystems.net" className="text-blue-400 hover:text-cyan-300 transition-colors">
+          <a href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry" className="text-blue-400 hover:text-cyan-300 transition-colors">
             admin@leadscalesystems.net
           </a>
         </motion.p>
