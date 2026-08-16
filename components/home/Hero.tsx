@@ -88,10 +88,10 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link
-            href="/media/enquire"
+            href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
             className="group inline-flex items-center gap-2 bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] hover:brightness-110 text-white font-bold tracking-[1px] text-sm px-8 py-4 rounded-[var(--radius-btn)] transition-all duration-300 shadow-[0_0_35px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_55px_rgb(var(--accent-rgb)/0.65)] hover:scale-[1.04]"
           >
-            BOOK A FREE STRATEGY CALL
+            GET IN TOUCH
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Link>
           <Link
@@ -102,6 +102,18 @@ export default function Hero() {
             <span className="opacity-60">↓</span>
           </Link>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.42 }}
+          className="text-[#4a5568] text-xs mt-6 tracking-wide"
+        >
+          Or email us directly at{' '}
+          <a href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry" className="text-blue-400 hover:text-cyan-300 transition-colors">
+            admin@leadscalesystems.net
+          </a>
+        </motion.p>
       </div>
 
       {/* Bottom gradient fade */}

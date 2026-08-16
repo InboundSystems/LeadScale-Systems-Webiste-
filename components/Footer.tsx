@@ -74,7 +74,7 @@ export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBra
               ))}
               <li>
                 <a
-                  href={`mailto:${contactEmail}`}
+                  href={`mailto:${contactEmail}?subject=Website%20enquiry`}
                   className="text-[#4a5568] hover:text-white text-sm transition-colors duration-200"
                 >
                   {contactEmail}

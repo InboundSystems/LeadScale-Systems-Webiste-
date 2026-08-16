@@ -35,7 +35,7 @@ const footerNavLinks = [
   { label: 'Process', href: '/media#process' },
   { label: 'Results', href: '/media#expectations' },
   { label: 'About', href: '/media#about' },
-  { label: 'Contact', href: '/media/enquire' },
+  { label: 'Contact', href: 'mailto:admin@leadscalesystems.net?subject=Website%20enquiry' },
 ]
 
 export default function MediaLayout({ children }: { children: React.ReactNode }) {
@@ -45,7 +45,7 @@ export default function MediaLayout({ children }: { children: React.ReactNode })
         homeHref="/media"
         wordmark="LeadScale Media Systems"
         navLinks={navLinks}
-        ctaHref="/media/enquire"
+        ctaHref="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
         ctaLabel="GET STARTED"
       />
       <main>{children}</main>

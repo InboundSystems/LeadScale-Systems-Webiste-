@@ -68,9 +68,9 @@ export default function MediaHomePage() {
         eyebrow="READY TO SCALE?"
         headingLine1="Let's Build Your"
         headingAccent="Client Acquisition Machine"
-        body="Book a free 30-minute strategy call. We'll audit your current marketing, identify gaps, and show you exactly how to generate more qualified leads."
-        buttonLabel="BOOK YOUR FREE CALL"
-        buttonHref="/media/enquire"
+        body="Get in touch and we'll audit your current marketing, identify gaps, and show you exactly how to generate more qualified leads."
+        buttonLabel="GET IN TOUCH"
+        buttonHref="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
         reassurance="No commitment required. No sales pressure. Just a conversation about your growth."
       />
     </>

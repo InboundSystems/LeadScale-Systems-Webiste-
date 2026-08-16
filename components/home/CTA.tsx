@@ -79,8 +79,21 @@ export default function CTA({ eyebrow, headingLine1, headingAccent, body, button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-[#6b7a99] text-sm mt-6 tracking-wide"
+        >
+          Or email us directly at{' '}
+          <a href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry" className="text-blue-400 hover:text-cyan-300 transition-colors">
+            admin@leadscalesystems.net
+          </a>
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="text-[#374151] text-xs mt-8 tracking-wide"
+          className="text-[#374151] text-xs mt-6 tracking-wide"
         >
           {reassurance}
         </motion.p>
