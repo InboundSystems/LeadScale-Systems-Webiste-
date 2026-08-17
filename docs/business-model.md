@@ -1,3 +1,8 @@
+> **SUPERSEDED — see `docs/business-model-v2.html`.** This document described the
+> pre-vertical trade/contracting hypothesis (v0.1, 10 Aug 2026). The business has
+> since moved to a beauty/grooming vertical with a different offer. Kept for
+> historical reference only — do not use for current copy or positioning decisions.
+
 # LeadScale Systems — Business Model, One Page
 
 Brisbane, SEQ · Internal alignment · v0.1 · 10 Aug 2026
