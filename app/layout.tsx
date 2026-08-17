@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'LeadScale Systems',
     template: '%s',
   },
-  description: 'LeadScale Systems helps trade and contracting businesses find and fix what\'s costing them money, with LeadScale Media Systems as its marketing arm.',
+  description: 'LeadScale Systems takes recurring back-office work off small, owner-run beauty and grooming businesses, with LeadScale Media Systems as its marketing arm.',
   metadataBase: new URL('https://leadscalesystems.net'),
   openGraph: {
     type: 'website',

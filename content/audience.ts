@@ -3,14 +3,11 @@ import type { AudienceContent } from './types'
 // Brand and audience copy — who we serve, how we position what we sell, the
 // data-handling story, and About content. This survives an offer change;
 // none of it should need editing just because content/offer.ts changes.
-//
-// STRUCTURE DRAFT — placeholder values below, not final site copy.
-// Copy pass happens in step 3, against this shape.
 
 export const audience: AudienceContent = {
   audience: {
     description:
-      '[placeholder] Small, owner-operated beauty and grooming businesses across Australia.',
+      'Small, owner-run beauty and grooming businesses across Australia.',
     businessTypes: [
       'Hair',
       'Beauty and skin',
@@ -30,53 +27,56 @@ export const audience: AudienceContent = {
   },
 
   positioning: {
-    statement: '[placeholder] Completed work, not software.',
+    statement: 'Completed work, not software.',
     valueFraming:
-      '[placeholder] Framed against staff time and lost revenue — never against a software subscription.',
+      'We think about the value here in terms of the staff time it saves you and the bookings you’d otherwise lose — never as another software subscription.',
   },
 
   differentiators: [
     {
-      title: '[placeholder] Export-based, no API dependency',
+      title: 'Works With What You Already Run',
       body:
-        '[placeholder] Works with what they already run, including Fresha — which has no public API at all. Also compatible in spirit with Timely, Phorest, Kitomba, Square Appointments.',
+        'No new software, no login for us into your booking system. We work from an export — which matters especially if you’re on Fresha, since it doesn’t offer a way for outside tools to connect to it at all. Also fine if you’re on Timely, Phorest, Kitomba, Square Appointments, or something else.',
     },
     {
-      title: '[placeholder] Spam Act compliant by design',
+      title: 'We Take Compliance Seriously',
       body:
-        '[placeholder] Lookback caps, sender identification, a working unsubscribe, and a permanent suppression list. Most operators in this space aren’t across this.',
+        'Most operators sending messages like this aren’t properly across Australian spam law. We are — it shapes how we work, not just a line in the fine print.',
     },
     {
-      title: '[placeholder] Two real people in Brisbane',
-      body: '[placeholder] Named, local, contactable.',
+      title: 'Two Real People in Brisbane',
+      body: 'Blake and Sam. Named, local, and the ones who’ll actually read your email.',
     },
     {
-      title: '[placeholder] We do the work by hand first',
-      body:
-        '[placeholder] Honest about being early — explains why we’re careful, and why we’re not overselling.',
+      title: 'We Do The Work By Hand First',
+      body: 'Before anything runs on its own, we read the list and write the messages ourselves. Slower, and deliberately so.',
     },
   ],
 
+  // Intentionally general — principles, not specific commitments. No
+  // timeframes, named systems, or numbers here on purpose: our actual
+  // data-handling setup isn't locked in yet. Tighten this once it is,
+  // rather than publishing specifics now that might not hold.
   dataHandling: {
-    statement:
-      '[placeholder] Plain-terms explanation of what happens to a client list once it’s handed over.',
+    statement: 'We treat your client list the way we’d want ours treated.',
     specifics: [
-      '[placeholder] 18–24 month lookback cap',
-      '[placeholder] Sender identification on every message',
-      '[placeholder] Working unsubscribe on every message',
-      '[placeholder] Permanent, global suppression list',
+      'Kept secure, with access limited to the two of us',
+      'Used only to do the work for your business — never anyone else’s',
+      'Never shared or sold, to anyone, for any reason',
+      'If a client asks to be left alone, that’s honoured for good',
+      'Every message we send follows Australian spam law',
     ],
   },
 
   about: {
-    intro: '[placeholder] Founder-led, two-person partnership, based in Brisbane.',
+    intro: 'Founder-led, two-person partnership, based in Brisbane.',
     founders: [
-      { name: 'Blake', role: 'Co-founder' },
+      { name: 'Blake', role: 'Client Communications & Relationships' },
       { name: 'Sam', role: 'Co-founder & Developer' },
     ],
     location: 'Brisbane, Australia',
     honesty:
-      '[placeholder] Honest about being early — no clients yet, no invented results, just two people who’ll answer email.',
+      'Honest about being early — no clients yet, no invented results, just two people who’ll actually read your email and answer it.',
   },
 
   contact: {

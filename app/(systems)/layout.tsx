@@ -3,38 +3,39 @@ import BrandProvider from '@/components/brand/BrandProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-// Structurally ready, not launched — the vertical hasn't locked yet (see docs/business-model.md).
-// Keep noindex/nofollow and the sitemap/robots exclusion until the business decides to go live.
+// Structurally ready, not launched — the offer hasn't been validated yet
+// (see docs/business-model-v2.html). Keep noindex/nofollow and the
+// sitemap/robots exclusion until the business decides to go live.
 export const metadata: Metadata = {
-  title: "LeadScale Systems | Find What's Leaking in Your Back Office",
+  title: 'LeadScale Systems | Get Your Quiet Clients Back on the Books',
   description:
-    "We measure exactly what's leaking in your trade or contracting business — admin hours, response time, quotes, invoicing — and stay accountable for the number every month.",
+    'We go through your client list, find the ones who’ve stopped coming in, and get them booked back — for small, owner-run beauty and grooming businesses across Australia.',
   robots: { index: false, follow: false },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: 'LeadScale Systems',
     url: 'https://leadscalesystems.net',
-    title: "LeadScale Systems | Find What's Leaking in Your Back Office",
+    title: 'LeadScale Systems | Get Your Quiet Clients Back on the Books',
     description:
-      "We measure exactly what's leaking in your trade or contracting business — admin hours, response time, quotes, invoicing — and stay accountable for the number every month.",
+      'We go through your client list, find the ones who’ve stopped coming in, and get them booked back — for small, owner-run beauty and grooming businesses across Australia.',
   },
 }
 
 const navLinks = [
-  { label: 'THE LADDER', href: '/#ladder' },
-  { label: 'THE DIAGNOSTIC', href: '/#diagnostic' },
-  { label: 'ACCOUNTABILITY', href: '/#accountability' },
-  { label: 'WHO WE ARE', href: '/#about' },
+  { label: 'WHO IT\'S FOR', href: '/#who-its-for' },
+  { label: 'WHAT WE DO', href: '/#what-gets-done' },
+  { label: 'HOW IT WORKS', href: '/how-it-works' },
+  { label: 'ABOUT', href: '/about' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'MEDIA SYSTEMS', href: '/media' },
 ]
 
 const footerNavLinks = [
-  { label: 'The Ladder', href: '/#ladder' },
-  { label: 'The Diagnostic', href: '/#diagnostic' },
-  { label: 'Accountability', href: '/#accountability' },
-  { label: 'Who We Are', href: '/#about' },
+  { label: 'Who It\'s For', href: '/#who-its-for' },
+  { label: 'What We Do', href: '/#what-gets-done' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'About', href: '/about' },
   { label: 'Get In Touch', href: '/enquire' },
 ]
 
@@ -52,7 +53,7 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
       <Footer
         homeHref="/"
         wordmark="LeadScale Systems"
-        tagline="We measure what's leaking in trade and contracting back offices, then stay accountable for fixing it."
+        tagline="We take one recurring back-office job off small beauty and grooming businesses and do it, by hand, from Brisbane."
         navLinks={footerNavLinks}
         crossBrand={{ label: 'LeadScale Media Systems', href: '/media' }}
       />

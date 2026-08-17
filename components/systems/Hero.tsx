@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
+import { offer } from '@/content/offer'
 
 export default function Hero() {
   return (
@@ -34,14 +35,16 @@ export default function Hero() {
       />
 
       <div className="relative max-w-5xl mx-auto text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-[#94a3b8] text-xs font-semibold tracking-[0.25em] mb-10"
-        >
-          SEQ / BRISBANE
-        </motion.p>
+        {offer.headline.eyebrow && (
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-[#94a3b8] text-xs font-semibold tracking-[0.25em] mb-10"
+          >
+            {offer.headline.eyebrow}
+          </motion.p>
+        )}
 
         <motion.h1
           initial={{ opacity: 0, y: 28 }}
@@ -49,12 +52,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[76px] font-extrabold leading-[1.05] tracking-tight mb-8 text-white"
         >
-          Somewhere In Your Back Office,
-          <br />
-          Money Is Leaking.
+          {offer.headline.line1}
           <br />
           <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-            We Find It, Then We&apos;re on the Hook For It.
+            {offer.headline.accent}
           </span>
         </motion.h1>
 
@@ -64,9 +65,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22 }}
           className="text-[#6b7a99] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 font-medium"
         >
-          Admin hours, slow enquiry replies, quotes that go cold, invoices sent late — every trade and contracting
-          business loses money to the same handful of problems. We measure exactly where it&apos;s costing you,
-          install the fix, and stay accountable for the number every month.
+          {offer.headline.subhead}
         </motion.p>
 
         <motion.div
@@ -76,14 +75,14 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Button href="/enquire">
-            GET IN TOUCH ABOUT A DIAGNOSTIC
+            GET IN TOUCH
             <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
           </Button>
           <Link
-            href="#diagnostic"
+            href="#who-its-for"
             className="inline-flex items-center gap-2 text-[#6b7a99] hover:text-white font-semibold text-sm px-7 py-4 rounded-[var(--radius-btn)] border border-white/[0.08] hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
           >
-            See how it works
+            Is this for me?
             <span className="opacity-60">↓</span>
           </Link>
         </motion.div>
