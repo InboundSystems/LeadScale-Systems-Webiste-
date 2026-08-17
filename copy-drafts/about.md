@@ -1,46 +1,33 @@
-# About — copy draft
+# About — copy draft (rewrite — short, professional, no founder story)
 
-Maps to: `content/audience.ts` (`about`, `differentiators`, `dataHandling`).
-This page carries more weight than the headline — the entire pitch, with no
-client list yet, is "these are real people who'll answer you."
-
----
-
-## Hero
-
-**Eyebrow:** WHO WE ARE
-
-**Heading:** Two People in Brisbane.
-
-**Subhead:** Blake and Sam. A two-person partnership, not an agency with a client list to point to yet — and we'd rather say that plainly than dress it up.
+Maps to `content/audience.ts` (`about`, `whoWeAre`). Deliberately short.
+Names appear but carry no argument — no "honest about being early," no
+"two real people" framing, nothing compensating for not having clients yet.
+Data handling is not repeated here — it lives on How It Works.
 
 ---
 
-## Who we are
+## Hero — **[PARENT]**
 
-Sam builds what we use. Blake handles the rest. We're not a call centre, we're not a reseller of someone else's software, and we're not pretending to be bigger than we are.
+**Eyebrow:** ABOUT
 
-We're early. No long list of clients, no case studies, no results to show you yet. What you get instead: two people, based in Brisbane, who read their own email and answer it — and who'll show up in person if that's actually useful to you.
+**Heading:** LeadScale Systems.
 
----
-
-## How we handle your data
-
-Because we're asking to work with your client list, we think you're owed a plain answer on how it's handled, not a line buried in fine print:
-
-- We work from an export you send us — not a login, not an ongoing connection into your booking system.
-- We only look as far back as clients would reasonably expect: 18 to 24 months, not your whole history.
-- Every message we send identifies who it's from and includes a working unsubscribe.
-- Anyone who opts out is removed permanently.
+**Body:** We build and run back-office systems for small, appointment-based businesses — delivered as completed work, not software. Each system takes one recurring job off a business's plate and runs it, for as long as they want it running.
 
 ---
 
-## Why we can do this without plugging into your software
+## Team — **[PARENT]**
 
-Most booking platforms don't offer a way in for someone like us — Fresha, for instance, has no public way for outside tools to connect to it at all. We built around that instead of waiting for it to change: everything runs from an export, so it works regardless of what you're running — Fresha, Timely, Phorest, Kitomba, Square Appointments, or something else entirely.
+**Heading:** Based in Brisbane.
+
+- **Blake** — Client Communications & Relationships
+- **Sam** — Developer
 
 ---
 
-## Being honest about being early
+## Closing line — **[PARENT]**
 
-We'd rather tell you this is new than invent a track record. If that's a dealbreaker for you right now, that's a fair call — come back once we've got more behind us. If it's not, you're talking directly to the two people actually doing the work, not an account manager reading from a script.
+Get in touch if you want to talk about handing off a recurring job.
+
+**Link:** GET IN TOUCH → (links to `/enquire`)

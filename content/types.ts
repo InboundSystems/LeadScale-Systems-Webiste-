@@ -1,4 +1,4 @@
-// Shared shapes for content/offer.ts and content/audience.ts.
+// Shared shapes for content/systems.ts and content/audience.ts.
 // Keeping these in one place means a field renamed or removed on one side
 // breaks the build wherever it's consumed, instead of silently rendering
 // nothing on a page nobody thought to check.
@@ -13,99 +13,93 @@ export interface HowItWorksStep {
   description: string
 }
 
-/**
- * Defined now so the shape exists if pricing is ever approved for the site.
- * Nothing currently reads this into a page — see content/offer.ts.
- */
-export interface PricingTier {
-  name: string
-  price: string
-  description?: string
-}
-
-export interface Differentiator {
-  title: string
-  body: string
-}
-
 export interface Founder {
   name: string
   role: string
 }
 
 // ---------------------------------------------------------------------------
-// Offer — everything that changes if the offer changes.
+// Systems — the parent business runs one or more of these. Each is a
+// recurring back-office job taken off a client and delivered as completed
+// work. Unvalidated and expected to change — see content/systems.ts.
 // ---------------------------------------------------------------------------
-export interface OfferContent {
-  /** The problem this offer claims to solve. Explicitly unvalidated — see the
-   *  hypothesis notice at the top of content/offer.ts. */
-  problemStatement: {
-    headline: string
-    body: string
-  }
+export interface SystemContent {
+  /** e.g. "Client Reconnection" */
+  name: string
 
-  /** Hero-level claims tied to this specific offer (not brand-level positioning). */
-  headline: {
-    eyebrow?: string
-    line1: string
-    accent: string
-    subhead: string
-  }
+  /** One or two lines — what it does. Shown on /what-we-offer. Not a pitch. */
+  shortDescription: string
 
-  /** The feature/action list — what the service actually does, month to month. */
-  whatGetsDone: string[]
+  /**
+   * Reserved for when this system is validated and promoted to its own full
+   * page (e.g. /what-we-offer/client-reconnection). Not used yet — leave
+   * unset until that page exists and is actually routed.
+   */
+  slug?: string
 
-  /** The mechanism, in plain language — 3-4 steps for the "How It Works" page. */
-  howItWorks: HowItWorksStep[]
-
-  /** Disqualifying criteria, written to actually turn people away. Offer-specific
-   *  because a different offer would disqualify different businesses. */
-  whoThisIsntFor: {
+  /**
+   * Optional slots for the fuller content a validated system will need.
+   * Undefined/omitted on an unvalidated system — renderers must treat an
+   * absent slot as "render nothing," not an empty heading or section.
+   */
+  howItWorks?: HowItWorksStep[]
+  whoThisIsntFor?: {
     intro: string
     criteria: string[]
   }
-
-  /** FAQ entries specific to this offer (not brand/company FAQs). */
-  faq: FAQItem[]
-
-  /** Do not render this anywhere until pricing is explicitly approved for
-   *  publication. Null today on purpose. */
-  pricing: PricingTier[] | null
+  faq?: FAQItem[]
 }
 
 // ---------------------------------------------------------------------------
-// Audience / brand — survives an offer change.
+// Audience / parent brand — what LeadScale Systems is, independent of which
+// systems it currently runs. This is what the homepage sells.
 // ---------------------------------------------------------------------------
 export interface AudienceContent {
+  /** The parent-level frame — what we are, and the arrangement (completed
+   *  work, not software; one job at a time, built and run for the client). */
+  whoWeAre: {
+    statement: string
+    arrangement: string
+  }
+
   audience: {
     description: string
     businessTypes: string[]
     profile: string[]
   }
 
-  /** The "completed work, not software" positioning statement and how we talk
-   *  about value (staff time / lost revenue, never software subscriptions). */
-  positioning: {
-    statement: string
-    valueFraming: string
+  /** How we frame value: staff time and lost revenue, never a software
+   *  subscription. */
+  valueFraming: string
+
+  /** How a system gets built and run, in general terms — not specific to
+   *  any one system's mechanics. Powers the parent-level /how-it-works page. */
+  howItWorks: {
+    intro: string
+    steps: HowItWorksStep[]
   }
 
-  /** Differentiators true today with zero clients — see the brief for why
-   *  each one is here. Rendered on Home and/or About. */
-  differentiators: Differentiator[]
+  /** Parent-level only. Not system-specific — a system's own disqualifying
+   *  criteria (if any) live on that system's entry in content/systems.ts,
+   *  once it has a full page to put them on. */
+  whoThisIsntFor: {
+    intro: string
+    criteria: string[]
+  }
 
-  /** The compliance/data-handling story. Shared between About and the
-   *  "How It Works" page's data section — not offer-specific. */
+  /** General principles, not specific commitments — see the note in
+   *  content/audience.ts. A normal section, not the trust centrepiece. */
   dataHandling: {
     statement: string
     specifics: string[]
   }
 
   about: {
-    intro: string
+    /** Short, professional, business-focused. Not a founder story. */
+    statement: string
+    /** Names only carry information here, not an argument. */
     founders: Founder[]
     location: string
-    honesty: string
   }
 
   contact: {

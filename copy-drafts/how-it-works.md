@@ -1,50 +1,49 @@
-# How It Works — copy draft
+# How It Works — copy draft (rewrite, now parent-level)
 
-Maps to: `content/offer.ts` (`howItWorks` steps) + `content/audience.ts`
-(`dataHandling`, since the data section is brand-level, not offer-specific,
-and gets reused if the offer changes).
-
----
-
-## Hero
-
-**Eyebrow:** THE MECHANISM
-
-**Heading:** How It Actually Works.
-
-**Subhead:** No dashboard, no login, nothing to set up. Here's exactly what happens, in order.
+No longer describes Client Reconnection's mechanics specifically — this page
+is now "how a system gets built and run," in general terms, per instruction.
+Maps to `content/audience.ts` (`howItWorks.steps`, `dataHandling`). System-
+specific mechanism detail (e.g. naming Fresha) is deferred to that system's
+own full page once validated — not here.
 
 ---
 
-## Step 1 — We work from an export, not a login
+## Hero — **[PARENT]**
 
-You export your client and booking history from whatever you already use — Fresha, Timely, Phorest, Kitomba, Square Appointments, it doesn't matter which. We work from that export. We don't ask for admin access to your booking system and we don't hold a live connection into it. If you stop sending exports, we stop having anything to work from.
+**Eyebrow:** HOW IT WORKS
 
-## Step 2 — We reach out at the right moment
+**Heading:** How A System Gets Built And Run.
 
-Using your own clients' patterns — how often they'd normally book — we know roughly when someone's overdue. We reach out to them on your behalf, worded like it's coming from you, not like a marketing blast.
-
-## Step 3 — Cancellations and no-shows get chased the same day
-
-A cancellation or a no-show is the easiest booking to lose for good. We follow up the same day, while the slot's still fresh and easy to refill — not a week later when they've already found someone else.
-
-## Step 4 — What happens to your client list
-
-This is the part most operators in this space don't explain, so we're explaining it plainly:
-
-- We only ever look as far back as your clients would reasonably expect — an 18 to 24 month window, not your entire client history.
-- Every message identifies who it's from.
-- Every message has a working unsubscribe, not a dead link.
-- Anyone who opts out goes on a permanent suppression list. Permanent means permanent — not "until the next campaign."
+**Subhead:** The same process for every system we run, regardless of which job it's built around.
 
 ---
 
-## Right now, this is done by hand
+## Step 1 — We start with the job — **[PARENT]**
 
-We're upfront about this: at this stage, we read the list and write the messages ourselves, by hand, before any part of it runs without us checking first. It's slower than it could be, and that's deliberate — it means nothing goes out that we haven't actually checked.
+We look at the recurring job you want off your plate — what it involves, how it's done today, and what "done" looks like for your business.
+
+## Step 2 — We build the system around it — **[PARENT]**
+
+We build the system that does that job, around how your business already runs. It's built to work with whatever you already use — no login access, no platform changes on your end.
+
+## Step 3 — We run it — **[PARENT]**
+
+Once it's live, we run it. You don't operate anything — you see what it's doing and the results it's getting.
+
+## Step 4 — You get a plain report — **[PARENT]**
+
+On a regular basis, you get a plain report on what the system's done. No login required to see it.
 
 ---
 
-## Monthly report
+## Data handling — **[PARENT]** (a normal section, not the centrepiece)
 
-Once a month, you get a plain report: who came back, who didn't, and what it's worth. No login required to see it — it comes to you.
+**Heading:** How We Handle Your Data
+
+Because our systems run on your business's data, here's how we handle it:
+
+- Kept secure, with access limited to the two of us
+- Used only to do the work for that business — never anyone else's
+- Never shared or sold, to anyone, for any reason
+- A clear opt-out, honoured permanently
+- Messaging done in line with Australian spam law

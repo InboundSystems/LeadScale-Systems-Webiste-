@@ -1,13 +1,23 @@
 import type { AudienceContent } from './types'
 
-// Brand and audience copy — who we serve, how we position what we sell, the
-// data-handling story, and About content. This survives an offer change;
-// none of it should need editing just because content/offer.ts changes.
+// Parent-level content — what LeadScale Systems is, independent of which
+// systems it currently runs. This is what the homepage sells; content/
+// systems.ts is deliberately kept separate so a system change never
+// requires touching this file.
+//
+// STRUCTURE DRAFT — placeholder values below, not final site copy.
+// Copy pass happens in step 2, against this shape.
 
 export const audience: AudienceContent = {
+  whoWeAre: {
+    statement:
+      '[placeholder] We build and run back-office systems for small, appointment-based businesses.',
+    arrangement:
+      '[placeholder] Delivered as completed work, not software. There are recurring jobs that never get done because the owner is doing admin after close — we take one, build a system for it, and run it.',
+  },
+
   audience: {
-    description:
-      'Small, owner-run beauty and grooming businesses across Australia.',
+    description: '[placeholder] Small, owner-run beauty and grooming businesses across Australia.',
     businessTypes: [
       'Hair',
       'Beauty and skin',
@@ -26,57 +36,48 @@ export const audience: AudienceContent = {
     ],
   },
 
-  positioning: {
-    statement: 'Completed work, not software.',
-    valueFraming:
-      'We think about the value here in terms of the staff time it saves you and the bookings you’d otherwise lose — never as another software subscription.',
+  valueFraming:
+    '[placeholder] Framed against staff time and lost revenue — never against a software subscription.',
+
+  howItWorks: {
+    intro: '[placeholder — how a system gets built and run, in general terms]',
+    steps: [
+      { title: '[placeholder step 1]', description: '[placeholder description]' },
+      { title: '[placeholder step 2]', description: '[placeholder description]' },
+      { title: '[placeholder step 3]', description: '[placeholder description]' },
+    ],
   },
 
-  differentiators: [
-    {
-      title: 'Works With What You Already Run',
-      body:
-        'No new software, no login for us into your booking system. We work from an export — which matters especially if you’re on Fresha, since it doesn’t offer a way for outside tools to connect to it at all. Also fine if you’re on Timely, Phorest, Kitomba, Square Appointments, or something else.',
-    },
-    {
-      title: 'We Take Compliance Seriously',
-      body:
-        'Most operators sending messages like this aren’t properly across Australian spam law. We are — it shapes how we work, not just a line in the fine print.',
-    },
-    {
-      title: 'Two Real People in Brisbane',
-      body: 'Blake and Sam. Named, local, and the ones who’ll actually read your email.',
-    },
-    {
-      title: 'We Do The Work By Hand First',
-      body: 'Before anything runs on its own, we read the list and write the messages ourselves. Slower, and deliberately so.',
-    },
-  ],
+  whoThisIsntFor: {
+    intro: '[placeholder framing sentence]',
+    criteria: [
+      '[placeholder] Owners who’d rather handle everything themselves',
+      '[placeholder] Businesses too small or too new for this to be worth it',
+    ],
+  },
 
   // Intentionally general — principles, not specific commitments. No
   // timeframes, named systems, or numbers here on purpose: our actual
   // data-handling setup isn't locked in yet. Tighten this once it is,
   // rather than publishing specifics now that might not hold.
   dataHandling: {
-    statement: 'We treat your client list the way we’d want ours treated.',
+    statement: '[placeholder] How client data is handled, in plain terms.',
     specifics: [
-      'Kept secure, with access limited to the two of us',
-      'Used only to do the work for your business — never anyone else’s',
-      'Never shared or sold, to anyone, for any reason',
-      'If a client asks to be left alone, that’s honoured for good',
-      'Every message we send follows Australian spam law',
+      '[placeholder] Kept secure, with access limited to the two of us',
+      '[placeholder] Used only to do the work for that client’s own business',
+      '[placeholder] Never shared or sold, to anyone, for any reason',
+      '[placeholder] A clear opt-out, honoured permanently',
+      '[placeholder] Messaging done in line with Australian spam law',
     ],
   },
 
   about: {
-    intro: 'Founder-led, two-person partnership, based in Brisbane.',
+    statement: '[placeholder] Short, professional, business-focused — what we do and how it works.',
     founders: [
       { name: 'Blake', role: 'Client Communications & Relationships' },
-      { name: 'Sam', role: 'Co-founder & Developer' },
+      { name: 'Sam', role: 'Developer' },
     ],
     location: 'Brisbane, Australia',
-    honesty:
-      'Honest about being early — no clients yet, no invented results, just two people who’ll actually read your email and answer it.',
   },
 
   contact: {

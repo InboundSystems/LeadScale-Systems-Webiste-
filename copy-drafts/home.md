@@ -1,28 +1,44 @@
-# Home — copy draft
+# Home — copy draft (rewrite)
 
-Maps to: `content/audience.ts` (who it's for, positioning) +
-`content/offer.ts` (headline, what gets done, who this isn't for, FAQ).
-Written for a salon owner doing admin at 8pm after close.
+Parent-level throughout, per instruction. Maps to `content/audience.ts`
+(`whoWeAre`, `audience`, `howItWorks.intro` for the teaser, `whoThisIsntFor`)
+plus one link out to `/what-we-offer`. No FAQ section — dropped, since it's
+not in the revised Home structure and offer-specific FAQ content is now a
+per-system slot that doesn't exist until a system is validated.
+
+Voice check: no "two real people," no founder framing, no apologetic or
+early-stage hedging. Confident, direct, systems-flavoured — matching Media
+Systems' register.
 
 ---
 
-## Hero
+## Hero — **[PARENT]**
 
-**Eyebrow:** BRISBANE — TWO PEOPLE, NOT A CALL CENTRE
+**Eyebrow:** COMPLETED WORK, NOT SOFTWARE
 
 **Headline:**
-The Clients Who've Gone Quiet
-Are Still Worth Chasing.
-**We Do The Chasing.**
+The Admin You Do After Close
+**Shouldn't Be Yours To Do.**
 
-**Subhead:**
-Every week there are clients who are overdue to rebook, or who cancelled and never came back, and nobody has time to go through the list and follow up. That's the job we take off you — done by hand, so nothing goes out that wouldn't sound like it came from you.
+**Subhead:** We take one recurring job off your plate, build a system for it, and run it — delivered as completed work, not software you have to operate.
 
 **Primary CTA button:** GET IN TOUCH → (links to `/enquire`)
 
 ---
 
-## Who it's for
+## What we do — **[PARENT]**
+
+**Eyebrow:** WHAT WE ACTUALLY DO
+
+**Heading:** Recurring Work, Handled Properly.
+
+**Body:** There are jobs in a business like yours that need doing every week and never quite get done, because there's no one whose job it is to do them. We take one, build a system around it, and run it — for as long as you want it running. It's built to work with whatever you already use to run your business, without needing access to your accounts or platforms.
+
+**Link:** See what we currently run → (links to `/what-we-offer`)
+
+---
+
+## Who it's for — **[PARENT]**
 
 **Eyebrow:** WHO THIS IS FOR
 
@@ -32,67 +48,35 @@ Hair, beauty and skin, massage and day spa, nails, lash and brow, tanning, barbe
 
 ---
 
-## What gets done
+## How it works (teaser) — **[PARENT]**
 
-**Eyebrow:** WHAT WE ACTUALLY DO
+**Eyebrow:** HOW IT WORKS
 
-**Heading:** The Follow-Up You Don't Have Time For.
+**Heading:** Built Around Your Business, Not A Template.
 
-- We watch for clients who are overdue to rebook, based on how often they'd normally come in — not a guess, their own pattern.
-- We send a rebooking prompt at the point they're actually due, not before everyone's forgotten and not after they've found someone else.
-- If someone cancels, we follow up the same day, while the slot's still easy to fill.
-- If someone doesn't show, we follow up rather than letting it disappear into the schedule.
-- Once a month, you get a plain report — who came back, who didn't, and what it's worth.
+**Body:** Every system starts with the job itself — what it involves, how it's done today, what "done" looks like for you. From there we build it and run it. Full detail is on the How It Works page.
 
-No dashboard to log into. No new software to learn. You keep running your business exactly the way you already do.
+**Link:** See how it works → (links to `/how-it-works`)
 
 ---
 
-## How it works (teaser)
-
-**Eyebrow:** THE SHORT VERSION
-
-**Heading:** Nothing You Have to Set Up.
-
-We work from an export of your existing booking history, reach out on your behalf when it actually matters, and tell you every month what happened. Full detail — including exactly what happens to your client list — is on the [How It Works](/how-it-works) page.
-
-**Link:** See exactly how it works →
-
----
-
-## Who this isn't for
+## Who this isn't for — **[PARENT]**
 
 **Eyebrow:** WHO THIS ISN'T FOR
 
-**Heading:** Being Straight About Who Shouldn't Bother.
+**Heading:** Who Shouldn't Bother.
 
-- If your booking platform already handles rebooking and reactivation properly and you're actually using it — you don't need this.
-- If you're a new business without a client base yet, there's nobody to reactivate. Come back once you've got a year or two of clients behind you.
-
----
-
-## FAQ (offer-specific)
-
-**Do I need to change my booking software?**
-No. We work from what you export out of it — Fresha, Timely, Phorest, Kitomba, Square Appointments, whatever you're already running. Nothing gets installed, nothing gets connected.
-
-**How do you actually get my client list?**
-You export it, we work from the export. We don't ask for login access to your booking system and we don't hold an ongoing connection to it.
-
-**What if a client doesn't want to hear from you?**
-Every message says who it's from and has a working unsubscribe. Anyone who opts out is removed for good — that's permanent, not "until the next campaign."
-
-**Is someone actually checking this before it goes out?**
-Right now, yes — by hand. We read the list and write the messages ourselves, before any part of it runs without us checking first. Slower, but it means nothing goes out that we haven't actually looked at.
+- Owners who'd rather handle this kind of work themselves
+- Businesses too small or too new for this to be worth it yet
 
 ---
 
-## Final CTA
+## Final CTA — **[PARENT]**
 
 **Heading:** Get In Touch.
 
-**Body:** Tell us what booking software you use and roughly how many clients you've got — we'll tell you honestly whether this is worth doing for your business yet.
+**Body:** Tell us about your business and the job you're looking to hand off — we'll tell you plainly whether we can run it.
 
 **Button:** GET IN TOUCH → (links to `/enquire`)
 
-**Reassurance line:** No pricing on the site because nothing's been proven yet. If it's a fit, we'll talk about cost directly.
+**Reassurance line:** There's no pricing on the site — nothing here is priced publicly yet. Get in touch and we'll talk specifics.
