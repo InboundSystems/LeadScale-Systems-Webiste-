@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import NumberedStep from '@/components/ui/NumberedStep'
-import { offer } from '@/content/offer'
 import { audience } from '@/content/audience'
 
 export default function HowItWorksContent() {
@@ -17,7 +16,7 @@ export default function HowItWorksContent() {
             transition={{ duration: 0.4 }}
             className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
           >
-            THE MECHANISM
+            HOW IT WORKS
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -25,9 +24,9 @@ export default function HowItWorksContent() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            How It Actually
+            How A System Gets
             <br />
-            Works.
+            Built And Run.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +34,7 @@ export default function HowItWorksContent() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[#94a3b8] text-lg leading-relaxed max-w-2xl"
           >
-            No dashboard, no login, nothing to set up. Here&apos;s exactly what happens, in order.
+            {audience.howItWorks.intro}
           </motion.p>
         </div>
       </section>
@@ -43,8 +42,8 @@ export default function HowItWorksContent() {
       {/* Steps */}
       <section className="py-20 px-6 bg-[#0d0d16]">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {offer.howItWorks.map((step, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {audience.howItWorks.steps.map((step, i) => (
               <NumberedStep
                 key={step.title}
                 num={String(i + 1).padStart(2, '0')}
@@ -57,49 +56,24 @@ export default function HowItWorksContent() {
         </div>
       </section>
 
-      {/* Done by hand */}
+      {/* Data handling — a normal section, not the centrepiece */}
       <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto border-l-2 border-[var(--accent)] pl-6 py-2">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-white text-xl md:text-2xl font-bold leading-snug max-w-2xl"
-          >
-            Right now, this is done by hand. Before anything runs on its own, we read the list and write the messages
-            ourselves.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Data handling */}
-      <section className="py-20 px-6 bg-[#0d0d16]">
         <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[#94a3b8] text-xs font-semibold tracking-[0.2em] mb-4"
-          >
-            YOUR CLIENT LIST
-          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-3xl md:text-4xl font-extrabold text-white mb-4"
+            transition={{ duration: 0.5 }}
+            className="text-2xl md:text-3xl font-extrabold text-white mb-4"
           >
-            What Happens to Your Data
+            How We Handle Your Data
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-[#94a3b8] text-base leading-relaxed mb-10 max-w-2xl"
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-[#94a3b8] text-base leading-relaxed mb-8 max-w-2xl"
           >
             {audience.dataHandling.statement}
           </motion.p>
@@ -121,22 +95,6 @@ export default function HowItWorksContent() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Monthly report */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[#94a3b8] text-base leading-relaxed max-w-2xl"
-          >
-            Once a month, you get a plain report: who came back, who didn&apos;t. No login required to see it — it comes
-            to you.
-          </motion.p>
         </div>
       </section>
     </div>

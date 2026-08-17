@@ -4,20 +4,17 @@ import type { AudienceContent } from './types'
 // systems it currently runs. This is what the homepage sells; content/
 // systems.ts is deliberately kept separate so a system change never
 // requires touching this file.
-//
-// STRUCTURE DRAFT — placeholder values below, not final site copy.
-// Copy pass happens in step 2, against this shape.
 
 export const audience: AudienceContent = {
   whoWeAre: {
     statement:
-      '[placeholder] We build and run back-office systems for small, appointment-based businesses.',
+      'We build and run back-office systems for small, appointment-based businesses — delivered as completed work, not software.',
     arrangement:
-      '[placeholder] Delivered as completed work, not software. There are recurring jobs that never get done because the owner is doing admin after close — we take one, build a system for it, and run it.',
+      'There are jobs in a business like yours that need doing every week and never quite get done, because there’s no one whose job it is to do them. We take one, build a system around it, and run it — for as long as you want it running. It’s built to work with whatever you already use to run your business, without needing access to your accounts or platforms.',
   },
 
   audience: {
-    description: '[placeholder] Small, owner-run beauty and grooming businesses across Australia.',
+    description: 'Small, owner-run beauty and grooming businesses across Australia.',
     businessTypes: [
       'Hair',
       'Beauty and skin',
@@ -37,22 +34,38 @@ export const audience: AudienceContent = {
   },
 
   valueFraming:
-    '[placeholder] Framed against staff time and lost revenue — never against a software subscription.',
+    'We frame the value here in terms of the staff time it saves you and the bookings you’d otherwise lose — never as another software subscription.',
 
   howItWorks: {
-    intro: '[placeholder — how a system gets built and run, in general terms]',
+    intro: 'The same process for every system we run, regardless of which job it’s built around.',
     steps: [
-      { title: '[placeholder step 1]', description: '[placeholder description]' },
-      { title: '[placeholder step 2]', description: '[placeholder description]' },
-      { title: '[placeholder step 3]', description: '[placeholder description]' },
+      {
+        title: 'We start with the job',
+        description:
+          'We look at the recurring job you want off your plate — what it involves, how it’s done today, and what "done" looks like for your business.',
+      },
+      {
+        title: 'We build the system around it',
+        description:
+          'We build the system that does that job, around how your business already runs. It’s built to work with whatever you already use — no login access, no platform changes on your end.',
+      },
+      {
+        title: 'We run it',
+        description:
+          'Once it’s live, we run it. You don’t operate anything — you see what it’s doing and the results it’s getting.',
+      },
+      {
+        title: 'You get a plain report',
+        description: 'On a regular basis, you get a plain report on what the system’s done. No login required to see it.',
+      },
     ],
   },
 
   whoThisIsntFor: {
-    intro: '[placeholder framing sentence]',
+    intro: 'Who shouldn’t bother:',
     criteria: [
-      '[placeholder] Owners who’d rather handle everything themselves',
-      '[placeholder] Businesses too small or too new for this to be worth it',
+      'Owners who’d rather handle this kind of work themselves',
+      'Businesses too small or too new for this to be worth it yet',
     ],
   },
 
@@ -61,18 +74,19 @@ export const audience: AudienceContent = {
   // data-handling setup isn't locked in yet. Tighten this once it is,
   // rather than publishing specifics now that might not hold.
   dataHandling: {
-    statement: '[placeholder] How client data is handled, in plain terms.',
+    statement: 'Because our systems run on your business’s data, here’s how we handle it:',
     specifics: [
-      '[placeholder] Kept secure, with access limited to the two of us',
-      '[placeholder] Used only to do the work for that client’s own business',
-      '[placeholder] Never shared or sold, to anyone, for any reason',
-      '[placeholder] A clear opt-out, honoured permanently',
-      '[placeholder] Messaging done in line with Australian spam law',
+      'Kept secure, with access limited to the two of us',
+      'Used only to do the work for that business — never anyone else’s',
+      'Never shared or sold, to anyone, for any reason',
+      'A clear opt-out, honoured permanently',
+      'Messaging done in line with Australian spam law',
     ],
   },
 
   about: {
-    statement: '[placeholder] Short, professional, business-focused — what we do and how it works.',
+    statement:
+      'Each system takes one recurring job off a business’s plate and runs it, for as long as they want it running.',
     founders: [
       { name: 'Blake', role: 'Client Communications & Relationships' },
       { name: 'Sam', role: 'Developer' },
