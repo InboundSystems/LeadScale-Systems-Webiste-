@@ -5,24 +5,24 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
-    default: 'LeadScale Media Systems | More Enquiries. More Booked Jobs. More Growth.',
-    template: '%s | LeadScale Media Systems',
+    default: 'Vicaria Media | More Enquiries. More Booked Jobs. More Growth.',
+    template: '%s | Vicaria Media',
   },
   description:
-    'LeadScale Media Systems helps tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising, and social media.',
+    'Vicaria Media helps tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising, and social media.',
   alternates: { canonical: '/media' },
   openGraph: {
     type: 'website',
-    siteName: 'LeadScale Media Systems',
+    siteName: 'Vicaria Media',
     url: 'https://leadscalesystems.net/media',
-    title: 'LeadScale Media Systems | More Enquiries. More Booked Jobs. More Growth.',
+    title: 'Vicaria Media | More Enquiries. More Booked Jobs. More Growth.',
     description:
       'We help tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising and social media.',
   },
 }
 
 const navLinks = [
-  { label: 'LEADSCALE SYSTEMS', href: '/' },
+  { label: 'VICARIA SYSTEMS', href: '/' },
   { label: 'SERVICES', href: '/media#services' },
   { label: 'PROCESS', href: '/media#process' },
   { label: 'EXPECTATIONS', href: '/media#expectations' },
@@ -43,7 +43,7 @@ export default function MediaLayout({ children }: { children: React.ReactNode })
     <BrandProvider brand="media">
       <Navbar
         homeHref="/media"
-        wordmark="LeadScale Media Systems"
+        wordmark="Vicaria Media"
         navLinks={navLinks}
         ctaHref="mailto:admin@leadscalesystems.net?subject=Website%20enquiry"
         ctaLabel="GET STARTED"
@@ -51,10 +51,10 @@ export default function MediaLayout({ children }: { children: React.ReactNode })
       <main>{children}</main>
       <Footer
         homeHref="/media"
-        wordmark="LeadScale Media Systems"
+        wordmark="Vicaria Media"
         tagline="Performance-accelerated marketing systems for businesses that refuse to rely on word of mouth alone."
         navLinks={footerNavLinks}
-        crossBrand={{ label: 'LeadScale Systems', href: '/' }}
+        crossBrand={{ label: 'Vicaria Systems', href: '/' }}
       />
     </BrandProvider>
   )

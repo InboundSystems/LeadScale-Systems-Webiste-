@@ -11,14 +11,14 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: 'LeadScale Systems',
+    default: 'Vicaria Systems',
     template: '%s',
   },
-  description: 'LeadScale Systems takes recurring back-office work off small, owner-run beauty and grooming businesses, with LeadScale Media Systems as its marketing arm.',
+  description: 'Vicaria Systems takes recurring back-office work off small, owner-run beauty and grooming businesses, with Vicaria Media as its marketing arm.',
   metadataBase: new URL('https://leadscalesystems.net'),
   openGraph: {
     type: 'website',
-    siteName: 'LeadScale Systems',
+    siteName: 'Vicaria Systems',
     url: 'https://leadscalesystems.net',
   },
 }

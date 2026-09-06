@@ -2,8 +2,8 @@
 
 Next.js 14 / Vercel. Two brands in one codebase.
 
-- **LeadScale Media Systems** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
-- **LeadScale Systems** — the flagship. Not launched, still `noindex`. **This is the active work.**
+- **Vicaria Media** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
+- **Vicaria Systems** — the flagship. Not launched, still `noindex`. **This is the active work.**
 
 See `docs/POSITIONING.md` for the current flagship positioning (product, audience,
 problem statement, wedge, differentiator, and the hard copy rules) — read it before
@@ -35,7 +35,7 @@ These are absolute. Violations have already required correction rounds.
 - **No invented social proof.** No testimonials, client names, logos, stats, case studies, or years-in-business claims. Their absence is deliberate — never offer to add them, even as placeholders.
 - **No pricing** published anywhere.
 - **No blog or resources section.**
-- **Voice:** confident and systems-flavoured, matching Media Systems' copy. Not personal, not humble, not founder-legitimacy-driven. Founders are named on About but are never used as the trust argument. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
+- **Voice:** confident and systems-flavoured, matching Media's copy. Not personal, not humble, not founder-legitimacy-driven. Founders are named on About but are never used as the trust argument. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
 
 ## Deliberate states — do not "fix" these
 

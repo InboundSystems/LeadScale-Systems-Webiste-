@@ -11,7 +11,7 @@ interface WordmarkProps {
 // docs/brand/shared-system.md "Logo and wordmark".
 export default function Wordmark({ className = '' }: WordmarkProps) {
   const brand = useBrand()
-  const { prefix, minWidth } = WORDMARKS[brand]
+  const { prefix, suffix, minWidth } = WORDMARKS[brand]
 
   return (
     <span
@@ -22,7 +22,7 @@ export default function Wordmark({ className = '' }: WordmarkProps) {
         {prefix}
       </span>
       <span className="text-[var(--accent)]" style={{ letterSpacing: '2.4px' }}>
-        SYSTEMS
+        {suffix}
       </span>
     </span>
   )

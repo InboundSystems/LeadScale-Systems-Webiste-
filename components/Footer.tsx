@@ -86,7 +86,7 @@ export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBra
 
         <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[#2e3650] text-xs">
-            © {new Date().getFullYear()} LeadScale Systems. All rights reserved.
+            © {new Date().getFullYear()} Vicaria Systems. All rights reserved.
           </p>
           <p className="text-[#2e3650] text-xs">{displayDomain}</p>
         </div>

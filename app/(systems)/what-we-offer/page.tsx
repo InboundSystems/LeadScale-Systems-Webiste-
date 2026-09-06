@@ -3,7 +3,7 @@ import WhatWeOfferContent from '@/components/systems/WhatWeOfferContent'
 
 export const metadata: Metadata = {
   title: 'What We Offer',
-  description: 'The systems LeadScale Systems currently builds and runs.',
+  description: 'The systems Vicaria Systems currently builds and runs.',
   alternates: { canonical: '/what-we-offer' },
 }
 

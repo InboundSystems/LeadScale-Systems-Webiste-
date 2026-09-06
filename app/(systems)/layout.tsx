@@ -7,16 +7,16 @@ import Footer from '@/components/Footer'
 // (see docs/business-model-v2.html). Keep noindex/nofollow and the
 // sitemap/robots exclusion until the business decides to go live.
 export const metadata: Metadata = {
-  title: 'LeadScale Systems | Back-Office Systems, Built And Run',
+  title: 'Vicaria Systems | Back-Office Systems, Built And Run',
   description:
     'We build and run back-office systems for small, appointment-based businesses — delivered as completed work, not software.',
   robots: { index: false, follow: false },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    siteName: 'LeadScale Systems',
+    siteName: 'Vicaria Systems',
     url: 'https://leadscalesystems.net',
-    title: 'LeadScale Systems | Back-Office Systems, Built And Run',
+    title: 'Vicaria Systems | Back-Office Systems, Built And Run',
     description:
       'We build and run back-office systems for small, appointment-based businesses — delivered as completed work, not software.',
   },
@@ -27,7 +27,7 @@ const navLinks = [
   { label: 'WHAT WE OFFER', href: '/what-we-offer' },
   { label: 'HOW IT WORKS', href: '/how-it-works' },
   { label: 'ABOUT', href: '/about' },
-  { label: 'MEDIA SYSTEMS', href: '/media' },
+  { label: 'MEDIA', href: '/media' },
 ]
 
 const footerNavLinks = [
@@ -43,7 +43,7 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
     <BrandProvider brand="systems">
       <Navbar
         homeHref="/"
-        wordmark="LeadScale Systems"
+        wordmark="Vicaria Systems"
         navLinks={navLinks}
         ctaHref="/enquire"
         ctaLabel="GET IN TOUCH"
@@ -51,10 +51,10 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
       <main>{children}</main>
       <Footer
         homeHref="/"
-        wordmark="LeadScale Systems"
+        wordmark="Vicaria Systems"
         tagline="We build and run back-office systems for small, owner-run beauty and grooming businesses, from Brisbane."
         navLinks={footerNavLinks}
-        crossBrand={{ label: 'LeadScale Media Systems', href: '/media' }}
+        crossBrand={{ label: 'Vicaria Media', href: '/media' }}
       />
     </BrandProvider>
   )

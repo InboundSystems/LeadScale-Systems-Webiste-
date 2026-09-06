@@ -10,7 +10,7 @@ import CTA from '@/components/home/CTA'
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'LeadScale Systems',
+  name: 'Vicaria Systems',
   url: 'https://leadscalesystems.net',
   logo: 'https://leadscalesystems.net/logo-icon-transparent.png',
   email: 'admin@leadscalesystems.net',
@@ -19,7 +19,7 @@ const organizationSchema = {
     'https://www.facebook.com/profile.php?id=61585639113200',
   ],
   subOrganization: [
-    { '@type': 'Organization', name: 'LeadScale Media Systems', url: 'https://leadscalesystems.net/media' },
+    { '@type': 'Organization', name: 'Vicaria Media', url: 'https://leadscalesystems.net/media' },
   ],
 }
 

@@ -74,7 +74,7 @@ export interface SystemsSectionIntro {
 }
 
 // ---------------------------------------------------------------------------
-// Audience / parent brand — what LeadScale Systems is, independent of which
+// Audience / parent brand — what Vicaria Systems is, independent of which
 // systems it currently runs. This is what the homepage sells.
 // ---------------------------------------------------------------------------
 export interface AudienceContent {

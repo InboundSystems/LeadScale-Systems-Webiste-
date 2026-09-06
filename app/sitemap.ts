@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 
 const baseUrl = 'https://leadscalesystems.net'
 
-// / (the flagship LeadScale Systems homepage) is intentionally excluded — noindexed,
+// / (the flagship Vicaria Systems homepage) is intentionally excluded — noindexed,
 // structurally ready but not launched, until the vertical locks. See docs/business-model.md.
 export default function sitemap(): MetadataRoute.Sitemap {
   const mediaRoutes = ['', '/seo', '/paid-traffic', '/social-media']

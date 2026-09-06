@@ -1,6 +1,6 @@
 import type { AudienceContent } from './types'
 
-// Parent-level content — what LeadScale Systems is, independent of which
+// Parent-level content — what Vicaria Systems is, independent of which
 // systems it currently runs. This is what the homepage sells; content/
 // systems.ts is deliberately kept separate so a system change never
 // requires touching this file.

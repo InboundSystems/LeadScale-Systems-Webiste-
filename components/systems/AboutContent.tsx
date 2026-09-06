@@ -24,7 +24,7 @@ export default function AboutContent() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            LeadScale Systems.
+            Vicaria Systems.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

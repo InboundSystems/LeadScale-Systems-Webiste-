@@ -40,7 +40,7 @@ export default function EnquirePage() {
       submitLabel="SEND"
       successMessage="Got it. We'll read this ourselves and reply directly — that might take a day or two, since it's genuinely the two of us."
       reassurance="No pricing until we've actually talked — the offer's new enough that we'd rather have the conversation first."
-      brandLabel="LeadScale Systems"
+      brandLabel="Vicaria Systems"
     />
   )
 }

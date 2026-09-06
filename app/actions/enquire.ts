@@ -54,7 +54,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryRes
 
   try {
     const { error } = await resend.emails.send({
-      from: 'LeadScale Enquiries <enquiries@leadscalesystems.net>',
+      from: 'Vicaria Enquiries <enquiries@leadscalesystems.net>',
       to: 'admin@leadscalesystems.net',
       replyTo: payload.email,
       subject: `New enquiry — ${payload.name}, ${payload.business} (${payload.brandLabel})`,

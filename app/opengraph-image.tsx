@@ -10,7 +10,7 @@ export const contentType = 'image/png'
 
 export default function Image() {
   const background = (ACCENTS.systems as Record<string, string>)['--accent']
-  const { prefix } = WORDMARKS.systems
+  const { prefix, suffix } = WORDMARKS.systems
 
   return new ImageResponse(
     (
@@ -36,7 +36,7 @@ export default function Image() {
           }}
         >
           <span style={{ fontSize: 64, fontWeight: 500, letterSpacing: '-1px', marginRight: 20 }}>{prefix}</span>
-          <span style={{ fontSize: 64, fontWeight: 800, letterSpacing: '4px' }}>SYSTEMS</span>
+          <span style={{ fontSize: 64, fontWeight: 800, letterSpacing: '4px' }}>{suffix}</span>
         </div>
       </div>
     ),
