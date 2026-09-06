@@ -3,14 +3,6 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-const problemStats = [
-  { label: 'Electricians' },
-  { label: 'Plumbers' },
-  { label: 'Roofers' },
-  { label: 'HVAC contractors' },
-  { label: 'Local service businesses' },
-]
-
 const methodology = [
   {
     number: '01',
@@ -122,7 +114,7 @@ export default function SEOPage() {
               className="bg-[var(--surface)] border border-white/5 rounded-xl p-8"
             >
               <p className="text-[#94a3b8] text-sm leading-relaxed">
-                Many local service businesses create social media accounts but struggle to consistently maintain them. Pages often remain inactive for long periods, contain outdated information, or lack the quality of content that builds trust with potential customers.
+                Most local trades and service businesses already have a website and a Google Business Profile. Neither guarantees they show up. When someone nearby searches for the service they offer, results for that area are dominated by a small handful of businesses, and everyone else sits well below the fold, effectively invisible.
               </p>
             </motion.div>
             <motion.div
@@ -167,24 +159,6 @@ export default function SEOPage() {
             The goal of this service is to position your business so that it appears when potential customers search
             for services in your local area — from people already looking to buy, not just browse.
           </motion.p>
-
-          {/* Stat pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-wrap gap-3"
-          >
-            {problemStats.map((stat) => (
-              <span
-                key={stat.label}
-                className="bg-[var(--surface)] border border-white/5 text-[#94a3b8] text-xs px-4 py-2 rounded-full"
-              >
-                {stat.label}
-              </span>
-            ))}
-          </motion.div>
         </div>
       </section>
 

@@ -39,20 +39,6 @@ export default function Hero() {
       />
 
       <div className="relative max-w-5xl mx-auto text-center">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2.5 bg-white/[0.05] border border-white/[0.08] rounded-full px-5 py-2 mb-10 backdrop-blur-sm"
-        >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-light)] opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--accent-light)]" />
-          </span>
-          <span className="text-[#94a3b8] text-xs font-semibold tracking-[0.2em]">NOW ACCEPTING NEW CLIENTS</span>
-        </motion.div>
-
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 28 }}

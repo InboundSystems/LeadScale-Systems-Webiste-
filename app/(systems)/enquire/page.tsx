@@ -8,9 +8,22 @@ export const metadata: Metadata = {
 }
 
 const extraFields = [
-  { name: 'businessType', label: 'What Kind of Business Are You?', placeholder: 'e.g. hair salon, day spa, barbershop, dog grooming' },
-  { name: 'staffCount', label: 'How Many Staff, Roughly?' },
-  { name: 'bookingSystem', label: 'Which Booking System Do You Use?', placeholder: 'e.g. Fresha, Timely, Phorest, Kitomba, Square Appointments' },
+  {
+    name: 'businessType',
+    label: 'What Kind of Business Are You?',
+    options: ['Hair salon', 'Beauty or skin studio', 'Lash and brow', 'Massage or day spa', 'Nail salon', 'Barbershop', 'Something else'],
+  },
+  {
+    name: 'staffCount',
+    label: 'How Many Staff, Roughly?',
+    options: ['Just me', '2 to 3', '4 to 6', '7 or more'],
+  },
+  {
+    name: 'bookingSystem',
+    label: 'Which Booking System Do You Use?',
+    options: ['Fresha', 'Timely', 'Kitomba', 'Phorest', 'Zenoti', 'Square', 'Pen and paper', 'Something else'],
+    required: true,
+  },
 ]
 
 export default function EnquirePage() {
@@ -19,8 +32,9 @@ export default function EnquirePage() {
       eyebrow="GET IN TOUCH"
       headingLine1="Tell Us About"
       headingAccent="Your Business."
-      intro="Fill this in and we'll get back to you directly — no automated reply, no sales sequence. The optional fields help us answer honestly about whether this is worth doing for you yet; skip anything you'd rather not say."
-      messageLabel="What's Going On?"
+      intro="Fill this in and we'll get back to you directly — no automated reply, no sales sequence. Booking system is the one thing we need answered; skip anything else you'd rather not say."
+      messageLabel="What Does a Typical Week Look Like?"
+      messageHelperText="Roughly how many messages you end up answering yourself, when they come in, and what you're using now."
       messagePlaceholder="Tell us a bit about your client list and what's prompting you to look into this."
       extraFields={extraFields}
       submitLabel="SEND"

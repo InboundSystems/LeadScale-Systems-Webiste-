@@ -37,33 +37,11 @@ export default function About() {
               <span className="text-white font-semibold">predictable, engineered system</span> — not a guessing
               game. We don&apos;t do &quot;social media management.&quot; We build client acquisition infrastructure.
             </p>
-            <p className="text-[#6b7a99] text-base leading-relaxed mb-12">
+            <p className="text-[#6b7a99] text-base leading-relaxed">
               Our team combines performance marketing expertise with systems thinking. Every campaign, every piece of
               content is designed to feed into a larger machine that generates leads, books calls, and drives revenue
               — month after month.
             </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { value: '2+', label: 'Years in business' },
-                { value: '100%', label: 'Client retention rate' },
-              ].map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="bg-[var(--card-fill)] backdrop-blur-xl border border-[var(--hairline)] rounded-[var(--radius-card)] p-6"
-                >
-                  <p className="text-4xl font-extrabold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent mb-1">
-                    {stat.value}
-                  </p>
-                  <p className="text-[#6b7a99] text-sm">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

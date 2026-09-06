@@ -6,31 +6,21 @@ import type { AudienceContent } from './types'
 // requires touching this file.
 
 export const audience: AudienceContent = {
+  heroSubhead:
+    'We build and run AI systems inside small businesses. Each one takes a recurring job off the owner permanently — the messages, the bookings, the follow-up, the admin that fills the evenings. You get the work done, not another tool to learn.',
+
   whoWeAre: {
     statement:
-      'We build and run back-office systems for small, appointment-based businesses — delivered as completed work, not software.',
+      'Clients text, DM and ring your salon at all hours, and every one of them lands on you. We answer them, book them in, and put it straight into the calendar you already use.',
     arrangement:
       'There are jobs in a business like yours that need doing every week and never quite get done, because there’s no one whose job it is to do them. We take one, build a system around it, and run it — for as long as you want it running. It’s built to work with whatever you already use to run your business, without needing access to your accounts or platforms.',
   },
 
   audience: {
-    description: 'Small, owner-run beauty and grooming businesses across Australia.',
-    businessTypes: [
-      'Hair',
-      'Beauty and skin',
-      'Massage and day spa',
-      'Nails',
-      'Lash and brow',
-      'Tanning',
-      'Barbershops',
-      'Dog grooming',
-    ],
-    profile: [
-      '1–10 staff, single site',
-      'Existing booking software already in use',
-      'No marketing function',
-      'Owner doing admin after close',
-    ],
+    description:
+      'Small, owner-operated businesses where the person running it is still doing the admin. Usually one to ten staff, no back office, and at least one job that eats their evenings.',
+    businessTypes: [],
+    profile: [],
   },
 
   valueFraming:
@@ -40,23 +30,20 @@ export const audience: AudienceContent = {
     intro: 'The same process for every system we run, regardless of which job it’s built around.',
     steps: [
       {
-        title: 'We start with the job',
-        description:
-          'We look at the recurring job you want off your plate — what it involves, how it’s done today, and what "done" looks like for your business.',
+        title: 'We research the sector before we build anything',
+        description: 'We go and ask the people who’d use it what actually eats their week.',
       },
       {
-        title: 'We build the system around it',
-        description:
-          'We build the system that does that job, around how your business already runs. It’s built to work with whatever you already use — no login access, no platform changes on your end.',
+        title: 'We build the system around what they already use',
+        description: 'No migration, no new software to learn.',
       },
       {
-        title: 'We run it',
-        description:
-          'Once it’s live, we run it. You don’t operate anything — you see what it’s doing and the results it’s getting.',
+        title: 'We install it and we run it',
+        description: 'It isn’t handed over.',
       },
       {
-        title: 'You get a plain report',
-        description: 'On a regular basis, you get a plain report on what the system’s done. No login required to see it.',
+        title: 'You get a number you can check each month',
+        description: 'And a person accountable for it.',
       },
     ],
   },

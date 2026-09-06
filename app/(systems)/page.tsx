@@ -1,6 +1,8 @@
 import Hero from '@/components/systems/Hero'
 import WhoItsFor from '@/components/systems/WhoItsFor'
-import WhatWeDo from '@/components/systems/WhatWeDo'
+import SystemsSection from '@/components/systems/SystemsSection'
+import Research from '@/components/systems/Research'
+import WhyWeRunThem from '@/components/systems/WhyWeRunThem'
 import HowItWorksTeaser from '@/components/systems/HowItWorksTeaser'
 import WhoThisIsntFor from '@/components/systems/WhoThisIsntFor'
 import CTA from '@/components/home/CTA'
@@ -30,7 +32,9 @@ export default function SystemsHomePage() {
       />
       <Hero />
       <WhoItsFor />
-      <WhatWeDo />
+      <SystemsSection />
+      <Research />
+      <WhyWeRunThem />
       <HowItWorksTeaser />
       <WhoThisIsntFor />
       <CTA

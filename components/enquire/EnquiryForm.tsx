@@ -8,6 +8,8 @@ export interface EnquiryExtraField {
   name: string
   label: string
   placeholder?: string
+  options?: string[]
+  required?: boolean
 }
 
 interface EnquiryFormProps {
@@ -16,6 +18,7 @@ interface EnquiryFormProps {
   headingAccent: string
   intro: string
   messageLabel: string
+  messageHelperText?: string
   messagePlaceholder: string
   extraFields?: EnquiryExtraField[]
   submitLabel: string
@@ -37,6 +40,7 @@ export default function EnquiryForm({
   headingAccent,
   intro,
   messageLabel,
+  messageHelperText,
   messagePlaceholder,
   extraFields = [],
   submitLabel,
@@ -63,13 +67,16 @@ export default function EnquiryForm({
     if (!business) errors.business = 'Enter your business name.'
     if (!EMAIL_RE.test(email)) errors.email = 'Enter a valid email.'
     if (!message) errors.message = "Let us know what's going on."
-    setFieldErrors(errors)
-    if (Object.keys(errors).length > 0) return
 
     const extra: Record<string, string> = {}
     extraFields.forEach((field) => {
-      extra[field.label] = String(form.get(field.name) || '').trim()
+      const value = String(form.get(field.name) || '').trim()
+      extra[field.label] = value
+      if (field.required && !value) errors[field.name] = `Select ${field.label.replace(/\?$/, '').toLowerCase()}.`
     })
+
+    setFieldErrors(errors)
+    if (Object.keys(errors).length > 0) return
 
     setStatus('submitting')
     const result = await submitEnquiry({ name, business, phone, email, message, extra, brandLabel, honeypot })
@@ -145,6 +152,9 @@ export default function EnquiryForm({
 
             <div className="mb-5">
               <label className={labelClasses} htmlFor="message">{messageLabel}</label>
+              {messageHelperText && (
+                <p className="text-[#6b7a99] text-xs leading-relaxed mb-2 -mt-1">{messageHelperText}</p>
+              )}
               <textarea
                 className={`${inputClasses} min-h-[120px] resize-y`}
                 id="message"
@@ -159,9 +169,26 @@ export default function EnquiryForm({
                 {extraFields.map((field) => (
                   <div key={field.name}>
                     <label className={labelClasses} htmlFor={field.name}>
-                      {field.label} <span className="text-[#4a5568] font-normal normal-case tracking-normal">(optional)</span>
+                      {field.label}{' '}
+                      {!field.required && (
+                        <span className="text-[#4a5568] font-normal normal-case tracking-normal">(optional)</span>
+                      )}
                     </label>
-                    <input className={inputClasses} type="text" id={field.name} name={field.name} placeholder={field.placeholder} />
+                    {field.options ? (
+                      <select className={inputClasses} id={field.name} name={field.name} defaultValue="">
+                        <option value="" disabled>
+                          Select one
+                        </option>
+                        {field.options.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input className={inputClasses} type="text" id={field.name} name={field.name} placeholder={field.placeholder} />
+                    )}
+                    {fieldErrors[field.name] && <p className="text-rose-400 text-xs mt-1.5">{fieldErrors[field.name]}</p>}
                   </div>
                 ))}
               </div>

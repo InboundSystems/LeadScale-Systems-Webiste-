@@ -50,7 +50,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[76px] font-extrabold leading-[1.05] tracking-tight mb-8 text-white"
         >
-          The Admin You Do After Close
+          The Work You Do After Close
           <br />
           <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
             Shouldn’t Be Yours To Do.
@@ -63,7 +63,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.22 }}
           className="text-[#6b7a99] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 font-medium"
         >
-          {audience.whoWeAre.statement}
+          {audience.heroSubhead}
         </motion.p>
 
         <motion.div

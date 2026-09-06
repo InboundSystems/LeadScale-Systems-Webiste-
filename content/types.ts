@@ -30,6 +30,16 @@ export interface SystemContent {
   /** One or two lines — what it does. Shown on /what-we-offer. Not a pitch. */
   shortDescription: string
 
+  /** What it actually does, as a list of concrete capabilities — not a pitch,
+   *  not steps in order. Optional: unset until the system has enough to say
+   *  here beyond the one-liner. */
+  whatWeDo?: string[]
+
+  /** The handful of points that separate this from an obvious alternative.
+   *  Shown near the top of the system's detail, before whatWeDo. Keep this
+   *  short — two or three points, not a features list. */
+  whatMakesItDifferent?: { heading: string; body: string }[]
+
   /**
    * Reserved for when this system is validated and promoted to its own full
    * page (e.g. /what-we-offer/client-reconnection). Not used yet — leave
@@ -51,10 +61,29 @@ export interface SystemContent {
 }
 
 // ---------------------------------------------------------------------------
+// Systems section (homepage) — the short, company-level intro to the systems
+// roster, shown above the system card(s). Distinct from any one system's own
+// content in SystemContent above.
+// ---------------------------------------------------------------------------
+export interface SystemsSectionIntro {
+  heading: string
+  body: string
+  /** Shown once, after every system card — never per-card. Acknowledges more
+   *  are coming without naming what. */
+  closingLine: string
+}
+
+// ---------------------------------------------------------------------------
 // Audience / parent brand — what LeadScale Systems is, independent of which
 // systems it currently runs. This is what the homepage sells.
 // ---------------------------------------------------------------------------
 export interface AudienceContent {
+  /** The homepage hero subhead. Its own field, deliberately separate from
+   *  whoWeAre.statement below — that string is read on /what-we-offer and
+   *  /about and is pinned to that wording; the hero needed its own slot
+   *  rather than repurposing a string written for somewhere else. */
+  heroSubhead: string
+
   /** The parent-level frame — what we are, and the arrangement (completed
    *  work, not software; one job at a time, built and run for the client). */
   whoWeAre: {
