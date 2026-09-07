@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { submitEnquiry } from '@/app/actions/enquire'
+import { audience } from '@/content/audience'
 
 export interface EnquiryExtraField {
   name: string
@@ -28,7 +29,7 @@ interface EnquiryFormProps {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const contactEmail = 'admin@leadscalesystems.net'
+const contactEmail = audience.contact.email
 
 const inputClasses =
   'w-full bg-white/[0.03] border border-white/10 rounded-[var(--radius-btn)] px-4 py-3 text-white text-sm placeholder:text-[#4a5568] focus:border-[var(--accent)] focus:outline-none transition-colors'
@@ -66,13 +67,13 @@ export default function EnquiryForm({
     if (!name) errors.name = 'Enter your name.'
     if (!business) errors.business = 'Enter your business name.'
     if (!EMAIL_RE.test(email)) errors.email = 'Enter a valid email.'
-    if (!message) errors.message = "Let us know what's going on."
+    if (!message) errors.message = 'Describe what the message concerns.'
 
     const extra: Record<string, string> = {}
     extraFields.forEach((field) => {
       const value = String(form.get(field.name) || '').trim()
       extra[field.label] = value
-      if (field.required && !value) errors[field.name] = `Select ${field.label.replace(/\?$/, '').toLowerCase()}.`
+      if (field.required && !value) errors[field.name] = `Select ${field.label.toLowerCase()}.`
     })
 
     setFieldErrors(errors)
@@ -204,13 +205,13 @@ export default function EnquiryForm({
 
             {status === 'error' && (
               <p className="text-rose-400 text-sm mt-4 text-center">
-                Something didn&apos;t send. Email us directly at{' '}
-                <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a> and we&apos;ll pick it up from there.
+                The message did not send. Contact{' '}
+                <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a> directly.
               </p>
             )}
 
             <p className="text-[#374151] text-xs mt-6 text-center">
-              Prefer email? <a href={`mailto:${contactEmail}`} className="underline hover:text-[#6b7a99] transition-colors">{contactEmail}</a>
+              Direct contact: <a href={`mailto:${contactEmail}`} className="underline hover:text-[#6b7a99] transition-colors">{contactEmail}</a>
             </p>
           </motion.form>
         )}

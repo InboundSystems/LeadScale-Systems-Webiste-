@@ -3,11 +3,18 @@
 Next.js 14 / Vercel. Two brands in one codebase.
 
 - **Vicaria Media** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
-- **Vicaria Systems** — the flagship. Not launched, still `noindex`. **This is the active work.**
+- **Vicaria** — the flagship. Not launched, still `noindex`. **This is the active work.**
 
 See `docs/POSITIONING.md` for the current flagship positioning (product, audience,
 problem statement, wedge, differentiator, and the hard copy rules) — read it before
 touching flagship copy.
+
+## Copy standard
+
+All client-facing copy on this site must comply with `docs/VOICE.md`. The standard
+takes precedence over any copy currently in the repo — existing strings are not
+grandfathered in just because they predate it. Note `/docs` is gitignored, so
+`VOICE.md` won't show up in `git status` or diffs; read it directly.
 
 ## Working rules
 

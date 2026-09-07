@@ -16,6 +16,9 @@ export interface HowItWorksStep {
 export interface Founder {
   name: string
   role: string
+  /** One sentence, shown under the role line on /about — what this person
+   *  actually does day to day, not a bio. */
+  blurb: string
 }
 
 // ---------------------------------------------------------------------------
@@ -52,7 +55,12 @@ export interface SystemContent {
    * Undefined/omitted on an unvalidated system — renderers must treat an
    * absent slot as "render nothing," not an empty heading or section.
    */
-  howItWorks?: HowItWorksStep[]
+  howItWorks?: {
+    steps: HowItWorksStep[]
+    /** Shown once, beneath the steps. Optional — omit rather than leave
+     *  empty. Mirrors audience.howItWorks.closingLine below. */
+    closingLine?: string
+  }
   whoThisIsntFor?: {
     intro: string
     criteria: string[]
@@ -74,22 +82,12 @@ export interface SystemsSectionIntro {
 }
 
 // ---------------------------------------------------------------------------
-// Audience / parent brand — what Vicaria Systems is, independent of which
+// Audience / parent brand — what Vicaria is, independent of which
 // systems it currently runs. This is what the homepage sells.
 // ---------------------------------------------------------------------------
 export interface AudienceContent {
-  /** The homepage hero subhead. Its own field, deliberately separate from
-   *  whoWeAre.statement below — that string is read on /what-we-offer and
-   *  /about and is pinned to that wording; the hero needed its own slot
-   *  rather than repurposing a string written for somewhere else. */
+  /** The homepage hero subhead. */
   heroSubhead: string
-
-  /** The parent-level frame — what we are, and the arrangement (completed
-   *  work, not software; one job at a time, built and run for the client). */
-  whoWeAre: {
-    statement: string
-    arrangement: string
-  }
 
   audience: {
     description: string
@@ -97,15 +95,14 @@ export interface AudienceContent {
     profile: string[]
   }
 
-  /** How we frame value: staff time and lost revenue, never a software
-   *  subscription. */
-  valueFraming: string
-
   /** How a system gets built and run, in general terms — not specific to
    *  any one system's mechanics. Powers the parent-level /how-it-works page. */
   howItWorks: {
     intro: string
     steps: HowItWorksStep[]
+    /** Shown once, beneath the steps. Optional — omit rather than leave
+     *  empty. */
+    closingLine?: string
   }
 
   /** Parent-level only. Not system-specific — a system's own disqualifying
@@ -116,6 +113,20 @@ export interface AudienceContent {
     criteria: string[]
   }
 
+  /** Company-level limits stated up front, on /how-it-works. Distinct from
+   *  whoThisIsntFor (who shouldn't bother) — these are things we refuse to
+   *  do for anyone we do take on. */
+  whatWeWontDo: {
+    intro: string
+    items: { heading: string; body: string }[]
+  }
+
+  /** Who's actually watching a running system — /how-it-works, after
+   *  whatWeWontDo. Plain paragraphs, not a list. */
+  whosAccountable: {
+    paragraphs: string[]
+  }
+
   /** General principles, not specific commitments — see the note in
    *  content/audience.ts. A normal section, not the trust centrepiece. */
   dataHandling: {
@@ -124,11 +135,11 @@ export interface AudienceContent {
   }
 
   about: {
-    /** Short, professional, business-focused. Not a founder story. */
-    statement: string
-    /** Names only carry information here, not an argument. */
+    /** The /about page intro, as separate paragraphs. Short, professional,
+     *  business-focused. Not a founder story. */
+    intro: string[]
+    /** Names carry a role and a one-sentence blurb — see Founder. */
     founders: Founder[]
-    location: string
   }
 
   contact: {

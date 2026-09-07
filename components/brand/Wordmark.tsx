@@ -6,8 +6,9 @@ interface WordmarkProps {
   className?: string
 }
 
-// Shared house mark: "[Prefix] SYSTEMS", with only "SYSTEMS" ever taking the
-// brand accent. Reads prefix/min-width from brand context — see
+// Shared house mark: "[Prefix]" or "[Prefix] [Suffix]" when the brand has a
+// second word, with only the suffix ever taking the brand accent. Reads
+// prefix/suffix/min-width from brand context — see
 // docs/brand/shared-system.md "Logo and wordmark".
 export default function Wordmark({ className = '' }: WordmarkProps) {
   const brand = useBrand()
@@ -21,9 +22,11 @@ export default function Wordmark({ className = '' }: WordmarkProps) {
       <span className="text-white" style={{ letterSpacing: '-0.8px' }}>
         {prefix}
       </span>
-      <span className="text-[var(--accent)]" style={{ letterSpacing: '2.4px' }}>
-        {suffix}
-      </span>
+      {suffix && (
+        <span className="text-[var(--accent)]" style={{ letterSpacing: '2.4px' }}>
+          {suffix}
+        </span>
+      )}
     </span>
   )
 }

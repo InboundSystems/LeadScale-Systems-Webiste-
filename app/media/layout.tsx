@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 const navLinks = [
-  { label: 'VICARIA SYSTEMS', href: '/' },
+  { label: 'VICARIA', href: '/' },
   { label: 'SERVICES', href: '/media#services' },
   { label: 'PROCESS', href: '/media#process' },
   { label: 'EXPECTATIONS', href: '/media#expectations' },
@@ -54,7 +54,7 @@ export default function MediaLayout({ children }: { children: React.ReactNode })
         wordmark="Vicaria Media"
         tagline="Performance-accelerated marketing systems for businesses that refuse to rely on word of mouth alone."
         navLinks={footerNavLinks}
-        crossBrand={{ label: 'Vicaria Systems', href: '/' }}
+        crossBrand={{ label: 'Vicaria', href: '/' }}
       />
     </BrandProvider>
   )

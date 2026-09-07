@@ -1,6 +1,7 @@
 'use server'
 
 import { Resend } from 'resend'
+import { audience } from '@/content/audience'
 
 export interface EnquiryPayload {
   name: string
@@ -55,7 +56,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<EnquiryRes
   try {
     const { error } = await resend.emails.send({
       from: 'Vicaria Enquiries <enquiries@leadscalesystems.net>',
-      to: 'admin@leadscalesystems.net',
+      to: audience.contact.email,
       replyTo: payload.email,
       subject: `New enquiry — ${payload.name}, ${payload.business} (${payload.brandLabel})`,
       text: lines.join('\n'),

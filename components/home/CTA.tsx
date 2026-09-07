@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { audience } from '@/content/audience'
 
 interface CTAProps {
   eyebrow: string
@@ -83,8 +84,8 @@ export default function CTA({ eyebrow, headingLine1, headingAccent, body, button
           className="text-[#6b7a99] text-sm mt-6 tracking-wide"
         >
           Or email us directly at{' '}
-          <a href="mailto:admin@leadscalesystems.net?subject=Website%20enquiry" className="text-blue-400 hover:text-cyan-300 transition-colors">
-            admin@leadscalesystems.net
+          <a href={`mailto:${audience.contact.email}?subject=Website%20enquiry`} className="text-blue-400 hover:text-cyan-300 transition-colors">
+            {audience.contact.email}
           </a>
         </motion.p>
 

@@ -25,7 +25,7 @@ export default function Icon() {
           letterSpacing: '-0.5px',
         }}
       >
-        VS
+        V
       </div>
     ),
     { ...size }

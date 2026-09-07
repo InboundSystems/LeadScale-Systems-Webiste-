@@ -16,9 +16,9 @@ export default function WhoItsFor() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">WHO THIS IS FOR</p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            Small, Owner-Run,
+            Owner-Operated Businesses
             <br />
-            <span className="text-[#2e3650] font-bold">Booked Solid — Or Should Be.</span>
+            <span className="text-[#2e3650] font-bold">Without A Back Office.</span>
           </h2>
           <p className="text-[#6b7a99] text-lg md:text-xl max-w-2xl leading-relaxed">{audience.audience.description}</p>
         </motion.div>

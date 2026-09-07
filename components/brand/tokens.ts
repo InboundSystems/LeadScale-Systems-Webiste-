@@ -27,10 +27,10 @@ export const ACCENTS: Record<Brand, CSSProperties> = {
 }
 
 // Wordmark config per brand — see docs/brand/*.md "Wordmark" sections.
-// suffix is the accent-coloured second word — previously hardcoded as
-// "SYSTEMS" for both brands in Wordmark.tsx and the opengraph-image routes;
-// pulled out here so the two arms (Systems / Media) can carry their own.
-export const WORDMARKS: Record<Brand, { prefix: string; suffix: string; minWidth: number }> = {
-  systems: { prefix: 'Vicaria', suffix: 'SYSTEMS', minWidth: 140 },
+// suffix is the accent-coloured second word. Optional: the flagship brand is
+// just "Vicaria" (the company itself, no second word); the media arm keeps
+// its own suffix ("MEDIA") to read as "Vicaria Media".
+export const WORDMARKS: Record<Brand, { prefix: string; suffix?: string; minWidth: number }> = {
+  systems: { prefix: 'Vicaria', minWidth: 140 },
   media: { prefix: 'Vicaria', suffix: 'MEDIA', minWidth: 190 },
 }

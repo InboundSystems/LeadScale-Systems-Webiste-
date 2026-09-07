@@ -41,7 +41,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="text-[#94a3b8] text-xs font-semibold tracking-[0.25em] mb-10"
         >
-          COMPLETED WORK, NOT SOFTWARE
+          SYSTEMS, BUILT AND OPERATED
         </motion.p>
 
         <motion.h1
@@ -80,7 +80,7 @@ export default function Hero() {
             href="#who-its-for"
             className="inline-flex items-center gap-2 text-[#6b7a99] hover:text-white font-semibold text-sm px-7 py-4 rounded-[var(--radius-btn)] border border-white/[0.08] hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
           >
-            Is this for me?
+            Who This Is For
             <span className="opacity-60">↓</span>
           </Link>
         </motion.div>

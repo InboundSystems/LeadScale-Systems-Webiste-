@@ -6,14 +6,16 @@ import WhyWeRunThem from '@/components/systems/WhyWeRunThem'
 import HowItWorksTeaser from '@/components/systems/HowItWorksTeaser'
 import WhoThisIsntFor from '@/components/systems/WhoThisIsntFor'
 import CTA from '@/components/home/CTA'
+import { pricingStatement } from '@/content/pricing'
+import { audience } from '@/content/audience'
 
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Vicaria Systems',
+  name: 'Vicaria',
   url: 'https://leadscalesystems.net',
   logo: 'https://leadscalesystems.net/logo-icon-transparent.png',
-  email: 'admin@leadscalesystems.net',
+  email: audience.contact.email,
   sameAs: [
     'https://www.instagram.com/leadscalesystems/',
     'https://www.facebook.com/profile.php?id=61585639113200',
@@ -39,12 +41,12 @@ export default function SystemsHomePage() {
       <WhoThisIsntFor />
       <CTA
         eyebrow="GET IN TOUCH"
-        headingLine1="Let's Talk About"
-        headingAccent="What You Need Off Your Plate."
-        body="Tell us about your business and the job you're looking to hand off — we'll tell you plainly whether we can run it."
+        headingLine1="Describe The Job."
+        headingAccent="We'll Confirm Whether We Can Take It."
+        body="Tell us what the job is, how often it occurs, and how it is handled now."
         buttonLabel="GET IN TOUCH"
         buttonHref="/enquire"
-        reassurance="There's no pricing on the site — nothing here is priced publicly yet. Get in touch and we'll talk specifics."
+        reassurance={pricingStatement}
       />
     </>
   )

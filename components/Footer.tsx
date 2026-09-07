@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Wordmark from '@/components/brand/Wordmark'
+import { audience } from '@/content/audience'
 
 interface NavLink {
   label: string
@@ -22,7 +23,7 @@ const socialLinks = [
   { label: 'Client Portal', href: 'https://onboarding-funnel-teal.vercel.app/' },
 ]
 
-const contactEmail = 'admin@leadscalesystems.net'
+const contactEmail = audience.contact.email
 const displayDomain = 'leadscalesystems.net'
 
 export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBrand }: FooterProps) {
@@ -86,7 +87,7 @@ export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBra
 
         <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[#2e3650] text-xs">
-            © {new Date().getFullYear()} Vicaria Systems. All rights reserved.
+            © {new Date().getFullYear()} Vicaria. All rights reserved.
           </p>
           <p className="text-[#2e3650] text-xs">{displayDomain}</p>
         </div>

@@ -3,7 +3,7 @@ import AboutContent from '@/components/systems/AboutContent'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Blake and Sam — a two-person partnership based in Brisbane.',
+  description: "Who builds and operates Vicaria's systems, and how an engagement is run.",
   alternates: { canonical: '/about' },
 }
 

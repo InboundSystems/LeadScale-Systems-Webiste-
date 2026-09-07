@@ -16,9 +16,11 @@ export default function WhoThisIsntFor() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">WHO THIS ISN’T FOR</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
-            Being Straight About Who Shouldn’t Bother.
+            Engagements Vicaria Declines.
           </h2>
-          <p className="text-[#6b7a99] text-base leading-relaxed">{audience.whoThisIsntFor.intro}</p>
+          {audience.whoThisIsntFor.intro && (
+            <p className="text-[#6b7a99] text-base leading-relaxed">{audience.whoThisIsntFor.intro}</p>
+          )}
         </motion.div>
 
         <div className="flex flex-col gap-4">

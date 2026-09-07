@@ -19,14 +19,22 @@ export default function Research() {
         >
           <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4">THE RESEARCH</p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
-            We Don’t Guess What To Build.
+            Twenty Of Fifty-Eight
+            <br />
+            Described The Same Problem.
           </h2>
-          <p className="text-[#6b7a99] text-base leading-relaxed max-w-2xl">
-            Before building anything we go and ask the people who’d use it what actually eats their week. For the
-            first system that meant 58 Australian salon and beauty owners. Twenty of them described the same thing —
-            clients booking by text, DM and phone instead of the booking system, and someone entering it manually at
-            night.
-          </p>
+          {[
+            'Two hundred and four Australian salon and beauty businesses were approached in person, by phone and by message, and asked what work they were still doing after close. Fifty-eight gave a substantive answer.',
+            'Twenty of them described the same thing: clients booking by text, DM and phone instead of the booking system, and someone re-entering it by hand at the end of the day. Nothing else came close. The hypothesis held going in — winning back lapsed clients — placed seventh.',
+            'System 01 was built for that finding. A second sector is under research now.',
+          ].map((paragraph, i, arr) => (
+            <p
+              key={paragraph}
+              className={`text-[#6b7a99] text-base leading-relaxed max-w-2xl ${i < arr.length - 1 ? 'mb-4' : ''}`}
+            >
+              {paragraph}
+            </p>
+          ))}
         </motion.div>
 
         <motion.blockquote
@@ -42,16 +50,6 @@ export default function Research() {
           </p>
           <cite className="text-[#6b7a99] text-sm not-italic">Salon owner, research response</cite>
         </motion.blockquote>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-[#6b7a99] text-sm leading-relaxed mt-8"
-        >
-          That research produced System 01. The next one is being researched now.
-        </motion.p>
       </div>
     </section>
   )

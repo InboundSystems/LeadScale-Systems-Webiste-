@@ -24,16 +24,21 @@ export default function AboutContent() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            Vicaria Systems.
+            Vicaria.
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-[#94a3b8] text-lg leading-relaxed max-w-2xl"
-          >
-            {audience.whoWeAre.statement} {audience.about.statement}
-          </motion.p>
+          {audience.about.intro.map((paragraph, i) => (
+            <motion.p
+              key={paragraph}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.05 }}
+              className={`text-[#94a3b8] text-lg leading-relaxed max-w-2xl ${
+                i < audience.about.intro.length - 1 ? 'mb-6' : ''
+              }`}
+            >
+              {paragraph}
+            </motion.p>
+          ))}
         </div>
       </section>
 
@@ -47,7 +52,7 @@ export default function AboutContent() {
             transition={{ duration: 0.5 }}
             className="text-[#94a3b8] text-xs font-semibold tracking-[0.2em] mb-4"
           >
-            BASED IN {audience.about.location.split(',')[0].toUpperCase()}
+            CONTACTS
           </motion.p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {audience.about.founders.map((founder, i) => (
@@ -60,7 +65,8 @@ export default function AboutContent() {
                 className="bg-[var(--surface)] border border-white/5 rounded-xl p-8"
               >
                 <h3 className="text-white text-xl font-extrabold mb-1">{founder.name}</h3>
-                <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[0.1em]">{founder.role}</p>
+                <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[0.1em] mb-3">{founder.role}</p>
+                <p className="text-[#94a3b8] text-sm leading-relaxed">{founder.blurb}</p>
               </motion.div>
             ))}
           </div>
@@ -77,7 +83,8 @@ export default function AboutContent() {
             transition={{ duration: 0.5 }}
             className="text-[#94a3b8] text-base leading-relaxed mb-8 max-w-xl"
           >
-            Get in touch if you want to talk about handing off a recurring job.
+            Where a recurring job in your business should not be yours, describe it. We will confirm whether it is
+            one Vicaria can take.
           </motion.p>
           <Button href="/enquire">
             GET IN TOUCH

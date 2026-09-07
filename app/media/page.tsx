@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    question: 'How does Vicaria Systems help my business get more clients?',
+    question: 'How does Vicaria help my business get more clients?',
     answer:
       'We build a multi-channel marketing system tailored to your business using SEO, paid advertising, and social media management working together. Rather than running one-off campaigns, we create a compounding growth engine — improving your search rankings so customers find you organically, running paid ads to generate immediate enquiries, and maintaining a consistent social presence that builds trust.',
   },
@@ -32,7 +32,7 @@ const faqs = [
       'SEO positions your business to appear when potential customers search for the services you offer in your local area. This includes optimising your Google Business Profile, improving your website structure, and building local authority signals. The result is a consistent stream of organic enquiries from people actively looking to buy — without paying per click.',
   },
   {
-    question: 'What makes Vicaria Systems different from other agencies?',
+    question: 'What makes Vicaria different from other agencies?',
     answer:
       'Most agencies sell individual services and report on vanity metrics. We build integrated systems focused on one outcome: qualified enquiries that turn into booked appointments and paying clients. We work with a limited number of clients at a time to maintain quality, and we give you full access and transparency to everything we do on your behalf.',
   },
@@ -61,7 +61,7 @@ export default function MediaHomePage() {
         eyebrow="COMMON QUESTIONS"
         headingLine1="Digital Marketing"
         headingAccent="— FAQ"
-        intro="Everything you need to know about working with Vicaria Systems."
+        intro="Everything you need to know about working with Vicaria."
         faqs={faqs}
       />
       <CTA

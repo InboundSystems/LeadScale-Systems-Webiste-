@@ -35,8 +35,8 @@ export default function Image() {
             textAlign: 'center',
           }}
         >
-          <span style={{ fontSize: 64, fontWeight: 500, letterSpacing: '-1px', marginRight: 20 }}>{prefix}</span>
-          <span style={{ fontSize: 64, fontWeight: 800, letterSpacing: '4px' }}>{suffix}</span>
+          <span style={{ fontSize: 64, fontWeight: 500, letterSpacing: '-1px', marginRight: suffix ? 20 : 0 }}>{prefix}</span>
+          {suffix && <span style={{ fontSize: 64, fontWeight: 800, letterSpacing: '4px' }}>{suffix}</span>}
         </div>
       </div>
     ),

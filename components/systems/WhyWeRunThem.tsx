@@ -13,7 +13,7 @@ export default function WhyWeRunThem() {
           transition={{ duration: 0.5 }}
           className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-4"
         >
-          WHY WE RUN THEM
+          OPERATED, NOT LICENSED
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -22,10 +22,10 @@ export default function WhyWeRunThem() {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-8"
         >
-          Why We Run Them
+          Operated,
           <br />
           <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-            Instead Of Selling Them.
+            Not Licensed.
           </span>
         </motion.h2>
         <motion.p
@@ -35,10 +35,11 @@ export default function WhyWeRunThem() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-[#94a3b8] text-lg leading-relaxed max-w-2xl"
         >
-          A system is only worth anything once it knows the business it’s in — the exceptions, the standing orders,
-          the way this owner does things, the corrections made over eighteen months. That doesn’t come in a box and
-          it isn’t something you can hand over on day one. So we don’t. We build it, we run it, and we stay
-          accountable for what it produces.
+          A system’s value comes from what it knows about the business it operates in. Which clients cancel and
+          rebook. Where the published price differs from the price charged. The standing instructions that were
+          never written down because everyone already knew them. That knowledge accumulates over months of
+          operation and cannot be transferred at installation. Vicaria retains and operates each system, and
+          remains accountable for what it produces.
         </motion.p>
       </div>
     </section>

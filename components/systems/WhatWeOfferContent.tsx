@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { audience } from '@/content/audience'
 import { systems } from '@/content/systems'
+import { pricingStatement } from '@/content/pricing'
 import NumberedStep from '@/components/ui/NumberedStep'
 import FAQ from '@/components/home/FAQ'
 import CTA from '@/components/home/CTA'
@@ -19,17 +19,20 @@ export default function WhatWeOfferContent() {
             transition={{ duration: 0.4 }}
             className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
           >
-            WHAT WE OFFER
+            SYSTEM 01
           </motion.p>
+          {/* Given as a single-line heading with no second line. This h1
+              structurally pairs two hardcoded text nodes with a <br /> — no
+              slot for a one-line heading without removing it. Removed the
+              br and the empty second line rather than leave a dangling
+              break with nothing after it; flagged for confirmation. */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
           >
-            Systems We Build
-            <br />
-            And Run.
+            The Front Desk.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -37,8 +40,9 @@ export default function WhatWeOfferContent() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-[#94a3b8] text-lg leading-relaxed max-w-2xl"
           >
-            {audience.whoWeAre.statement} Each one takes a recurring job off your plate entirely. Here&apos;s the
-            first of these.
+            Enquiries arrive by text, direct message and phone at every hour, and each one requires the
+            owner&apos;s attention. The Front Desk answers them, checks live availability, and writes confirmed
+            bookings into the calendar the business already uses.
           </motion.p>
         </div>
       </section>
@@ -102,7 +106,7 @@ export default function WhatWeOfferContent() {
             </div>
           </section>
 
-          {system.howItWorks && system.howItWorks.length > 0 && (
+          {system.howItWorks && system.howItWorks.steps.length > 0 && (
             <section className="py-20 px-6 border-b border-white/5">
               <div className="max-w-4xl mx-auto">
                 <motion.p
@@ -112,10 +116,14 @@ export default function WhatWeOfferContent() {
                   transition={{ duration: 0.5 }}
                   className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
                 >
-                  HOW IT WORKS
+                  {/* Given as a two-line heading ("What Happens" / "In Your
+                      Business."). This section only has an eyebrow-style
+                      label slot, no h2 — folded into one line here rather
+                      than add a heading element; flagged for confirmation. */}
+                  WHAT HAPPENS IN YOUR BUSINESS
                 </motion.p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {system.howItWorks.map((step, j) => (
+                  {system.howItWorks.steps.map((step, j) => (
                     <NumberedStep
                       key={step.title}
                       num={String(j + 1).padStart(2, '0')}
@@ -125,6 +133,18 @@ export default function WhatWeOfferContent() {
                     />
                   ))}
                 </div>
+
+                {system.howItWorks.closingLine && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="text-[#6b7a99] text-sm leading-relaxed mt-8"
+                  >
+                    {system.howItWorks.closingLine}
+                  </motion.p>
+                )}
               </div>
             </section>
           )}
@@ -165,7 +185,7 @@ export default function WhatWeOfferContent() {
               eyebrow="FAQ"
               headingLine1="Questions About"
               headingAccent={`${system.name}.`}
-              intro="Straight answers to the things owners actually ask before getting in touch."
+              intro="The questions owners raise most often before an engagement begins."
               faqs={system.faq}
             />
           )}
@@ -174,12 +194,12 @@ export default function WhatWeOfferContent() {
 
       <CTA
         eyebrow="GET IN TOUCH"
-        headingLine1="Tell Us What"
-        headingAccent="Your Week Looks Like."
-        body="How many messages you end up answering yourself, when they come in, and what you're using now. We'll tell you plainly whether this is worth it for your business."
+        headingLine1="Describe"
+        headingAccent="Your Week."
+        body="Tell us how many enquiries you answer yourself, when they arrive, and what you are using now. We will confirm whether The Front Desk applies to your business."
         buttonLabel="GET IN TOUCH"
         buttonHref="/enquire"
-        reassurance="There's no pricing on the site — nothing here is priced publicly yet. Get in touch and we'll talk specifics."
+        reassurance={pricingStatement}
       />
     </div>
   )
