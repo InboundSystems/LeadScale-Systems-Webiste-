@@ -6,6 +6,9 @@
 export interface FAQItem {
   question: string
   answer: string
+  /** Optional trailing link, e.g. to /data-handling. Rendered after the
+   *  answer text — do not fold the URL into the answer string itself. */
+  answerLink?: { href: string; label: string }
 }
 
 export interface HowItWorksStep {
@@ -30,8 +33,24 @@ export interface SystemContent {
   /** e.g. "Client Reconnection" */
   name: string
 
-  /** One or two lines — what it does. Shown on /what-we-offer. Not a pitch. */
+  /** The sector this system is built for, as it appears on the site.
+   *  Two systems in different sectors must never be presented as
+   *  alternatives to the same reader. */
+  sector: string
+
+  /** One or two lines — what it does. Shown on /systems and on the system's
+   *  own page. Not a pitch. */
   shortDescription: string
+
+  /** One sentence under the h1 on the system's own page. Distinct from
+   *  shortDescription, which appears on the /systems index card — say
+   *  something shortDescription doesn't, rather than restate it. */
+  heroLine?: string
+
+  /** The condition this system is built for, stated before what it does. A
+   *  reader has to recognise their own situation before a capability list
+   *  means anything. Renders nothing when unset. */
+  theProblem?: { heading: string; paragraphs: string[] }
 
   /** What it actually does, as a list of concrete capabilities — not a pitch,
    *  not steps in order. Optional: unset until the system has enough to say
@@ -43,10 +62,32 @@ export interface SystemContent {
    *  short — two or three points, not a features list. */
   whatMakesItDifferent?: { heading: string; body: string }[]
 
+  /** A concrete narrative of the system in use on an ordinary day. Times and
+   *  events, not features. Renders nothing when unset. */
+  aTypicalDay?: {
+    heading: string
+    intro?: string
+    beats: { time: string; body: string }[]
+  }
+
+  /** Where this system came from. Only set where real research exists.
+   *  Never write one to fill the space. Shown between whatMakesItDifferent
+   *  and howItWorks. */
+  research?: {
+    heading: string
+    body: string
+    /** A direct quote from an anonymous research participant — research
+     *  material, not a testimonial. Never a named business. Omit rather
+     *  than invent one. */
+    quote?: string
+    /** e.g. "Salon owner, research response" — a role, never a name. */
+    attribution?: string
+  }
+
   /**
-   * Reserved for when this system is validated and promoted to its own full
-   * page (e.g. /what-we-offer/client-reconnection). Not used yet — leave
-   * unset until that page exists and is actually routed.
+   * The system's own page, at /systems/<slug>. Set once a system has enough
+   * validated content to carry a dedicated page; left unset otherwise, and
+   * generateStaticParams filters out any entry without one.
    */
   slug?: string
 
@@ -61,11 +102,30 @@ export interface SystemContent {
      *  empty. Mirrors audience.howItWorks.closingLine below. */
     closingLine?: string
   }
+  /** What changes for the business, paired with how that is measured. Value
+   *  and accountability belong in the same section — a claim about
+   *  improvement with no measure beside it is marketing. Renders nothing
+   *  when unset. */
+  whatChanges?: {
+    heading: string
+    changes: string[]
+    measureIntro: string
+    measures: string[]
+  }
+
   whoThisIsntFor?: {
     intro: string
     criteria: string[]
   }
   faq?: FAQItem[]
+
+  /** One line about ending the engagement, shown near the foot of the page
+   *  with a link. Renders nothing when unset. */
+  endingLine?: { body: string; href: string; label: string }
+
+  /** The closing CTA body on the system's own page. Falls back to a
+   *  sector-neutral sentence in SystemPage.tsx when unset. */
+  ctaBody?: string
 }
 
 // ---------------------------------------------------------------------------
@@ -79,6 +139,55 @@ export interface SystemsSectionIntro {
   /** Shown once, after every system card — never per-card. Acknowledges more
    *  are coming without naming what. */
   closingLine: string
+}
+
+// ---------------------------------------------------------------------------
+// Data handling — its own page, /data-handling. Not a bullet list: a practice
+// manager reading this is looking for a specific answer, not a pitch.
+// ---------------------------------------------------------------------------
+export interface DataHandlingSection {
+  heading: string
+  /** One or two short paragraphs. */
+  paragraphs: string[]
+}
+
+export interface DataHandlingPageContent {
+  intro: string
+  sections: DataHandlingSection[]
+}
+
+// ---------------------------------------------------------------------------
+// Privacy policy — its own page, /privacy. Same shape as data handling, plus
+// an optional bullet list per section and a last-updated date at the top.
+// ---------------------------------------------------------------------------
+export interface PrivacySection {
+  heading: string
+  paragraphs: string[]
+  /** Optional bullet list, shown after the paragraphs. */
+  bullets?: string[]
+}
+
+export interface PrivacyPageContent {
+  lastUpdated: string
+  intro: string
+  sections: PrivacySection[]
+}
+
+// ---------------------------------------------------------------------------
+// Contact — /enquire. A plain email contact, not a form. No submission state,
+// no server action: the mailto link is the entire mechanism.
+// ---------------------------------------------------------------------------
+export interface ContactPageContent {
+  eyebrow: string
+  headingLine1: string
+  headingAccent: string
+  lead: string
+  email: string
+  helpfulIntro: string
+  helpfulItems: string[]
+  closing: string
+  dataHandlingLinkLabel: string
+  privacyLinkLabel: string
 }
 
 // ---------------------------------------------------------------------------
@@ -100,9 +209,25 @@ export interface AudienceContent {
   howItWorks: {
     intro: string
     steps: HowItWorksStep[]
-    /** Shown once, beneath the steps. Optional — omit rather than leave
-     *  empty. */
-    closingLine?: string
+  }
+
+  /** How an engagement is judged and how it ends — the two facts that make a
+   *  small firm a reasonable risk. Shown on the homepage; stated more fully
+   *  on /how-it-works. */
+  howAnEngagementIsJudged: {
+    heading: string
+    intro: string
+    measures: string[]
+    closing: string
+  }
+
+  /** Its own section on /how-it-works, directly after whatWeWontDo. Replaces
+   *  the old howItWorks.closingLine, which said the same thing as an
+   *  afterthought beneath the steps. The page adds the link to
+   *  /data-handling; this holds only the prose. */
+  endingAnEngagement: {
+    heading: string
+    body: string
   }
 
   /** Parent-level only. Not system-specific — a system's own disqualifying
@@ -125,13 +250,6 @@ export interface AudienceContent {
    *  whatWeWontDo. Plain paragraphs, not a list. */
   whosAccountable: {
     paragraphs: string[]
-  }
-
-  /** General principles, not specific commitments — see the note in
-   *  content/audience.ts. A normal section, not the trust centrepiece. */
-  dataHandling: {
-    statement: string
-    specifics: string[]
   }
 
   about: {

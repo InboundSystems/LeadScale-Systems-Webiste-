@@ -2,10 +2,14 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 export interface FaqItem {
   question: string
   answer: string
+  /** Optional trailing link, e.g. to /data-handling. Rendered after the
+   *  answer text — do not fold the URL into the answer string itself. */
+  answerLink?: { href: string; label: string }
 }
 
 interface FAQProps {
@@ -78,7 +82,17 @@ export default function FAQ({ eyebrow, headingLine1, headingAccent, intro, faqs 
                       transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
                       className="overflow-hidden"
                     >
-                      <p className="text-[#6b7a99] text-sm leading-relaxed pb-6 pr-10">{faq.answer}</p>
+                      <p className="text-[#6b7a99] text-sm leading-relaxed pb-6 pr-10">
+                        {faq.answer}
+                        {faq.answerLink && (
+                          <>
+                            {' '}
+                            <Link href={faq.answerLink.href} className="underline hover:text-white transition-colors">
+                              {faq.answerLink.label}
+                            </Link>
+                          </>
+                        )}
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>

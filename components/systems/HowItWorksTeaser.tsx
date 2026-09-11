@@ -40,8 +40,8 @@ export default function HowItWorksTeaser() {
             How Vicaria works
             <span className="opacity-60">→</span>
           </Button>
-          <Button href="/what-we-offer" variant="secondary">
-            What the Front Desk does
+          <Button href="/systems" variant="secondary">
+            See the systems
             <span className="opacity-60">→</span>
           </Button>
         </div>

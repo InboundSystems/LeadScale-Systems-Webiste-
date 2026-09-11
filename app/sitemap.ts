@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const baseUrl = 'https://leadscalesystems.net'
+const baseUrl = 'https://vicaria.com.au'
 
 // / (the flagship Vicaria homepage) is intentionally excluded — noindexed,
 // structurally ready but not launched, until the vertical locks. See docs/business-model.md.

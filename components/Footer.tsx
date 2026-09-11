@@ -24,7 +24,7 @@ const socialLinks = [
 ]
 
 const contactEmail = audience.contact.email
-const displayDomain = 'leadscalesystems.net'
+const displayDomain = 'vicaria.com.au'
 
 export default function Footer({ homeHref, wordmark, tagline, navLinks, crossBrand }: FooterProps) {
   return (

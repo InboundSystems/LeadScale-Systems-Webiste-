@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Vicaria Media',
-    url: 'https://leadscalesystems.net/media',
+    url: 'https://vicaria.com.au/media',
     title: 'Vicaria Media | More Enquiries. More Booked Jobs. More Growth.',
     description:
       'We help tradespeople, contractors and local service businesses get found online and turn their traffic into real, paying customers through SEO, paid advertising and social media.',

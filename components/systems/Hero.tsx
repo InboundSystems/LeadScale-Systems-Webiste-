@@ -50,10 +50,10 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-5xl md:text-7xl lg:text-[76px] font-extrabold leading-[1.05] tracking-tight mb-8 text-white"
         >
-          The Work You Do After Close
+          A System For One Job,
           <br />
           <span className="bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] bg-clip-text text-transparent">
-            Shouldn’t Be Yours To Do.
+            Installed And Operated By Vicaria.
           </span>
         </motion.h1>
 

@@ -10,6 +10,7 @@ const nextConfig = {
       { source: '/media/enquire', destination: '/media', permanent: true },
       { source: '/ai', destination: '/', permanent: true },
       { source: '/ai/enquire', destination: '/enquire', permanent: true },
+      { source: '/what-we-offer', destination: '/systems', permanent: true },
     ]
   },
 }

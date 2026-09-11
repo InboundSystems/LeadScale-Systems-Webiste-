@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     default: 'Vicaria',
     template: '%s',
   },
-  description: 'Vicaria takes recurring back-office work off small, owner-run beauty and grooming businesses, with Vicaria Media as its marketing arm.',
-  metadataBase: new URL('https://leadscalesystems.net'),
+  description: 'Vicaria takes the part of a recurring job that requires no judgement, and operates the system rather than licensing it, with Vicaria Media as its marketing arm.',
+  metadataBase: new URL('https://vicaria.com.au'),
   openGraph: {
     type: 'website',
     siteName: 'Vicaria',
-    url: 'https://leadscalesystems.net',
+    url: 'https://vicaria.com.au',
   },
 }
 

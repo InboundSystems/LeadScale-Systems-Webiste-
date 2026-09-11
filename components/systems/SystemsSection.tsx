@@ -51,13 +51,15 @@ export default function SystemsSection() {
               </p>
               <h3 className="text-white text-2xl md:text-3xl font-extrabold mb-3">{system.name}</h3>
               <p className="text-[#94a3b8] text-base leading-relaxed mb-6">{system.shortDescription}</p>
-              <Link
-                href="/what-we-offer"
-                className="inline-flex items-center gap-2 text-[var(--accent-light)] hover:text-white font-semibold text-sm transition-colors"
-              >
-                See what it does
-                <span className="opacity-60">→</span>
-              </Link>
+              {system.slug && (
+                <Link
+                  href={`/systems/${system.slug}`}
+                  className="inline-flex items-center gap-2 text-[var(--accent-light)] hover:text-white font-semibold text-sm transition-colors"
+                >
+                  See what it does
+                  <span className="opacity-60">→</span>
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>

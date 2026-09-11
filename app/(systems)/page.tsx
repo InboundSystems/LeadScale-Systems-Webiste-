@@ -1,9 +1,9 @@
 import Hero from '@/components/systems/Hero'
 import WhoItsFor from '@/components/systems/WhoItsFor'
 import SystemsSection from '@/components/systems/SystemsSection'
-import Research from '@/components/systems/Research'
 import WhyWeRunThem from '@/components/systems/WhyWeRunThem'
 import HowItWorksTeaser from '@/components/systems/HowItWorksTeaser'
+import HowItsJudged from '@/components/systems/HowItsJudged'
 import WhoThisIsntFor from '@/components/systems/WhoThisIsntFor'
 import CTA from '@/components/home/CTA'
 import { pricingStatement } from '@/content/pricing'
@@ -13,15 +13,15 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Vicaria',
-  url: 'https://leadscalesystems.net',
-  logo: 'https://leadscalesystems.net/logo-icon-transparent.png',
+  url: 'https://vicaria.com.au',
+  logo: 'https://vicaria.com.au/logo-icon-transparent.png',
   email: audience.contact.email,
   sameAs: [
     'https://www.instagram.com/leadscalesystems/',
     'https://www.facebook.com/profile.php?id=61585639113200',
   ],
   subOrganization: [
-    { '@type': 'Organization', name: 'Vicaria Media', url: 'https://leadscalesystems.net/media' },
+    { '@type': 'Organization', name: 'Vicaria Media', url: 'https://vicaria.com.au/media' },
   ],
 }
 
@@ -35,9 +35,9 @@ export default function SystemsHomePage() {
       <Hero />
       <WhoItsFor />
       <SystemsSection />
-      <Research />
       <WhyWeRunThem />
       <HowItWorksTeaser />
+      <HowItsJudged />
       <WhoThisIsntFor />
       <CTA
         eyebrow="GET IN TOUCH"

@@ -2,7 +2,7 @@
 
 Parent-level throughout, per instruction. Maps to `content/audience.ts`
 (`whoWeAre`, `audience`, `howItWorks.intro` for the teaser, `whoThisIsntFor`)
-plus one link out to `/what-we-offer`. No FAQ section — dropped, since it's
+plus one link out to `/systems`. No FAQ section — dropped, since it's
 not in the revised Home structure and offer-specific FAQ content is now a
 per-system slot that doesn't exist until a system is validated.
 
@@ -34,7 +34,7 @@ The Admin You Do After Close
 
 **Body:** There are jobs in a business like yours that need doing every week and never quite get done, because there's no one whose job it is to do them. We take one, build a system around it, and run it — for as long as you want it running. It's built to work with whatever you already use to run your business, without needing access to your accounts or platforms.
 
-**Link:** See what we currently run → (links to `/what-we-offer`)
+**Link:** See what we currently run → (links to `/systems`)
 
 ---
 

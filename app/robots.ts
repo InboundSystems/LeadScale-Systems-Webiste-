@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       { userAgent: '*', allow: '/media', disallow: '/' },
     ],
-    sitemap: 'https://leadscalesystems.net/sitemap.xml',
+    sitemap: 'https://vicaria.com.au/sitemap.xml',
   }
 }
