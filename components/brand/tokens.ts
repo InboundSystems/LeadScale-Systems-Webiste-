@@ -7,16 +7,21 @@ import type { CSSProperties } from 'react'
 
 export type Brand = 'media' | 'systems'
 
-// Accent-only overrides. Shared base tokens (ink, surface, slate, green, amber,
-// card-fill, hairline, radii — see docs/brand/shared-system.md) live once in
-// app/globals.css :root and never vary by brand. Adding a third sibling brand
-// means adding one entry here — nothing else in the token system changes.
+// Accent overrides per brand. Media's base tokens (ink, surface, slate, card-
+// fill, hairline, radii — see docs/brand/shared-system.md) live in
+// app/globals.css :root. The flagship replaces that dark base with its own
+// light neutrals, scoped to [data-brand='systems'] in app/globals.css — see
+// docs/brand/leadscale-systems.md.
+//
+// Flagship accent: deep teal, the colour on every Vicaria document. Contrast
+// on the #F8FAF9 ground: accent 5.63, accent-deep 7.59. accent-light is 2.71
+// and is for rules and decoration only, never text or focus rings.
 export const ACCENTS: Record<Brand, CSSProperties> = {
   systems: {
-    '--accent': '#2563EB',
-    '--accent-deep': '#1D4ED8',
-    '--accent-light': '#60A5FA',
-    '--accent-rgb': '37 99 235',
+    '--accent': '#2E6E6B',
+    '--accent-deep': '#245956',
+    '--accent-light': '#77A19F',
+    '--accent-rgb': '46 110 107',
   } as CSSProperties,
   media: {
     '--accent': '#4F46E5',

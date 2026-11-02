@@ -1,0 +1,171 @@
+import Link from 'next/link'
+import type { ReactNode } from 'react'
+import type { DetailedItem, LinkItem, PageEnd as PageEndContent, PageHeader as PageHeaderContent } from '@/content/types'
+
+// Flagship-only primitives. Server components, no motion. Media keeps its own
+// shared components (components/ui, components/home, Navbar, Footer); nothing
+// here is imported by /media. Tokens: app/globals.css [data-brand='systems'].
+
+export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <div className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
+}
+
+type Tone = 'ground' | 'surface' | 'warm'
+
+const toneClass: Record<Tone, string> = {
+  ground: 'bg-[var(--ground)]',
+  surface: 'bg-[var(--surface)]',
+  warm: 'bg-[var(--warm)]',
+}
+
+export function Section({
+  children,
+  tone = 'ground',
+  rule = true,
+  id,
+  labelledBy,
+  className = '',
+}: {
+  children: ReactNode
+  tone?: Tone
+  rule?: boolean
+  id?: string
+  labelledBy?: string
+  className?: string
+}) {
+  return (
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      className={`${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
+    >
+      <Container>{children}</Container>
+    </section>
+  )
+}
+
+export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <p className={`v-eyebrow mb-4 ${className}`}>{children}</p>
+}
+
+/** Renders a Next link for internal routes and a plain anchor otherwise
+ *  (mailto:, external). */
+export function SmartLink({
+  href,
+  className,
+  children,
+  ariaCurrent,
+}: {
+  href: string
+  className?: string
+  children: ReactNode
+  ariaCurrent?: 'page'
+}) {
+  if (href.startsWith('/')) {
+    return (
+      <Link href={href} className={className} aria-current={ariaCurrent}>
+        {children}
+      </Link>
+    )
+  }
+  return (
+    <a href={href} className={className}>
+      {children}
+    </a>
+  )
+}
+
+export function TextLink({ link, className = '' }: { link: LinkItem; className?: string }) {
+  return (
+    <SmartLink href={link.href} className={`v-link font-semibold ${className}`}>
+      {link.label}
+      <span aria-hidden="true"> →</span>
+    </SmartLink>
+  )
+}
+
+export function ButtonLink({
+  link,
+  variant = 'primary',
+  className = '',
+}: {
+  link: LinkItem
+  variant?: 'primary' | 'secondary'
+  className?: string
+}) {
+  const base =
+    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-colors duration-150'
+  const styles =
+    variant === 'primary'
+      ? 'bg-[var(--accent)] text-white hover:bg-[var(--accent-deep)]'
+      : 'border border-[var(--muted)] bg-transparent text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--surface)]'
+  return (
+    <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>
+      {link.label}
+    </SmartLink>
+  )
+}
+
+export function PageHeader({ header, children }: { header: PageHeaderContent; children?: ReactNode }) {
+  return (
+    <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
+      <Container>
+        <Eyebrow>{header.eyebrow}</Eyebrow>
+        <h1 className="v-h1 max-w-[22ch]">{header.heading}</h1>
+        {header.intro && <p className="v-lead mt-6">{header.intro}</p>}
+        {children}
+      </Container>
+    </header>
+  )
+}
+
+/** The one line every page ends on, and its action (docs/VOICE.md §10). */
+export function PageEnd({ end }: { end: PageEndContent }) {
+  return (
+    <section className="border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-16">
+      <Container className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="v-serif max-w-[40ch] text-[1.25rem] leading-snug text-[var(--ink)] sm:text-[1.375rem]">
+          {end.line}
+        </p>
+        <ButtonLink link={end.link} className="shrink-0" />
+      </Container>
+    </section>
+  )
+}
+
+/** A plain list with hairline separators. Not cards. */
+export function RuledList({ items, className = '' }: { items: (string | DetailedItem)[]; className?: string }) {
+  return (
+    <ul className={`border-t border-[var(--hairline)] ${className}`}>
+      {items.map((item) => {
+        const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
+        return (
+          <li key={text} className="border-b border-[var(--hairline)] py-4">
+            <p className="text-[var(--ink)]">{text}</p>
+            {detail && <p className="v-small mt-1">{detail}</p>}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+/** Heading in a narrow left column, body in a wider right column, ruled. */
+export function SplitBlock({
+  heading,
+  headingId,
+  children,
+}: {
+  heading: string
+  headingId?: string
+  children: ReactNode
+}) {
+  return (
+    <div className="grid gap-4 border-t border-[var(--hairline)] py-8 lg:grid-cols-12 lg:gap-10">
+      <h2 id={headingId} className="v-serif text-[1.375rem] font-semibold leading-snug text-[var(--ink)] lg:col-span-4">
+        {heading}
+      </h2>
+      <div className="flex flex-col gap-4 lg:col-span-8">{children}</div>
+    </div>
+  )
+}

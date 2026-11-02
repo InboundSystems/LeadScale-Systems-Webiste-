@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import HowItWorksContent from '@/components/systems/HowItWorksContent'
+import { pageMeta } from '@/content/audience'
 
 export const metadata: Metadata = {
-  title: 'How It Works',
-  description: 'How Vicaria selects, builds and operates a system.',
+  title: pageMeta.howItWorks.title,
+  description: pageMeta.howItWorks.description,
   alternates: { canonical: '/how-it-works' },
 }
 

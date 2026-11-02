@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Shared base tokens — see docs/brand/shared-system.md. These never vary by
-   brand; only the accent tokens (set by components/brand/BrandProvider.tsx)
-   change per brand. */
+/* Media's base tokens — see docs/brand/shared-system.md. The accent tokens
+   are set per brand by components/brand/BrandProvider.tsx. */
 :root {
   --ink: #05050f;
   --surface: #0b0b18;
@@ -49,4 +48,181 @@ html {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, var(--accent, #2563eb), var(--accent-deep, #1d4ed8));
   border-radius: 10px;
+}
+
+/* -------------------------------------------------------------------------
+   Flagship (Vicaria) — see docs/brand/leadscale-systems.md.
+   Light only. Every rule below is scoped to the systems brand, so /media is
+   unchanged. Contrast ratios are against --ground.
+   ------------------------------------------------------------------------- */
+[data-brand='systems'] {
+  --ground: #f8faf9;
+  --surface: #ffffff;
+  --ink: #16232b; /* 15.30 */
+  --muted: #5c6b71; /* 5.28 */
+  --hairline: #e3e8e8;
+  --accent-tint: #e6efee; /* accent on tint 5.04 */
+  --warm: #f3efe7; /* ink 13.98, muted 4.82, accent 5.15 */
+  --radius-btn: 4px;
+  --radius-card: 6px;
+
+  color-scheme: light;
+  min-height: 100vh;
+  background-color: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 640px) {
+  [data-brand='systems'] {
+    font-size: 18px;
+  }
+}
+
+/* The page behind the flagship wrapper, so overscroll and the scrollbar
+   never show Media's dark base. */
+html:has([data-brand='systems']),
+html:has([data-brand='systems']) body {
+  background-color: #f8faf9;
+  color: #16232b;
+}
+html:has([data-brand='systems'])::-webkit-scrollbar-track {
+  background: #f8faf9;
+}
+html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
+  background: #c9d3d3;
+}
+
+[data-brand='systems'] ::selection {
+  background: var(--accent-tint);
+  color: var(--ink);
+}
+
+[data-brand='systems'] :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has([data-brand='systems']) {
+    scroll-behavior: auto;
+  }
+  [data-brand='systems'] *,
+  [data-brand='systems'] *::before,
+  [data-brand='systems'] *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Type scale: a 1.25 ratio on an 18px body (17px under 640px). Headings in
+   Source Serif 4, body in Source Sans 3, category labels in Source Code Pro. */
+@layer components {
+  .v-serif {
+    font-family: var(--font-serif), Georgia, serif;
+    font-optical-sizing: auto;
+  }
+  .v-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+  .v-display {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 600;
+    font-size: 2.25rem;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .v-h1 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .v-h2 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 600;
+    font-size: 1.625rem;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .v-h3 {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .v-lead {
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 38em;
+  }
+  .v-body {
+    color: var(--ink);
+    max-width: 65ch;
+  }
+  .v-muted {
+    color: var(--muted);
+  }
+  .v-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .v-eyebrow {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .v-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color 150ms ease;
+  }
+  .v-link:hover {
+    color: var(--accent-deep);
+    text-decoration-thickness: 2px;
+  }
+  .v-rule {
+    border-top: 1px solid var(--hairline);
+  }
+
+  @media (min-width: 640px) {
+    .v-display {
+      font-size: 3rem;
+    }
+    .v-h1 {
+      font-size: 2.75rem;
+    }
+    .v-h2 {
+      font-size: 2rem;
+    }
+    .v-h3 {
+      font-size: 1.125rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .v-display {
+      font-size: 3.5rem;
+    }
+  }
 }

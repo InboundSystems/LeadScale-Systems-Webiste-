@@ -1,62 +1,61 @@
 import type { Metadata } from 'next'
+import { Source_Code_Pro, Source_Sans_3, Source_Serif_4 } from 'next/font/google'
 import BrandProvider from '@/components/brand/BrandProvider'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import SiteHeader from '@/components/systems/SiteHeader'
+import SiteFooter from '@/components/systems/SiteFooter'
+import { site } from '@/content/audience'
 
-// Structurally ready, not launched — the offer hasn't been validated yet
-// (see docs/business-model-v2.html). Keep noindex/nofollow and the
-// sitemap/robots exclusion until the business decides to go live.
+// Flagship type: Source Serif 4 for headings, Source Sans 3 for body, Source
+// Code Pro for category labels. Loaded here, not in the root layout, so /media
+// keeps Plus Jakarta Sans. See docs/brand/leadscale-systems.md.
+const serif = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  display: 'swap',
+  variable: '--font-serif',
+})
+const sans = Source_Sans_3({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  display: 'swap',
+  variable: '--font-sans',
+})
+const mono = Source_Code_Pro({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  display: 'swap',
+  variable: '--font-mono',
+})
+
+// Not launched. noindex/nofollow and the sitemap/robots exclusion are policy
+// until Sam makes an explicit launch decision. Never remove as cleanup.
 export const metadata: Metadata = {
-  title: 'Vicaria | Back-Office Systems, Built And Run',
-  description:
-    'Back-office systems built and operated by Vicaria for recurring administrative work that has no one dedicated to it, delivered as completed work rather than software.',
+  title: { default: site.metaTitle, template: '%s | Vicaria' },
+  description: site.metaDescription,
   robots: { index: false, follow: false },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: 'Vicaria',
     url: 'https://vicaria.com.au',
-    title: 'Vicaria | Back-Office Systems, Built And Run',
-    description:
-      'Back-office systems built and operated by Vicaria for recurring administrative work that has no one dedicated to it, delivered as completed work rather than software.',
+    title: site.metaTitle,
+    description: site.metaDescription,
   },
 }
-
-const navLinks = [
-  { label: 'SYSTEMS', href: '/systems' },
-  { label: 'HOW IT WORKS', href: '/how-it-works' },
-  { label: 'DATA HANDLING', href: '/data-handling' },
-  { label: 'ABOUT', href: '/about' },
-  { label: 'MEDIA', href: '/media' },
-]
-
-const footerNavLinks = [
-  { label: 'Systems', href: '/systems' },
-  { label: 'How It Works', href: '/how-it-works' },
-  { label: 'Data Handling', href: '/data-handling' },
-  { label: 'About', href: '/about' },
-  { label: 'Get In Touch', href: '/enquire' },
-  { label: 'Privacy', href: '/privacy' },
-]
 
 export default function SystemsLayout({ children }: { children: React.ReactNode }) {
   return (
     <BrandProvider brand="systems">
-      <Navbar
-        homeHref="/"
-        wordmark="Vicaria"
-        navLinks={navLinks}
-        ctaHref="/enquire"
-        ctaLabel="GET IN TOUCH"
-      />
-      <main>{children}</main>
-      <Footer
-        homeHref="/"
-        wordmark="Vicaria"
-        tagline="Vicaria builds and operates back-office systems for recurring administrative work. Brisbane, Australia."
-        navLinks={footerNavLinks}
-        crossBrand={{ label: 'Vicaria Media', href: '/media' }}
-      />
+      <div
+        className={`${serif.variable} ${sans.variable} ${mono.variable} flex min-h-screen flex-col`}
+        style={{ fontFamily: 'var(--font-sans), system-ui, sans-serif' }}
+      >
+        <SiteHeader />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+      </div>
     </BrandProvider>
   )
 }

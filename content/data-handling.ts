@@ -1,70 +1,86 @@
 import type { DataHandlingPageContent } from './types'
 
-// Its own page, /data-handling — the page a practice manager forwards to
-// their IT provider. Every sentence describes how Vicaria works, not what
-// it is currently doing for a live client: nothing has been installed yet.
+// /data-handling. Every statement describes how the system is built and
+// operated, never what it is doing for a client today. Every claim traces to
+// section 5 of docs/WEBSITE-REWORK-2026-11.md (and the agreement order in
+// section 4). "AI model" is permitted here because precision requires it.
+
 export const dataHandling: DataHandlingPageContent = {
-  intro:
-    'Client data is what makes a system function. Everything below applies to how it is stored, accessed, used and returned.',
+  header: {
+    eyebrow: 'Data handling',
+    heading: 'Where data goes and who can see it.',
+    intro:
+      'This page sets out where The Front Office stores and processes data, what it keeps, who can access it, and how it is returned or deleted.',
+  },
 
   sections: [
     {
-      heading: 'Where Data Is Stored.',
+      heading: 'Stored and processed in Australia.',
       paragraphs: [
-        'All storage and processing takes place in an Australian region. Vicaria does not process client data offshore, and this is a condition of the engagement, not a default that could later change. Two providers are used: Amazon Web Services, in Sydney, for model processing, and Supabase, in Sydney, for the database, storage and the system’s own processing. That is the complete list.',
-        'Where a practice handles information derived from My Health Record, Australian law prohibits holding or processing that information outside Australia. This obligation binds Vicaria as a service provider in the same way it binds the practice, and it cannot be waived by patient consent. Vicaria’s Australian-only position satisfies it.',
+        'All storage and processing takes place in Australia, in the Sydney region. Two providers are used, and this is the complete list:',
+      ],
+      bullets: [
+        'Amazon Web Services runs the system, runs the AI model through Amazon Bedrock, and sends the morning summary',
+        'Supabase holds the database',
       ],
     },
     {
-      heading: 'Sub-Processors.',
+      heading: 'The practice’s Microsoft 365 is not a sub-processor.',
       paragraphs: [
-        'The practice’s own email platform is not a sub-processor. It is the practice’s own system, accessed under permissions the practice grants and can withdraw at any time.',
-        'Clients receive thirty days’ written notice before any provider is added or replaced, and may object.',
+        'It is the practice’s own system, accessed under permissions its administrator grants and can withdraw.',
       ],
     },
     {
-      heading: 'Who Can See It.',
+      heading: 'What is stored, and what is not.',
       paragraphs: [
-        'Access is limited to the people who operate the system. It is granted for the purpose of operating that client’s system, and for no other purpose. Client data is never used to operate another client’s system, and never used to train any general-purpose model.',
+        'Stored: the sender, subject line, dates, category, and whether the email has been replied to.',
+        'Not stored: message contents. Email bodies are read at the moment of categorising and are not kept.',
       ],
     },
     {
-      heading: 'What Is Stored, And What Is Not.',
+      heading: 'Kept separate.',
       paragraphs: [
-        'Each system records what it did with an item of information — for example, when it arrived and what happened to it — rather than retaining the item itself. Full message contents are not retained, unless a feature the client has switched on requires it. For The Front Office, that record includes which folder a message was filed into, and how confident the system was in that decision.',
+        'Each practice’s data is separated at the database layer. It is never used for another practice, and never used to train any AI model.',
       ],
     },
     {
-      heading: 'Permissions.',
+      heading: 'Who can access it.',
       paragraphs: [
-        'Vicaria requests the narrowest set of permissions that allow a system to work, and documents each one with a plain-English reason. That list is provided to the client on request.',
-        'Access is limited to named individuals, with multi-factor authentication. Each client’s data is kept separate from every other client’s, enforced at the database layer. It is encrypted in transit and at rest. Access by Vicaria personnel is logged.',
-        'Vicaria never asks anyone for a password. Access is granted by the client’s own administrator, and can be revoked by that administrator at any time, without going through Vicaria.',
+        'No password is ever requested. Access by Vicaria personnel is limited to named individuals with multi-factor authentication, and every access is logged.',
       ],
     },
     {
-      heading: 'Getting It Back, Or Having It Deleted.',
+      heading: 'Before anything connects.',
       paragraphs: [
-        'Client data remains the property of the client. It is returned or deleted, at the client’s election, when an engagement ends, and within thirty days of a deletion request.',
+        'A services agreement and a data processing agreement are signed before the system connects to any mailbox.',
       ],
     },
     {
-      heading: 'If Something Goes Wrong.',
+      heading: 'Changes of provider.',
+      paragraphs: ['Clients receive 30 days’ notice before any provider is added or replaced.'],
+    },
+    {
+      heading: 'Return and deletion.',
       paragraphs: [
-        'Vicaria monitors its own systems and contacts the client if a fault occurs, rather than waiting to be told. Where personal information is lost or accessed without authorisation and serious harm is likely, Vicaria acts under Australia’s notifiable data breach scheme and notifies the affected client without undue delay.',
+        'Data is returned or deleted at the practice’s election. Deletion is completed within 30 days of a request.',
       ],
     },
     {
-      heading: 'Automated Decision-Making.',
+      heading: 'Data breaches.',
       paragraphs: [
-        'From 10 December 2026, Australian privacy law will require disclosure where an automated system is involved in a decision affecting a person. Ahead of that date, Vicaria will supply the wording each client needs for their own privacy policy, describing what the system does within that business.',
+        'Vicaria acts under Australia’s notifiable data breach scheme. An affected client is notified without undue delay, and the agreement commits Vicaria to do so within 48 hours of becoming aware.',
       ],
     },
     {
-      heading: 'Before Anything Is Connected.',
+      heading: 'Automated decision-making disclosure.',
       paragraphs: [
-        'A data processing agreement is signed before Vicaria connects to any client system. It is not negotiable, and it is not treated as a formality.',
+        'From 10 December 2026, Australian privacy law requires disclosure where an automated system is involved in decisions affecting individuals. Vicaria supplies each client the wording for its own privacy policy.',
       ],
     },
   ],
+
+  end: {
+    line: 'The exact Microsoft 365 permissions are set out for the practice’s IT provider.',
+    link: { label: 'For IT providers', href: '/it-providers' },
+  },
 }

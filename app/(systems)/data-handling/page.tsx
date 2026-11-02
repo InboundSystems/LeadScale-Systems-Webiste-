@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import DataHandlingContent from '@/components/systems/DataHandlingContent'
+import { pageMeta } from '@/content/audience'
 
 export const metadata: Metadata = {
-  title: 'Data Handling',
-  description: 'How client data is accessed, used, stored and deleted.',
+  title: pageMeta.dataHandling.title,
+  description: pageMeta.dataHandling.description,
   alternates: { canonical: '/data-handling' },
 }
 

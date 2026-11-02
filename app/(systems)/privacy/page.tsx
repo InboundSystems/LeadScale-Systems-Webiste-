@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import PrivacyContent from '@/components/systems/PrivacyContent'
+import { pageMeta } from '@/content/audience'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'What personal information Vicaria collects, why, and what happens to it.',
+  title: pageMeta.privacy.title,
+  description: pageMeta.privacy.description,
   alternates: { canonical: '/privacy' },
 }
 

@@ -1,97 +1,64 @@
-'use client'
+import { about, business } from '@/content/audience'
+import { PageEnd, PageHeader, Section } from './ui'
 
-import { motion } from 'framer-motion'
-import Button from '@/components/ui/Button'
-import { audience } from '@/content/audience'
-
+// /about. Short and professional: the firm, Brisbane, founders named, ABN.
+// Founders are listed, never used as the trust argument.
 export default function AboutContent() {
+  const details = [
+    { term: about.detailLabels.legalName, value: business.legalName },
+    { term: about.detailLabels.abn, value: business.abn },
+    { term: about.detailLabels.location, value: business.location },
+    { term: about.detailLabels.email, value: business.email, href: `mailto:${business.email}` },
+  ]
+
   return (
-    <div className="pt-28 pb-28">
-      {/* Hero */}
-      <section className="py-20 px-6 border-b border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-[var(--accent-light)] text-xs font-semibold tracking-[3px] mb-6"
-          >
-            ABOUT
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
-          >
-            Vicaria.
-          </motion.h1>
-          {audience.about.intro.map((paragraph, i) => (
-            <motion.p
-              key={paragraph}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.05 }}
-              className={`text-[#94a3b8] text-lg leading-relaxed max-w-2xl ${
-                i < audience.about.intro.length - 1 ? 'mb-6' : ''
-              }`}
-            >
-              {paragraph}
-            </motion.p>
+    <>
+      <PageHeader header={about.header}>
+        <div className="mt-6 flex flex-col gap-4">
+          {about.paragraphs.map((p) => (
+            <p key={p} className="v-lead">
+              {p}
+            </p>
           ))}
         </div>
-      </section>
+      </PageHeader>
 
-      {/* Team */}
-      <section className="py-20 px-6 bg-[#0d0d16]">
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[#94a3b8] text-xs font-semibold tracking-[0.2em] mb-4"
-          >
-            CONTACTS
-          </motion.p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {audience.about.founders.map((founder, i) => (
-              <motion.div
-                key={founder.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-[var(--surface)] border border-white/5 rounded-xl p-8"
-              >
-                <h3 className="text-white text-xl font-extrabold mb-1">{founder.name}</h3>
-                <p className="text-[var(--accent-light)] text-xs font-semibold tracking-[0.1em] mb-3">{founder.role}</p>
-                <p className="text-[#94a3b8] text-sm leading-relaxed">{founder.blurb}</p>
-              </motion.div>
-            ))}
+      <Section>
+        <div className="grid gap-12 md:grid-cols-2 md:gap-14">
+          <div>
+            <h2 className="v-h3">{about.foundersHeading}</h2>
+            <dl className="mt-4 border-t border-[var(--hairline)]">
+              {about.founders.map((f) => (
+                <div key={f.name} className="flex items-baseline justify-between gap-4 border-b border-[var(--hairline)] py-4">
+                  <dt className="v-serif text-[1.25rem] font-semibold text-[var(--ink)]">{f.name}</dt>
+                  <dd className="v-small">{f.role}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div>
+            <h2 className="v-h3">{about.detailsHeading}</h2>
+            <dl className="mt-4 border-t border-[var(--hairline)]">
+              {details.map((d) => (
+                <div key={d.term} className="grid grid-cols-[8rem_minmax(0,1fr)] gap-4 border-b border-[var(--hairline)] py-4">
+                  <dt className="v-small">{d.term}</dt>
+                  <dd className="text-[var(--ink)]">
+                    {d.href ? (
+                      <a href={d.href} className="v-link">
+                        {d.value}
+                      </a>
+                    ) : (
+                      d.value
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Closing CTA */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[#94a3b8] text-base leading-relaxed mb-8 max-w-xl"
-          >
-            Where a recurring job in your business should not be yours, describe it. We will confirm whether it is
-            one Vicaria can take.
-          </motion.p>
-          <Button href="/enquire">
-            GET IN TOUCH
-            <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
-          </Button>
-        </div>
-      </section>
-    </div>
+      <PageEnd end={about.end} />
+    </>
   )
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import SystemsIndex from '@/components/systems/SystemsIndex'
+import { pageMeta } from '@/content/audience'
 
 export const metadata: Metadata = {
-  title: 'Systems',
-  description: 'The systems Vicaria builds and operates.',
+  title: pageMeta.systems.title,
+  description: pageMeta.systems.description,
   alternates: { canonical: '/systems' },
 }
 

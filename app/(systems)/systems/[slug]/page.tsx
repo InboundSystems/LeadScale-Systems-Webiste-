@@ -3,6 +3,10 @@ import { notFound } from 'next/navigation'
 import { systems } from '@/content/systems'
 import SystemPage from '@/components/systems/SystemPage'
 
+// Only slugs in content/systems.ts exist. Anything else, including the
+// removed /systems/booking-line, is a 404.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return systems
     .filter((system) => system.slug)

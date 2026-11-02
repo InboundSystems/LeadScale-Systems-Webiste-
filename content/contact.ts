@@ -1,22 +1,25 @@
 import type { ContactPageContent } from './types'
 
-// /enquire — replaces the enquiry form. No form fields, no submission state:
-// the mailto link is the whole mechanism. Placeholder email — see the
-// task report for what to swap in before launch.
+// /enquire — a plain email contact, no form. The mailto link is the whole
+// mechanism. The address itself comes from business.email in ./audience.
+
 export const contact: ContactPageContent = {
-  eyebrow: 'GET IN TOUCH',
-  headingLine1: 'Email Us',
-  headingAccent: 'Directly.',
-  lead: 'There is no form here. An email reaches Vicaria directly, and every one is read and answered.',
-  email: 'admin@vicaria.com.au',
-  helpfulIntro: 'A reply is quicker with a few details, where they’re available:',
+  header: {
+    eyebrow: 'Enquire',
+    heading: 'Email Vicaria directly.',
+    intro: 'Enquiries are by email. Every email is read and answered.',
+  },
+  helpfulIntro: 'A reply is quicker with a few details, where they are available:',
   helpfulItems: [
-    'The practice or business name',
-    'Which mail platform is used — Microsoft 365 or Google Workspace',
-    'Roughly how much correspondence arrives in a week',
-    'What is currently taking the most time',
+    'The practice name',
+    'Whether the practice uses Microsoft 365',
+    'How much email arrives in a typical week',
+    'Which emails tend to wait longest',
   ],
-  closing: 'None of this is required. An email that just says “can we talk” is a complete enquiry.',
-  dataHandlingLinkLabel: 'How client data is handled →',
-  privacyLinkLabel: 'Read the privacy policy →',
+  closing: 'None of this is required. An email asking for a conversation is a complete enquiry.',
+  links: [
+    { label: 'For IT providers', href: '/it-providers' },
+    { label: 'How data is handled', href: '/data-handling' },
+    { label: 'Privacy policy', href: '/privacy' },
+  ],
 }

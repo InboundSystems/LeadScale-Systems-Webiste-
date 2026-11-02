@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import ContactContent from '@/components/systems/ContactContent'
+import { pageMeta } from '@/content/audience'
 
 export const metadata: Metadata = {
-  title: 'Get in Touch',
-  description: 'How to reach Vicaria directly, by email.',
+  title: pageMeta.enquire.title,
+  description: pageMeta.enquire.description,
   alternates: { canonical: '/enquire' },
 }
 
