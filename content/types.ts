@@ -100,27 +100,36 @@ export interface InboxIllustration {
   groups: { category: CategoryDef; messages: InboxMessage[] }[]
 }
 
-/** One line of the plain-text morning summary: time waited (or, for mail
- *  already answered, when it was answered), subject, sender, and any
- *  [For …] label — in that order, as the real email sets them. */
+/** One line of the plain-text morning summary, as the real email sets it:
+ *  first column, subject (cut to 44 characters and padded to 44), sender
+ *  email address, then any [For …] label. The first column is time waited
+ *  in open hours ("45m", "3h 20m", "1d 2h"), or a date for the Replied and
+ *  Junk blocks. */
 export interface SummaryLine {
-  waited: string
+  first: string
   subject: string
+  /** An email address, never a display name. Fictional, on example.com. */
   sender: string
   /** e.g. "For Dr Smith", rendered as "[For Dr Smith]". */
   personLabel?: string
 }
 
-/** Lines under one category heading, oldest first within the group. */
+/** Lines under one group heading, oldest first within the group. The
+ *  heading is the category label as reception sees it, or a group name
+ *  such as "With Dr Smith". */
 export interface SummaryGroup {
-  category: string
+  heading?: string
   lines: SummaryLine[]
 }
 
-export interface SummaryOptionalBlock {
+/** A titled block after the main groups: Passed on, Replied, Junk. */
+export interface SummaryBlock {
   heading: string
+  /** The explanatory text under the heading, line for line as wrapped in
+   *  the real email. */
+  text: string[]
   /** Margin note on the illustration, outside the email itself. */
-  optionalNote: string
+  optionalNote?: string
   groups: SummaryGroup[]
 }
 
@@ -132,11 +141,12 @@ export interface MorningSummaryIllustration {
   to: string
   subject: string
   sent: string
-  /** The opening lines, before the groups. No greeting. */
-  opening: string[]
+  /** The two title lines at the top of the body: practice name and date. */
+  title: string[]
+  /** Paragraphs before the groups, each line for line as wrapped. No greeting. */
+  opening: string[][]
   groups: SummaryGroup[]
-  optionalBlocks: SummaryOptionalBlock[]
-  junk: { heading: string; lines: SummaryLine[] }
+  blocks: SummaryBlock[]
   /** The closing lines, verbatim. */
   closing: string[]
 }

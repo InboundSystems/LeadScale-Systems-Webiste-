@@ -127,7 +127,7 @@ export const systems: SystemContent[] = [
             category: appointments,
             messages: [
               { sender: 'Website booking form', subject: 'New booking request', received: 'Fri 4:50 pm', unread: true },
-              { sender: 'Daniel Ng', subject: 'Request to move my appointment', received: 'Thu 11:05 am' },
+              { sender: 'Daniel Ng', subject: 'Request to move my appointment', received: 'Fri 9:40 am' },
             ],
           },
           {
@@ -151,79 +151,90 @@ export const systems: SystemContent[] = [
           {
             category: accounts,
             messages: [
-              { sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Wed 3:30 pm' },
+              { sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Fri 11:00 am' },
             ],
           },
         ],
       },
-      // Matches the real plain-text summary email line for line (Sam,
-      // 2 November 2026). Counts are consistent with the inbox above: the
-      // five with no reply are R. Collins, Daniel Ng, the booking form, Tom
-      // Avery and Kestrel. Alex arrived after 7:30am.
+      // Matches the real plain-text summary email (summary.mjs) line for
+      // line (Sam, 2 November 2026). Counts are consistent with the inbox
+      // above: the five with no reply are R. Collins, Daniel Ng, the booking
+      // form, Tom Avery and Kestrel. Alex arrived after 7:30am. Waits are
+      // kept under one open day, so no line depends on how days are counted.
       summary: {
         caption: 'The morning summary, sent at 7:30am on the same Monday. Illustration with fictional senders.',
-        from: 'The Front Office',
+        from: 'Vicaria',
         to: 'Practice manager',
-        subject: 'Elsworth Lane Specialists — inbox summary, Monday 2 November 2026',
+        subject: 'Elsworth Lane Specialists — inbox summary, Monday 2 November',
         sent: 'Monday 7:30 am',
+        title: ['Elsworth Lane Specialists — inbox summary', 'Monday 2 November'],
         opening: [
-          '18 messages arrived in the last 7 open days. 5 have no reply yet.',
-          'Oldest first, within each category. Time counts open hours only — evenings, weekends and closures do not add to it.',
+          ['18 messages arrived in the last 7 open days. 5 have no reply yet.'],
+          [
+            'Oldest first, within each category. Time counts open hours only —',
+            'evenings, weekends and closures do not add to it.',
+          ],
         ],
         groups: [
           {
-            category: unclear.label,
-            lines: [{ waited: '0h 00m', subject: 'Following up', sender: 'R. Collins' }],
+            heading: unclear.label,
+            lines: [{ first: '0m', subject: 'Following up', sender: 'r.collins@example.com' }],
           },
           {
-            category: appointments.label,
+            heading: appointments.label,
             lines: [
-              { waited: '14h 55m', subject: 'Request to move my appointment', sender: 'Daniel Ng' },
-              { waited: '0h 10m', subject: 'New booking request', sender: 'Website booking form' },
+              { first: '7h 20m', subject: 'Request to move my appointment', sender: 'd.ng@example.com' },
+              { first: '10m', subject: 'New booking request', sender: 'bookings@example.com' },
             ],
           },
           {
-            category: enquiries.label,
-            lines: [{ waited: '0h 00m', subject: 'Updating my contact details', sender: 'Tom Avery' }],
+            heading: enquiries.label,
+            lines: [{ first: '0m', subject: 'Updating my contact details', sender: 't.avery@example.com' }],
           },
           {
-            category: accounts.label,
-            lines: [{ waited: '19h 30m', subject: 'Question about invoice 2041', sender: 'Kestrel Office Supplies' }],
+            heading: accounts.label,
+            lines: [{ first: '6h', subject: 'Question about invoice 2041', sender: 'accounts@example.com' }],
           },
         ],
-        optionalBlocks: [
+        blocks: [
           {
-            heading: 'Passed on to a colleague, sender not yet replied to',
+            heading: 'Passed on, no reply to the sender yet',
+            text: [
+              'These were sent on to someone at the practice. The person who wrote in',
+              'has not had a reply. Time counts open hours since it was passed on.',
+            ],
             optionalNote: 'Optional block, switched on by the practice',
             groups: [
               {
-                category: referrals.label,
+                heading: 'With Dr Smith',
+                lines: [{ first: '2h 10m', subject: 'Referral for Dr Smith', sender: 'referrals@example.com' }],
+              },
+            ],
+          },
+          {
+            heading: 'Replied, still in the Inbox',
+            text: ['A reply has gone out to each of these. If they are finished, they can go to COMPLETED.'],
+            optionalNote: 'Optional block, switched on by the practice',
+            groups: [{ lines: [{ first: 'Fri 30 Oct', subject: 'Parking near the rooms', sender: 'm.hill@example.com' }] }],
+          },
+          {
+            heading: 'Possibly misfiled in Junk Email',
+            text: [
+              'These are in the Junk Email folder but appear to come from people the',
+              'practice deals with. Nothing has been moved. If one belongs in the Inbox,',
+              'move it there. Senders can be faked, so if one looks wrong, do not open',
+              'its links or attachments.',
+            ],
+            groups: [
+              {
+                heading: 'From someone who has written to the practice before',
                 lines: [
-                  {
-                    waited: '9h 20m',
-                    subject: 'Referral for Dr Smith',
-                    sender: 'Wattlebrook Family Medical',
-                    personLabel: 'For Dr Smith',
-                  },
+                  { first: 'Sun 1 Nov 18:03', subject: 'Collection booked for Tuesday', sender: 'dispatch@example.com' },
                 ],
               },
             ],
           },
-          {
-            heading: 'Answered, still in the Inbox',
-            optionalNote: 'Optional block, switched on by the practice',
-            groups: [
-              {
-                category: enquiries.label,
-                lines: [{ waited: 'replied Fri', subject: 'Parking near the rooms', sender: 'Margaret Hill' }],
-              },
-            ],
-          },
         ],
-        junk: {
-          heading: 'In Junk, from senders the practice already deals with',
-          lines: [{ waited: 'Sun 6:03 pm', subject: 'Collection booked for Tuesday', sender: 'Harbour Couriers' }],
-        },
         closing: [
           'This summary lists what has arrived and what has no reply yet.',
           'It does not judge what any message is about.',
