@@ -5,9 +5,10 @@ Next.js 14 / Vercel. Two brands in one codebase.
 - **Vicaria Media** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
 - **Vicaria** — the flagship. Not launched, still `noindex`. **This is the active work.**
 
-See `docs/POSITIONING.md` for the current flagship positioning (product, audience,
-problem statement, wedge, differentiator, and the hard copy rules) — read it before
-touching flagship copy.
+`docs/WEBSITE-REWORK-2026-11.md` is the source of truth for the flagship: section 4 for every
+claim about The Front Office, section 5 for data handling, section 6 for the IT providers page,
+section 8 for design. `docs/POSITIONING.md` summarises the positioning. Read both before touching
+flagship copy.
 
 ## Copy standard
 
@@ -25,39 +26,62 @@ grandfathered in just because they predate it. Note `/docs` is gitignored, so
 
 ## What the flagship is
 
-Two people (Blake and Sam, Brisbane) who take recurring back-office jobs off small, owner-run businesses and deliver them as **completed work** — not software.
+Vicaria Systems (ABN 67 221 728 299, Brisbane) builds and operates systems that take recurring
+administrative work off service businesses, inside the software they already use. Each system is
+one product, configured per business from a written settings record agreed at onboarding; later
+changes are approved by email. Nothing is a custom build. The client receives completed work and
+administers nothing. Founders Sam Hindmarsh and Blake Russell are named on About only.
 
-Positioning is deliberately split into two levels. Keep them distinct:
+Positioning is split into two levels. Keep them distinct:
 
-- **Parent level** — what the business is generally: "we build and run back-office systems for small, appointment-based businesses." This is what the homepage sells.
-- **System level** — what is actually running today: exactly **one** system, Client Reconnection (finding clients who've stopped booking and getting them rebooked), for the Australian beauty/grooming vertical (hair, beauty, massage, nails, lash/brow, tanning, barbershops, dog grooming).
+- **Company level** — what Vicaria is. This is what the homepage sells. Do not name future sectors.
+- **System level** — what exists today: exactly **one** system, **The Front Office**, for
+  specialist medical and allied health practices on Microsoft 365. It marks every email in a
+  shared mailbox with the practice's own numbered Outlook categories where it sits, sends one
+  morning summary on open days, lists known senders in Junk, prepares approved replies for a named
+  sender into Drafts, and never overrides reception's corrections.
 
-The single system is framed as "the first of these," never as the whole business, so a second can be added later without restructuring.
+The Front Office is framed as "the first system", never the whole business, so a second can be
+added later without restructuring.
 
 ## Copy — hard constraints
 
 These are absolute. Violations have already required correction rounds.
 
-- **Banned words:** "AI", "automation" / "automated", "tool", "platform", "dashboard", "app". Describe delivered work, not software.
-- **No invented social proof.** No testimonials, client names, logos, stats, case studies, or years-in-business claims. Their absence is deliberate — never offer to add them, even as placeholders.
-- **No pricing** published anywhere.
-- **No blog or resources section.**
-- **Voice:** confident and systems-flavoured, matching Media's copy. Not personal, not humble, not founder-legitimacy-driven. Founders are named on About but are never used as the trust argument. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
+- **Banned words in marketing copy:** "AI", "automation" / "automated", "tool", "platform", "dashboard", "app". Describe delivered work, not software. "AI model" is permitted in factual data-handling and IT-provider copy where precision requires it; "automated decision-making" is permitted as the legal term.
+- **No invented social proof.** No testimonials, client names, logos, ratings, counts of clients, case studies, or years-in-business claims. Never name a client. Their absence is deliberate — never offer to add them, even as placeholders.
+- **Never state or imply a system is live in a client business.** Describe how it works, never what it is doing for someone today. Illustrations use a fictional practice and say so.
+- **No statistics** except facts about how the system works ("two permissions", "one mailbox"). The old 204/58 salon research is retired; never cite it.
+- **No clinical claims.** The system makes no clinical judgement, assigns no priority, decides nothing about urgency. Not even as a benefit.
+- **No unbuilt features.** Later stages and add-ons that do not exist are not described at all.
+- **No promise to reduce staff.** Hours given back and order restored, not headcount.
+- **No pricing** published anywhere. `pricingStatement` in `content/pricing.ts` is the only pricing line.
+- **No "ended at any point" or "without notice".** Engagements have a fixed term. What is true: the practice's own administrator can withdraw access at any time without involving Vicaria; data is returned or deleted at the practice's election, deletion within 30 days of a request.
+- **No blog or resources section. No phone number.**
+- **Voice:** a firm, not its founders. Vicaria is the subject. Founders are never the trust argument. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
+- **Sentence case** for every flagship heading, button and nav label.
 
 ## Deliberate states — do not "fix" these
 
 Each of these looks like an oversight and isn't:
 
 - **`noindex` on every flagship route** is policy until an explicit launch decision. Never remove it as cleanup.
-- **Empty optional slots** (`howItWorks`, `whoThisIsntFor`, `faq`) in `content/systems.ts` stay empty until a system is validated. They are not TODOs.
-- **`archive/trades-back-office/`** — an earlier electricians/plumbers positioning that was abandoned in favour of the beauty vertical. Excluded from the TS build, unrouted, preserved on purpose because HVAC / pest control / auto servicing are on a future roadmap. Do not delete, route, or resurrect it.
+- **The intended purpose statement** (`content/intended-purpose.ts`) is verbatim and must match the signed assessment, including "categories or folders" and its straight apostrophes. Never edit it.
+- **`archive/booking-line/`** — The Booking Line, never validated or built. Removed from the site in November 2026; `/systems/booking-line` is a 404. Do not route, restore or mention it.
+- **`archive/trades-back-office/`** — an earlier electricians/plumbers positioning. Excluded from the TS build, unrouted, preserved on purpose. Do not delete, route, or resurrect it.
+- **Optional slots in `content/systems.ts`** render nothing when unset. The Front Office's slots, including `faq`, are filled from section 4 of the rework brief; a future system's slots stay empty until it is validated. They are not TODOs.
 
 ## Content architecture
 
 Copy lives in data files, not in components. Components read from these — never hardcode copy into a component.
 
-- `content/audience.ts` — parent-level copy: who we are, who we serve, how a system works in general, who it's not for, data-handling principles, About, contact.
-- `content/systems.ts` — array of systems, one entry today, with optional slots that stay empty until validated.
-- `content/types.ts` — types both, so a wrong-shaped edit fails at build.
+- `content/audience.ts` — company level: business details, nav/footer, home, /systems, /how-it-works, /about, page metadata. Its `audience` export exists only for Media's shared Footer and CTA.
+- `content/systems.ts` — array of systems, one entry today, including the fictional illustration data.
+- `content/it-providers.ts`, `content/data-handling.ts`, `content/privacy.ts`, `content/contact.ts`, `content/pricing.ts`, `content/intended-purpose.ts`.
+- `content/types.ts` — types every content file, so a wrong-shaped edit fails at build.
 
-Flagship pages: Home, What We Offer (parent statement + the one system, kept brief), How It Works (general 3–4 step process + data handling), About (short, professional), Enquire (form + email, no phone).
+Flagship pages: Home, Systems, The Front Office (`/systems/front-office`), How it works, For IT providers, Data handling, Privacy, About, Enquire (email only).
+
+## Design
+
+Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components, no framer-motion). Tokens: accent in `components/brand/tokens.ts`, neutrals scoped to `[data-brand='systems']` in `app/globals.css`. Fonts (Source Serif 4, Source Sans 3, Source Code Pro) load in `app/(systems)/layout.tsx`. See `docs/brand/leadscale-systems.md`.
