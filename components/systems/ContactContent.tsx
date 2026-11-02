@@ -29,6 +29,7 @@ export default function ContactContent() {
                 </li>
               ))}
             </ul>
+            <p className="mt-6 border-l-2 border-[var(--accent-light)] pl-4 text-[var(--ink)]">{contact.systemNote}</p>
             <p className="mt-6 text-[var(--muted)]">{contact.closing}</p>
             <ul className="mt-10 flex flex-col gap-2">
               {contact.links.map((link) => (

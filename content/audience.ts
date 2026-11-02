@@ -8,10 +8,14 @@ import type {
 } from './types'
 
 // Company-level content: what Vicaria is, independent of which systems it
-// currently runs. This is what the homepage sells. content/systems.ts is kept
-// separate so a system change never requires touching this file.
+// currently runs. Vicaria takes recurring administrative work off service
+// businesses; The Front Office is one system it operates, never the brand.
+// Nothing here describes email, inboxes or one system's details, except
+// where a system is named as an example and linked. content/systems.ts holds
+// everything system-specific.
 //
-// Every claim traces to sections 3 and 4 of docs/WEBSITE-REWORK-2026-11.md.
+// Positioning: docs/REPLY-2026-11-03-company-first.md, which overrides
+// sections 3 and 7 of docs/WEBSITE-REWORK-2026-11.md. Facts: sections 4 and 5.
 
 export const business: BusinessDetails = {
   legalName: 'Vicaria Systems',
@@ -28,9 +32,9 @@ export const audience = {
 }
 
 export const site: SiteChrome = {
-  metaTitle: 'Vicaria | Systems for service businesses, built and operated',
+  metaTitle: 'Vicaria: administrative systems for service businesses',
   metaDescription:
-    'Vicaria builds and operates systems that take recurring administrative work off service businesses, inside the software they already use. Brisbane, Australia.',
+    'Vicaria takes recurring administrative work off service businesses. It builds and operates systems for that work inside the software a business already uses. Brisbane, Australia.',
   navLinks: [
     { label: 'Systems', href: '/systems' },
     { label: 'How it works', href: '/how-it-works' },
@@ -50,78 +54,100 @@ export const site: SiteChrome = {
     { label: 'Privacy', href: '/privacy' },
   ],
   crossBrand: { label: 'Vicaria Media', href: '/media' },
-  footerTagline:
-    'Vicaria builds and operates systems that take recurring administrative work off service businesses.',
+  footerTagline: 'Vicaria takes recurring administrative work off service businesses.',
 }
 
 export const home: HomeContent = {
   hero: {
-    eyebrow: 'Systems, built and operated',
-    heading: 'Systems that take recurring administrative work off service businesses.',
+    eyebrow: 'Administrative systems, built and operated',
+    heading: 'Recurring administrative work leaves the desk and comes back finished.',
     body:
-      'Vicaria is a Brisbane firm that builds these systems and operates them inside the software a business already uses. Each one delivers completed work. The client administers nothing and learns nothing new.',
+      'Vicaria builds and operates systems that take on the repetitive administrative work in a service business, inside the software it already uses. That leaves the business’s people free for work that needs a person.',
     primary: { label: 'Enquire', href: '/enquire' },
-    secondary: { label: 'See The Front Office', href: '/systems/front-office' },
+    secondary: { label: 'How it works', href: '/how-it-works' },
   },
 
-  model: {
-    eyebrow: 'The model',
-    heading: 'Every system is one product, configured in writing.',
+  work: {
+    eyebrow: 'The work',
+    heading: 'The kind of work Vicaria takes on.',
     items: [
       {
-        heading: 'Configured, not custom-built',
-        body:
-          'Each system is a single product. It is configured for each business from a written set of settings agreed at onboarding.',
+        heading: 'It arrives every day',
+        body: 'The same kinds of item come in daily, and each one has to be dealt with.',
       },
       {
-        heading: 'Changes approved by email',
-        body:
-          'Once a system operates, a change to its settings takes effect when the client approves it by email.',
+        heading: 'It follows the business’s own rules',
+        body: 'How each item is handled is already settled, and the rules can be written down.',
       },
       {
-        heading: 'Operated by Vicaria',
-        body:
-          'Vicaria runs each system and delivers its output as completed work. There is nothing for the client to administer.',
+        heading: 'It needs no judgement',
+        body: 'Nothing in it calls for a decision that belongs to a person.',
+      },
+      {
+        heading: 'It still takes hours',
+        body: 'Done by hand, it takes hours each week from people with other work to do.',
       },
     ],
+    closing:
+      'Sorting the correspondence a business receives, and keeping track of what is still waiting for a reply, is work of this kind.',
   },
 
-  firstSystem: {
-    eyebrow: 'The first system',
-    heading: 'Built first for specialist medical and allied health practices.',
-    linkLabel: 'What The Front Office does',
-  },
-
-  neverHappens: {
-    eyebrow: 'Fixed limits',
-    heading: 'What The Front Office never does.',
-    intro: 'These limits are the same for every practice. None of them is a setting.',
+  method: {
+    eyebrow: 'The method',
+    heading: 'Every system runs the same way.',
     items: [
-      'It never sends an email.',
-      'It never deletes mail or moves it out of the mailbox.',
-      'It never touches any mailbox but the one it was granted.',
-      'It never stores the contents of a message.',
-      'It never processes information outside Australia.',
-      'It makes no clinical judgement and assigns no priority.',
+      {
+        heading: 'The job is identified',
+        body: 'Vicaria and the business agree which recurring job the system takes on.',
+      },
+      {
+        heading: 'The rules are written down',
+        body: 'The system is configured to the business’s own rules, recorded in one document.',
+      },
+      {
+        heading: 'Vicaria installs and operates it',
+        body: 'The system runs inside the software the business already uses.',
+      },
+      {
+        heading: 'The client administers nothing',
+        body: 'The client receives completed work. There is nothing to set up or maintain.',
+      },
+      {
+        heading: 'One figure, reported monthly',
+        body: 'One measure is agreed in writing before the system operates, then reported each month.',
+      },
+      {
+        heading: 'Changes approved by the client',
+        body: 'A change to the configuration takes effect when the client approves it by email.',
+      },
     ],
-    link: { label: 'The Front Office in full', href: '/systems/front-office' },
+    link: { label: 'How an engagement runs', href: '/how-it-works' },
   },
 
-  data: {
-    eyebrow: 'Data',
-    heading: 'Stored and processed in Australia.',
-    paragraphs: [
-      'All storage and processing takes place in the Sydney region. Amazon Web Services runs the system and sends the morning summary. Supabase holds the database.',
-      'Message contents are not stored. The system keeps a record of what it did: sender, subject line, time and category.',
+  principles: {
+    eyebrow: 'Principles',
+    heading: 'What holds for every system.',
+    items: [
+      'Existing software is kept. Nothing is replaced.',
+      'Anything that needs judgement stays with a person.',
+      'Vicaria operates the system. The client has nothing to administer.',
+      'An agreement and a data processing agreement are signed before anything connects.',
+      'All data is stored and processed in Australia.',
+      'The client can withdraw access at any time.',
     ],
-    links: [
-      { label: 'How data is handled', href: '/data-handling' },
-      { label: 'What an IT provider is asked to grant', href: '/it-providers' },
-    ],
+    link: { label: 'How data is handled', href: '/data-handling' },
+  },
+
+  systems: {
+    eyebrow: 'Systems',
+    heading: 'Systems Vicaria operates.',
+    intro:
+      'Each system takes one recurring administrative job off a business. Systems are listed here when they are available.',
+    linkLabel: 'What it does',
   },
 
   end: {
-    line: 'Enquiries are by email, to admin@vicaria.com.au.',
+    line: 'Tell us which administrative job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -131,11 +157,11 @@ export const systemsIndex: SystemsIndexContent = {
     eyebrow: 'Systems',
     heading: 'Systems Vicaria builds and operates.',
     intro:
-      'Each system is one product, configured for each business from a written set of settings and operated by Vicaria. The Front Office is the first.',
+      'Each system takes one recurring administrative job off a business. It is one product, configured from a written record of the business’s own rules, and operated by Vicaria. Systems are listed here when they are available.',
   },
   linkLabel: 'What it does',
   end: {
-    line: 'To ask whether a system suits a business, email admin@vicaria.com.au.',
+    line: 'Tell us which administrative job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -144,71 +170,75 @@ export const howItWorks: HowItWorksContent = {
   header: {
     eyebrow: 'How it works',
     heading: 'How an engagement runs.',
-    intro:
-      'Every engagement follows the same six steps, from the first conversation to the day The Front Office is switched on.',
+    intro: 'Every system Vicaria operates follows the same method, whatever job it takes on.',
   },
 
   steps: {
-    heading: 'Installation, in six steps.',
+    heading: 'From the first conversation to operation.',
     steps: [
       {
-        title: 'A conversation about the inbox',
-        description: 'Vicaria and the practice discuss how the shared inbox is used today, and look at its shape.',
+        title: 'The job is identified',
+        description:
+          'Vicaria and the business identify one recurring administrative job and look at how it is done today.',
       },
       {
-        title: 'The settings are written down',
+        title: 'The rules are written down',
         description:
-          'The practice’s settings are agreed and recorded in one configuration record: the categories and their order, the people mail is labelled for, opening hours, closures, who receives the summary, and any approved reply wording.',
+          'The system is configured to the business’s own rules. They are agreed and recorded in one configuration record.',
       },
       {
         title: 'The agreements are signed',
         description: 'A services agreement and a data processing agreement are signed. Nothing connects before that.',
       },
       {
-        title: 'The IT administrator grants access',
-        description: 'The practice’s IT administrator grants access to one mailbox and restricts it to that mailbox.',
-        link: { label: 'What is granted', href: '/it-providers' },
-      },
-      {
-        title: 'A quiet test week',
-        description: 'The system records what it would have done. Nothing appears in the mailbox.',
-      },
-      {
-        title: 'Switched on when the practice says so',
-        description: 'Reception adds the category names to Outlook once, using a one-page guide.',
+        title: 'Vicaria installs and operates it',
+        description:
+          'The system is installed inside the software the business already uses. From then on Vicaria operates it, and the client receives completed work.',
       },
     ],
   },
 
-  configuration: {
-    heading: 'One configuration record per practice.',
-    paragraphs: [
-      'The Front Office is one product. Everything that differs between practices is written in the configuration record agreed at step two.',
-      'Once the system operates, a change to that record takes effect when the practice approves it by email.',
-    ],
-  },
+  sections: [
+    {
+      heading: 'One product, one configuration record.',
+      paragraphs: [
+        'Each system is one product. Nothing is a custom build. Everything that differs between businesses is written in the configuration record.',
+        'Once the system operates, a change to that record takes effect when the client approves it by email.',
+      ],
+    },
+    {
+      heading: 'One measure, agreed in writing.',
+      paragraphs: [
+        'Before a system first operates, one measure of its work is agreed with the client in writing. It is reported monthly, from the system’s own record.',
+      ],
+    },
+    {
+      heading: 'Nothing to administer.',
+      paragraphs: [
+        'Vicaria operates every system it installs. The client has no software to learn and nothing to maintain.',
+      ],
+    },
+    {
+      heading: 'Withdrawing access and returning data.',
+      paragraphs: [
+        'The client can withdraw a system’s access at any time.',
+        'Data is returned or deleted at the client’s election. Deletion is completed within 30 days of a request.',
+      ],
+      link: { label: 'How data is handled', href: '/data-handling' },
+    },
+  ],
 
-  judged: {
-    heading: 'One measure, agreed in writing.',
+  example: {
+    heading: 'An example: The Front Office.',
     paragraphs: [
-      'Before the system first operates, one measure is agreed in writing: the proportion of emails whose category nobody at the practice changes. It is reported monthly, from the system’s own record.',
-      'A second figure is reported beside it: the median time from arrival to first reply, by category, counted in open hours.',
-      'Every correction is recorded, never overwritten, and reviewed with the practice at a monthly review.',
+      'The Front Office is installed in six steps, from a conversation about the shared inbox to a quiet test week and switch-on. Its page sets out each step.',
     ],
-  },
-
-  access: {
-    heading: 'Withdrawing access and returning data.',
-    paragraphs: [
-      'The practice’s own IT administrator can withdraw access at any time, without involving Vicaria.',
-      'Data is returned or deleted at the practice’s election. Deletion is completed within 30 days of a request.',
-    ],
-    link: { label: 'How data is handled', href: '/data-handling' },
+    link: { label: 'The Front Office installation', href: '/systems/front-office#installation' },
   },
 
   end: {
-    line: 'Step four is set out in full for the practice’s IT provider.',
-    link: { label: 'For IT providers', href: '/it-providers' },
+    line: 'Tell us which administrative job takes the most time in your business.',
+    link: { label: 'Enquire', href: '/enquire' },
   },
 }
 
@@ -218,8 +248,9 @@ export const about: AboutContent = {
     heading: 'Vicaria.',
   },
   paragraphs: [
-    'Vicaria is a Brisbane firm that builds and operates systems which take recurring administrative work off service businesses, inside the software they already use.',
-    'Each system is one product, configured for each business from a written set of settings. The first is The Front Office, for specialist medical and allied health practices.',
+    'Vicaria is a Brisbane firm that takes recurring administrative work off service businesses. It builds systems for that work and operates them inside the software each business already uses.',
+    'Its clients are service businesses where administrative work has no one dedicated to it, or where reception carries more than the role allows.',
+    'Each system is one product, configured from a written record of the business’s own rules. Vicaria operates it, and the client receives completed work.',
   ],
   foundersHeading: 'Founders',
   founders: [
@@ -235,21 +266,27 @@ export const about: AboutContent = {
 }
 
 // <title> and meta description per flagship route. The layout appends
-// " | Vicaria" to each title.
+// " | Vicaria" to each title. Company-level routes carry no email or inbox
+// wording; /it-providers is a system page and names its system.
 export const pageMeta = {
-  systems: { title: 'Systems', description: 'The systems Vicaria builds and operates.' },
+  systems: {
+    title: 'Systems',
+    description: 'The systems Vicaria builds and operates, each taking one recurring administrative job off a business.',
+  },
   howItWorks: {
     title: 'How it works',
-    description: 'How an engagement runs: six installation steps, one configuration record, and one agreed measure.',
+    description:
+      'How an engagement with Vicaria runs, for every system: the job identified, the rules written down, the system operated by Vicaria, one measure agreed.',
   },
   itProviders: {
-    title: 'For IT providers',
+    title: 'For IT providers: The Front Office',
     description:
       'What a practice’s IT provider is asked to grant for The Front Office: two Microsoft Graph application permissions, restricted to one mailbox.',
   },
   dataHandling: {
     title: 'Data handling',
-    description: 'Where The Front Office stores and processes data, what it keeps, and who can access it.',
+    description:
+      'How Vicaria handles data in every system it operates: stored and processed in Australia, never used to train a model, returned or deleted on request.',
   },
   privacy: { title: 'Privacy policy', description: 'What personal information Vicaria collects, why, and what happens to it.' },
   about: { title: 'About', description: 'Vicaria Systems, Brisbane. ABN 67 221 728 299.' },

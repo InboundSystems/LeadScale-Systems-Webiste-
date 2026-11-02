@@ -22,8 +22,9 @@ export const systems: SystemContent[] = [
     name: 'The Front Office',
     sector: 'Specialist medical and allied health practices',
     slug: 'front-office',
+    cardFor: 'for practices with a shared Microsoft 365 inbox',
     shortDescription:
-      'Marks every email in a practice’s shared Microsoft 365 inbox with the practice’s own categories, keeps track of what is still waiting for a reply, and reports it each morning.',
+      'Marks every email with the practice’s own categories, keeps track of what is still waiting for a reply, and reports it each morning.',
     heroLine:
       'Every new email in the shared inbox is marked with one of the practice’s own categories, where it sits. On open days, one email each morning lists what is still waiting for a reply.',
 
@@ -279,9 +280,49 @@ export const systems: SystemContent[] = [
       ],
     },
 
-    installationPointer: {
-      body: 'Installation runs in six steps, with a quiet test week before anything appears in the mailbox.',
-      link: { label: 'How an engagement runs', href: '/how-it-works' },
+    installation: {
+      heading: 'Installation, in six steps.',
+      intro: [
+        'The Front Office is one product. Everything that differs between practices is written in the configuration record agreed at step two.',
+        'Once the system operates, a change to that record takes effect when the practice approves it by email.',
+      ],
+      steps: [
+        {
+          title: 'A conversation about the inbox',
+          description: 'Vicaria and the practice discuss how the shared inbox is used today, and look at its shape.',
+        },
+        {
+          title: 'The settings are written down',
+          description:
+            'The practice’s settings are agreed and recorded in one configuration record: the categories and their order, the people mail is labelled for, opening hours, closures, who receives the summary, and any approved reply wording.',
+        },
+        {
+          title: 'The agreements are signed',
+          description: 'A services agreement and a data processing agreement are signed. Nothing connects before that.',
+        },
+        {
+          title: 'The IT administrator grants access',
+          description: 'The practice’s IT administrator grants access to one mailbox and restricts it to that mailbox.',
+          link: { label: 'What is granted', href: '/it-providers' },
+        },
+        {
+          title: 'A quiet test week',
+          description: 'The system records what it would have done. Nothing appears in the mailbox.',
+        },
+        {
+          title: 'Switched on when the practice says so',
+          description: 'Reception adds the category names to Outlook once, using a one-page guide.',
+        },
+      ],
+    },
+
+    judged: {
+      heading: 'How it is judged.',
+      paragraphs: [
+        'Before the system first operates, one measure is agreed in writing: the proportion of emails whose category nobody at the practice changes. It is reported monthly, from the system’s own record.',
+        'A second figure is reported beside it: the median time from arrival to first reply, by category, counted in open hours.',
+        'Every correction is recorded, never overwritten, and reviewed with the practice at a monthly review.',
+      ],
     },
 
     whoThisIsntFor: {

@@ -1,16 +1,18 @@
 import type { ItProvidersContent } from './types'
 
 // /it-providers — the page a practice manager forwards to their IT provider.
+// It is The Front Office's access page and says so; a second system gets its
+// own access page rather than a section here.
 // Factual and technical, no marketing. Order and every claim follow section 6
 // of docs/WEBSITE-REWORK-2026-11.md. Never publish the application (client)
 // ID or any tenant ID here; both go in the access request document only.
 
 export const itProviders: ItProvidersContent = {
   header: {
-    eyebrow: 'For IT providers',
-    heading: 'What the practice’s IT provider is asked to grant.',
+    eyebrow: 'Access',
+    heading: 'For IT providers: The Front Office',
     intro:
-      'This page is for the IT provider of a practice considering The Front Office. It sets out the access requested, the permissions and their reasons, how access is restricted to one mailbox, how the system runs and how access is withdrawn.',
+      'Each system Vicaria operates has its own access page. This one is for the IT provider of a practice considering The Front Office. It sets out the access requested, the permissions and their reasons, how access is restricted to one mailbox, how the system runs and how access is withdrawn.',
   },
 
   asked: {

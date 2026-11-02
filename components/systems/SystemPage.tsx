@@ -4,7 +4,7 @@ import FAQList from './FAQList'
 import InboxIllustration from './InboxIllustration'
 import IntendedPurpose from './IntendedPurpose'
 import MorningSummary from './MorningSummary'
-import { Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
+import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SplitBlock } from './ui'
 
 // A system's own page, /systems/<slug>. Every slot is optional except the
 // header and the end line; an unset slot renders nothing.
@@ -124,6 +124,34 @@ export default function SystemPage({ system }: { system: SystemContent }) {
         </Section>
       )}
 
+      {system.installation && (
+        <Section id="installation" labelledBy="installation-heading" className="scroll-mt-20">
+          <h2 id="installation-heading" className="v-h2">
+            {system.installation.heading}
+          </h2>
+          <div className="mt-4 flex max-w-[65ch] flex-col gap-3">
+            {system.installation.intro.map((p) => (
+              <p key={p} className="v-body text-[var(--muted)]">
+                {p}
+              </p>
+            ))}
+          </div>
+          <NumberedSteps steps={system.installation.steps} className="mt-10" />
+        </Section>
+      )}
+
+      {system.judged && (
+        <Section>
+          <SplitBlock heading={system.judged.heading}>
+            {system.judged.paragraphs.map((p) => (
+              <p key={p} className="v-body">
+                {p}
+              </p>
+            ))}
+          </SplitBlock>
+        </Section>
+      )}
+
       {system.whoThisIsntFor && (
         <Section labelledBy="not-for-heading">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
@@ -132,11 +160,6 @@ export default function SystemPage({ system }: { system: SystemContent }) {
             </h2>
             <div className="lg:col-span-7">
               <RuledList items={system.whoThisIsntFor.criteria} />
-              {system.installationPointer && (
-                <p className="mt-8 text-[var(--ink)]">
-                  {system.installationPointer.body} <TextLink link={system.installationPointer.link} />
-                </p>
-              )}
             </div>
           </div>
         </Section>

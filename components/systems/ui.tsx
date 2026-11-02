@@ -1,6 +1,12 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import type { DetailedItem, LinkItem, PageEnd as PageEndContent, PageHeader as PageHeaderContent } from '@/content/types'
+import type {
+  DetailedItem,
+  LinkItem,
+  PageEnd as PageEndContent,
+  PageHeader as PageHeaderContent,
+  StepItem,
+} from '@/content/types'
 
 // Flagship-only primitives. Server components, no motion. Media keeps its own
 // shared components (components/ui, components/home, Navbar, Footer); nothing
@@ -154,18 +160,49 @@ export function RuledList({ items, className = '' }: { items: (string | Detailed
 export function SplitBlock({
   heading,
   headingId,
+  headingLevel = 'h2',
   children,
 }: {
   heading: string
   headingId?: string
+  headingLevel?: 'h2' | 'h3'
   children: ReactNode
 }) {
+  const Heading = headingLevel
   return (
     <div className="grid gap-4 border-t border-[var(--hairline)] py-8 lg:grid-cols-12 lg:gap-10">
-      <h2 id={headingId} className="v-serif text-[1.375rem] font-semibold leading-snug text-[var(--ink)] lg:col-span-4">
+      <Heading id={headingId} className="v-serif text-[1.375rem] font-semibold leading-snug text-[var(--ink)] lg:col-span-4">
         {heading}
-      </h2>
+      </Heading>
       <div className="flex flex-col gap-4 lg:col-span-8">{children}</div>
     </div>
+  )
+}
+
+/** Numbered steps, for where the order is real: an engagement, an
+ *  installation. */
+export function NumberedSteps({ steps, className = '' }: { steps: StepItem[]; className?: string }) {
+  return (
+    <ol className={`border-t border-[var(--hairline)] ${className}`}>
+      {steps.map((step, i) => (
+        <li
+          key={step.title}
+          className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4 border-b border-[var(--hairline)] py-6 sm:grid-cols-[4.5rem_minmax(0,1fr)] lg:grid-cols-[4.5rem_minmax(0,22rem)_minmax(0,1fr)] lg:gap-10"
+        >
+          <span aria-hidden="true" className="v-mono pt-[0.15em] text-[1.125rem] font-semibold text-[var(--accent)]">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <h3 className="v-h3">{step.title}</h3>
+          <div className="col-start-2 lg:col-start-auto">
+            <p className="max-w-[60ch] text-[var(--muted)]">{step.description}</p>
+            {step.link && (
+              <p className="mt-2">
+                <TextLink link={step.link} />
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
   )
 }

@@ -5,10 +5,11 @@ Next.js 14 / Vercel. Two brands in one codebase.
 - **Vicaria Media** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
 - **Vicaria** — the flagship. Not launched, still `noindex`. **This is the active work.**
 
-`docs/WEBSITE-REWORK-2026-11.md` is the source of truth for the flagship: section 4 for every
-claim about The Front Office, section 5 for data handling, section 6 for the IT providers page,
-section 8 for design. `docs/POSITIONING.md` summarises the positioning. Read both before touching
-flagship copy.
+`docs/WEBSITE-REWORK-2026-11.md` is the source of truth for the flagship: section 3 for company
+positioning, section 4 for every claim about The Front Office, section 5 for data handling,
+section 6 for the IT providers page, section 7 for the page table, section 8 for design.
+`docs/REPLY-2026-11-03-company-first.md` re-centred sections 3 and 7 on the company.
+`docs/POSITIONING.md` summarises the positioning. Read them before touching flagship copy.
 
 ## Copy standard
 
@@ -26,6 +27,10 @@ grandfathered in just because they predate it. Note `/docs` is gitignored, so
 
 ## What the flagship is
 
+**Vicaria's brand is taking recurring administrative work off service businesses.** The Front
+Office is one system Vicaria operates, never the brand. The site must still make sense with five
+systems in different sectors.
+
 Vicaria Systems (ABN 67 221 728 299, Brisbane) builds and operates systems that take recurring
 administrative work off service businesses, inside the software they already use. Each system is
 one product, configured per business from a written settings record agreed at onboarding; later
@@ -34,15 +39,20 @@ administers nothing. Founders Sam Hindmarsh and Blake Russell are named on About
 
 Positioning is split into two levels. Keep them distinct:
 
-- **Company level** — what Vicaria is. This is what the homepage sells. Do not name future sectors.
+- **Company level** — what Vicaria is: taking recurring administrative work off service
+  businesses. Home, About, How it works, the systems index, site title, meta and Open Graph. Say
+  "service businesses"; medical and allied health practices may be named only as where the first
+  system is built for. No email or inbox wording. Do not invent or name future sectors or systems.
 - **System level** — what exists today: exactly **one** system, **The Front Office**, for
   specialist medical and allied health practices on Microsoft 365. It marks every email in a
   shared mailbox with the practice's own numbered Outlook categories where it sits, sends one
   morning summary on open days, lists known senders in Junk, prepares approved replies for a named
   sender into Drafts, and never overrides reception's corrections.
 
-The Front Office is framed as "the first system", never the whole business, so a second can be
-added later without restructuring.
+The Front Office never sits in the homepage hero. On the homepage it appears once, as a card in
+the systems section. Its details (installation steps, measure, permissions, what it stores) live
+on system-level pages: `/systems/front-office`, `/it-providers` ("For IT providers: The Front
+Office"), and the labelled Front Office subsection of `/data-handling`.
 
 ## Copy — hard constraints
 

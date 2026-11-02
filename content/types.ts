@@ -30,6 +30,13 @@ export interface DetailedItem {
   detail?: string
 }
 
+/** One numbered step, where the order is real. */
+export interface StepItem {
+  title: string
+  description: string
+  link?: LinkItem
+}
+
 /** The single line every page ends on (docs/VOICE.md §10), plus its action. */
 export interface PageEnd {
   line: string
@@ -169,7 +176,12 @@ export interface SystemContent {
    *  filters out any entry without one. */
   slug?: string
 
-  /** One or two lines — what it does. Shown on cards on / and /systems. */
+  /** Who the system is for, completing the card title "<name>: <cardFor>"
+   *  on / and /systems, e.g. "for practices with a shared Microsoft 365
+   *  inbox". */
+  cardFor: string
+
+  /** One line — what it does. Shown on cards on / and /systems. */
   shortDescription: string
 
   /** The sentence under the h1 on the system's own page. Distinct from
@@ -204,8 +216,12 @@ export interface SystemContent {
     beats: { time: string; body: string }[]
   }
 
-  /** A pointer to /how-it-works, where installation is set out. One line. */
-  installationPointer?: { body: string; link: LinkItem }
+  /** How this system is installed, step by step. /how-it-works links here
+   *  as its example. */
+  installation?: { heading: string; intro: string[]; steps: StepItem[] }
+
+  /** The one measure agreed for this system, and how it is reported. */
+  judged?: { heading: string; paragraphs: string[] }
 
   whoThisIsntFor?: { heading: string; criteria: string[] }
 
@@ -229,16 +245,14 @@ export interface HomeContent {
     primary: LinkItem
     secondary: LinkItem
   }
-  model: { eyebrow: string; heading: string; items: HeadedItem[] }
-  firstSystem: { eyebrow: string; heading: string; linkLabel: string }
-  neverHappens: {
-    eyebrow: string
-    heading: string
-    intro: string
-    items: string[]
-    link: LinkItem
-  }
-  data: { eyebrow: string; heading: string; paragraphs: string[]; links: LinkItem[] }
+  /** The kind of work Vicaria takes on: characteristics, never a menu of
+   *  tasks that would imply a system exists. */
+  work: { eyebrow: string; heading: string; items: HeadedItem[]; closing: string }
+  /** How Vicaria works, for every system. */
+  method: { eyebrow: string; heading: string; items: HeadedItem[]; link: LinkItem }
+  /** Principles true of every system, not of one. */
+  principles: { eyebrow: string; heading: string; items: string[]; link: LinkItem }
+  systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
   end: PageEnd
 }
 
@@ -250,10 +264,10 @@ export interface SystemsIndexContent {
 
 export interface HowItWorksContent {
   header: PageHeader
-  steps: { heading: string; steps: { title: string; description: string; link?: LinkItem }[] }
-  configuration: { heading: string; paragraphs: string[] }
-  judged: { heading: string; paragraphs: string[] }
-  access: { heading: string; paragraphs: string[]; link: LinkItem }
+  steps: { heading: string; steps: StepItem[] }
+  sections: { heading: string; paragraphs: string[]; link?: LinkItem }[]
+  /** One system's installation, linked as an example of the method. */
+  example: { heading: string; paragraphs: string[]; link: LinkItem }
   end: PageEnd
 }
 
@@ -274,7 +288,10 @@ export interface ItProvidersContent {
 
 export interface DataHandlingPageContent {
   header: PageHeader
+  /** Principles that apply to every system. */
   sections: PrivacySection[]
+  /** One labelled subsection per system, for what is specific to it. */
+  systemSections: { system: string; intro: string; sections: PrivacySection[] }[]
   end: PageEnd
 }
 
@@ -308,6 +325,8 @@ export interface ContactPageContent {
   header: PageHeader
   helpfulIntro: string
   helpfulItems: string[]
+  /** A note for one system, set apart from the general list. */
+  systemNote: string
   closing: string
   links: LinkItem[]
 }

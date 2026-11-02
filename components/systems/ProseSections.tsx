@@ -5,11 +5,17 @@ import { SplitBlock } from './ui'
 // Ruled heading-and-body sections, as on a policy document. Shared by
 // /data-handling and /privacy. A ProseSection is a PrivacySection with the
 // optional fields unset, so both pages pass straight through.
-export default function ProseSections({ sections }: { sections: PrivacySection[] }) {
+export default function ProseSections({
+  sections,
+  headingLevel = 'h2',
+}: {
+  sections: PrivacySection[]
+  headingLevel?: 'h2' | 'h3'
+}) {
   return (
     <>
       {sections.map((section) => (
-        <SplitBlock key={section.heading} heading={section.heading}>
+        <SplitBlock key={section.heading} heading={section.heading} headingLevel={headingLevel}>
           {section.paragraphs.map((p) => (
             <p key={p} className="v-body">
               {p}
