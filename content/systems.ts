@@ -40,7 +40,7 @@ export const systems: SystemContent[] = [
       items: [
         'Microsoft 365',
         'One shared mailbox, such as bookings@ or reception@',
-        'Reception keeps using Outlook as it does now',
+        'Reception keeps working in the Outlook they already use',
       ],
     },
 
@@ -141,7 +141,7 @@ export const systems: SystemContent[] = [
             category: referrals,
             messages: [
               {
-                sender: 'Fernhill Family Practice',
+                sender: 'Wattlebrook Family Medical',
                 subject: 'Referral for Dr Smith',
                 received: 'Thu 4:40 pm',
                 personLabel: 'For Dr Smith',
@@ -156,50 +156,78 @@ export const systems: SystemContent[] = [
           },
         ],
       },
+      // Matches the real plain-text summary email line for line (Sam,
+      // 2 November 2026). Counts are consistent with the inbox above: the
+      // five with no reply are R. Collins, Daniel Ng, the booking form, Tom
+      // Avery and Kestrel. Alex arrived after 7:30am.
       summary: {
         caption: 'The morning summary, sent at 7:30am on the same Monday. Illustration with fictional senders.',
         from: 'The Front Office',
         to: 'Practice manager',
-        subject: 'Waiting for a reply: Monday morning',
+        subject: 'Elsworth Lane Specialists — inbox summary, Monday 2 November 2026',
         sent: 'Monday 7:30 am',
-        opening: 'Good morning. These emails in reception@ are waiting for a reply.',
-        blocks: [
+        opening: [
+          '18 messages arrived in the last 7 open days. 5 have no reply yet.',
+          'Oldest first, within each category. Time counts open hours only — evenings, weekends and closures do not add to it.',
+        ],
+        groups: [
           {
-            heading: 'Waiting for a reply',
-            note: 'Oldest first. Waiting time counts open hours only.',
-            firstColumnLabel: 'Waiting',
-            rows: [
-              { waited: '19h 30m', category: accounts, sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041' },
-              { waited: '14h 55m', category: appointments, sender: 'Daniel Ng', subject: 'Request to move my appointment' },
-              { waited: '2h 45m', category: enquiries, sender: 'Margaret Hill', subject: 'Parking near the rooms' },
-              { waited: '0h 10m', category: appointments, sender: 'Website booking form', subject: 'New booking request' },
-              { waited: '0h 00m', category: enquiries, sender: 'Tom Avery', subject: 'Updating my contact details' },
+            category: unclear.label,
+            lines: [{ waited: '0h 00m', subject: 'Following up', sender: 'R. Collins' }],
+          },
+          {
+            category: appointments.label,
+            lines: [
+              { waited: '14h 55m', subject: 'Request to move my appointment', sender: 'Daniel Ng' },
+              { waited: '0h 10m', subject: 'New booking request', sender: 'Website booking form' },
             ],
           },
           {
+            category: enquiries.label,
+            lines: [{ waited: '0h 00m', subject: 'Updating my contact details', sender: 'Tom Avery' }],
+          },
+          {
+            category: accounts.label,
+            lines: [{ waited: '19h 30m', subject: 'Question about invoice 2041', sender: 'Kestrel Office Supplies' }],
+          },
+        ],
+        optionalBlocks: [
+          {
             heading: 'Passed on to a colleague, sender not yet replied to',
             optionalNote: 'Optional block, switched on by the practice',
-            firstColumnLabel: 'Waiting',
-            rows: [
-              { waited: '9h 20m', category: referrals, sender: 'Fernhill Family Practice', subject: 'Referral for Dr Smith' },
+            groups: [
+              {
+                category: referrals.label,
+                lines: [
+                  {
+                    waited: '9h 20m',
+                    subject: 'Referral for Dr Smith',
+                    sender: 'Wattlebrook Family Medical',
+                    personLabel: 'For Dr Smith',
+                  },
+                ],
+              },
             ],
           },
           {
             heading: 'Answered, still in the Inbox',
             optionalNote: 'Optional block, switched on by the practice',
-            firstColumnLabel: 'Replied',
-            rows: [
-              { waited: 'Fri', category: enquiries, sender: 'Priya Raman', subject: 'Thank you' },
+            groups: [
+              {
+                category: enquiries.label,
+                lines: [{ waited: 'replied Fri', subject: 'Parking near the rooms', sender: 'Margaret Hill' }],
+              },
             ],
           },
         ],
         junk: {
           heading: 'In Junk, from senders the practice already deals with',
-          note: 'Listed only. Nothing has been moved out of Junk.',
-          rows: [
-            { sender: 'Harbour Couriers', subject: 'Collection booked for Tuesday', received: 'Sun 6:03 pm' },
-          ],
+          lines: [{ waited: 'Sun 6:03 pm', subject: 'Collection booked for Tuesday', sender: 'Harbour Couriers' }],
         },
+        closing: [
+          'This summary lists what has arrived and what has no reply yet.',
+          'It does not judge what any message is about.',
+        ],
       },
     },
 
@@ -273,7 +301,7 @@ export const systems: SystemContent[] = [
         {
           question: 'What changes for reception?',
           answer:
-            'Reception keeps using Outlook. The category names are added to Outlook once, using a one-page guide.',
+            'Reception keeps working in the Outlook they already use. The category names are added to Outlook once, using a one-page guide.',
         },
         {
           question: 'What does our IT provider need to do?',

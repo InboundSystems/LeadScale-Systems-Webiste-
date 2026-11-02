@@ -100,37 +100,45 @@ export interface InboxIllustration {
   groups: { category: CategoryDef; messages: InboxMessage[] }[]
 }
 
-export interface SummaryRow {
+/** One line of the plain-text morning summary: time waited (or, for mail
+ *  already answered, when it was answered), subject, sender, and any
+ *  [For …] label — in that order, as the real email sets them. */
+export interface SummaryLine {
   waited: string
-  category: CategoryDef
-  sender: string
   subject: string
+  sender: string
+  /** e.g. "For Dr Smith", rendered as "[For Dr Smith]". */
+  personLabel?: string
 }
 
-export interface SummaryBlock {
+/** Lines under one category heading, oldest first within the group. */
+export interface SummaryGroup {
+  category: string
+  lines: SummaryLine[]
+}
+
+export interface SummaryOptionalBlock {
   heading: string
-  /** Shown in the margin for blocks a practice switches on. */
-  optionalNote?: string
-  /** Shown under the heading, e.g. how waiting time is counted. */
-  note?: string
-  /** Header for the first column, e.g. "Waiting". */
-  firstColumnLabel: string
-  rows: SummaryRow[]
+  /** Margin note on the illustration, outside the email itself. */
+  optionalNote: string
+  groups: SummaryGroup[]
 }
 
+/** The morning summary as the real plain-text email sets it. Every line of
+ *  body copy here must match the real email exactly. */
 export interface MorningSummaryIllustration {
   caption: string
   from: string
   to: string
   subject: string
   sent: string
-  opening: string
-  blocks: SummaryBlock[]
-  junk: {
-    heading: string
-    note: string
-    rows: { sender: string; subject: string; received: string }[]
-  }
+  /** The opening lines, before the groups. No greeting. */
+  opening: string[]
+  groups: SummaryGroup[]
+  optionalBlocks: SummaryOptionalBlock[]
+  junk: { heading: string; lines: SummaryLine[] }
+  /** The closing lines, verbatim. */
+  closing: string[]
 }
 
 // ---------------------------------------------------------------------------
@@ -256,7 +264,7 @@ export interface ItProvidersContent {
 
 export interface DataHandlingPageContent {
   header: PageHeader
-  sections: ProseSection[]
+  sections: PrivacySection[]
   end: PageEnd
 }
 

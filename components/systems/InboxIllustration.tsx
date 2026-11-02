@@ -17,7 +17,7 @@ function Row({ message, category, stacked }: { message: InboxMessage; category: 
         className={
           stacked
             ? 'flex flex-col gap-1 py-2.5 pl-4 pr-3'
-            : 'flex flex-col gap-1 py-2.5 pl-4 pr-3 sm:grid sm:grid-cols-[minmax(0,10.5rem)_minmax(0,1fr)_auto_6.25rem] sm:items-center sm:gap-4 sm:py-2'
+            : 'flex flex-col gap-1 py-2.5 pl-4 pr-3 sm:grid sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto_6.25rem] sm:items-center sm:gap-4 sm:py-2'
         }
       >
         <div className={`flex items-baseline justify-between gap-3 ${stacked ? '' : 'sm:contents'}`}>
@@ -76,7 +76,7 @@ export default function InboxIllustration({
         {!stacked && (
           <div
             aria-hidden="true"
-            className="hidden grid-cols-[minmax(0,10.5rem)_minmax(0,1fr)_auto_6.25rem] gap-4 border-b border-[var(--hairline)] py-1.5 pl-4 pr-3 text-[0.6875rem] text-[var(--muted)] sm:grid"
+            className="hidden grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto_6.25rem] gap-4 border-b border-[var(--hairline)] py-1.5 pl-4 pr-3 text-[0.6875rem] text-[var(--muted)] sm:grid"
           >
             <span>From</span>
             <span>Subject</span>

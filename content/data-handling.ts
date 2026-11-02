@@ -3,7 +3,9 @@ import type { DataHandlingPageContent } from './types'
 // /data-handling. Every statement describes how the system is built and
 // operated, never what it is doing for a client today. Every claim traces to
 // section 5 of docs/WEBSITE-REWORK-2026-11.md (and the agreement order in
-// section 4). "AI model" is permitted here because precision requires it.
+// section 4), plus three facts Sam confirmed on 2 November 2026: encryption
+// (Security Summary), My Health Record (DPA clause 6.3) and monitoring.
+// "AI model" is permitted here because precision requires it.
 
 export const dataHandling: DataHandlingPageContent = {
   header: {
@@ -23,6 +25,9 @@ export const dataHandling: DataHandlingPageContent = {
         'Amazon Web Services runs the system, runs the AI model through Amazon Bedrock, and sends the morning summary',
         'Supabase holds the database',
       ],
+      after: [
+        'Where a practice handles information derived from My Health Record, Australian law prohibits holding or processing that information outside Australia. This obligation binds Vicaria as a service provider in the same way it binds the practice, and it cannot be waived by patient consent. Vicaria’s Australian-only position satisfies it.',
+      ],
     },
     {
       heading: 'The practice’s Microsoft 365 is not a sub-processor.',
@@ -40,7 +45,7 @@ export const dataHandling: DataHandlingPageContent = {
     {
       heading: 'Kept separate.',
       paragraphs: [
-        'Each practice’s data is separated at the database layer. It is never used for another practice, and never used to train any AI model.',
+        'Each practice’s data is separated at the database layer. It is never used for another practice, and never used to train any AI model. It is encrypted in transit and at rest.',
       ],
     },
     {
@@ -66,8 +71,9 @@ export const dataHandling: DataHandlingPageContent = {
       ],
     },
     {
-      heading: 'Data breaches.',
+      heading: 'If something goes wrong.',
       paragraphs: [
+        'Vicaria is alerted automatically if the system reports an error or stops running.',
         'Vicaria acts under Australia’s notifiable data breach scheme. An affected client is notified without undue delay, and the agreement commits Vicaria to do so within 48 hours of becoming aware.',
       ],
     },

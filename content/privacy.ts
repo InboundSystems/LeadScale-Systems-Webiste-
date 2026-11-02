@@ -51,6 +51,7 @@ export const privacy: PrivacyPageContent = {
     {
       heading: 'Where information is held.',
       paragraphs: [
+        'Where information derived from My Health Record is involved, Australian law prohibits holding or processing it outside Australia. This obligation binds Vicaria as a service provider in the same way it binds the client, and it cannot be waived by patient consent.',
         'All storage and processing takes place in Australia, in the Sydney region, and there is no disclosure of personal information to any recipient overseas. A client’s own Microsoft 365 is not a sub-processor of Vicaria: the information is already the client’s, and already there.',
         'Two providers are used, and this is the complete list. Clients receive 30 days’ notice before any provider is added or replaced:',
       ],
@@ -66,6 +67,7 @@ export const privacy: PrivacyPageContent = {
         'Access by Vicaria personnel limited to named individuals, with multi-factor authentication',
         'Every access by Vicaria personnel logged',
         'Each client’s information separated at the database layer',
+        'Encrypted in transit and at rest',
         'No password ever requested; access is granted and withdrawn by the client’s own administrator',
         'The permissions requested published in full on the page for IT providers',
       ],
@@ -104,6 +106,7 @@ export const privacy: PrivacyPageContent = {
     {
       heading: 'Data breaches.',
       paragraphs: [
+        'Vicaria is alerted automatically if the system reports an error or stops running.',
         'Where personal information is lost or accessed without authorisation and serious harm is likely, Vicaria acts under the notifiable data breach scheme. The affected client is notified without undue delay, and the agreement commits Vicaria to do so within 48 hours of becoming aware.',
       ],
     },
