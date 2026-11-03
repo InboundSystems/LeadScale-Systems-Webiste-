@@ -433,3 +433,15 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
     stroke-dashoffset: 0;
   }
 }
+
+/* Not found (app/not-found.tsx): the flagship notice unless the inline
+   script marked a /media path, which gets Next's default 404 as before. */
+.nf-media {
+  display: none;
+}
+html[data-nf='media'] .nf-media {
+  display: block;
+}
+html[data-nf='media'] .nf-flagship {
+  display: none;
+}

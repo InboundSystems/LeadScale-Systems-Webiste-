@@ -1,31 +1,9 @@
 import type { Metadata } from 'next'
-import { Source_Code_Pro, Source_Sans_3, Source_Serif_4 } from 'next/font/google'
 import BrandProvider from '@/components/brand/BrandProvider'
+import { flagshipFontVariables } from '@/components/brand/flagshipFonts'
 import SiteHeader from '@/components/systems/SiteHeader'
 import SiteFooter from '@/components/systems/SiteFooter'
 import { site } from '@/content/audience'
-
-// Flagship type: Source Serif 4 for headings, Source Sans 3 for body, Source
-// Code Pro for category labels. Loaded here, not in the root layout, so /media
-// keeps Plus Jakarta Sans. See docs/brand/leadscale-systems.md.
-const serif = Source_Serif_4({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  display: 'swap',
-  variable: '--font-serif',
-})
-const sans = Source_Sans_3({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  display: 'swap',
-  variable: '--font-sans',
-})
-const mono = Source_Code_Pro({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  display: 'swap',
-  variable: '--font-mono',
-})
 
 // Not launched. noindex/nofollow and the sitemap/robots exclusion are policy
 // until Sam makes an explicit launch decision. Never remove as cleanup.
@@ -47,7 +25,7 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
   return (
     <BrandProvider brand="systems">
       <div
-        className={`${serif.variable} ${sans.variable} ${mono.variable} flex min-h-screen flex-col`}
+        className={`${flagshipFontVariables} flex min-h-screen flex-col`}
         style={{ fontFamily: 'var(--font-sans), system-ui, sans-serif' }}
       >
         {/* Runs while the page is parsed, before anything below it paints:

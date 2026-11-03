@@ -464,3 +464,16 @@ export interface ContactPageContent {
   closing: string
   links: LinkItem[]
 }
+
+/** The flagship 404 (app/not-found.tsx), as an undeliverable-mail notice. */
+export interface NotFoundContent {
+  eyebrow: string
+  heading: string
+  from: string
+  subjectPrefix: string
+  pathLabel: string
+  /** Shown until the requested path is filled in, and without JavaScript. */
+  fallbackPath: string
+  body: string
+  links: LinkItem[]
+}
