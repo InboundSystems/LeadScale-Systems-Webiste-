@@ -70,7 +70,7 @@ export default function AnnotatedSummary({
       <MorningSummary summary={summary} caption={caption} annotations={annotations} />
 
       {/* Margin notes, ≥1280px with JavaScript. */}
-      <div className="summary-margin absolute left-full top-0 h-full w-[20rem]">
+      <div className="summary-margin absolute left-full top-0 h-full w-[16rem]">
         {layout && (
           <svg
             aria-hidden="true"

@@ -32,6 +32,7 @@ export const audience = {
 }
 
 export const site: SiteChrome = {
+  mail: { fromLabel: 'From', toLabel: 'To', from: 'Vicaria', to: 'You' },
   metaTitle: 'Vicaria: administrative systems for service businesses',
   metaDescription:
     'We take the repetitive admin off service businesses and run it inside the software you already use. Brisbane, Australia.',
@@ -60,18 +61,21 @@ export const site: SiteChrome = {
 
 export const home: HomeContent = {
   hero: {
-    eyebrow: 'Administrative systems, built and operated',
     heading: 'Nobody started a business to do the admin.',
     markedWord: 'the admin',
     body:
       'We take the repetitive admin off your desk and run it inside the software you already use. You keep the judgement calls. We handle the rest.',
     primary: { label: 'Tell us what’s eating your week', href: '/enquire' },
     secondary: { label: 'See how it works', href: '/how-it-works' },
+    backLabel: 'Back to our email',
+    paneLabel: 'Reading pane',
   },
+
+  foldersLabel: 'Folders on this page',
 
   work: {
     eyebrow: 'The work',
-    email: { from: 'Vicaria', to: 'You', subject: 'The work on your desk' },
+    sent: 'Today, 8:02 am',
     heading: 'The kind of work we take on.',
     items: [
       {
@@ -97,7 +101,7 @@ export const home: HomeContent = {
 
   method: {
     eyebrow: 'How it runs',
-    email: { from: 'Vicaria', subject: 'How every system runs' },
+    sent: 'Today, 8:09 am',
     heading: 'Every system runs the same way.',
     items: [
       {
@@ -130,7 +134,7 @@ export const home: HomeContent = {
 
   principles: {
     eyebrow: 'What never changes',
-    email: { from: 'Vicaria', subject: 'The things that don’t change' },
+    sent: 'Today, 8:15 am',
     heading: 'What never changes.',
     items: [
       'You keep your software. We don’t replace anything.',
@@ -149,6 +153,7 @@ export const home: HomeContent = {
 
   systems: {
     eyebrow: 'Systems',
+    sent: 'Today, 8:21 am',
     heading: 'Systems we run.',
     intro: 'Each system takes one recurring admin job off your desk. We list a system here once it’s available.',
     linkLabel: 'What it does',
@@ -156,6 +161,7 @@ export const home: HomeContent = {
 
   nextMorning: {
     eyebrow: 'The next morning',
+    sent: 'Tomorrow, 7:00 am',
     heading: 'The next morning, one email.',
     caption: 'The Front Office morning summary. Fictional practice.',
     newLabel: 'New',

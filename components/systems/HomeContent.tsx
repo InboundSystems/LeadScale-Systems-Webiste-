@@ -1,136 +1,204 @@
-import { home } from '@/content/audience'
+import type { ReactNode } from 'react'
+import { home, site } from '@/content/audience'
 import { systems } from '@/content/systems'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import type { CategoryTone } from '@/content/types'
 import AnnotatedSummary from './AnnotatedSummary'
 import ArrivingEmail from './ArrivingEmail'
-import EmailHeader from './EmailHeader'
-import HeroInbox from './HeroInbox'
-import MarkedHeading from './MarkedHeading'
+import { FolderRail, FolderStrip, type Folder } from './FolderRail'
+import HeroWindow from './HeroWindow'
+import MailHeader from './MailHeader'
 import SectionChip from './SectionChip'
 import SystemCard from './SystemCard'
-import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
+import { PageEnd, TextLink } from './ui'
+
+// The homepage is an inbox.
+//
+//   - Hero: one large Outlook-style window on deep ink. The message list is
+//     The Front Office's sorting demo; the reading pane is open on our email,
+//     whose subject is the page's H1. (The H1 and subhead are company level;
+//     the inbox is a worked example, captioned as such.)
+//   - Then five sections, each an opened email: a From / To / sent row with
+//     its numbered chip, then full-width content in a different layout:
+//       01 The work            grid, then the one oversized pull line
+//       02 How it runs         numbered list on the teal band
+//       03 What never changes  oversized typographic statements
+//       04 Systems             The Front Office card
+//       05 The next morning    the annotated morning summary
+//   - Folders: a sticky rail at 1280px+, a sticky tab strip below that.
 
 const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
 const summary = systems.find((s) => s.illustrations)?.illustrations?.summary
-const principleMarkers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
+const markers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
-// Company level throughout (docs/REPLY-2026-11-03-company-first.md). The H1
-// and subhead sell what Vicaria is; the hero's inbox is The Front Office as a
-// worked example, captioned as such. The rest: the work Vicaria takes on, how
-// every system runs, the principles every system keeps, then the systems.
+const SECTIONS: { id: string; tone: CategoryTone }[] = [
+  { id: 'the-work', tone: 'amber' },
+  { id: 'how-it-runs', tone: 'teal' },
+  { id: 'what-never-changes', tone: 'plum' },
+  { id: 'systems', tone: 'sky' },
+  { id: 'the-next-morning', tone: 'sage' },
+]
+const labels = [home.work.eyebrow, home.method.eyebrow, home.principles.eyebrow, home.systems.eyebrow, home.nextMorning.eyebrow]
+const counts = [home.work.items.length, home.method.items.length, home.principles.items.length, systems.length, 1]
+const folders: Folder[] = SECTIONS.map((s, i) => ({
+  id: s.id,
+  tone: s.tone,
+  label: `${String(i + 1).padStart(2, '0')} ${labels[i]}`,
+  count: counts[i],
+}))
+
+/** The homepage column: wide, with room for the folder rail at 1280px+. */
+function Column({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <div className={`mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-8 xl:pl-[17rem] ${className}`}>{children}</div>
+}
+
+const bg = {
+  ground: 'bg-[var(--ground)]',
+  amber: 'bg-[var(--tint-amber)]',
+  teal: 'on-teal bg-[var(--teal)] text-white',
+  sky: 'bg-[var(--tint-sky)]',
+}
+
+function MailSection({
+  index,
+  ground,
+  sent,
+  heading,
+  children,
+}: {
+  index: number
+  ground: keyof typeof bg
+  sent: string
+  heading: string
+  children: ReactNode
+}) {
+  const { id, tone } = SECTIONS[index]
+  const inverse = ground === 'teal'
+  return (
+    <section
+      id={id}
+      aria-labelledby={`${id}-heading`}
+      className={`scroll-mt-28 border-t border-[var(--hairline)] py-16 sm:py-24 xl:scroll-mt-20 ${bg[ground]}`}
+    >
+      <Column>
+        <MailHeader
+          sent={sent}
+          inverse={inverse}
+          chip={<SectionChip n={index + 1} label={labels[index]} tone={tone} inverse={inverse} className="!mb-0" />}
+        />
+        <h2 id={`${id}-heading`} className={`v-h2 max-w-[24ch] ${inverse ? '!text-white' : ''}`}>
+          {heading}
+        </h2>
+        {children}
+      </Column>
+    </section>
+  )
+}
+
 export default function HomeContent() {
   return (
     <>
-      <header className="pb-16 pt-14 sm:pb-24 sm:pt-24">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="lg:col-span-5 lg:pt-14">
-              <Eyebrow>{home.hero.eyebrow}</Eyebrow>
-              <MarkedHeading text={home.hero.heading} marked={home.hero.markedWord} className="v-display max-w-[22ch]" />
-              <p className="v-lead mt-7">{home.hero.body}</p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <ButtonLink link={home.hero.primary} />
-                <ButtonLink link={home.hero.secondary} variant="secondary" />
-              </div>
+      <header className="bg-[#16232b] pb-16 pt-10 sm:pb-24 sm:pt-16">
+        <div className="mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-8">
+          {heroDemo && (
+            <div className="xl:ml-[11rem]">
+              <HeroWindow hero={home.hero} demo={heroDemo} mail={site.mail} />
             </div>
-            {heroDemo && <HeroInbox demo={heroDemo} className="lg:col-span-7" />}
-          </div>
-        </Container>
+          )}
+        </div>
       </header>
 
-      {/* Section eyebrows are category chips, numbered in page order, one
-          colour each. Grounds: amber tint, teal band, plain, sky tint, plain,
-          so no two coloured sections touch after the band. */}
-      <Section tone="amber" labelledBy="work-heading">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-5">
-            <SectionChip n={1} label={home.work.eyebrow} tone="amber" />
-            <EmailHeader email={home.work.email} heading={home.work.heading} headingId="work-heading" />
+      <FolderStrip folders={folders} label={home.foldersLabel} />
+
+      <div className="relative">
+        {/* The rail rides in the left gutter of the sections, over their grounds. */}
+        <div className="pointer-events-none absolute inset-0 hidden xl:block">
+          <div className="mx-auto h-full w-full max-w-[84rem] px-8 pt-16">
+            <FolderRail folders={folders} label={home.foldersLabel} />
           </div>
-          <div className="lg:col-span-7">
-            <dl className="border-t border-[var(--hairline)]">
-              {home.work.items.map((item) => (
-                <div key={item.heading} className="border-b border-[var(--hairline)] py-5">
-                  <dt className="v-h3">{item.heading}</dt>
-                  <dd className="mt-1 text-[var(--muted)]">{item.body}</dd>
+        </div>
+
+        <MailSection index={0} ground="amber" sent={home.work.sent} heading={home.work.heading}>
+          <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            {home.work.items.map((item, i) => (
+              <li key={item.heading} className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-3">
+                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[#845716]">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3 className="v-serif text-[1.375rem] font-semibold leading-snug">{item.heading}</h3>
+                  <p className="mt-1.5 text-[var(--muted)]">{item.body}</p>
                 </div>
-              ))}
-            </dl>
-            <p className="v-body mt-6">{home.work.closing}</p>
-          </div>
-        </div>
-      </Section>
+              </li>
+            ))}
+          </ul>
+          {/* The one oversized pull line on the page. */}
+          <p className="v-pull mt-16 max-w-[20ch] sm:mt-24">{home.work.closing}</p>
+        </MailSection>
 
-      {/* The one full-width teal band: white text, hairlines at 20% white. */}
-      <Section tone="teal" rule={false} labelledBy="method-heading">
-        <SectionChip n={2} label={home.method.eyebrow} tone="teal" inverse />
-        <EmailHeader
-          email={home.method.email}
-          heading={home.method.heading}
-          headingId="method-heading"
-          className="max-w-[34rem]"
-        />
-        <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-          {home.method.items.map((item) => (
-            <div key={item.heading} className="border-t border-white/20 pt-5">
-              <h3 className="v-h3 !text-white">{item.heading}</h3>
-              <p className="mt-2 text-[#e4eeed]">{item.body}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-10">
-          <TextLink link={home.method.link} inverse />
-        </p>
-      </Section>
+        <MailSection index={1} ground="teal" sent={home.method.sent} heading={home.method.heading}>
+          <ol className="mt-10 grid gap-x-12 sm:grid-cols-2">
+            {home.method.items.map((item, i) => (
+              <li key={item.heading} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-t border-white/20 py-6">
+                <span aria-hidden="true" className="v-serif text-[2.5rem] font-semibold leading-none text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="v-h3 !text-white">{item.heading}</h3>
+                  <p className="mt-1.5 text-[#e4eeed]">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8">
+            <TextLink link={home.method.link} inverse />
+          </p>
+        </MailSection>
 
-      <Section labelledBy="principles-heading">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-5">
-            <SectionChip n={3} label={home.principles.eyebrow} tone="plum" />
-            <EmailHeader email={home.principles.email} heading={home.principles.heading} headingId="principles-heading" />
-            <p className="mt-6">
-              <TextLink link={home.principles.link} />
-            </p>
-          </div>
-          <RuledList items={home.principles.items} markers={principleMarkers} className="lg:col-span-7" />
-        </div>
-      </Section>
+        <MailSection index={2} ground="ground" sent={home.principles.sent} heading={home.principles.heading}>
+          <ul className="mt-10 flex flex-col gap-7">
+            {home.principles.items.map((item, i) => {
+              const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
+              return (
+                <li key={text} className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-4">
+                  <span aria-hidden="true" className="mt-[0.55em] h-3 w-3 rounded-[1px]" style={{ backgroundColor: markers[i % markers.length] }} />
+                  <div>
+                    <p className="v-serif max-w-[34ch] text-[1.5rem] leading-[1.2] sm:text-[1.875rem]">{text}</p>
+                    {detail && <p className="mt-2 max-w-[60ch] text-[var(--muted)]">{detail}</p>}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+          <p className="mt-10">
+            <TextLink link={home.principles.link} />
+          </p>
+        </MailSection>
 
-      <Section tone="sky" labelledBy="systems-heading">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-5">
-            <SectionChip n={4} label={home.systems.eyebrow} tone="sky" />
-            <h2 id="systems-heading" className="v-h2">
-              {home.systems.heading}
-            </h2>
-            <p className="mt-4 text-[var(--ink)]">{home.systems.intro}</p>
-          </div>
-          <ul className="flex flex-col gap-6 lg:col-span-7">
+        <MailSection index={3} ground="sky" sent={home.systems.sent} heading={home.systems.heading}>
+          <p className="v-lead mt-4">{home.systems.intro}</p>
+          <ul className="mt-10 flex flex-col gap-6">
             {systems.map((system) => (
               <li key={system.name}>
                 <SystemCard system={system} linkLabel={home.systems.linkLabel} showChips />
               </li>
             ))}
           </ul>
-        </div>
-      </Section>
+        </MailSection>
 
-      {summary && (
-        <Section tone="surface" labelledBy="next-morning-heading">
-          <SectionChip n={5} label={home.nextMorning.eyebrow} tone="sage" />
-          <h2 id="next-morning-heading" className="v-h2 max-w-[26ch]">
-            {home.nextMorning.heading}
-          </h2>
-          <ArrivingEmail newLabel={home.nextMorning.newLabel} className="mt-10 max-w-[48rem]">
-            <AnnotatedSummary
-              summary={summary}
-              caption={home.nextMorning.caption}
-              annotations={home.nextMorning.annotations}
-              notesLabel={home.nextMorning.notesLabel}
-            />
-          </ArrivingEmail>
-        </Section>
-      )}
+        {summary && (
+          <MailSection index={4} ground="ground" sent={home.nextMorning.sent} heading={home.nextMorning.heading}>
+            <ArrivingEmail newLabel={home.nextMorning.newLabel} className="mt-10 max-w-[44rem]">
+              <AnnotatedSummary
+                summary={summary}
+                caption={home.nextMorning.caption}
+                annotations={home.nextMorning.annotations}
+                notesLabel={home.nextMorning.notesLabel}
+              />
+            </ArrivingEmail>
+          </MailSection>
+        )}
+      </div>
 
       <PageEnd end={home.end} />
     </>

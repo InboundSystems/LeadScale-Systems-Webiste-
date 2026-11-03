@@ -69,6 +69,8 @@ export interface BusinessDetails {
 }
 
 export interface SiteChrome {
+  /** The sender and recipient on every section set as an opened email. */
+  mail: { fromLabel: string; toLabel: string; from: string; to: string }
   metaTitle: string
   metaDescription: string
   navLinks: LinkItem[]
@@ -330,14 +332,6 @@ export interface SystemContent {
 // ---------------------------------------------------------------------------
 // Pages
 // ---------------------------------------------------------------------------
-/** The signature look: a section intro set as an email header. Used on
- *  exactly three homepage sections, nowhere else. */
-export interface SectionEmail {
-  from: string
-  to?: string
-  subject: string
-}
-
 export interface SummaryAnnotation {
   /** Text of the summary line the note points to (first line containing it). */
   match: string
@@ -346,26 +340,33 @@ export interface SummaryAnnotation {
 
 export interface HomeContent {
   hero: {
-    eyebrow: string
+    /** The H1: the subject of the open email in the hero's reading pane. */
     heading: string
     /** The word in the heading that gets the saffron marker stroke. */
     markedWord: string
     body: string
     primary: LinkItem
     secondary: LinkItem
+    /** "Back to our email", shown when a row's explanation is open. */
+    backLabel: string
+    /** Accessible name of the reading pane. */
+    paneLabel: string
   }
+  /** Accessible name of the folder rail / tab strip. */
+  foldersLabel: string
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */
-  work: { eyebrow: string; email: SectionEmail; heading: string; items: HeadedItem[]; closing: string }
+  work: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; closing: string }
   /** How Vicaria works, for every system. */
-  method: { eyebrow: string; email: SectionEmail; heading: string; items: HeadedItem[]; link: LinkItem }
+  method: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; link: LinkItem }
   /** Principles true of every system, not of one. */
-  principles: { eyebrow: string; email: SectionEmail; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
-  systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
+  principles: { eyebrow: string; sent: string; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
+  systems: { eyebrow: string; sent: string; heading: string; intro: string; linkLabel: string }
   /** The Front Office's morning summary, arriving as a new email below the
    *  systems section. The summary itself comes from content/systems.ts. */
   nextMorning: {
     eyebrow: string
+    sent: string
     heading: string
     caption: string
     newLabel: string
