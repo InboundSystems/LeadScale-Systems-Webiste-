@@ -1,5 +1,5 @@
 import { about, business } from '@/content/audience'
-import { PageEnd, PageHeader, Section } from './ui'
+import { PageEnd, PageHeader, Section, sentAt } from './ui'
 
 // /about. Short and professional: the firm, Brisbane, founders named, ABN.
 // Founders are listed, never used as the trust argument. They are set as two
@@ -24,7 +24,7 @@ export default function AboutContent() {
         </div>
       </PageHeader>
 
-      <Section>
+      <Section sent={sentAt(0)}>
         <div className="grid gap-12 md:grid-cols-2 md:gap-14">
           <div>
             <h2 className="v-h3">{about.foundersHeading}</h2>

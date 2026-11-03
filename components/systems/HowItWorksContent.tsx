@@ -1,5 +1,5 @@
 import { howItWorks } from '@/content/audience'
-import { NumberedSteps, PageEnd, PageHeader, Section, SplitBlock, TextLink } from './ui'
+import { NumberedSteps, PageEnd, PageHeader, Section, SplitBlock, TextLink, sentAt } from './ui'
 
 // /how-it-works. The company-level method, true of every system. One
 // system's own installation steps live on that system's page and are linked
@@ -11,14 +11,14 @@ export default function HowItWorksContent() {
     <>
       <PageHeader header={howItWorks.header} chipTone="teal" />
 
-      <Section labelledBy="steps-heading">
+      <Section labelledBy="steps-heading" sent={sentAt(0)}>
         <h2 id="steps-heading" className="v-h2">
           {steps.heading}
         </h2>
         <NumberedSteps steps={steps.steps} className="mt-10" />
       </Section>
 
-      <Section>
+      <Section sent={sentAt(1)}>
         {sections.map((section) => (
           <SplitBlock key={section.heading} heading={section.heading}>
             {section.paragraphs.map((p) => (

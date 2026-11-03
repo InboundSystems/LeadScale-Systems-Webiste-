@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import { site } from '@/content/audience'
+import MailHeader from './MailHeader'
 import SectionChip from './SectionChip'
 import type {
   CategoryTone,
@@ -37,6 +39,7 @@ export function Section({
   rule = true,
   id,
   labelledBy,
+  sent,
   className = '',
 }: {
   children: ReactNode
@@ -44,6 +47,8 @@ export function Section({
   rule?: boolean
   id?: string
   labelledBy?: string
+  /** Open the section as an email: a From / To / sent row (MailHeader). */
+  sent?: string
   className?: string
 }) {
   return (
@@ -52,9 +57,21 @@ export function Section({
       aria-labelledby={labelledBy}
       className={`${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
     >
-      <Container>{children}</Container>
+      <Container>
+        {sent && <MailHeader sent={sent} inverse={tone === 'teal'} />}
+        {children}
+      </Container>
     </section>
   )
+}
+
+/** The sent time on the nth section of a page set as emails: "Today, 8:30 am",
+ *  then six minutes later for each section after. */
+export function sentAt(n: number) {
+  const minutes = 8 * 60 + 30 + n * 6
+  const h = Math.floor(minutes / 60)
+  const m = String(minutes % 60).padStart(2, '0')
+  return `${site.mail.today}, ${h > 12 ? h - 12 : h}:${m} ${h >= 12 ? 'pm' : 'am'}`
 }
 
 export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {

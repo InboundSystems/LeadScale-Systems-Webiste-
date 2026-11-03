@@ -70,7 +70,7 @@ export interface BusinessDetails {
 
 export interface SiteChrome {
   /** The sender and recipient on every section set as an opened email. */
-  mail: { fromLabel: string; toLabel: string; from: string; to: string }
+  mail: { fromLabel: string; toLabel: string; from: string; to: string; today: string }
   metaTitle: string
   metaDescription: string
   navLinks: LinkItem[]

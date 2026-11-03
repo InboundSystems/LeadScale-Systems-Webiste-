@@ -5,7 +5,7 @@ import FAQList from './FAQList'
 import InboxIllustration from './InboxIllustration'
 import IntendedPurpose from './IntendedPurpose'
 import MorningSummary from './MorningSummary'
-import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SplitBlock } from './ui'
+import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SplitBlock, sentAt } from './ui'
 
 // A system's own page, /systems/<slug>. Every slot is optional except the
 // header and the end line; an unset slot renders nothing.
@@ -42,7 +42,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       </header>
 
       {system.theProblem && (
-        <Section labelledBy="problem-heading">
+        <Section labelledBy="problem-heading" sent={sentAt(0)}>
           <div className="grid gap-6 lg:grid-cols-12 lg:gap-14">
             <h2 id="problem-heading" className="v-h2 lg:col-span-5">
               {system.theProblem.heading}
@@ -59,7 +59,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.illustrations && (
-        <Section tone="surface" id="illustrations" labelledBy="illustrations-heading" className="scroll-mt-20">
+        <Section tone="surface" id="illustrations" labelledBy="illustrations-heading" className="scroll-mt-20" sent={sentAt(1)}>
           <h2 id="illustrations-heading" className="v-h2 max-w-[26ch]">
             {system.illustrations.heading}
           </h2>
@@ -72,7 +72,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.whatItDoes && (
-        <Section labelledBy="does-heading">
+        <Section labelledBy="does-heading" sent={sentAt(2)}>
           <h2 id="does-heading" className="v-h2">
             {system.whatItDoes.heading}
           </h2>
@@ -88,7 +88,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.whatItNeverDoes && (
-        <Section tone="warm" labelledBy="never-heading">
+        <Section tone="warm" labelledBy="never-heading" sent={sentAt(3)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-5">
               <h2 id="never-heading" className="v-h2">
@@ -102,7 +102,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.dayTimeline && (
-        <Section id="working-day" labelledBy="day-heading" className="scroll-mt-20">
+        <Section id="working-day" labelledBy="day-heading" className="scroll-mt-20" sent={sentAt(4)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-4">
               <h2 id="day-heading" className="v-h2">
@@ -119,7 +119,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.installation && (
-        <Section id="installation" labelledBy="installation-heading" className="scroll-mt-20">
+        <Section id="installation" labelledBy="installation-heading" className="scroll-mt-20" sent={sentAt(5)}>
           <h2 id="installation-heading" className="v-h2">
             {system.installation.heading}
           </h2>
@@ -135,7 +135,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.judged && (
-        <Section>
+        <Section sent={sentAt(6)}>
           <SplitBlock heading={system.judged.heading}>
             {system.judged.paragraphs.map((p) => (
               <p key={p} className="v-body">
@@ -147,7 +147,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.whoThisIsntFor && (
-        <Section labelledBy="not-for-heading">
+        <Section labelledBy="not-for-heading" sent={sentAt(7)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <h2 id="not-for-heading" className="v-h2 lg:col-span-5">
               {system.whoThisIsntFor.heading}
@@ -169,7 +169,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.faq && system.faq.items.length > 0 && (
-        <Section labelledBy="faq-heading">
+        <Section labelledBy="faq-heading" sent={sentAt(8)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <h2 id="faq-heading" className="v-h2 lg:col-span-5">
               {system.faq.heading}

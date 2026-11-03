@@ -1,5 +1,5 @@
 import { itProviders } from '@/content/it-providers'
-import { PageEnd, PageHeader, Section, SplitBlock } from './ui'
+import { PageEnd, PageHeader, Section, SplitBlock, sentAt } from './ui'
 
 // /it-providers. Factual and technical, in the order section 6 of the
 // rework brief sets. Permission names in monospace, as they are typed.
@@ -10,7 +10,7 @@ export default function ItProvidersContent() {
     <>
       <PageHeader header={itProviders.header} chipTone="rose" />
 
-      <Section>
+      <Section sent={sentAt(0)}>
         <SplitBlock heading={asked.heading}>
           {asked.paragraphs.map((p) => (
             <p key={p} className="v-body">

@@ -32,7 +32,7 @@ export const audience = {
 }
 
 export const site: SiteChrome = {
-  mail: { fromLabel: 'From', toLabel: 'To', from: 'Vicaria', to: 'You' },
+  mail: { fromLabel: 'From', toLabel: 'To', from: 'Vicaria', to: 'You', today: 'Today' },
   metaTitle: 'Vicaria: administrative systems for service businesses',
   metaDescription:
     'We take the repetitive admin off service businesses and run it inside the software you already use. Brisbane, Australia.',
