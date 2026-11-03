@@ -50,6 +50,11 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
         className={`${serif.variable} ${sans.variable} ${mono.variable} flex min-h-screen flex-col`}
         style={{ fontFamily: 'var(--font-sans), system-ui, sans-serif' }}
       >
+        {/* Runs while the page is parsed, before anything below it paints:
+            marks <html> so CSS can start the hero demo in its Before layout.
+            Without JavaScript the class never appears and the server-rendered
+            After state stands. Flagship only; /media never loads this layout. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <SiteHeader />
         <main id="main" className="flex-1">
           {children}

@@ -49,8 +49,9 @@ Positioning is split into two levels. Keep them distinct:
   morning summary on open days, lists known senders in Junk, prepares approved replies for a named
   sender into Drafts, and never overrides reception's corrections.
 
-The Front Office never sits in the homepage hero. On the homepage it appears once, as a card in
-the systems section. Its details (installation steps, measure, permissions, what it stores) live
+The homepage hero shows The Front Office as a worked example, under the company-level H1. The H1
+and subhead stay company-level. Elsewhere on the homepage it appears as a card in the systems
+section and as the morning summary that follows it, both labelled as The Front Office. Its details (installation steps, measure, permissions, what it stores) live
 on system-level pages: `/systems/front-office`, `/it-providers` ("For IT providers: The Front
 Office"), and the labelled Front Office subsection of `/data-handling`.
 

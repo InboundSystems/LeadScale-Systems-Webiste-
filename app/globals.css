@@ -229,3 +229,69 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     }
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Inbox demo (components/systems/HeroInbox.tsx). One DOM in the After order;
+   these rules give the Before view. "Before mode" is data-view="before", or,
+   before hydration, html.js with data-autoplay="pending" (the inline script
+   in app/(systems)/layout.tsx sets html.js before first paint). Without
+   JavaScript neither applies and the server-rendered After state stands.
+   --------------------------------------------------------------------------- */
+.inbox-demo [data-list] {
+  display: flex;
+  flex-direction: column;
+}
+.inbox-demo [data-before-only] {
+  display: none;
+}
+.inbox-demo[data-view='before'] [data-group],
+html.js .inbox-demo[data-autoplay='pending'] [data-group],
+.inbox-demo[data-view='before'] [data-after-only],
+html.js .inbox-demo[data-autoplay='pending'] [data-after-only] {
+  display: none;
+}
+.inbox-demo[data-view='before'] [data-before-only],
+html.js .inbox-demo[data-autoplay='pending'] [data-before-only] {
+  display: revert;
+}
+.inbox-demo[data-view='before'] [data-row],
+html.js .inbox-demo[data-autoplay='pending'] [data-row] {
+  order: var(--before-order);
+}
+.inbox-demo[data-view='before'] [data-mark],
+html.js .inbox-demo[data-autoplay='pending'] [data-mark] {
+  visibility: hidden;
+}
+
+/* Rows: hover, and the selected row (After only). */
+.inbox-row > button {
+  transition: background-color 120ms ease-out;
+}
+.inbox-demo .inbox-row > button:hover {
+  background-color: #f4f7f7;
+}
+.inbox-row[data-selected='true'] > button {
+  background-color: var(--accent-tint);
+}
+.inbox-demo[data-view='before'] .inbox-row > button,
+html.js .inbox-demo[data-autoplay='pending'] .inbox-row > button {
+  background-color: transparent;
+  cursor: default;
+}
+
+/* Toggle: the pressed button follows the mode, including before hydration. */
+.inbox-demo-toggle {
+  color: var(--muted);
+  transition: background-color 150ms ease-out, color 150ms ease-out;
+}
+.inbox-demo-toggle:hover {
+  background-color: var(--accent-tint);
+  color: var(--ink);
+}
+html:not(.js) .inbox-demo [data-for='after'],
+.inbox-demo[data-view='after']:not([data-autoplay='pending']) [data-for='after'],
+.inbox-demo[data-view='before'] [data-for='before'],
+html.js .inbox-demo[data-autoplay='pending'] [data-for='before'] {
+  background-color: var(--accent);
+  color: #fff;
+}

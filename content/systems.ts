@@ -95,6 +95,7 @@ export const systems: SystemContent[] = [
       moment: 'Monday, 8:00am',
       beforeLabel: 'Before',
       afterLabel: 'After',
+      replayLabel: 'Replay',
       arrangedByDate: 'Arranged by: Date',
       arrangedByCategory: 'Arranged by: Categories',
       beforeHint: 'Every email in one list, newest first. Select After to see each one marked.',
@@ -194,11 +195,6 @@ export const systems: SystemContent[] = [
             'Marked 03 Referrals, by what kind of email it is. The system makes no clinical judgement and assigns no priority.',
         },
       ],
-    },
-
-    cardIllustration: {
-      caption: 'The Front Office: a shared inbox, marked in the practice’s own order. Illustration with fictional senders.',
-      maxGroups: 3,
     },
 
     whatItNeverDoes: {

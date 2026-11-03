@@ -131,6 +131,7 @@ export interface InboxDemo {
   moment: string
   beforeLabel: string
   afterLabel: string
+  replayLabel: string
   arrangedByDate: string
   arrangedByCategory: string
   /** Shown in the reading pane in the before state. */
@@ -246,10 +247,6 @@ export interface SystemContent {
   /** The interactive before-and-after inbox in the homepage hero. Only one
    *  system carries it. */
   heroDemo?: InboxDemo
-
-  /** A compact inbox illustration inside this system's card on the
-   *  homepage, drawn from illustrations.inbox. Renders nothing when unset. */
-  cardIllustration?: { caption: string; maxGroups: number }
 
   /** A narrative of the system on an ordinary day at a fictional client.
    *  Times and events, not features. Never implies a live client. */

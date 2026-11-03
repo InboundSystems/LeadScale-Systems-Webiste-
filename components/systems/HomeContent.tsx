@@ -97,7 +97,7 @@ export default function HomeContent() {
           <ul className="flex flex-col gap-6 lg:col-span-7">
             {systems.map((system) => (
               <li key={system.name}>
-                <SystemCard system={system} linkLabel={home.systems.linkLabel} showIllustration />
+                <SystemCard system={system} linkLabel={home.systems.linkLabel} />
               </li>
             ))}
           </ul>
