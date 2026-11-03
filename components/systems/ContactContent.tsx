@@ -1,21 +1,16 @@
-import { business } from '@/content/audience'
 import { contact } from '@/content/contact'
+import ComposeWindow from './ComposeWindow'
 import { Container, PageHeader, TextLink } from './ui'
 
-// /enquire. Email only: the mailto link is the whole mechanism, so this page
-// is its own end line.
+// /enquire. Email only: a "New message" window whose one button is a mailto
+// link, then the helpful notes and links. No form; nothing is stored.
 export default function ContactContent() {
   return (
     <>
       <PageHeader header={contact.header} chipTone="amber">
-        <p className="mt-10">
-          <a
-            href={`mailto:${business.email}?subject=Enquiry`}
-            className="v-serif break-all text-[1.75rem] font-semibold text-[var(--accent)] underline decoration-1 underline-offset-[3px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-[var(--saffron)] hover:decoration-2 sm:text-[2.25rem]"
-          >
-            {business.email}
-          </a>
-        </p>
+        <div className="mt-10">
+          <ComposeWindow compose={contact.compose} />
+        </div>
       </PageHeader>
 
       <section className="border-t border-[var(--hairline)] pb-20 pt-12">

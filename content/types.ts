@@ -442,6 +442,18 @@ export interface AboutContent {
 /** /enquire — a plain email contact. The mailto link is the whole mechanism. */
 export interface ContactPageContent {
   header: PageHeader
+  /** The Outlook-style "New message" window. Its button is a mailto link
+   *  that opens the visitor's own email; nothing is submitted or stored. */
+  compose: {
+    windowTitle: string
+    toLabel: string
+    subjectLabel: string
+    subject: string
+    /** Greyed prompts in the body, and the prefilled mailto body. */
+    prompts: string[]
+    sendLabel: string
+    note: string
+  }
   helpfulIntro: string
   helpfulItems: string[]
   /** A note for one system, set apart from the general list. */

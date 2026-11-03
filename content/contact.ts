@@ -9,6 +9,20 @@ export const contact: ContactPageContent = {
     heading: 'Email Vicaria directly.',
     intro: 'Enquiries are by email. Every email is read and answered.',
   },
+  compose: {
+    windowTitle: 'New message',
+    toLabel: 'To',
+    subjectLabel: 'Subject',
+    subject: 'The job that takes the most time',
+    prompts: [
+      'Business name',
+      'Which job takes the most time',
+      'What software you use',
+      'Roughly how much arrives each week',
+    ],
+    sendLabel: 'Open in your email',
+    note: 'This opens a new message in your own email, with the prompts filled in. Nothing on this page is sent or stored.',
+  },
   helpfulIntro: 'A reply is quicker with a few details, where they are available:',
   helpfulItems: [
     'What the business is',
