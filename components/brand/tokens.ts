@@ -13,15 +13,17 @@ export type Brand = 'media' | 'systems'
 // light neutrals, scoped to [data-brand='systems'] in app/globals.css — see
 // docs/brand/leadscale-systems.md.
 //
-// Flagship accent: deep teal, the colour on every Vicaria document. Contrast
-// on the #F8FAF9 ground: accent 5.63, accent-deep 7.59. accent-light is 2.71
-// and is for rules and decoration only, never text or focus rings.
+// Flagship accent (7 November 2026): the original site's blue. Links,
+// buttons and focus rings. On white: accent 5.17, accent-deep 6.70. On the
+// light cool grey ground (#F6F7FB) accent is 4.83. accent-light (#60A5FA) is
+// the focus ring and link colour on dark grounds (7.63 on the hero ink).
+// Retired: the deep teal (#2E6E6B) of November 2026.
 export const ACCENTS: Record<Brand, CSSProperties> = {
   systems: {
-    '--accent': '#2E6E6B',
-    '--accent-deep': '#245956',
-    '--accent-light': '#77A19F',
-    '--accent-rgb': '46 110 107',
+    '--accent': '#2563EB',
+    '--accent-deep': '#1D4ED8',
+    '--accent-light': '#60A5FA',
+    '--accent-rgb': '37 99 235',
   } as CSSProperties,
   media: {
     '--accent': '#4F46E5',

@@ -22,7 +22,7 @@ import { ButtonLink, PageEnd, TextLink } from './ui'
 //   - Then four sections, each an opened email: a From / To / sent row with
 //     its numbered chip, then full-width content in a different layout:
 //       01 The work            grid, then the one oversized pull line
-//       02 How it runs         numbered list on the teal band
+//       02 How it runs         numbered list on the deep indigo band
 //       03 What never changes  oversized typographic statements
 //       04 Systems             The Front Office card, with its interactive
 //                              inbox as the card's illustration
@@ -31,9 +31,9 @@ import { ButtonLink, PageEnd, TextLink } from './ui'
 const markers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
 const SECTIONS: { id: string; tone: CategoryTone }[] = [
-  { id: 'the-work', tone: 'amber' },
-  { id: 'how-it-runs', tone: 'teal' },
-  { id: 'what-never-changes', tone: 'plum' },
+  { id: 'the-work', tone: 'blue' },
+  { id: 'how-it-runs', tone: 'indigo' },
+  { id: 'what-never-changes', tone: 'violet' },
   { id: 'systems', tone: 'sky' },
 ]
 const labels = [home.work.eyebrow, home.method.eyebrow, home.principles.eyebrow, home.systems.eyebrow]
@@ -52,9 +52,8 @@ function Column({ children, className = '' }: { children: ReactNode; className?:
 
 const bg = {
   ground: 'bg-[var(--ground)]',
-  amber: 'bg-[var(--tint-amber)]',
-  teal: 'on-teal bg-[var(--teal)] text-white',
-  sky: 'bg-[var(--tint-sky)]',
+  white: 'bg-[var(--surface)]',
+  band: 'on-band bg-[var(--band)] text-white',
 }
 
 function MailSection({
@@ -71,7 +70,7 @@ function MailSection({
   children: ReactNode
 }) {
   const { id, tone } = SECTIONS[index]
-  const inverse = ground === 'teal'
+  const inverse = ground === 'band'
   return (
     <section
       id={id}
@@ -96,18 +95,26 @@ function MailSection({
 export default function HomeContent() {
   return (
     <>
-      <header className="on-dark bg-[#16232b] pb-16 pt-12 text-white sm:pb-24 sm:pt-20">
+      <header className="on-dark bg-[var(--dark)] pb-16 pt-12 text-white sm:pb-24 sm:pt-20">
         <div className="mx-auto grid w-full max-w-[84rem] gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8">
           <div className="lg:col-span-6 xl:col-span-6">
             <MailHeader sent={home.hero.sent} inverse />
             <MarkedHeading text={home.hero.heading} marked={home.hero.markedWord} className="v-display max-w-[16ch] !text-white" />
-            <p className="v-lead mt-6 !text-[#e4eeed]">{home.hero.body}</p>
+            <p className="v-lead mt-6 !text-[var(--on-dark-soft)]">{home.hero.body}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink link={home.hero.primary} />
               <ButtonLink link={home.hero.secondary} variant="inverse" />
             </div>
           </div>
-          <HeroList list={home.hero.list} className="lg:col-span-6 xl:col-span-5 xl:col-start-8" />
+          <div className="relative lg:col-span-6 xl:col-span-5 xl:col-start-8">
+            {/* The one soft glow on the site: blue to violet, behind the
+                illustration only. Static. */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,rgba(37,99,235,0.28),rgba(124,58,237,0.16)_55%,transparent)] blur-2xl"
+            />
+            <HeroList list={home.hero.list} className="relative" />
+          </div>
         </div>
       </header>
 
@@ -121,11 +128,11 @@ export default function HomeContent() {
           </div>
         </div>
 
-        <MailSection index={0} ground="amber" sent={home.work.sent} heading={home.work.heading}>
+        <MailSection index={0} ground="white" sent={home.work.sent} heading={home.work.heading}>
           <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {home.work.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-3">
-                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[#845716]">
+                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[var(--indigo)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
@@ -139,7 +146,7 @@ export default function HomeContent() {
           <p className="v-pull mt-16 max-w-[20ch] sm:mt-24">{home.work.closing}</p>
         </MailSection>
 
-        <MailSection index={1} ground="teal" sent={home.method.sent} heading={home.method.heading}>
+        <MailSection index={1} ground="band" sent={home.method.sent} heading={home.method.heading}>
           <ol className="mt-10 grid gap-x-12 sm:grid-cols-2">
             {home.method.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-t border-white/20 py-6">
@@ -148,7 +155,7 @@ export default function HomeContent() {
                 </span>
                 <div>
                   <h3 className="v-h3 !text-white">{item.heading}</h3>
-                  <p className="mt-1.5 text-[#e4eeed]">{item.body}</p>
+                  <p className="mt-1.5 text-[var(--on-dark-soft)]">{item.body}</p>
                 </div>
               </li>
             ))}
@@ -178,7 +185,7 @@ export default function HomeContent() {
           </p>
         </MailSection>
 
-        <MailSection index={3} ground="sky" sent={home.systems.sent} heading={home.systems.heading}>
+        <MailSection index={3} ground="white" sent={home.systems.sent} heading={home.systems.heading}>
           <p className="v-lead mt-4">{home.systems.intro}</p>
           {/* One entry in a list of systems: the card (about 40%) beside its
               illustration, the interactive inbox (about 60%), top-aligned.

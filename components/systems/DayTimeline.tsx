@@ -79,7 +79,7 @@ function SummaryCard({ summary, linkLabel }: { summary: MorningSummaryIllustrati
   return (
     <article
       aria-label={summary.subject}
-      className="rounded-[8px] border border-[#d9e1e1] bg-[var(--surface)]"
+      className="rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
     >
       <dl className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-3 gap-y-1 border-b border-[var(--hairline)] px-5 py-4 pr-24 text-[0.8125rem]">
         <dt className="text-[var(--muted)]">From</dt>
@@ -114,7 +114,7 @@ function StaticSteps({ timeline, summary }: { timeline: DayTimelineContent; summ
         const before = step.correction ? categoriesAfter(timeline.steps, i).get(step.correction.id) : undefined
         return (
           <li key={step.clock} className="grid gap-2 border-b border-[var(--hairline)] py-5 sm:grid-cols-[9.5rem_minmax(0,1fr)] sm:gap-4">
-            <span className="v-mono pt-[0.15em] text-[0.8125rem] font-semibold tabular-nums text-[var(--accent)]">{step.clock}</span>
+            <span className="tabular-nums pt-[0.15em] text-[0.8125rem] font-semibold tabular-nums text-[var(--accent)]">{step.clock}</span>
             <div>
               {subject && (
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[0.9375rem]">
@@ -240,7 +240,7 @@ export default function DayTimeline({
 
       <div className="js-only" onKeyDown={onKeyDown}>
         <div className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
-          <p aria-live="polite" className="v-mono text-[1rem] font-semibold tabular-nums text-[var(--ink)]">
+          <p aria-live="polite" className="tabular-nums text-[1rem] font-semibold tabular-nums text-[var(--ink)]">
             {step?.clock ?? timeline.startClock}
           </p>
           <div className="flex items-center gap-2">
@@ -251,14 +251,14 @@ export default function DayTimeline({
               type="button"
               onClick={() => goTo(pos - 1)}
               disabled={pos === 0}
-              className={`${btn} border border-[var(--teal)] text-[var(--teal)] enabled:hover:bg-[var(--row-selected)]`}
+              className={`${btn} border border-[var(--frame-strong)] bg-[var(--surface)] text-[var(--ink)] enabled:hover:border-[var(--primary)] enabled:hover:text-[var(--primary)]`}
             >
               {timeline.backLabel}
             </button>
             <button
               type="button"
               onClick={() => goTo(atEnd ? 0 : pos + 1)}
-              className={`${btn} bg-[var(--teal)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]`}
+              className={`${btn} bg-[var(--primary)] text-white hover:bg-[var(--primary-deep)]`}
             >
               {atEnd ? timeline.restartLabel : timeline.nextLabel}
             </button>

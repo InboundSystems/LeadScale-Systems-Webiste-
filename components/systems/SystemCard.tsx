@@ -14,7 +14,7 @@ export default function SystemCard({
 }) {
   const Heading = headingLevel
   return (
-    <article className="max-w-[48rem] rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--surface)] p-6 sm:p-9">
+    <article className="max-w-[48rem] rounded-[var(--radius-card)] border border-[var(--frame)] bg-[var(--surface)] p-6 shadow-[0_1px_2px_rgba(15,23,42,0.05),0_8px_24px_rgba(15,23,42,0.05)] sm:p-9">
       <p className="v-eyebrow mb-3">{system.sector}</p>
       <Heading className="v-serif text-[1.5rem] leading-snug text-[var(--ink)] sm:text-[1.75rem]">
         <span className="font-semibold">{system.name}</span>: {system.cardFor}

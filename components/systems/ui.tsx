@@ -20,17 +20,15 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 }
 
-type Tone = 'ground' | 'surface' | 'warm' | 'teal' | 'amber' | 'sky'
+type Tone = 'ground' | 'surface' | 'warm' | 'band' | 'white'
 
 const toneClass: Record<Tone, string> = {
   ground: 'bg-[var(--ground)]',
   surface: 'bg-[var(--surface)]',
   warm: 'bg-[var(--warm)]',
-  teal: 'on-teal bg-[var(--teal)] text-white',
-  // Category tints at 60% over the ground: amber #FAF3E6, sky #EAF2F8.
-  // Ink 14.5 / 14.2, muted 5.0 / 4.89, accent 5.35 / 5.21.
-  amber: 'bg-[var(--tint-amber)]',
-  sky: 'bg-[var(--tint-sky)]',
+  // The deep indigo band (#1E1B4B): white 15.99, soft text #CBD5E1 11+.
+  band: 'on-band bg-[var(--band)] text-white',
+  white: 'bg-[var(--surface)]',
 }
 
 export function Section({
@@ -58,7 +56,7 @@ export function Section({
       className={`${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
     >
       <Container>
-        {sent && <MailHeader sent={sent} inverse={tone === 'teal'} />}
+        {sent && <MailHeader sent={sent} inverse={tone === 'band'} />}
         {children}
       </Container>
     </section>
@@ -111,7 +109,7 @@ export function TextLink({
   className = '',
 }: {
   link: LinkItem
-  /** White, for the teal band. */
+  /** White, for the indigo band. */
   inverse?: boolean
   className?: string
 }) {
@@ -137,10 +135,10 @@ export function ButtonLink({
     'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-px'
   const styles =
     variant === 'primary'
-      ? 'bg-[var(--teal)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'
+      ? 'bg-[var(--primary)] text-white shadow-[0_1px_2px_rgba(15,23,42,0.12)] hover:bg-[var(--primary-deep)]'
       : variant === 'inverse'
         ? 'border border-white/70 bg-transparent text-white hover:border-white hover:bg-white/10'
-        : 'border border-[var(--teal)] bg-transparent text-[var(--teal)] hover:bg-[var(--row-selected)]'
+        : 'border border-[var(--frame-strong)] bg-[var(--surface)] text-[var(--ink)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
   return (
     <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>
       {link.label}
@@ -254,7 +252,7 @@ export function NumberedSteps({ steps, className = '' }: { steps: StepItem[]; cl
           key={step.title}
           className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4 border-b border-[var(--hairline)] py-6 sm:grid-cols-[4.5rem_minmax(0,1fr)] lg:grid-cols-[4.5rem_minmax(0,22rem)_minmax(0,1fr)] lg:gap-10"
         >
-          <span aria-hidden="true" className="v-mono pt-[0.15em] text-[1.125rem] font-semibold text-[var(--accent)]">
+          <span aria-hidden="true" className="tabular-nums pt-[0.15em] text-[1.125rem] font-semibold text-[var(--accent)]">
             {String(i + 1).padStart(2, '0')}
           </span>
           <h3 className="v-h3">{step.title}</h3>

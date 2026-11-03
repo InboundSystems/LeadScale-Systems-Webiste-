@@ -11,12 +11,12 @@ import { pricingStatement } from './pricing'
 
 // Fictional categories for the illustrations. Numbered in a practice's own
 // order, as the system does; 00 Unclear always sorts first.
-const unclear: CategoryDef = { label: '00 Unclear', tone: 'amber' }
-const appointments: CategoryDef = { label: '01 Appointments', tone: 'teal' }
+const unclear: CategoryDef = { label: '00 Unclear', tone: 'violet' }
+const appointments: CategoryDef = { label: '01 Appointments', tone: 'blue' }
 const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
-const referrals: CategoryDef = { label: '03 Referrals', tone: 'plum' }
-const accounts: CategoryDef = { label: '04 Accounts', tone: 'sage' }
-const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'rose' }
+const referrals: CategoryDef = { label: '03 Referrals', tone: 'indigo' }
+const accounts: CategoryDef = { label: '04 Accounts', tone: 'slate' }
+const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'cyan' }
 
 export const systems: SystemContent[] = [
   {

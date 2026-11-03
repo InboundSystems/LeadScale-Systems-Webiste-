@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 // An email that "arrives": it slides up 24px and fades in over 450ms
-// (ease-out, transform and opacity only), with a saffron unread dot and a
+// (ease-out, transform and opacity only), with a blue unread dot and a
 // "New" pill that fade 1.5s later.
 //
 // By default it arrives when 30% of it is in view. Pass `arrived` to control
@@ -77,8 +77,8 @@ export default function ArrivingEmail({
   return (
     <div ref={ref} data-state={state} className={`arriving-email relative ${className}`}>
       <div aria-hidden="true" className="arriving-badge absolute right-4 top-3.5 z-10 items-center gap-2">
-        <span className="h-1.5 w-1.5 rounded-full bg-[var(--saffron)]" />
-        <span className="rounded-full bg-[var(--saffron)] px-2 py-0.5 text-[0.6875rem] font-semibold leading-none text-[var(--ink)]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)]" />
+        <span className="rounded-full bg-[var(--primary)] px-2 py-0.5 text-[0.6875rem] font-semibold leading-none text-white">
           {newLabel}
         </span>
       </div>

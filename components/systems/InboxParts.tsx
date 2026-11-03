@@ -9,7 +9,7 @@ import CategoryChip from './CategoryChip'
 
 export const outlookFace = { fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }
 
-/** The panel: 1px #D9E1E1 border, 8px radius, and the site's only shadow.
+/** The panel: 1px var(--frame) border, 8px radius, and the site's only shadow.
  *  A muted, non-interactive toolbar row, then the mailbox › folder line. */
 export function InboxFrame({
   toolbar,
@@ -27,18 +27,18 @@ export function InboxFrame({
 }) {
   return (
     <div
-      className="overflow-hidden rounded-[8px] border border-[#d9e1e1] bg-[var(--surface)] shadow-[0_1px_2px_rgba(22,35,43,0.06),0_8px_24px_rgba(22,35,43,0.06)]"
+      className="overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] shadow-[0_1px_2px_rgba(22,35,43,0.06),0_8px_24px_rgba(22,35,43,0.06)]"
       style={outlookFace}
     >
-      <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1.5 text-[0.75rem] text-[#7d8a8f]">
+      <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1.5 text-[0.75rem] text-[var(--muted)]">
         {toolbar.map((item, i) => (
           <span key={item} className="flex items-center gap-2">
-            {i > 0 && <span className="text-[#b9c3c5]">·</span>}
+            {i > 0 && <span className="text-[var(--faint)]">·</span>}
             {item}
           </span>
         ))}
       </div>
-      <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-2">
+      <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[var(--chrome)] px-4 py-2">
         <p className="truncate text-[0.8125rem] text-[var(--muted)]">
           {mailboxName} <span aria-hidden="true">›</span>{' '}
           <span className="font-semibold text-[var(--ink)]">{folderName}</span>
@@ -62,7 +62,7 @@ export function ReadingPane({
   children: ReactNode
 }) {
   return (
-    <div aria-live="polite" className="border-t border-[var(--hairline)] bg-[#fafbfb]">
+    <div aria-live="polite" className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)]">
       <div className="flex min-h-[2.25rem] items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
         <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{heading}</p>
         {category}

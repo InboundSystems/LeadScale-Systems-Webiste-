@@ -52,7 +52,7 @@ function Pre({
             {n !== undefined && (
               <span
                 aria-hidden="true"
-                className="absolute -left-[17px] top-1/2 flex h-[14px] w-[14px] -translate-y-1/2 items-center justify-center rounded-full bg-[var(--teal)] font-sans text-[0.5625rem] font-semibold leading-none text-white"
+                className="absolute -left-[17px] top-1/2 flex h-[14px] w-[14px] -translate-y-1/2 items-center justify-center rounded-full bg-[var(--primary)] font-sans text-[0.5625rem] font-semibold leading-none text-white"
               >
                 {n}
               </span>

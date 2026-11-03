@@ -101,7 +101,7 @@ export default function CategoryMenu({
           role="listbox"
           aria-label={label}
           onKeyDown={onKey}
-          className={`absolute right-0 z-20 min-w-[12.5rem] rounded-[6px] border border-[#d9e1e1] bg-[var(--surface)] p-1 shadow-[0_8px_24px_rgba(22,35,43,0.14)] ${
+          className={`absolute right-0 z-20 min-w-[12.5rem] rounded-[6px] border border-[var(--frame)] bg-[var(--surface)] p-1 shadow-[0_8px_24px_rgba(22,35,43,0.14)] ${
             up ? 'bottom-full mb-1' : 'top-full mt-1'
           }`}
         >

@@ -12,13 +12,13 @@ export default function FAQList({ items }: { items: FAQItem[] }) {
             <span className="font-semibold">{item.question}</span>
             <span
               aria-hidden="true"
-              className="v-mono mt-0.5 shrink-0 text-[1.125rem] leading-none text-[var(--accent)] group-open:hidden"
+              className="tabular-nums mt-0.5 shrink-0 text-[1.125rem] leading-none text-[var(--accent)] group-open:hidden"
             >
               +
             </span>
             <span
               aria-hidden="true"
-              className="v-mono mt-0.5 hidden shrink-0 text-[1.125rem] leading-none text-[var(--accent)] group-open:inline"
+              className="tabular-nums mt-0.5 hidden shrink-0 text-[1.125rem] leading-none text-[var(--accent)] group-open:inline"
             >
               −
             </span>

@@ -65,7 +65,7 @@ export default function InboxIllustration({
         className="overflow-hidden rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--surface)]"
         style={outlookFace}
       >
-        <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-2.5">
+        <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[var(--chrome)] px-4 py-2.5">
           <p className="truncate text-[0.8125rem] text-[var(--muted)]">
             {inbox.mailboxName} <span aria-hidden="true">›</span>{' '}
             <span className="font-semibold text-[var(--ink)]">{inbox.folderName}</span>
@@ -87,7 +87,7 @@ export default function InboxIllustration({
 
         {groups.map((group) => (
           <div key={group.category.label}>
-            <div className="flex items-center gap-2 border-b border-[var(--hairline)] bg-[#fafbfb] px-4 py-1.5">
+            <div className="flex items-center gap-2 border-b border-[var(--hairline)] bg-[var(--chrome-soft)] px-4 py-1.5">
               <span aria-hidden="true" className="text-[0.625rem] text-[var(--muted)]">
                 ▼
               </span>

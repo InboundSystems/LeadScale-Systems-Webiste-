@@ -8,7 +8,7 @@ export default function ItProvidersContent() {
 
   return (
     <>
-      <PageHeader header={itProviders.header} chipTone="rose" />
+      <PageHeader header={itProviders.header} chipTone="slate" />
 
       <Section sent={sentAt(0)}>
         <SplitBlock heading={asked.heading}>
@@ -53,7 +53,7 @@ export default function ItProvidersContent() {
           <ol className="flex flex-col gap-3">
             {restriction.steps.map((step, i) => (
               <li key={step} className="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-2">
-                <span aria-hidden="true" className="v-mono font-semibold text-[var(--accent)]">
+                <span aria-hidden="true" className="tabular-nums font-semibold text-[var(--accent)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <p className="max-w-[60ch] text-[var(--ink)]">{step}</p>

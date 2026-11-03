@@ -7,7 +7,7 @@ import { PageEnd, PageHeader, Section, sentAt } from './ui'
 export default function DataHandlingContent() {
   return (
     <>
-      <PageHeader header={dataHandling.header} chipTone="sage" />
+      <PageHeader header={dataHandling.header} chipTone="sky" />
       <Section sent={sentAt(0)}>
         <ProseSections sections={dataHandling.sections} />
       </Section>

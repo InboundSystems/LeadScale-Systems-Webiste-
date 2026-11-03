@@ -56,29 +56,41 @@ html {
    unchanged. Contrast ratios are against --ground.
    ------------------------------------------------------------------------- */
 [data-brand='systems'] {
-  --ground: #f8faf9;
+  /* The original site's colours (7 November 2026). Light grounds are white
+     and a very light cool grey; dark grounds are near-black with a slight
+     blue tint. Blue (#2563EB) for buttons and links; indigo for secondary
+     emphasis. Retired: teal, saffron, amber, cream, green. */
+  --ground: #f6f7fb; /* light cool grey */
   --surface: #ffffff;
-  --ink: #16232b; /* 15.30 */
-  --muted: #5c6b71; /* 5.28 */
-  --hairline: #e3e8e8;
-  --accent-tint: #e6efee; /* accent on tint 5.04 */
-  --warm: #f3efe7; /* ink 13.98, muted 4.82, accent 5.15 */
-  /* Strong teal: the primary button, the method band and the teal
-     category. White on it 5.92; at 88% white (#e4eeed) 5.01. On the ground
-     5.65. --accent (#2e6e6b) stays the brand anchor for links and focus. */
-  --teal: #1f6f6b;
-  /* Saffron: the one warm accent, for unread dots, the primary button's
-     hover and link-hover underlines. Ink on saffron 7.44. Never text on the
-     light ground. */
-  --saffron: #e8a33d;
+  --ink: #0f172a; /* 16.68 on the ground */
+  --muted: #475569; /* 7.58 on white, 7.08 on the ground */
+  --hairline: #e2e8f0;
+  --frame: #e2e8f0; /* card and window borders */
+  --frame-strong: #cbd5e1; /* secondary button and checkbox borders */
+  --faint: #94a3b8; /* separator dots */
+  --chrome: #f1f5f9; /* window title and toolbar bars */
+  --chrome-soft: #f8fafc; /* group headers, counts line, panes */
+  --accent-tint: #eff6ff;
+  --warm: #f1f3f9; /* the alternate light ground (no cream) */
+  /* Blue: buttons, links, the inbox accent bar. White on it 5.17; on its
+     hover (#1d4ed8) 6.70. */
+  --primary: #2563eb;
+  --primary-deep: #1d4ed8;
+  /* Indigo: secondary emphasis (annotations, ticks, strikes, the current
+     folder). 6.29 on white. Light indigo for the marker on dark. */
+  --indigo: #4f46e5;
+  --indigo-light: #818cf8;
+  /* Dark grounds: the hero and footer, and the deep indigo band. */
+  --dark: #0a0c1c; /* near-black, slight blue tint */
+  --band: #1e1b4b; /* deep indigo: How it runs */
+  --on-dark: #e2e8f0; /* 15.74 on --dark */
+  --on-dark-soft: #cbd5e1; /* body text on dark and on the band */
+  --on-dark-muted: #94a3b8; /* 7.57 on --dark */
   /* Inbox rows: hover and selected. */
-  --row-hover: #f4f7f7;
-  --row-selected: #eaf3f2;
-  /* Section grounds: category tints at 60% over the ground. */
-  --tint-amber: #faf3e6;
-  --tint-sky: #eaf2f8;
-  --radius-btn: 4px;
-  --radius-card: 6px;
+  --row-hover: #f8fafc;
+  --row-selected: #eff6ff;
+  --radius-btn: 6px;
+  --radius-card: 8px;
 
   color-scheme: light;
   min-height: 100vh;
@@ -101,18 +113,18 @@ html {
    never show Media's dark base. */
 html:has([data-brand='systems']),
 html:has([data-brand='systems']) body {
-  background-color: #f8faf9;
-  color: #16232b;
+  background-color: #f6f7fb;
+  color: #0f172a;
 }
 html:has([data-brand='systems'])::-webkit-scrollbar-track {
-  background: #f8faf9;
+  background: #f6f7fb;
 }
 html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
-  background: #c9d3d3;
+  background: #cbd5e1;
 }
 
 [data-brand='systems'] ::selection {
-  background: rgb(232 163 61 / 0.35); /* saffron at 35%; ink on it 12.4 */
+  background: rgb(37 99 235 / 0.18); /* blue at 18%; ink on it 13+ */
   color: var(--ink);
 }
 
@@ -135,22 +147,19 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   }
 }
 
-/* Type scale: a 1.25 ratio on an 18px body (17px under 640px). Headings in
-   Source Serif 4, body in Source Sans 3, category labels in Source Code Pro. */
+/* Type scale: a 1.25 ratio on an 18px body (17px under 640px). Plus Jakarta
+   Sans throughout: headings semibold with slightly tight tracking, body
+   regular. Source Code Pro only for chips, From / To headers, the counts line
+   and the plain-text summary. (.v-serif is the historical name of the heading
+   face class; it is Plus Jakarta Sans now.) */
 @layer components {
-  /* Fraunces: optical size follows the font size; SOFT 50 rounds the
-     terminals a little, WONK 0 keeps the leaning letters upright. */
   .v-serif,
   .v-display,
   .v-h1,
   .v-h2,
   .v-pull {
-    font-family: var(--font-serif), Georgia, serif;
-    font-optical-sizing: auto;
-    font-variation-settings: 'SOFT' 50, 'WONK' 0;
-  }
-  .v-hand {
-    font-family: var(--font-hand), 'Comic Sans MS', cursive;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
   .v-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
@@ -172,7 +181,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     text-wrap: balance;
   }
   .v-h2 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.75rem;
     line-height: 1.15;
     letter-spacing: -0.01em;
@@ -194,7 +203,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   }
   /* The one oversized pull line on the homepage. */
   .v-pull {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 2.25rem;
     line-height: 1.08;
     letter-spacing: -0.02em;
@@ -221,8 +230,8 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     text-transform: uppercase;
     color: var(--accent);
   }
-  /* Links: teal, underlined 3px below the text; on hover the underline
-     turns saffron and thickens. The text stays teal, so contrast holds. */
+  /* Links: blue, underlined 3px below the text; on hover the underline
+     turns indigo and thickens. The text stays blue, so contrast holds. */
   .v-link {
     color: var(--accent);
     text-decoration: underline;
@@ -232,11 +241,11 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     transition: text-decoration-color 150ms ease-out;
   }
   .v-link:hover {
-    text-decoration-color: var(--saffron);
+    text-decoration-color: var(--indigo);
     text-decoration-thickness: 2px;
   }
   .v-link-inverse {
-    color: #fff;
+    color: #93c5fd; /* 8.87 on the band */
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-decoration-color: rgb(255 255 255 / 0.6);
@@ -244,7 +253,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     transition: text-decoration-color 150ms ease-out;
   }
   .v-link-inverse:hover {
-    text-decoration-color: var(--saffron);
+    text-decoration-color: #fff;
     text-decoration-thickness: 2px;
   }
   .v-rule {
@@ -325,7 +334,7 @@ html.js .inbox-demo[data-autoplay='pending'] [data-mark] {
   inset: 0 auto 0 0;
   z-index: 1;
   width: 3px;
-  background-color: var(--teal);
+  background-color: var(--primary);
 }
 .inbox-demo[data-view='before'] .inbox-row,
 html.js .inbox-demo[data-autoplay='pending'] .inbox-row {
@@ -353,7 +362,7 @@ html:not(.js) .inbox-demo [data-for='after'],
 .inbox-demo[data-view='after']:not([data-autoplay='pending']) [data-for='after'],
 .inbox-demo[data-view='before'] [data-for='before'],
 html.js .inbox-demo[data-autoplay='pending'] [data-for='before'] {
-  background-color: var(--teal);
+  background-color: var(--primary);
   color: #fff;
 }
 
@@ -369,14 +378,14 @@ html.js .no-js-only {
   display: none;
 }
 
-/* Unread: a 6px saffron dot in the row's left gutter. */
+/* Unread: a 6px blue dot in the row's left gutter. */
 .unread-dot {
   position: absolute;
   left: 6px;
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background-color: var(--saffron);
+  background-color: var(--primary);
 }
 
 /* ---------------------------------------------------------------------------
@@ -410,21 +419,22 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
   }
 }
 
-/* Focus on dark grounds: the teal ring would fall below 3:1, so it uses
-   the light teal (5.63 on the footer ink). Still teal, still visible. */
+/* Focus on dark grounds: the blue ring would fall below 3:1, so it uses the
+   light blue #60a5fa (7.63 on the footer ink). */
 [data-brand='systems'] footer :focus-visible {
   outline-color: var(--accent-light);
 }
-/* On the teal band the teal ring would vanish (1:1); white is 5.92. */
-[data-brand='systems'] .on-teal :focus-visible {
-  outline-color: #fff;
+/* On the indigo band: the light blue ring (6.29). */
+[data-brand='systems'] .on-band :focus-visible {
+  outline-color: var(--accent-light);
 }
 
-/* Marker stroke (components/systems/MarkedHeading.tsx): draws in once, left
-   to right, 600ms ease-out, shortly after load. Static under reduced motion. */
+/* Marker stroke (components/systems/MarkedHeading.tsx): an indigo underline
+   that draws in once, left to right, 600ms ease-out, shortly after load.
+   Static under reduced motion. */
 .marker-stroke {
-  stroke-width: 0.2em;
-  stroke-opacity: 0.9;
+  stroke-width: 0.1em;
+  stroke-opacity: 1;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation: marker-draw 600ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
@@ -473,11 +483,14 @@ html[data-nf='media'] .nf-flagship {
   }
 }
 
-/* Tilted cards: The Front Office's inbox window and the hero's Monday
-   list, -1.5deg on desktop, straightening on hover or focus. Upright on
-   mobile and under reduced motion. Transform only. */
+/* Tilted cards: the hero's Monday list (-1.5deg) and The Front Office's
+   inbox window (-1deg) on desktop, straightening on hover or focus. Upright
+   on mobile and under reduced motion. Transform only. */
 @media (min-width: 1024px) {
-  .inbox-window,
+  .inbox-window {
+    transform: rotate(-1deg);
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
   .tilt-card {
     transform: rotate(-1.5deg);
     transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -507,33 +520,32 @@ html:has([data-brand='systems']) body {
   overflow-y: visible;
 }
 
-/* Hand strike (components/systems/HeroList.tsx): a slightly uneven pen line
-   through a crossed-off item, as a background image so it follows each line
-   of wrapped text (box-decoration-break). It draws in once, left to right,
-   on load; static under reduced motion. Pen colour #946827. */
-.hand-strike {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 6.2 C 18 4.6, 34 6.8, 52 5.3 S 84 4.4, 99 5.6' fill='none' stroke='%23946827' stroke-width='2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+/* Strike (components/systems/HeroList.tsx): a crisp indigo line through a
+   crossed-off item, as a background image so it follows each line of wrapped
+   text (box-decoration-break). It draws in once, left to right, on load;
+   static under reduced motion. */
+.strike {
+  background-image: linear-gradient(var(--indigo), var(--indigo));
   background-repeat: no-repeat;
-  background-position: left 56%;
-  background-size: 100% 0.55em;
+  background-position: left 58%;
+  background-size: 100% 1.5px;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   color: var(--muted);
-  animation: hand-strike 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: strike 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-@keyframes hand-strike {
+@keyframes strike {
   from {
-    background-size: 0% 0.55em;
+    background-size: 0% 1.5px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hand-strike {
+  .strike {
     animation: none;
   }
 }
 
-/* Focus on the dark hero: the teal ring would fall below 3:1 on the ink,
-   so it uses the light teal (5.64). */
+/* Focus on the dark hero: the light blue ring (7.63 on the ink). */
 [data-brand='systems'] .on-dark :focus-visible {
   outline-color: var(--accent-light);
 }

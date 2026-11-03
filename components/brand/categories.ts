@@ -1,26 +1,31 @@
 import type { CategoryTone } from '@/content/types'
 
-// The flagship category palette, used for Outlook-style category chips and
-// the states they mark (and, in order, the markers on the homepage
-// principles). Colour means something here, never decoration.
+// The flagship category palette (7 November 2026): the original site's blue,
+// indigo and violet family, used for Outlook-style category chips and the
+// states they mark, the same everywhere (homepage inbox, cards,
+// /systems/front-office). Colour means something here, never decoration.
 //
-// swatch: the 10×10 square, Sam's values (3 November 2026).
-// tint:   the chip ground, Sam's values.
-// text:   the swatch darkened to 72%, so the label reads as the same colour.
-//         Contrast on the tint: teal 7.59, amber 5.50, plum 8.17, sky 7.15,
-//         sage 6.78, rose 6.99, slate 9.23 — all AA. (The swatches themselves
-//         are not text colours: amber's swatch on its tint is only 3.2.)
-// border: 32% swatch over the tint.
-// The label always carries the meaning, so colour is never the only signal.
+// Chip text on its tint (AA on light and dark grounds alike, since the chip
+// carries its own tint): blue 7.15, indigo 8.06, violet 7.57, sky 6.59,
+// slate 9.45, cyan 6.49, neutral 10.35. The label always carries the
+// meaning, so colour is never the only signal.
+//
+// Assignments (content/systems.ts): 00 Unclear violet, 01 Appointments blue,
+// 02 Patient Enquiries sky, 03 Referrals indigo, 04 Accounts slate, 05
+// Suppliers (The Front Office's working day only) cyan; person labels such
+// as For Dr Smith are neutral (white chip, slate text).
+//
+// Retired: teal, amber, plum, sage, rose, saffron. Do not bring them back.
 export const CATEGORY_TONES: Record<CategoryTone, { swatch: string; text: string; tint: string; border: string }> = {
-  teal: { swatch: '#1F6F6B', text: '#16504D', tint: '#DCEDEC', border: '#A0C5C3' },
-  amber: { swatch: '#B7791F', text: '#845716', tint: '#FBEFD9', border: '#E5C99D' },
-  plum: { swatch: '#7B4A8C', text: '#593565', tint: '#F0E6F4', border: '#CBB4D3' },
-  sky: { swatch: '#2B6CB0', text: '#1F4E7F', tint: '#E1ECF7', border: '#A7C3E0' },
-  sage: { swatch: '#4F7A4A', text: '#395835', tint: '#E5EFE2', border: '#B5CAB1' },
-  rose: { swatch: '#B2455A', text: '#803241', tint: '#F8E3E7', border: '#E2B0BA' },
-  slate: { swatch: '#4A5568', text: '#353D4B', tint: '#E9ECF0', border: '#B6BCC4' },
+  blue: { swatch: '#2563EB', text: '#1E40AF', tint: '#DBEAFE', border: '#93C5FD' },
+  indigo: { swatch: '#4F46E5', text: '#3730A3', tint: '#E0E7FF', border: '#A5B4FC' },
+  violet: { swatch: '#7C3AED', text: '#5B21B6', tint: '#EDE9FE', border: '#C4B5FD' },
+  sky: { swatch: '#0284C7', text: '#075985', tint: '#E0F2FE', border: '#7DD3FC' },
+  slate: { swatch: '#475569', text: '#334155', tint: '#F1F5F9', border: '#CBD5E1' },
+  cyan: { swatch: '#0891B2', text: '#155E75', tint: '#CFFAFE', border: '#67E8F9' },
+  neutral: { swatch: '#64748B', text: '#334155', tint: '#FFFFFF', border: '#CBD5E1' },
 }
 
-/** The six category colours in order, for sequences such as the principles. */
-export const TONE_SEQUENCE: CategoryTone[] = ['teal', 'amber', 'plum', 'sky', 'sage', 'rose']
+/** The category colours in order, for sequences (principle markers, the
+ *  footer's row of squares). */
+export const TONE_SEQUENCE: CategoryTone[] = ['blue', 'indigo', 'violet', 'sky', 'slate', 'cyan']

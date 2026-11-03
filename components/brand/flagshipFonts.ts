@@ -1,22 +1,17 @@
-import { Caveat, Fraunces, Instrument_Sans, Source_Code_Pro } from 'next/font/google'
+import { Plus_Jakarta_Sans, Source_Code_Pro } from 'next/font/google'
 
-// Flagship type (5 November 2026):
-//   Fraunces        headings. Variable; optical size on; SOFT 50, WONK 0 are
-//                   set in CSS (.v-serif and the heading classes).
-//   Instrument Sans body.
-//   Caveat          handwritten annotations only.
-//   Source Code Pro category chips and the plain-text summary.
-// Shared by app/(systems)/layout.tsx and the root not-found page (which
-// renders the flagship outside that layout). /media keeps Plus Jakarta Sans
-// from the root layout and never loads these.
-export const serif = Fraunces({
+// Flagship type (7 November 2026): Plus Jakarta Sans, the original site's
+// font, for headings (semibold, slightly tight tracking) and body (regular).
+// Source Code Pro only for the category chips, the From / To headers, the
+// counts line and the plain-text morning summary (which is a plain-text email
+// and needs fixed columns).
+// Retired: Fraunces, Instrument Sans, Caveat. Do not bring them back.
+// Shared by app/(systems)/layout.tsx and the flagship 404 (which renders
+// outside that layout). /media loads Plus Jakarta Sans separately from the
+// root layout and is unaffected.
+export const sans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  axes: ['SOFT', 'WONK', 'opsz'],
-  display: 'swap',
-  variable: '--font-serif',
-})
-export const sans = Instrument_Sans({
-  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-sans',
 })
@@ -26,12 +21,6 @@ export const mono = Source_Code_Pro({
   display: 'swap',
   variable: '--font-mono',
 })
-export const hand = Caveat({
-  subsets: ['latin'],
-  weight: ['500', '600'],
-  display: 'swap',
-  variable: '--font-hand',
-})
 
-/** The class string that puts the four font variables in scope. */
-export const flagshipFontVariables = `${serif.variable} ${sans.variable} ${mono.variable} ${hand.variable}`
+/** The class string that puts the font variables in scope. */
+export const flagshipFontVariables = `${sans.variable} ${mono.variable}`

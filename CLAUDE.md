@@ -98,4 +98,12 @@ Flagship pages: Home, Systems, The Front Office (`/systems/front-office`), How i
 
 ## Design
 
-Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components, no framer-motion). Tokens: accent in `components/brand/tokens.ts`, neutrals scoped to `[data-brand='systems']` in `app/globals.css`. Fonts (Fraunces headings, Instrument Sans body, Caveat for handwritten notes only, Source Code Pro for chips and the summary) are defined in `components/brand/flagshipFonts.ts` and loaded by `app/(systems)/layout.tsx` and the flagship 404 only. See `docs/brand/leadscale-systems.md`.
+Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components, no framer-motion). Tokens: accent in `components/brand/tokens.ts`, everything else scoped to `[data-brand='systems']` in `app/globals.css`, category chips in `components/brand/categories.ts`. See `docs/brand/leadscale-systems.md`.
+
+**Palette and type (7 November 2026): the original site's colours, clean.**
+- Colours: near-black with a slight blue tint for the hero and footer (`--dark` #0A0C1C), a deep indigo band for How it runs (`--band` #1E1B4B), white and a very light cool grey (#F6F7FB) for light sections. Blue #2563EB (deep #1D4ED8, light #60A5FA) for buttons, links and focus; indigo #4F46E5 for secondary emphasis (annotations, ticks, strikes, the current folder, the underline under "the admin"); violet only as a chip colour; slate for text and neutrals.
+- Category chips: 00 Unclear violet, 01 Appointments blue, 02 Patient Enquiries sky, 03 Referrals indigo, 04 Accounts slate, 05 Suppliers cyan, person labels neutral. The same everywhere.
+- One soft blue-to-violet glow behind the hero illustration, and the Monday card's thin blue-to-indigo top edge. No other gradients, glows or shimmer.
+- Type: Plus Jakarta Sans for headings (semibold, slightly tight tracking) and body (regular). Source Code Pro only for chips, From / To headers, the counts line, the plain-text summary and code identifiers. Fonts are defined in `components/brand/flagshipFonts.ts` and loaded by `app/(systems)/layout.tsx` and the flagship 404 only.
+- Annotations are neat labels: small medium-weight Plus Jakarta Sans in indigo, with a thin bracket or leader line.
+- **Retired, do not bring back:** Fraunces, Instrument Sans, Caveat (and any handwriting), saffron, amber, cream / warm grounds, teal, green / sage, plum, rose.

@@ -14,7 +14,7 @@ export default function AboutContent() {
 
   return (
     <>
-      <PageHeader header={about.header} chipTone="plum">
+      <PageHeader header={about.header} chipTone="violet">
         <div className="mt-6 flex flex-col gap-4">
           {about.paragraphs.map((p) => (
             <p key={p} className="v-lead">
@@ -30,11 +30,11 @@ export default function AboutContent() {
             <h2 className="v-h3">{about.foundersHeading}</h2>
             <ul className="mt-4 grid gap-4 sm:grid-cols-2">
               {about.founders.map((f) => (
-                <li key={f.name} className="rounded-[8px] border border-[#d9e1e1] bg-[var(--surface)] px-5 py-5">
+                <li key={f.name} className="rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] px-5 py-5">
                   <p className="v-serif text-[1.25rem] font-semibold leading-snug text-[var(--ink)]">{f.name}</p>
                   <p className="mt-0.5 text-[0.9375rem] text-[var(--muted)]">{f.role}</p>
                   <p className="mt-3 text-[0.875rem] text-[var(--ink)]">
-                    {about.signature.company} <span aria-hidden="true" className="text-[#b9c3c5]">·</span>{' '}
+                    {about.signature.company} <span aria-hidden="true" className="text-[var(--faint)]">·</span>{' '}
                     {about.signature.place}
                   </p>
                   <p className="mt-3 border-t border-[var(--hairline)] pt-3 text-[0.8125rem] italic text-[var(--muted)]">

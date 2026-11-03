@@ -1,9 +1,9 @@
-// The hero H1 with one word marked: a single saffron stroke under it, drawn
+// The hero H1 with one word marked: a single indigo stroke under it, drawn
 // in inline SVG as a slightly uneven highlighter line (not a squiggle). It
 // draws in once, left to right, over 600ms on load, in CSS, so it needs no
 // JavaScript; under prefers-reduced-motion it is simply there
 // (app/globals.css, "Marker stroke"). The stroke sits behind the lower part
-// of the word; ink on saffron is 7.44, so the word stays readable.
+// of the word (#818CF8, 6.51 on the hero ink).
 export default function MarkedHeading({
   text,
   marked,
@@ -30,7 +30,7 @@ export default function MarkedHeading({
             pathLength={1}
             d="M3 15.5 C 48 12.5, 92 16.5, 140 13.8 S 236 12.2, 297 14.6"
             fill="none"
-            stroke="var(--saffron)"
+            stroke="var(--indigo-light)"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
           />

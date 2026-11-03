@@ -8,7 +8,7 @@ import { Container, PageHeader, TextLink, sentAt } from './ui'
 export default function ContactContent() {
   return (
     <>
-      <PageHeader header={contact.header} chipTone="amber">
+      <PageHeader header={contact.header} chipTone="blue">
         <div className="mt-10">
           <ComposeWindow compose={contact.compose} />
         </div>

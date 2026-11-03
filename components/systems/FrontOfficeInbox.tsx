@@ -258,13 +258,13 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
         ref={windowRef}
         data-view={view}
         data-autoplay={autoplay}
-        className="inbox-demo inbox-window overflow-hidden rounded-[8px] border-t-[6px] border-[var(--saffron)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_18px_44px_rgba(22,35,43,0.18)]"
+        className="inbox-demo inbox-window overflow-hidden rounded-[8px] border border-t-[3px] border-[var(--frame)] border-t-[var(--primary)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_12px_32px_rgba(15,23,42,0.10)]"
         style={outlookFace}
       >
-        <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1 text-[0.75rem] text-[#6b787d]">
+        <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1 text-[0.75rem] text-[var(--muted)]">
           {demo.toolbar.map((item, i) => (
             <span key={item} className="flex items-center gap-2">
-              {i > 0 && <span className="text-[#b9c3c5]">·</span>}
+              {i > 0 && <span className="text-[var(--faint)]">·</span>}
               {item}
             </span>
           ))}
@@ -273,7 +273,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
         <div>
           <section aria-label={`${demo.mailboxName} ${demo.folderName}`}>
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-[var(--hairline)] px-4 py-1.5">
-              <p className="v-mono text-[0.8125rem] font-semibold tabular-nums">{demo.moment}</p>
+              <p className="tabular-nums text-[0.8125rem] font-semibold tabular-nums">{demo.moment}</p>
               <div className="flex items-center gap-3">
                 <button type="button" onClick={replay} className="v-link text-[0.8125rem] font-semibold">
                   {demo.replayLabel}
@@ -307,7 +307,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-1.5">
+            <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[var(--chrome)] px-4 py-1.5">
               <p className="truncate text-[0.8125rem] text-[var(--muted)]">
                 {demo.mailboxName} <span aria-hidden="true">›</span>{' '}
                 <span className="font-semibold text-[var(--ink)]">{demo.folderName}</span>
@@ -328,7 +328,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                       key={item.key}
                       ref={register(item.key)}
                       data-group={item.label}
-                      className={`border-b border-[var(--hairline)] bg-[#fafbfb] px-4 py-0.5 transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
+                      className={`border-b border-[var(--hairline)] bg-[var(--chrome-soft)] px-4 py-0.5 transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
                     >
                       <span className="flex items-center gap-2">
                         <span aria-hidden="true" className="text-[0.5625rem] text-[var(--muted)]">
@@ -403,7 +403,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
               })}
             </ul>
 
-            <p data-counter aria-live="polite" className="v-mono border-t border-[var(--hairline)] bg-[#fafbfb] px-4 py-1.5 text-[0.75rem] tabular-nums">
+            <p data-counter aria-live="polite" className="v-mono border-t border-[var(--hairline)] bg-[var(--chrome-soft)] px-4 py-1.5 text-[0.75rem] tabular-nums">
               <span data-after-only>{counter(true)}</span>
               <span data-before-only>{counter(false)}</span>
             </p>
@@ -411,7 +411,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
 
           {/* The reading pane, under the list: only once a row is chosen. */}
           {isAfter && opened && (
-            <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[#fafbfb]">
+            <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)]">
               <div className="flex items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
                 <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
                 <div className="flex items-center gap-3">

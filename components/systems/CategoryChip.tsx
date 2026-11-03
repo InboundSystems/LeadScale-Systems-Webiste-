@@ -5,8 +5,8 @@ import { CATEGORY_TONES } from '@/components/brand/categories'
 // its numbered name in monospace, set in the tone's own AA text colour. The
 // label carries the meaning, so colour is never the only signal.
 //
-// The same chip labels sections ("01 The work"), in size md. On the teal
-// band it is inverse: a white chip, teal-dark text (9.18 on white).
+// The same chip labels sections ("01 The work"), in size md. On the indigo
+// band it is inverse: a white chip, indigo text (10.4 on white).
 export default function CategoryChip({
   category,
   size = 'sm',
@@ -25,7 +25,7 @@ export default function CategoryChip({
   const sizing =
     size === 'md' ? 'gap-2 px-2 py-[5px] text-[0.8125rem]' : 'gap-1.5 px-1.5 py-[3px] text-[0.75rem]'
   const colours = inverse
-    ? { backgroundColor: '#fff', borderColor: '#fff', color: CATEGORY_TONES.teal.text }
+    ? { backgroundColor: '#fff', borderColor: '#fff', color: CATEGORY_TONES.indigo.text }
     : { backgroundColor: tone.tint, borderColor: tone.border, color: tone.text }
   return (
     <span
@@ -40,5 +40,5 @@ export default function CategoryChip({
   )
 }
 
-/** Person labels are Outlook categories too, set in a neutral slate. */
-export const personLabelTone = 'slate' as const
+/** Person labels are Outlook categories too, set as a neutral white chip. */
+export const personLabelTone = 'neutral' as const

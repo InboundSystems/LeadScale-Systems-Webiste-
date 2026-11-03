@@ -45,7 +45,7 @@ export function FolderRail({ folders, label }: { folders: Folder[]; label: strin
   return (
     <nav
       aria-label={label}
-      className="pointer-events-auto sticky top-24 w-[13rem] overflow-hidden rounded-[8px] border border-[#d9e1e1] bg-[var(--surface)] py-2"
+      className="pointer-events-auto sticky top-24 w-[13rem] overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] py-2"
       style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}
     >
       <ul>
@@ -60,7 +60,7 @@ export function FolderRail({ folders, label }: { folders: Folder[]; label: strin
                   current ? 'bg-[var(--row-selected)] font-semibold text-[var(--ink)]' : 'text-[var(--ink)] hover:bg-[var(--row-hover)]'
                 }`}
               >
-                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--teal)]" />}
+                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--indigo)]" />}
                 <Square tone={f.tone} />
                 <span className="min-w-0 flex-1 truncate">{f.label}</span>
                 <span className="text-[0.75rem] tabular-nums text-[var(--muted)]">{f.count}</span>
