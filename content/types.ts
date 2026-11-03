@@ -148,6 +148,50 @@ export interface InboxDemo {
   emails: DemoEmail[]
 }
 
+/** One step of a system's working day. Exactly one of arrival, correction
+ *  or summary is set. */
+export interface DayStep {
+  /** The clock shown for this step, e.g. "Friday, 9:40am". */
+  clock: string
+  /** An email arriving in the Inbox. */
+  arrival?: {
+    id: string
+    sender: string
+    subject: string
+    received: string
+    category: CategoryDef
+    personLabel?: string
+  }
+  /** Reception changes the category of an email that already arrived. */
+  correction?: { id: string; to: CategoryDef }
+  /** The morning summary arrives (the last step). */
+  summary?: true
+  /** What the system did, in one or two sentences. Section 4 facts only. */
+  outcome: string
+}
+
+export interface DayTimeline {
+  heading: string
+  intro: string
+  /** Shown only when the timeline is interactive. */
+  hint: string
+  startClock: string
+  startNote: string
+  nextLabel: string
+  backLabel: string
+  restartLabel: string
+  /** e.g. "of", as in "3 of 9". */
+  ofLabel: string
+  paneHeading: string
+  toolbar: string[]
+  mailboxName: string
+  folderName: string
+  arrangedBy: string
+  summaryLinkLabel: string
+  newLabel: string
+  steps: DayStep[]
+}
+
 /** One line of the plain-text morning summary, as the real email sets it:
  *  first column, subject (cut to 44 characters and padded to 44), sender
  *  email address, then any [For …] label. The first column is time waited
@@ -253,13 +297,10 @@ export interface SystemContent {
    *  system carries it. */
   heroDemo?: InboxDemo
 
-  /** A narrative of the system on an ordinary day at a fictional client.
-   *  Times and events, not features. Never implies a live client. */
-  aTypicalDay?: {
-    heading: string
-    intro?: string
-    beats: { time: string; body: string }[]
-  }
+  /** The system's working day as an interactive inbox timeline: emails
+   *  arrive one step at a time at a fictional client, each showing what the
+   *  system did. Never implies a live client. */
+  dayTimeline?: DayTimeline
 
   /** How this system is installed, step by step. /how-it-works links here
    *  as its example. */

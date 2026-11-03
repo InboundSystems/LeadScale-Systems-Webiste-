@@ -49,10 +49,22 @@ export default function ArrivingEmail({
     return () => observer.disconnect()
   }, [arrived])
 
-  // Controlled mode.
+  // Controlled mode. Two frames, so the hidden state paints before the
+  // transition starts, even when it mounts already arrived.
   useEffect(() => {
     if (arrived === undefined) return
-    setState(arrived ? 'arrived' : 'pending')
+    if (!arrived) {
+      setState('pending')
+      return
+    }
+    let inner = 0
+    const outer = requestAnimationFrame(() => {
+      inner = requestAnimationFrame(() => setState('arrived'))
+    })
+    return () => {
+      cancelAnimationFrame(outer)
+      cancelAnimationFrame(inner)
+    }
   }, [arrived])
 
   // The unread marks fade once it has been seen for a moment.

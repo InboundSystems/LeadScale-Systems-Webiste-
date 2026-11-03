@@ -16,6 +16,7 @@ const appointments: CategoryDef = { label: '01 Appointments', tone: 'teal' }
 const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
 const referrals: CategoryDef = { label: '03 Referrals', tone: 'plum' }
 const accounts: CategoryDef = { label: '04 Accounts', tone: 'sage' }
+const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'rose' }
 
 export const systems: SystemContent[] = [
   {
@@ -356,39 +357,117 @@ export const systems: SystemContent[] = [
       },
     },
 
-    aTypicalDay: {
+    // The working day, step by step. The same fictional practice, open
+    // 8:00am to 5:00pm. It is the Friday before the Monday shown in the
+    // illustrations, so it agrees with the summary it ends on: Daniel Ng
+    // (9:40am) waits 7h 20m, Kestrel (11:00am) 6h, the booking form (4:50pm)
+    // 10m, and Tom Avery (Saturday) 0m. The correction is made to a supplier
+    // email, not Kestrel, which the summary still lists under 04 Accounts.
+    dayTimeline: {
       heading: 'A working day.',
-      intro: 'The same fictional practice, through one ordinary Monday.',
-      beats: [
+      intro: 'The same fictional practice, from before opening on Friday to the morning summary on Monday, the next open day.',
+      hint: 'Press Next, or use the arrow keys.',
+      startClock: 'Friday, 7:45am',
+      startNote: 'The practice opens at 8:00am. Press Next to see the day’s email arrive.',
+      nextLabel: 'Next',
+      backLabel: 'Back',
+      restartLabel: 'Start again',
+      ofLabel: 'of',
+      paneHeading: 'What the system did',
+      toolbar: ['New mail', 'Reply', 'Categorise'],
+      mailboxName: 'reception@',
+      folderName: 'Inbox',
+      arrangedBy: 'Arranged by: Date',
+      summaryLinkLabel: 'Read the full summary',
+      newLabel: 'New',
+      steps: [
         {
-          time: '7:30am',
-          body:
-            'The morning summary reaches the practice manager. An email from 4:50pm on Friday shows as waiting ten minutes, because only open hours count.',
+          clock: 'Friday, 7:48am',
+          arrival: { id: 'moreau', sender: 'A. Moreau', subject: 'Checking in', received: '7:48 am', category: unclear },
+          outcome:
+            'Marked 00 Unclear. The system could not tell what kind of email this is, so it sits at the top and a person looks first.',
         },
         {
-          time: '8:00am',
-          body:
-            'Reception opens Outlook with the Inbox arranged by category. The two emails marked 00 Unclear sit at the top and are read first. The rest follow in the practice’s own order.',
+          clock: 'Friday, 9:40am',
+          arrival: {
+            id: 'ng',
+            sender: 'Daniel Ng',
+            subject: 'Request to move my appointment',
+            received: '9:40 am',
+            category: appointments,
+          },
+          outcome: 'Marked 01 Appointments where it sits. Nothing is moved. Until it has a reply, it counts as waiting.',
         },
         {
-          time: '9:20am',
-          body:
-            'An email from a referring practice names Dr Smith. It is marked 03 Referrals and labelled For Dr Smith, and reception forwards it.',
+          clock: 'Friday, 11:00am',
+          arrival: {
+            id: 'kestrel',
+            sender: 'Kestrel Office Supplies',
+            subject: 'Question about invoice 2041',
+            received: '11:00 am',
+            category: accounts,
+          },
+          outcome: 'Marked 04 Accounts. The reply is left to a person. The system never sends an email.',
         },
         {
-          time: '10:45am',
-          body:
-            'Someone completes the website booking form. A reply in the wording the practice approved waits in Drafts, addressed to that person. Reception checks it and presses Send.',
+          clock: 'Friday, 2:30pm',
+          arrival: {
+            id: 'bayside',
+            sender: 'Bayside Linen Service',
+            subject: 'Delivery schedule for December',
+            received: '2:30 pm',
+            category: accounts,
+          },
+          outcome: 'Marked 04 Accounts where it sits in the Inbox.',
         },
         {
-          time: '1:10pm',
-          body:
-            'Reception changes an email’s category from 04 Accounts to 05 Suppliers. The system leaves the change in place and records it for the monthly review.',
+          clock: 'Friday, 2:45pm',
+          correction: { id: 'bayside', to: suppliers },
+          outcome:
+            'Reception changes the category to 05 Suppliers. The system records the correction and never changes it back. Corrections are reviewed with the practice each month.',
         },
         {
-          time: '5:00pm',
-          body:
-            'The practice closes. Email that arrives overnight is still marked, and the hours until opening do not count as waiting.',
+          clock: 'Friday, 4:40pm',
+          arrival: {
+            id: 'harbourside',
+            sender: 'Harbourside Family Practice',
+            subject: 'Referral for Dr Smith',
+            received: '4:40 pm',
+            category: referrals,
+            personLabel: 'For Dr Smith',
+          },
+          outcome:
+            'Marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
+        },
+        {
+          clock: 'Friday, 4:50pm',
+          arrival: {
+            id: 'booking',
+            sender: 'Website booking form',
+            subject: 'New booking request',
+            received: '4:50 pm',
+            category: appointments,
+          },
+          outcome:
+            'Marked 01 Appointments. A reply in the practice’s approved wording, addressed to the person who filled in the form, waits in Drafts until a person checks it and presses Send.',
+        },
+        {
+          clock: 'Saturday, 10:22am',
+          arrival: {
+            id: 'avery',
+            sender: 'Tom Avery',
+            subject: 'Updating my contact details',
+            received: 'Sat 10:22 am',
+            category: enquiries,
+          },
+          outcome:
+            'Arrives while the practice is closed and is marked all the same. The weekend does not count as waiting.',
+        },
+        {
+          clock: 'Monday, 7:30am',
+          summary: true,
+          outcome:
+            'The morning summary reaches the practice manager. The booking form email from 4:50pm on Friday shows as waiting ten minutes, because only open hours count.',
         },
       ],
     },

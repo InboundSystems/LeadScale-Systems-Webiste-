@@ -1,5 +1,6 @@
 import { intendedPurpose } from '@/content/intended-purpose'
 import type { SystemContent } from '@/content/types'
+import DayTimeline from './DayTimeline'
 import FAQList from './FAQList'
 import InboxIllustration from './InboxIllustration'
 import IntendedPurpose from './IntendedPurpose'
@@ -58,7 +59,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.illustrations && (
-        <Section tone="surface" labelledBy="illustrations-heading">
+        <Section tone="surface" id="illustrations" labelledBy="illustrations-heading" className="scroll-mt-20">
           <h2 id="illustrations-heading" className="v-h2 max-w-[26ch]">
             {system.illustrations.heading}
           </h2>
@@ -100,26 +101,19 @@ export default function SystemPage({ system }: { system: SystemContent }) {
         </Section>
       )}
 
-      {system.aTypicalDay && (
-        <Section labelledBy="day-heading">
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
-            <div className="lg:col-span-5">
+      {system.dayTimeline && (
+        <Section id="working-day" labelledBy="day-heading" className="scroll-mt-20">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
               <h2 id="day-heading" className="v-h2">
-                {system.aTypicalDay.heading}
+                {system.dayTimeline.heading}
               </h2>
-              {system.aTypicalDay.intro && <p className="mt-4 text-[var(--muted)]">{system.aTypicalDay.intro}</p>}
+              <p className="mt-4 text-[var(--muted)]">{system.dayTimeline.intro}</p>
+              <p className="js-only mt-3 text-[0.9375rem] text-[var(--muted)]">{system.dayTimeline.hint}</p>
             </div>
-            <ol className="border-t border-[var(--hairline)] lg:col-span-7">
-              {system.aTypicalDay.beats.map((beat) => (
-                <li
-                  key={beat.time}
-                  className="grid grid-cols-[5rem_minmax(0,1fr)] gap-4 border-b border-[var(--hairline)] py-5 sm:grid-cols-[6rem_minmax(0,1fr)]"
-                >
-                  <span className="v-mono pt-[0.2em] text-[0.875rem] font-semibold text-[var(--accent)]">{beat.time}</span>
-                  <p className="text-[var(--ink)]">{beat.body}</p>
-                </li>
-              ))}
-            </ol>
+            <div className="lg:col-span-8">
+              <DayTimeline timeline={system.dayTimeline} summary={system.illustrations?.summary} />
+            </div>
           </div>
         </Section>
       )}

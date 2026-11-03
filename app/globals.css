@@ -290,7 +290,8 @@ html.js .inbox-demo[data-autoplay='pending'] [data-mark] {
 .inbox-row > button:hover {
   background-color: var(--row-hover);
 }
-.inbox-row[data-selected='true'] > button {
+.inbox-row[data-selected='true'] > button,
+.inbox-row[data-selected='true'] > div {
   background-color: var(--row-selected);
 }
 .inbox-row[data-selected='true']::before {
@@ -326,6 +327,18 @@ html:not(.js) .inbox-demo [data-for='after'],
 html.js .inbox-demo[data-autoplay='pending'] [data-for='before'] {
   background-color: var(--teal);
   color: #fff;
+}
+
+/* Two renderings in one server response: .no-js-only without JavaScript,
+   .js-only once the inline script has set html.js. */
+.js-only {
+  display: none;
+}
+html.js .js-only {
+  display: block;
+}
+html.js .no-js-only {
+  display: none;
 }
 
 /* Unread: a 6px saffron dot in the row's left gutter. */
