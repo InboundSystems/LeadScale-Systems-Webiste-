@@ -77,7 +77,7 @@ function MailSection({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={`scroll-mt-28 border-t border-[var(--hairline)] py-16 sm:py-24 xl:scroll-mt-20 ${bg[ground]}`}
+      className={`scroll-mt-28 py-16 sm:py-24 xl:scroll-mt-20 ${index === 0 ? '' : 'border-t border-[var(--hairline)]'} ${bg[ground]}`}
     >
       <Column>
         <MailHeader
@@ -125,7 +125,7 @@ export default function HomeContent() {
       </header>
 
       {/* First light: the page brightens from ink to the first light section. */}
-      <div aria-hidden="true" className="h-[120px] bg-gradient-to-b from-[var(--dark)] to-[var(--surface)]" />
+      <div aria-hidden="true" className="first-light" />
 
       <FolderStrip folders={folders} label={home.foldersLabel} />
 

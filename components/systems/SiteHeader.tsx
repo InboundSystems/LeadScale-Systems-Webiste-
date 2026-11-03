@@ -9,9 +9,9 @@ import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import { ButtonLink, Container } from './ui'
 
 // Flagship header. Media keeps components/Navbar.tsx and its own wordmark.
-// The logo: the owl mark (28px tall) and the VICARIA SYSTEMS wordmark, in ink
+// The logo: the owl mark (32px tall, so SYSTEMS in the wordmark is legible) and the VICARIA SYSTEMS wordmark, in ink
 // on the light header, from components/brand (generated from
-// public/brand/*.svg, never redrawn). The lockup is about 151px wide, over the
+// public/brand/*.svg, never redrawn). The lockup is about 170px wide, over the
 // 140px minimum, and fits at 400px.
 //
 // The owl blinks once per visit (sessionStorage), after the hero's own
@@ -45,8 +45,8 @@ export default function SiteHeader() {
       </a>
       <Container className="flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label="Vicaria" className="flex shrink-0 items-center gap-2.5 text-[var(--ink)]">
-          <VicariaOwl className={`owl-mark h-7 w-auto ${blink ? 'owl-blink' : ''}`} />
-          <VicariaWordmark className="h-6 w-auto" />
+          <VicariaOwl className={`owl-mark h-8 w-auto ${blink ? 'owl-blink' : ''}`} />
+          <VicariaWordmark className="h-[27px] w-auto" />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">

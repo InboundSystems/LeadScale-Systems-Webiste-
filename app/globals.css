@@ -576,3 +576,25 @@ html:has([data-brand='systems']) body {
     animation: none;
   }
 }
+
+/* First light (components/systems/HomeContent.tsx): the 80px fade from the
+   hero's ink to the first light section, eased (sine in-out, eleven stops)
+   so it has no visible band or edge, ending on exactly that section's
+   background (--surface, #ffffff). The section after it has no top rule. */
+.first-light {
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    #05050f 0%,
+    #0b0b15 10%,
+    #1d1d26 20%,
+    #393940 30%,
+    #5b5b62 40%,
+    #828287 50%,
+    #a9a9ac 60%,
+    #cbcbce 70%,
+    #e7e7e8 80%,
+    #f9f9f9 90%,
+    #ffffff 100%
+  );
+}
