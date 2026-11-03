@@ -1,6 +1,7 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import EmailHeader from './EmailHeader'
 import HeroInbox from './HeroInbox'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
@@ -35,10 +36,7 @@ export default function HomeContent() {
       <Section labelledBy="work-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <Eyebrow>{home.work.eyebrow}</Eyebrow>
-            <h2 id="work-heading" className="v-h2">
-              {home.work.heading}
-            </h2>
+            <EmailHeader email={home.work.email} heading={home.work.heading} headingId="work-heading" />
           </div>
           <div className="lg:col-span-7">
             <dl className="border-t border-[var(--hairline)]">
@@ -56,10 +54,12 @@ export default function HomeContent() {
 
       {/* The one full-width teal band: white text, hairlines at 20% white. */}
       <Section tone="teal" rule={false} labelledBy="method-heading">
-        <Eyebrow className="!text-[#e4eeed]">{home.method.eyebrow}</Eyebrow>
-        <h2 id="method-heading" className="v-h2 max-w-[26ch] !text-white">
-          {home.method.heading}
-        </h2>
+        <EmailHeader
+          email={home.method.email}
+          heading={home.method.heading}
+          headingId="method-heading"
+          className="max-w-[34rem]"
+        />
         <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {home.method.items.map((item) => (
             <div key={item.heading} className="border-t border-white/20 pt-5">
@@ -76,10 +76,7 @@ export default function HomeContent() {
       <Section tone="warm" labelledBy="principles-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <Eyebrow>{home.principles.eyebrow}</Eyebrow>
-            <h2 id="principles-heading" className="v-h2">
-              {home.principles.heading}
-            </h2>
+            <EmailHeader email={home.principles.email} heading={home.principles.heading} headingId="principles-heading" />
             <p className="mt-6">
               <TextLink link={home.principles.link} />
             </p>

@@ -68,7 +68,7 @@ export const home: HomeContent = {
   },
 
   work: {
-    eyebrow: 'The work',
+    email: { from: 'Vicaria', to: 'You', subject: 'The kind of work Vicaria takes on' },
     heading: 'The kind of work Vicaria takes on.',
     items: [
       {
@@ -93,7 +93,7 @@ export const home: HomeContent = {
   },
 
   method: {
-    eyebrow: 'The method',
+    email: { from: 'Vicaria', subject: 'How every system runs' },
     heading: 'Every system runs the same way.',
     items: [
       {
@@ -125,7 +125,7 @@ export const home: HomeContent = {
   },
 
   principles: {
-    eyebrow: 'Principles',
+    email: { from: 'Vicaria', subject: 'What holds for every system' },
     heading: 'What holds for every system.',
     items: [
       'Existing software is kept. Nothing is replaced.',

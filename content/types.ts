@@ -282,6 +282,14 @@ export interface SystemContent {
 // ---------------------------------------------------------------------------
 // Pages
 // ---------------------------------------------------------------------------
+/** The signature look: a section intro set as an email header. Used on
+ *  exactly three homepage sections, nowhere else. */
+export interface SectionEmail {
+  from: string
+  to?: string
+  subject: string
+}
+
 export interface HomeContent {
   hero: {
     eyebrow: string
@@ -292,11 +300,11 @@ export interface HomeContent {
   }
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */
-  work: { eyebrow: string; heading: string; items: HeadedItem[]; closing: string }
+  work: { email: SectionEmail; heading: string; items: HeadedItem[]; closing: string }
   /** How Vicaria works, for every system. */
-  method: { eyebrow: string; heading: string; items: HeadedItem[]; link: LinkItem }
+  method: { email: SectionEmail; heading: string; items: HeadedItem[]; link: LinkItem }
   /** Principles true of every system, not of one. */
-  principles: { eyebrow: string; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
+  principles: { email: SectionEmail; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
   systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
   end: PageEnd
 }
