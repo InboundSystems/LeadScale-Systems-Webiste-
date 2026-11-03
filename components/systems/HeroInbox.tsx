@@ -38,6 +38,9 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
   const [view, setView] = useState<View>('after')
   const [autoplay, setAutoplay] = useState<Autoplay>('pending')
   const [hovered, setHovered] = useState<string | null>(null)
+  // Bumped when an animated sort to After finishes; remounts the unread dots
+  // so their one pulse plays (app/globals.css, "Unread pulse").
+  const [pulse, setPulse] = useState(0)
 
   // One DOM order, the After order: categories in the practice's order,
   // newest first within each. Before is the same rows reordered by CSS.
@@ -89,10 +92,14 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
 
   const go = useCallback((next: View, animate: boolean) => {
     if (next === viewRef.current) return
-    if (animate && !reducedMotion()) capture()
+    const moving = animate && !reducedMotion()
+    if (moving) capture()
     viewRef.current = next
     setHovered(null)
     setView(next)
+    if (moving && next === 'after') {
+      timers.current.push(window.setTimeout(() => setPulse((n) => n + 1), DURATION))
+    }
   }, [])
 
   // Hydrated: take over from the CSS pre-hydration state.
@@ -273,7 +280,13 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
                 style={{ ['--before-order' as string]: item.beforeOrder }}
                 className={`inbox-row relative border-b border-[var(--hairline)] transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
               >
-                {email.unread && <span aria-hidden="true" className="unread-dot top-[14px]" />}
+                {email.unread && (
+                  <span
+                    key={`dot-${pulse}`}
+                    aria-hidden="true"
+                    className={`unread-dot top-[14px] ${pulse > 0 ? 'unread-pulse' : ''}`}
+                  />
+                )}
                 <button
                   type="button"
                   tabIndex={isAfter ? 0 : -1}

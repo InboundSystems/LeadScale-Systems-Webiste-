@@ -116,7 +116,7 @@ export function ButtonLink({
   className?: string
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-colors duration-150'
+    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-px'
   const styles =
     variant === 'primary'
       ? 'bg-[var(--teal)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'

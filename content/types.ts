@@ -77,6 +77,9 @@ export interface SiteChrome {
   /** Media appears in the flagship footer only, never the header. */
   crossBrand: LinkItem
   footerTagline: string
+  /** The footer clock's place: "Brisbane", then ", 8:42 am" once the
+   *  local time is known (Australia/Brisbane, AEST). */
+  clockPlace: string
 }
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { business, site } from '@/content/audience'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import BrisbaneClock from './BrisbaneClock'
 import { Container } from './ui'
 
 // Flagship footer. Media keeps components/Footer.tsx. No social or client
@@ -59,8 +60,11 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-[0.875rem] text-[#a7b4b9] sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {business.legalName}
+          <p className="flex flex-wrap gap-x-3">
+            <span>
+              © {new Date().getFullYear()} {business.legalName}
+            </span>
+            <BrisbaneClock place={site.clockPlace} />
           </p>
           <Link href={site.crossBrand.href} className={LINK}>
             {site.crossBrand.label}

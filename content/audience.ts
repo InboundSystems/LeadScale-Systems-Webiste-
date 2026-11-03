@@ -55,6 +55,7 @@ export const site: SiteChrome = {
   ],
   crossBrand: { label: 'Vicaria Media', href: '/media' },
   footerTagline: 'Vicaria takes recurring administrative work off service businesses.',
+  clockPlace: 'Brisbane',
 }
 
 export const home: HomeContent = {

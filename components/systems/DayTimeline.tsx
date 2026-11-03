@@ -232,7 +232,7 @@ export default function DayTimeline({
 
   const atEnd = pos === steps.length
   const btn =
-    'rounded-[var(--radius-btn)] px-4 py-2 text-[0.875rem] font-semibold leading-none transition-colors duration-150 disabled:cursor-default disabled:opacity-40'
+    'rounded-[var(--radius-btn)] px-4 py-2 text-[0.875rem] font-semibold leading-none transition-[background-color,color,transform] duration-150 ease-out enabled:hover:-translate-y-px disabled:cursor-default disabled:opacity-40'
 
   return (
     <>
