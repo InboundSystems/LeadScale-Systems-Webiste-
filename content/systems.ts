@@ -11,11 +11,11 @@ import { pricingStatement } from './pricing'
 
 // Fictional categories for the illustrations. Numbered in a practice's own
 // order, as the system does; 00 Unclear always sorts first.
-const unclear: CategoryDef = { label: '00 Unclear', colour: '#B45309' }
-const appointments: CategoryDef = { label: '01 Appointments', colour: '#2E6E6B' }
-const enquiries: CategoryDef = { label: '02 Patient Enquiries', colour: '#4A6FA5' }
-const referrals: CategoryDef = { label: '03 Referrals', colour: '#7B5EA7' }
-const accounts: CategoryDef = { label: '04 Accounts', colour: '#8C6A3F' }
+const unclear: CategoryDef = { label: '00 Unclear', tone: 'amber' }
+const appointments: CategoryDef = { label: '01 Appointments', tone: 'teal' }
+const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
+const referrals: CategoryDef = { label: '03 Referrals', tone: 'plum' }
+const accounts: CategoryDef = { label: '04 Accounts', tone: 'sage' }
 
 export const systems: SystemContent[] = [
   {
@@ -82,6 +82,116 @@ export const systems: SystemContent[] = [
           heading: 'Respects reception’s corrections',
           body:
             'If reception changes a category, the system never changes it back. Every correction is recorded, never overwritten, and reviewed with the practice at a monthly review.',
+        },
+      ],
+    },
+
+    // The homepage hero demo. Same fictional practice and Monday morning as
+    // the illustrations below. Every outcome line is a section 4 fact.
+    heroDemo: {
+      caption: 'The Front Office, the first Vicaria system. Fictional practice.',
+      mailboxName: 'reception@',
+      folderName: 'Inbox',
+      moment: 'Monday, 8:00am',
+      beforeLabel: 'Before',
+      afterLabel: 'After',
+      arrangedByDate: 'Arranged by: Date',
+      arrangedByCategory: 'Arranged by: Categories',
+      beforeHint: 'Every email in one list, newest first. Select After to see each one marked.',
+      paneHeading: 'What the system did',
+      categories: [unclear, appointments, enquiries, referrals, accounts],
+      emails: [
+        {
+          id: 'alex',
+          sender: 'Alex',
+          subject: 'Quick question',
+          received: '7:48 am',
+          unread: true,
+          category: unclear,
+          outcome:
+            'Marked 00 Unclear. The system could not tell what kind of email this is, so it sits at the top for a person to look at first.',
+        },
+        {
+          id: 'booking',
+          sender: 'Website booking form',
+          subject: 'New booking request',
+          received: '7:31 am',
+          unread: true,
+          category: appointments,
+          outcome:
+            'Marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until a person checks it and presses Send.',
+        },
+        {
+          id: 'raman',
+          sender: 'Priya Raman',
+          subject: 'Can I bring my appointment forward?',
+          received: 'Sun 8:05 pm',
+          unread: true,
+          category: appointments,
+          outcome:
+            'Marked 01 Appointments and left in the Inbox. If it still has no reply, it appears in tomorrow’s morning summary.',
+        },
+        {
+          id: 'collins',
+          sender: 'R. Collins',
+          subject: 'Following up',
+          received: 'Sun 6:14 pm',
+          unread: true,
+          category: unclear,
+          outcome: 'Marked 00 Unclear. Nothing in it shows what it concerns, so the system does not guess.',
+        },
+        {
+          id: 'avery',
+          sender: 'Tom Avery',
+          subject: 'Updating my contact details',
+          received: 'Sat 10:22 am',
+          unread: true,
+          category: enquiries,
+          outcome: 'Marked 02 Patient Enquiries where it sits. Nothing is moved and nothing is sent.',
+        },
+        {
+          id: 'wattlebrook',
+          sender: 'Wattlebrook Family Medical',
+          subject: 'Referral for Dr Smith',
+          received: 'Fri 4:40 pm',
+          category: referrals,
+          personLabel: 'For Dr Smith',
+          outcome:
+            'Marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
+        },
+        {
+          id: 'hill',
+          sender: 'Margaret Hill',
+          subject: 'Parking near the rooms',
+          received: 'Fri 2:15 pm',
+          category: enquiries,
+          outcome:
+            'Marked 02 Patient Enquiries. While it waits for a reply, the morning summary counts open hours only, so the weekend is not counted.',
+        },
+        {
+          id: 'kestrel',
+          sender: 'Kestrel Office Supplies',
+          subject: 'Question about invoice 2041',
+          received: 'Fri 11:00 am',
+          category: accounts,
+          outcome: 'Marked 04 Accounts. The reply is left to a person. The system never sends an email.',
+        },
+        {
+          id: 'ng',
+          sender: 'Daniel Ng',
+          subject: 'Request to move my appointment',
+          received: 'Fri 9:40 am',
+          category: appointments,
+          outcome: 'Marked 01 Appointments. If reception changes the category, the system never changes it back.',
+        },
+        {
+          id: 'northgate',
+          sender: 'Northgate Medical Centre',
+          subject: 'Referral: new patient',
+          received: 'Thu 2:05 pm',
+          category: referrals,
+          outcome:
+            'Marked 03 Referrals, by what kind of email it is. The system makes no clinical judgement and assigns no priority.',
         },
       ],
     },

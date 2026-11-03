@@ -103,7 +103,7 @@ export function ButtonLink({
     'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-colors duration-150'
   const styles =
     variant === 'primary'
-      ? 'bg-[var(--accent)] text-white hover:bg-[var(--accent-deep)]'
+      ? 'bg-[var(--accent)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'
       : 'border border-[var(--muted)] bg-transparent text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--surface)]'
   return (
     <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>

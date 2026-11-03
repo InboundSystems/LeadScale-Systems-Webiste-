@@ -65,17 +65,6 @@ export const home: HomeContent = {
       'Vicaria builds and operates systems that take on the repetitive administrative work in a service business, inside the software it already uses. That leaves the business’s people free for work that needs a person.',
     primary: { label: 'Enquire', href: '/enquire' },
     secondary: { label: 'How it works', href: '/how-it-works' },
-    desk: {
-      title: 'The desk',
-      label: 'Illustration',
-      stages: ['Arrived', 'Handled', 'Ready for a person'],
-      rows: [
-        { label: 'Item 01', reached: 1 },
-        { label: 'Item 02', reached: 2 },
-        { label: 'Item 03', reached: 3 },
-      ],
-      caption: 'Illustration. Each item arrives, is dealt with by the business’s own rules, and comes back ready for a person.',
-    },
   },
 
   work: {

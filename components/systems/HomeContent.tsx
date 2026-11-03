@@ -1,6 +1,8 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
-import HeroDesk from './HeroDesk'
+
+const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
+import HeroInbox from './HeroInbox'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
@@ -13,8 +15,8 @@ export default function HomeContent() {
     <>
       <header className="pb-16 pt-14 sm:pb-24 sm:pt-24">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-14">
-            <div className="lg:col-span-7">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-12">
+            <div className="lg:col-span-5 lg:pt-14">
               <Eyebrow>{home.hero.eyebrow}</Eyebrow>
               <h1 className="v-display max-w-[22ch]">{home.hero.heading}</h1>
               <p className="v-lead mt-7">{home.hero.body}</p>
@@ -23,7 +25,7 @@ export default function HomeContent() {
                 <ButtonLink link={home.hero.secondary} variant="secondary" />
               </div>
             </div>
-            <HeroDesk desk={home.hero.desk} className="lg:col-span-5" />
+            {heroDemo && <HeroInbox demo={heroDemo} className="lg:col-span-7" />}
           </div>
         </Container>
       </header>

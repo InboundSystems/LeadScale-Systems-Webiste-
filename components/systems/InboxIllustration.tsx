@@ -1,5 +1,5 @@
 import type { CategoryDef, InboxIllustration as InboxData, InboxMessage } from '@/content/types'
-import CategoryChip, { personLabelColour } from './CategoryChip'
+import CategoryChip, { personLabelTone } from './CategoryChip'
 
 // An illustrated Outlook-style message list, built in HTML/CSS. Evokes
 // Outlook through layout and the system UI face only; no Microsoft marks.
@@ -52,7 +52,7 @@ function Row({ message, category, stacked }: { message: InboxMessage; category: 
         <span className="flex flex-wrap gap-1.5">
           <CategoryChip category={category} />
           {message.personLabel && (
-            <CategoryChip category={{ label: message.personLabel, colour: personLabelColour }} />
+            <CategoryChip category={{ label: message.personLabel, tone: personLabelTone }} />
           )}
         </span>
         {!stacked && (

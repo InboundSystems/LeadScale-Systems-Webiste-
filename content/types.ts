@@ -83,11 +83,14 @@ export interface SiteChrome {
 // The illustrations on a system page. Fictional data only: no real practice,
 // patient or sender, and no clinical detail in any subject line.
 // ---------------------------------------------------------------------------
+/** The category palette (components/brand/categories.ts). */
+export type CategoryTone = 'teal' | 'amber' | 'plum' | 'sky' | 'sage' | 'rose' | 'slate'
+
 export interface CategoryDef {
   /** e.g. "01 Appointments". The number is the practice's own order. */
   label: string
-  /** The category's Outlook colour, shown as a swatch beside the label. */
-  colour: string
+  /** The category's colour, shown as a swatch and a tinted chip. */
+  tone: CategoryTone
 }
 
 export interface InboxMessage {
@@ -105,6 +108,38 @@ export interface InboxIllustration {
   folderName: string
   arrangedBy: string
   groups: { category: CategoryDef; messages: InboxMessage[] }[]
+}
+
+/** One email in the homepage hero demo. Fictional. */
+export interface DemoEmail {
+  id: string
+  sender: string
+  subject: string
+  received: string
+  unread?: boolean
+  category: CategoryDef
+  personLabel?: string
+  /** One or two sentences: what the system did with it. Section 4 facts only. */
+  outcome: string
+}
+
+export interface InboxDemo {
+  caption: string
+  mailboxName: string
+  folderName: string
+  /** The moment shown, e.g. "Monday, 8:00am". */
+  moment: string
+  beforeLabel: string
+  afterLabel: string
+  arrangedByDate: string
+  arrangedByCategory: string
+  /** Shown in the reading pane in the before state. */
+  beforeHint: string
+  paneHeading: string
+  /** Category order, 00 Unclear first. */
+  categories: CategoryDef[]
+  /** Newest first, as the unsorted Inbox lists them. */
+  emails: DemoEmail[]
 }
 
 /** One line of the plain-text morning summary, as the real email sets it:
@@ -208,6 +243,10 @@ export interface SystemContent {
     summary: MorningSummaryIllustration
   }
 
+  /** The interactive before-and-after inbox in the homepage hero. Only one
+   *  system carries it. */
+  heroDemo?: InboxDemo
+
   /** A compact inbox illustration inside this system's card on the
    *  homepage, drawn from illustrations.inbox. Renders nothing when unset. */
   cardIllustration?: { caption: string; maxGroups: number }
@@ -241,16 +280,6 @@ export interface SystemContent {
 // ---------------------------------------------------------------------------
 // Pages
 // ---------------------------------------------------------------------------
-export interface HeroDesk {
-  title: string
-  label: string
-  /** In order, e.g. Arrived, Handled, Ready for a person. */
-  stages: string[]
-  /** Each row's label and how many stages it has reached (1-based). */
-  rows: { label: string; reached: number }[]
-  caption: string
-}
-
 export interface HomeContent {
   hero: {
     eyebrow: string
@@ -258,9 +287,6 @@ export interface HomeContent {
     body: string
     primary: LinkItem
     secondary: LinkItem
-    /** The company-level hero visual: generic items moving across a desk.
-     *  Neutral words only; it names no task, so it implies no system. */
-    desk: HeroDesk
   }
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */

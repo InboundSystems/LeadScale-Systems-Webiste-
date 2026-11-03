@@ -63,6 +63,9 @@ html {
   --hairline: #e3e8e8;
   --accent-tint: #e6efee; /* accent on tint 5.04 */
   --warm: #f3efe7; /* ink 13.98, muted 4.82, accent 5.15 */
+  /* Saffron: the one warm accent, for highlights and the primary button's
+     hover. Ink on saffron 7.71. Never text on the light ground (1.99). */
+  --saffron: #e8a838;
   --radius-btn: 4px;
   --radius-card: 6px;
 
