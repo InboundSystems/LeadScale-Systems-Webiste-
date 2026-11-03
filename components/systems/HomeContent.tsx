@@ -1,10 +1,10 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import AnnotatedSummary from './AnnotatedSummary'
 import ArrivingEmail from './ArrivingEmail'
 import EmailHeader from './EmailHeader'
 import HeroInbox from './HeroInbox'
-import MorningSummary from './MorningSummary'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
@@ -100,7 +100,7 @@ export default function HomeContent() {
           <ul className="flex flex-col gap-6 lg:col-span-7">
             {systems.map((system) => (
               <li key={system.name}>
-                <SystemCard system={system} linkLabel={home.systems.linkLabel} />
+                <SystemCard system={system} linkLabel={home.systems.linkLabel} showChips />
               </li>
             ))}
           </ul>
@@ -114,7 +114,12 @@ export default function HomeContent() {
             {home.nextMorning.heading}
           </h2>
           <ArrivingEmail newLabel={home.nextMorning.newLabel} className="mt-10 max-w-[48rem]">
-            <MorningSummary summary={summary} caption={home.nextMorning.caption} />
+            <AnnotatedSummary
+              summary={summary}
+              caption={home.nextMorning.caption}
+              annotations={home.nextMorning.annotations}
+              notesLabel={home.nextMorning.notesLabel}
+            />
           </ArrivingEmail>
         </Section>
       )}

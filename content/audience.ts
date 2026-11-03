@@ -68,7 +68,7 @@ export const home: HomeContent = {
   },
 
   work: {
-    email: { from: 'Vicaria', to: 'You', subject: 'The kind of work Vicaria takes on' },
+    email: { from: 'Vicaria', to: 'You', subject: 'The work on your desk' },
     heading: 'The kind of work Vicaria takes on.',
     items: [
       {
@@ -155,6 +155,13 @@ export const home: HomeContent = {
     heading: 'One email says what is still waiting.',
     caption: 'The Front Office morning summary. Fictional practice.',
     newLabel: 'New',
+    notesLabel: 'Notes on the summary',
+    annotations: [
+      { match: 'Time counts open hours only', note: 'Counts open hours only' },
+      { match: '00 Unclear', note: 'Unclear sits first, so a person looks at it' },
+      { match: 'Passed on, no reply to the sender yet', note: 'Optional: mail passed on with no reply yet' },
+      { match: 'Possibly misfiled in Junk Email', note: 'Listed only. Nothing is moved out of Junk' },
+    ],
   },
 
   end: {

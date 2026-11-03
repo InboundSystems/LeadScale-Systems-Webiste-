@@ -293,6 +293,10 @@ export interface SystemContent {
     summary: MorningSummaryIllustration
   }
 
+  /** A thin row of category chips along the top of this system's card on
+   *  the homepage, in the same colour language as the hero. */
+  cardChips?: CategoryDef[]
+
   /** The interactive before-and-after inbox in the homepage hero. Only one
    *  system carries it. */
   heroDemo?: InboxDemo
@@ -331,6 +335,12 @@ export interface SectionEmail {
   subject: string
 }
 
+export interface SummaryAnnotation {
+  /** Text of the summary line the note points to (first line containing it). */
+  match: string
+  note: string
+}
+
 export interface HomeContent {
   hero: {
     eyebrow: string
@@ -349,7 +359,17 @@ export interface HomeContent {
   systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
   /** The Front Office's morning summary, arriving as a new email below the
    *  systems section. The summary itself comes from content/systems.ts. */
-  nextMorning: { eyebrow: string; heading: string; caption: string; newLabel: string }
+  nextMorning: {
+    eyebrow: string
+    heading: string
+    caption: string
+    newLabel: string
+    /** Accessible name of the notes list. */
+    notesLabel: string
+    /** Margin notes beside the email. Not email text. Each points to the
+     *  first summary line that contains `match`. */
+    annotations: SummaryAnnotation[]
+  }
   end: PageEnd
 }
 

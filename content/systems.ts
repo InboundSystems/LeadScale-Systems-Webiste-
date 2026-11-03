@@ -87,6 +87,8 @@ export const systems: SystemContent[] = [
       ],
     },
 
+    cardChips: [unclear, appointments, enquiries, referrals, accounts, { label: 'For Dr Smith', tone: 'slate' }],
+
     // The homepage hero demo. Same fictional practice and Monday morning as
     // the illustrations below. Every outcome line is a section 4 fact.
     heroDemo: {
@@ -274,14 +276,14 @@ export const systems: SystemContent[] = [
       // Matches the real plain-text summary email (summary.mjs) line for
       // line (Sam, 2 November 2026). Counts are consistent with the inbox
       // above: the five with no reply are R. Collins, Daniel Ng, the booking
-      // form, Tom Avery and Kestrel. Alex arrived after 7:30am. Waits are
+      // form, Tom Avery and Kestrel. Alex arrived after 7:00am. Waits are
       // kept under one open day, so no line depends on how days are counted.
       summary: {
-        caption: 'The morning summary, sent at 7:30am on the same Monday. Illustration with fictional senders.',
+        caption: 'The morning summary, sent at 7:00am on the same Monday. Illustration with fictional senders.',
         from: 'Vicaria',
         to: 'Practice manager',
         subject: 'Elsworth Lane Specialists — inbox summary, Monday 2 November',
-        sent: 'Monday 7:30 am',
+        sent: 'Monday 7:00 am',
         title: ['Elsworth Lane Specialists — inbox summary', 'Monday 2 November'],
         opening: [
           ['18 messages arrived in the last 7 open days. 5 have no reply yet.'],
@@ -464,7 +466,7 @@ export const systems: SystemContent[] = [
             'Arrives while the practice is closed and is marked all the same. The weekend does not count as waiting.',
         },
         {
-          clock: 'Monday, 7:30am',
+          clock: 'Monday, 7:00am',
           summary: true,
           outcome:
             'The morning summary reaches the practice manager. The booking form email from 4:50pm on Friday shows as waiting ten minutes, because only open hours count.',

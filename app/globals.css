@@ -384,3 +384,18 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
     transform: none;
   }
 }
+
+/* Summary notes (components/systems/AnnotatedSummary.tsx): margin notes at
+   1280px and up when JavaScript can position them; otherwise a numbered list
+   under the email. */
+.summary-margin {
+  display: none;
+}
+@media (min-width: 1280px) {
+  html.js .summary-margin {
+    display: block;
+  }
+  html.js .summary-list {
+    display: none;
+  }
+}
