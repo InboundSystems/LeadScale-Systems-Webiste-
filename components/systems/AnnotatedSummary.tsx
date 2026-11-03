@@ -2,23 +2,26 @@
 
 import { useLayoutEffect, useRef, useState } from 'react'
 import type { MorningSummaryIllustration, SummaryAnnotation } from '@/content/types'
+import HandArrow from './HandArrow'
 import MorningSummary from './MorningSummary'
 
-// The morning summary with margin notes (homepage). Notes are not email text:
-// they sit outside the email, in the sans face, each joined by a thin teal
-// leader line to the email's edge at the line it explains, where a small
-// numbered marker sits in the email's margin.
+// The morning summary with handwritten margin notes (homepage). Notes are not
+// email text: they sit outside the email, in Caveat, in the darkened saffron
+// #946827 (4.69 on the ground, 4.92 on white), each with a hand-drawn arrow
+// to the line it explains, where a small numbered marker sits in the email's
+// margin.
 //
 // Two layouts, one visible at a time (app/globals.css, "Summary notes"):
-//   - margin notes beside the email: ≥1280px with JavaScript, positioned from
-//     the markers' measured offsets;
-//   - a numbered list under the email: narrower screens, and without
-//     JavaScript.
+//   - margin notes beside the email: 1280px+ with JavaScript, positioned
+//     from the markers' measured offsets;
+//   - a numbered handwritten list under the email: narrower screens, and
+//     without JavaScript.
 // Offsets are measured relative to this wrapper, so the arrival transform
 // (ArrivingEmail) does not disturb them.
 
-const GUTTER = 56 // leader line width, px
-const GAP = 14 // minimum space between notes, px
+const GUTTER = 64 // room for the arrows, px
+const GAP = 12 // minimum space between notes, px
+const INK = '#946827'
 
 export default function AnnotatedSummary({
   summary,
@@ -45,10 +48,8 @@ export default function AnnotatedSummary({
         const marker = root.querySelector<HTMLElement>(`[data-note="${i + 1}"]`)
         const r = marker?.getBoundingClientRect()
         const target = r ? r.top - base + r.height / 2 : 0
-        const height = noteEls.current[i]?.offsetHeight ?? 20
-        // A note's first line centres on its target, unless the note above
-        // is in the way.
-        const top = Math.max(target - 10, prevBottom + GAP)
+        const height = noteEls.current[i]?.offsetHeight ?? 24
+        const top = Math.max(target - 14, prevBottom + GAP)
         prevBottom = top + height
         return { target, top }
       })
@@ -63,31 +64,17 @@ export default function AnnotatedSummary({
     return () => observer.disconnect()
   }, [annotations])
 
-  const height = wrap.current?.offsetHeight ?? 0
-
   return (
     <div ref={wrap} className="relative">
       <MorningSummary summary={summary} caption={caption} annotations={annotations} />
 
-      {/* Margin notes, ≥1280px with JavaScript. */}
+      {/* Margin notes, 1280px+ with JavaScript. */}
       <div className="summary-margin absolute left-full top-0 h-full w-[16rem]">
         {layout && (
-          <svg
-            aria-hidden="true"
-            className="absolute left-0 top-0 overflow-visible"
-            width={GUTTER}
-            height={height}
-            fill="none"
-          >
-            {layout.map(({ target, top }, i) => {
-              const noteY = top + 10
-              return (
-                <g key={i} stroke="var(--teal)" strokeWidth={1}>
-                  <circle cx={0} cy={target} r={2.5} fill="var(--teal)" stroke="none" />
-                  <path d={`M0 ${target} H16 L${GUTTER - 16} ${noteY} H${GUTTER - 6}`} />
-                </g>
-              )
-            })}
+          <svg aria-hidden="true" className="absolute left-0 top-0 h-full w-full overflow-visible">
+            {layout.map(({ target, top }, i) => (
+              <HandArrow key={i} x1={GUTTER - 8} y1={top + 14} x2={6} y2={target} colour={INK} bow={i % 2 ? -10 : 10} />
+            ))}
           </svg>
         )}
         <ol aria-label={notesLabel}>
@@ -97,27 +84,29 @@ export default function AnnotatedSummary({
               ref={(el) => {
                 noteEls.current[i] = el
               }}
-              className="absolute flex gap-2 text-[0.875rem] leading-snug text-[var(--muted)]"
-              style={{ left: GUTTER, top: layout?.[i]?.top ?? 0, width: `calc(100% - ${GUTTER}px)` }}
+              className="v-hand absolute flex gap-1.5 text-[1.375rem] leading-[1.05]"
+              style={{ left: GUTTER, top: layout?.[i]?.top ?? 0, width: `calc(100% - ${GUTTER}px)`, color: INK }}
             >
-              <span className="v-mono pt-[0.1em] text-[0.75rem] font-semibold text-[var(--teal)]">{i + 1}</span>
+              <span aria-hidden="true">{i + 1}</span>
               <span>{a.note}</span>
             </li>
           ))}
         </ol>
       </div>
 
-      {/* Numbered notes under the email: narrower screens, and no JavaScript. */}
-      <ol aria-label={notesLabel} className="summary-list mt-5 flex flex-col gap-2 border-t border-[var(--hairline)] pt-4">
+      {/* Numbered handwritten notes under the email: narrower screens, and no JavaScript. */}
+      <ol aria-label={notesLabel} className="summary-list mt-5 flex flex-col gap-1.5 border-t border-[var(--hairline)] pt-4">
         {annotations.map((a, i) => (
-          <li key={a.match} className="flex gap-3 text-[0.9375rem] leading-snug text-[var(--muted)]">
+          <li key={a.match} className="flex items-center gap-3">
             <span
               aria-hidden="true"
-              className="mt-[0.15em] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[var(--teal)] text-[0.6875rem] font-semibold leading-none text-white"
+              className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[var(--teal)] text-[0.6875rem] font-semibold leading-none text-white"
             >
               {i + 1}
             </span>
-            <span>{a.note}</span>
+            <span className="v-hand text-[1.375rem] leading-tight" style={{ color: INK }}>
+              {a.note}
+            </span>
           </li>
         ))}
       </ol>

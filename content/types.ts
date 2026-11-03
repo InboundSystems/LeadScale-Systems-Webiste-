@@ -147,6 +147,10 @@ export interface InboxDemo {
   /** The counter under the panel, e.g. "10 emails · 2 Unclear · 1 labelled
    *  For Dr Smith · 0 moved out of the Inbox". Numbers are computed. */
   counter: { emails: string; unclear: string; labelled: string; moved: string }
+  /** Handwritten notes beside the list (1280px+, with arrows) or under it.
+   *  Each points at: the 00 Unclear group, the person label, or the counter. */
+  notes: { target: 'unclear' | 'label' | 'counter'; text: string }[]
+  notesLabel: string
   /** Category order, 00 Unclear first. */
   categories: CategoryDef[]
   /** Newest first, as the unsorted Inbox lists them. */

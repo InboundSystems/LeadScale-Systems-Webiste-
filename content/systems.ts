@@ -104,6 +104,14 @@ export const systems: SystemContent[] = [
       paneHeading: 'What the system did',
       toolbar: ['New mail', 'Reply', 'Categorise'],
       counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
+      // "Reception still forwards it" is the fact (section 4): the system
+      // labels, it never forwards.
+      notes: [
+        { target: 'unclear', text: 'can’t tell? a person looks first' },
+        { target: 'label', text: 'labelled for Dr Smith, reception still forwards it' },
+        { target: 'counter', text: 'nothing leaves the Inbox' },
+      ],
+      notesLabel: 'Notes on the inbox',
       categories: [unclear, appointments, enquiries, referrals, accounts],
       emails: [
         {

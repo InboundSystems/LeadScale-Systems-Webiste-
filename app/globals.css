@@ -517,3 +517,18 @@ html:has([data-brand='systems']) body {
   overflow-x: clip;
   overflow-y: visible;
 }
+
+/* Hero notes (components/systems/HeroNotes.tsx): in the margin with arrows
+   at 1280px+ when JavaScript can place them; otherwise a list under the
+   window. */
+.hero-notes-margin {
+  display: none;
+}
+@media (min-width: 1280px) {
+  html.js .hero-notes-margin {
+    display: block;
+  }
+  html.js .hero-notes-list {
+    display: none;
+  }
+}

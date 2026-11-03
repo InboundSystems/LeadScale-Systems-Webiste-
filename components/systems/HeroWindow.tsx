@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { DemoEmail, HomeContent, InboxDemo, SiteChrome } from '@/content/types'
 import CategoryChip, { personLabelTone } from './CategoryChip'
+import { HeroNotesList, HeroNotesMargin } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
 import MarkedHeading from './MarkedHeading'
 import { ButtonLink } from './ui'
@@ -53,6 +54,8 @@ export default function HeroWindow({
   const [autoplay, setAutoplay] = useState<Autoplay>('pending')
   const [hovered, setHovered] = useState<string | null>(null)
   const [pulse, setPulse] = useState(0)
+  // How many handwritten notes are showing (they follow the sort).
+  const [notesShown, setNotesShown] = useState(0)
   // null: the pane shows our email (with the H1). Otherwise a row's id.
   const [paneId, setPaneId] = useState<string | null>(null)
 
@@ -86,6 +89,7 @@ export default function HeroWindow({
       `0 ${demo.counter.moved}`,
     ].join(' · ')
 
+  const rootRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
   const backRef = useRef<HTMLButtonElement>(null)
   const els = useRef(new Map<string, HTMLElement>())
@@ -105,22 +109,35 @@ export default function HeroWindow({
     if (moving) capture()
     viewRef.current = next
     setHovered(null)
-    if (next === 'before') setPaneId(null)
-    setView(next)
-    if (moving && next === 'after') {
-      timers.current.push(window.setTimeout(() => setPulse((n) => n + 1), DURATION))
+    if (next === 'before') {
+      setPaneId(null)
+      setNotesShown(0)
     }
-  }, [])
+    setView(next)
+    if (next === 'after') {
+      if (moving) {
+        timers.current.push(window.setTimeout(() => setPulse((n) => n + 1), DURATION))
+        // The notes follow the sort, one by one, 200ms apart.
+        demo.notes.forEach((_, i) => {
+          timers.current.push(window.setTimeout(() => setNotesShown(i + 1), DURATION + i * 200))
+        })
+      } else {
+        setNotesShown(demo.notes.length)
+      }
+    }
+  }, [demo.notes])
 
   // Hydrated: take over from the CSS pre-hydration state.
   useLayoutEffect(() => {
     if (!document.documentElement.classList.contains('js') || reducedMotion()) {
       setAutoplay('done')
+      setNotesShown(demo.notes.length)
       return
     }
     viewRef.current = 'before'
     setView('before')
     setAutoplay('waiting')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Play once, 700ms after 40% of the window is in view (restarting if it
@@ -188,8 +205,8 @@ export default function HeroWindow({
     }
   }, [view])
 
-  // When a row's explanation opens, the Back link takes focus only if the
-  // reader is not mid-way through the list with the keyboard.
+  // When a row's explanation opens, bring the pane's Back link into view
+  // (on mobile the pane sits above the list). Focus stays on the row.
   useEffect(() => {
     if (paneId === null) return
     backRef.current?.scrollIntoView({ block: 'nearest' })
@@ -221,7 +238,7 @@ export default function HeroWindow({
   const isAfter = view === 'after'
 
   return (
-    <div className="relative">
+    <div ref={rootRef} className="relative">
       <div
         ref={windowRef}
         data-view={view}
@@ -414,7 +431,9 @@ export default function HeroWindow({
           </section>
         </div>
       </div>
+      <HeroNotesMargin notes={demo.notes} label={demo.notesLabel} shown={notesShown} rootRef={rootRef} />
       <p className="mt-4 text-[0.875rem] text-[#a7b4b9]">{demo.caption}</p>
+      <HeroNotesList notes={demo.notes} label={demo.notesLabel} />
     </div>
   )
 }
