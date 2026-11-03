@@ -208,6 +208,10 @@ export interface SystemContent {
     summary: MorningSummaryIllustration
   }
 
+  /** A compact inbox illustration inside this system's card on the
+   *  homepage, drawn from illustrations.inbox. Renders nothing when unset. */
+  cardIllustration?: { caption: string; maxGroups: number }
+
   /** A narrative of the system on an ordinary day at a fictional client.
    *  Times and events, not features. Never implies a live client. */
   aTypicalDay?: {
@@ -237,6 +241,16 @@ export interface SystemContent {
 // ---------------------------------------------------------------------------
 // Pages
 // ---------------------------------------------------------------------------
+export interface HeroDesk {
+  title: string
+  label: string
+  /** In order, e.g. Arrived, Handled, Ready for a person. */
+  stages: string[]
+  /** Each row's label and how many stages it has reached (1-based). */
+  rows: { label: string; reached: number }[]
+  caption: string
+}
+
 export interface HomeContent {
   hero: {
     eyebrow: string
@@ -244,6 +258,9 @@ export interface HomeContent {
     body: string
     primary: LinkItem
     secondary: LinkItem
+    /** The company-level hero visual: generic items moving across a desk.
+     *  Neutral words only; it names no task, so it implies no system. */
+    desk: HeroDesk
   }
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */
@@ -251,7 +268,7 @@ export interface HomeContent {
   /** How Vicaria works, for every system. */
   method: { eyebrow: string; heading: string; items: HeadedItem[]; link: LinkItem }
   /** Principles true of every system, not of one. */
-  principles: { eyebrow: string; heading: string; items: string[]; link: LinkItem }
+  principles: { eyebrow: string; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
   systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
   end: PageEnd
 }

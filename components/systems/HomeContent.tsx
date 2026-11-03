@@ -1,5 +1,6 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
+import HeroDesk from './HeroDesk'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
@@ -12,12 +13,17 @@ export default function HomeContent() {
     <>
       <header className="pb-16 pt-14 sm:pb-24 sm:pt-24">
         <Container>
-          <Eyebrow>{home.hero.eyebrow}</Eyebrow>
-          <h1 className="v-display max-w-[22ch]">{home.hero.heading}</h1>
-          <p className="v-lead mt-7">{home.hero.body}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink link={home.hero.primary} />
-            <ButtonLink link={home.hero.secondary} variant="secondary" />
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-14">
+            <div className="lg:col-span-7">
+              <Eyebrow>{home.hero.eyebrow}</Eyebrow>
+              <h1 className="v-display max-w-[22ch]">{home.hero.heading}</h1>
+              <p className="v-lead mt-7">{home.hero.body}</p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <ButtonLink link={home.hero.primary} />
+                <ButtonLink link={home.hero.secondary} variant="secondary" />
+              </div>
+            </div>
+            <HeroDesk desk={home.hero.desk} className="lg:col-span-5" />
           </div>
         </Container>
       </header>
@@ -89,7 +95,7 @@ export default function HomeContent() {
           <ul className="flex flex-col gap-6 lg:col-span-7">
             {systems.map((system) => (
               <li key={system.name}>
-                <SystemCard system={system} linkLabel={home.systems.linkLabel} />
+                <SystemCard system={system} linkLabel={home.systems.linkLabel} showIllustration />
               </li>
             ))}
           </ul>

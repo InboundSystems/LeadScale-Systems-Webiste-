@@ -86,6 +86,11 @@ export const systems: SystemContent[] = [
       ],
     },
 
+    cardIllustration: {
+      caption: 'The Front Office: a shared inbox, marked in the practice’s own order. Illustration with fictional senders.',
+      maxGroups: 3,
+    },
+
     whatItNeverDoes: {
       heading: 'What it never does.',
       intro: 'These limits are fixed for every practice and cannot be configured.',
