@@ -11,7 +11,7 @@ export default function ContactContent() {
         <p className="mt-10">
           <a
             href={`mailto:${business.email}?subject=Enquiry`}
-            className="v-serif break-all text-[1.75rem] font-semibold text-[var(--accent)] underline decoration-1 underline-offset-[0.18em] hover:text-[var(--accent-deep)] hover:decoration-2 sm:text-[2.25rem]"
+            className="v-serif break-all text-[1.75rem] font-semibold text-[var(--accent)] underline decoration-1 underline-offset-[3px] transition-[text-decoration-color] duration-150 ease-out hover:decoration-[var(--saffron)] hover:decoration-2 sm:text-[2.25rem]"
           >
             {business.email}
           </a>

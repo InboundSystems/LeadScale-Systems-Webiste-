@@ -22,7 +22,7 @@ function Row({ message, category, stacked }: { message: InboxMessage; category: 
       >
         <div className={`flex items-baseline justify-between gap-3 ${stacked ? '' : 'sm:contents'}`}>
           <span className={`truncate text-[0.875rem] ${weight}`}>{message.sender}</span>
-          <span className={`shrink-0 text-[0.75rem] text-[var(--muted)] ${stacked ? '' : 'sm:hidden'}`}>
+          <span className={`shrink-0 text-[0.75rem] tabular-nums text-[var(--muted)] ${stacked ? '' : 'sm:hidden'}`}>
             {message.received}
           </span>
         </div>
@@ -36,7 +36,7 @@ function Row({ message, category, stacked }: { message: InboxMessage; category: 
           )}
         </span>
         {!stacked && (
-          <span className="hidden text-right text-[0.75rem] text-[var(--muted)] sm:block">{message.received}</span>
+          <span className="hidden text-right text-[0.75rem] tabular-nums text-[var(--muted)] sm:block">{message.received}</span>
         )}
       </div>
     </li>

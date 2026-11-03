@@ -54,7 +54,7 @@ export default function MorningSummary({
           <dt className="text-[var(--muted)]">To</dt>
           <dd className="text-[var(--ink)]">{summary.to}</dd>
           <dt className="text-[var(--muted)]">Sent</dt>
-          <dd className="text-[var(--ink)]">{summary.sent}</dd>
+          <dd className="tabular-nums text-[var(--ink)]">{summary.sent}</dd>
           <dt className="text-[var(--muted)]">Subject</dt>
           <dd className="font-semibold text-[var(--ink)]">{summary.subject}</dd>
         </dl>
