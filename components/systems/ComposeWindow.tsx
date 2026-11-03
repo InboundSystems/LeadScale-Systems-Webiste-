@@ -14,7 +14,7 @@ export default function ComposeWindow({ compose }: { compose: ContactPageContent
     <div className="max-w-[44rem]">
       <section
         aria-labelledby="compose-title"
-        className="overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
+        className="lit lit-screen overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
         style={outlookFace}
       >
         <div className="border-b border-[var(--hairline)] bg-[var(--chrome)] px-4 py-2">

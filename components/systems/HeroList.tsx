@@ -47,7 +47,7 @@ export default function HeroList({ list, className = '' }: { list: HeroListConte
 
   return (
     <figure className={className}>
-      <div className="tilt-card relative overflow-hidden rounded-[10px] border border-[var(--frame)] bg-[var(--surface)] px-6 pb-7 pt-7 text-[var(--ink)] shadow-[0_24px_60px_rgba(2,6,23,0.45)] sm:px-8 sm:pb-8 sm:pt-8">
+      <div className="lit lit-screen tilt-card relative overflow-hidden rounded-[10px] border border-[var(--frame)] bg-[var(--surface)] px-6 pb-7 pt-7 text-[var(--ink)] shadow-[0_24px_60px_rgba(2,6,23,0.45)] sm:px-8 sm:pb-8 sm:pt-8">
         {/* The thin blue-to-violet top edge. */}
         <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[var(--primary)] to-[var(--violet)]" />
         <p className="v-serif border-b border-[var(--hairline)] pb-3 text-[1.5rem] font-semibold leading-none tracking-[-0.02em]">{list.title}</p>

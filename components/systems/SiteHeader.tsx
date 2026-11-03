@@ -9,8 +9,11 @@ import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import { ButtonLink, Container } from './ui'
 
 // Flagship header. Media keeps components/Navbar.tsx and its own wordmark.
-// The logo: the owl mark (32px tall, so SYSTEMS in the wordmark is legible) and the VICARIA SYSTEMS wordmark, in ink
-// on the light header, from components/brand (generated from
+// Night: the header is ink, translucent with a blur once scrolled, and the
+// logo is white (20.3:1 on ink).
+//
+// The logo: the owl mark (32px tall, so SYSTEMS in the wordmark is legible)
+// and the VICARIA SYSTEMS wordmark, from components/brand (generated from
 // public/brand/*.svg, never redrawn). The lockup is about 170px wide, over the
 // 140px minimum, and fits at 400px.
 //
@@ -33,10 +36,26 @@ export default function SiteHeader() {
     }
   }, [])
 
+  // Night: ink at the top of the page; translucent ink with a blur once the
+  // page has scrolled under it.
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   const isCurrent = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(`${href}/`))
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--hairline)] bg-[var(--ground)]">
+    <header
+      className={`sticky top-0 z-40 border-b transition-[background-color,border-color] duration-200 ease-out ${
+        scrolled
+          ? 'border-[var(--hairline)] bg-[rgb(5_5_15/0.72)] backdrop-blur-md'
+          : 'border-transparent bg-[var(--ground)]'
+      }`}
+    >
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-[var(--radius-btn)] focus:bg-[var(--surface)] focus:px-4 focus:py-2 focus:text-[var(--ink)]"
@@ -44,7 +63,7 @@ export default function SiteHeader() {
         Skip to content
       </a>
       <Container className="flex h-16 items-center justify-between gap-6">
-        <Link href="/" aria-label="Vicaria" className="flex shrink-0 items-center gap-2.5 text-[var(--ink)]">
+        <Link href="/" aria-label="Vicaria" className="flex shrink-0 items-center gap-2.5 text-white">
           <VicariaOwl className={`owl-mark h-8 w-auto ${blink ? 'owl-blink' : ''}`} />
           <VicariaWordmark className="h-[27px] w-auto" />
         </Link>
@@ -60,7 +79,7 @@ export default function SiteHeader() {
                     aria-current={current ? 'page' : undefined}
                     className={`text-[0.9375rem] transition-colors duration-150 hover:text-[var(--ink)] ${
                       current
-                        ? 'font-semibold text-[var(--ink)] underline decoration-[var(--accent)] decoration-2 underline-offset-[0.4em]'
+                        ? 'font-semibold text-white underline decoration-[var(--link)] decoration-2 underline-offset-[0.4em]'
                         : 'text-[var(--muted)]'
                     }`}
                   >
@@ -76,7 +95,7 @@ export default function SiteHeader() {
           <ButtonLink link={site.navCta} className="hidden !px-4 !py-2.5 sm:inline-flex" />
           <button
             type="button"
-            className="rounded-[var(--radius-btn)] border border-[var(--muted)] px-3 py-2 text-[0.9375rem] font-semibold text-[var(--ink)] lg:hidden"
+            className="rounded-[var(--radius-btn)] border border-white/25 px-3 py-2 text-[0.9375rem] font-semibold text-white lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}

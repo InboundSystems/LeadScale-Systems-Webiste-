@@ -30,7 +30,7 @@ export default function AboutContent() {
             <h2 className="v-h3">{about.foundersHeading}</h2>
             <ul className="mt-4 grid gap-4 sm:grid-cols-2">
               {about.founders.map((f) => (
-                <li key={f.name} className="rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] px-5 py-5">
+                <li key={f.name} className="rounded-[var(--radius-card)] border border-[var(--frame)] bg-[var(--card)] px-5 py-5">
                   <p className="v-serif text-[1.25rem] font-semibold leading-snug text-[var(--ink)]">{f.name}</p>
                   <p className="mt-0.5 text-[0.9375rem] text-[var(--muted)]">{f.role}</p>
                   <p className="mt-3 text-[0.875rem] text-[var(--ink)]">

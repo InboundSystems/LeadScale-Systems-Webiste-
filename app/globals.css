@@ -52,51 +52,58 @@ html {
 
 /* -------------------------------------------------------------------------
    Flagship (Vicaria) — see docs/brand/leadscale-systems.md.
-   Light only. Every rule below is scoped to the systems brand, so /media is
-   unchanged. Contrast ratios are against --ground.
+   Night (8 November 2026): dark throughout, on the brand guide's dark recipe
+   (docs/brand/shared-system.md). Every rule below is scoped to the systems
+   brand, so /media is unchanged. Light survives only inside .lit, the "lit
+   screens" (the Monday notepad, the inboxes, the summary email, the compose
+   window), which re-declare the light tokens below.
    ------------------------------------------------------------------------- */
 [data-brand='systems'] {
-  /* The original site's colours (7 November 2026). Light grounds are white
-     and a very light cool grey; dark grounds are near-black with a slight
-     blue tint. Blue (#2563EB) for buttons and links; violet for secondary
-     emphasis. Retired: teal, saffron, amber, cream, green. */
-  --ground: #f6f7fb; /* light cool grey */
-  --surface: #ffffff;
-  --ink: #0f172a; /* 16.68 on the ground */
-  --muted: #475569; /* 7.58 on white, 7.08 on the ground */
-  --hairline: #e2e8f0;
-  --frame: #e2e8f0; /* card and window borders */
-  --frame-strong: #cbd5e1; /* secondary button and checkbox borders */
-  --faint: #94a3b8; /* separator dots */
-  --chrome: #f1f5f9; /* window title and toolbar bars */
-  --chrome-soft: #f8fafc; /* group headers, counts line, panes */
-  --accent-tint: #eff6ff;
-  --warm: #f1f3f9; /* the alternate light ground (no cream) */
-  /* Blue: buttons, links, the inbox accent bar. White on it 5.17; on its
-     hover (#1d4ed8) 6.70. */
+  /* Grounds: ink for the page, surface for alternate sections, a very faint
+     violet tint for How it runs (and the old "warm" slot). */
+  --ground: #05050f; /* ink */
+  --surface: #0b0b18;
+  --warm: #110d23; /* surface with 5% violet */
+  --dark: #05050f;
+  --band: #110d23;
+  /* Cards: the guide's fill and hairline. */
+  --card: rgb(255 255 255 / 0.024);
+  --hairline: rgb(255 255 255 / 0.1);
+  --frame: rgb(255 255 255 / 0.1);
+  --frame-strong: rgb(255 255 255 / 0.22); /* outline buttons, checkboxes */
+  --faint: #64748b;
+  /* Text: headings near-white, body slate, softer body #cbd5e1 where a
+     paragraph carries the argument. On ink / surface / band / card:
+     --ink 18.5 / 17.8 / 17.3 / 17.1; --body 13.7 / 13.2 / 12.8 / 12.6;
+     --muted 7.9 / 7.6 / 7.4 / 7.3. */
+  --ink: #f1f5f9;
+  --body: #cbd5e1;
+  --muted: #94a3b8;
+  --on-dark: #e2e8f0;
+  --on-dark-soft: #cbd5e1;
+  --on-dark-muted: #94a3b8;
+  /* Links, eyebrows and focus: sky #60a5fa (7.4-8.0 on the dark grounds). */
+  --link: #60a5fa;
+  --focus: #60a5fa;
+  /* Blue: primary buttons (gradient #2563eb -> #1d4ed8 with the guide's
+     soft glow), the toggles and the inbox accent bar. */
   --primary: #2563eb;
   --primary-deep: #1d4ed8;
-  /* Violet: secondary emphasis (annotations, ticks, strikes, the current
-     folder, the eye motif). 5.70 on white, 5.32 on the ground. Light violet
-     for the marker on dark (7.46 on ink). Indigo is reserved for Vicaria
-     Media and is never used on the flagship. */
-  --violet: #7c3aed;
-  --violet-deep: #6d28d9;
+  /* Violet light for annotations, ticks and the underline under "the admin"
+     (7.0-7.5 on the dark grounds). Indigo is Vicaria Media's, never used. */
+  --violet: #a78bfa;
+  --violet-deep: #7c3aed;
   --violet-light: #a78bfa;
-  /* Dark grounds: the night. Ink for the hero and footer, the original
-     surface for the How it runs band (the second night). */
-  --dark: #05050f; /* ink */
-  --band: #0b0b18; /* surface */
-  --on-dark: #e2e8f0; /* 17+ on ink */
-  --on-dark-soft: #cbd5e1; /* 13.67 on ink, 13.15 on the band */
-  --on-dark-muted: #94a3b8; /* 7.91 on ink */
-  /* Inbox rows: hover and selected. */
-  --row-hover: #f8fafc;
-  --row-selected: #eff6ff;
-  --radius-btn: 6px;
-  --radius-card: 8px;
+  /* Window chrome and rows, on dark (lit screens override). */
+  --chrome: #11111e;
+  --chrome-soft: #0e0e1b;
+  --accent-tint: rgb(96 165 250 / 0.12);
+  --row-hover: rgb(255 255 255 / 0.04);
+  --row-selected: rgb(96 165 250 / 0.12);
+  --radius-btn: 8px;
+  --radius-card: 12px;
 
-  color-scheme: light;
+  color-scheme: dark;
   min-height: 100vh;
   background-color: var(--ground);
   color: var(--ink);
@@ -105,6 +112,40 @@ html {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Lit screens: the Monday notepad, the inbox demo and the inbox
+   illustrations, the morning summary email, the compose window and the
+   undeliverable notice. They keep the light tokens and become the brightest
+   things on the page, with a soft cool glow (.lit-screen). */
+[data-brand='systems'] .lit {
+  --ground: #f6f7fb;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --body: #0f172a;
+  --muted: #475569;
+  --hairline: #e2e8f0;
+  --frame: #e2e8f0;
+  --frame-strong: #cbd5e1;
+  --faint: #94a3b8;
+  --chrome: #f1f5f9;
+  --chrome-soft: #f8fafc;
+  --accent-tint: #eff6ff;
+  --row-hover: #f8fafc;
+  --row-selected: #eff6ff;
+  --link: #2563eb;
+  --focus: #2563eb;
+  --violet: #7c3aed; /* 5.70 on white */
+  --violet-deep: #6d28d9;
+  color-scheme: light;
+  color: var(--ink);
+}
+[data-brand='systems'] .lit-screen {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 0 48px -6px rgb(96 165 250 / 0.28),
+    0 24px 60px -18px rgb(0 0 0 / 0.6) !important;
 }
 
 @media (min-width: 640px) {
@@ -117,23 +158,28 @@ html {
    never show Media's dark base. */
 html:has([data-brand='systems']),
 html:has([data-brand='systems']) body {
-  background-color: #f6f7fb;
-  color: #0f172a;
+  background-color: #05050f;
+  color: #f1f5f9;
 }
 html:has([data-brand='systems'])::-webkit-scrollbar-track {
-  background: #f6f7fb;
+  background: #05050f;
 }
 html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #1e2030;
 }
 
 [data-brand='systems'] ::selection {
-  background: rgb(37 99 235 / 0.18); /* blue at 18%; ink on it 13+ */
-  color: var(--ink);
+  background: rgb(96 165 250 / 0.35);
+  color: #fff;
+}
+[data-brand='systems'] .lit ::selection {
+  background: rgb(37 99 235 / 0.18);
+  color: #0f172a;
 }
 
+/* Focus: sky on dark (7.4-8.0), blue inside lit screens (5.17 on white). */
 [data-brand='systems'] :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -151,11 +197,12 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   }
 }
 
-/* Type scale: a 1.25 ratio on an 18px body (17px under 640px). Plus Jakarta
-   Sans throughout: headings semibold with slightly tight tracking, body
-   regular. Source Code Pro only for chips, From / To headers, the counts line
-   and the plain-text summary. (.v-serif is the historical name of the heading
-   face class; it is Plus Jakarta Sans now.) */
+/* Type: one font, Plus Jakarta Sans, everywhere on the flagship, on the
+   brand guide's weights: H1 800 with tight tracking, H2 700, H3 600, body
+   400, eyebrows 12px / 600 / uppercase / 3px. Monospace (.v-mono) only for
+   the plain-text morning summary and the Microsoft Graph permission names.
+   The type scale (sizes) is unchanged. (.v-serif is the historical name of
+   the heading face class; it is Plus Jakarta Sans.) */
 @layer components {
   .v-serif,
   .v-display,
@@ -163,32 +210,32 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   .v-h2,
   .v-pull {
     font-family: var(--font-sans), system-ui, sans-serif;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
   }
   .v-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
   }
   .v-display {
-    font-weight: 600;
+    font-weight: 800;
     font-size: 2.25rem;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: 1.06;
+    letter-spacing: -0.04em; /* the guide's -2.2px at 56px */
     color: var(--ink);
     text-wrap: balance;
   }
   .v-h1 {
-    font-weight: 600;
+    font-weight: 800;
     font-size: 2rem;
-    line-height: 1.12;
-    letter-spacing: -0.015em;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
     color: var(--ink);
     text-wrap: balance;
   }
   .v-h2 {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.75rem;
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     color: var(--ink);
     text-wrap: balance;
   }
@@ -201,21 +248,21 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   }
   .v-lead {
     font-size: 1.1875rem;
-    line-height: 1.5;
-    color: var(--ink);
+    line-height: 1.55;
+    color: var(--body);
     max-width: 36em;
   }
   /* The one oversized pull line on the homepage. */
   .v-pull {
-    font-weight: 600;
+    font-weight: 800;
     font-size: 2.25rem;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    line-height: 1.06;
+    letter-spacing: -0.035em;
     color: var(--ink);
     text-wrap: balance;
   }
   .v-body {
-    color: var(--ink);
+    color: var(--body);
     max-width: 65ch;
   }
   .v-muted {
@@ -227,17 +274,17 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     color: var(--muted);
   }
   .v-eyebrow {
-    font-size: 0.8125rem;
+    font-size: 12px;
     line-height: 1.4;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--link);
   }
-  /* Links: blue, underlined 3px below the text; on hover the underline
-     turns violet and thickens. The text stays blue, so contrast holds. */
+  /* Links: sky on dark (blue inside lit screens), underlined 3px below the
+     text; on hover the underline turns violet and thickens. */
   .v-link {
-    color: var(--accent);
+    color: var(--link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-decoration-color: currentColor;
@@ -577,24 +624,20 @@ html:has([data-brand='systems']) body {
   }
 }
 
-/* First light (components/systems/HomeContent.tsx): the 80px fade from the
-   hero's ink to the first light section, eased (sine in-out, eleven stops)
-   so it has no visible band or edge, ending on exactly that section's
-   background (--surface, #ffffff). The section after it has no top rule. */
-.first-light {
-  height: 80px;
-  background: linear-gradient(
-    to bottom,
-    #05050f 0%,
-    #0b0b15 10%,
-    #1d1d26 20%,
-    #393940 30%,
-    #5b5b62 40%,
-    #828287 50%,
-    #a9a9ac 60%,
-    #cbcbce 70%,
-    #e7e7e8 80%,
-    #f9f9f9 90%,
-    #ffffff 100%
-  );
+/* Chips (components/systems/CategoryChip.tsx): the dark colour set on the
+   page, the light set inside lit screens. */
+[data-brand='systems'] .chip {
+  background-color: var(--chip-bg);
+  color: var(--chip-fg);
+  border-color: var(--chip-bd);
+  --chip-swc: var(--chip-sw);
+}
+[data-brand='systems'] .lit .chip {
+  background-color: var(--chip-bg-l);
+  color: var(--chip-fg-l);
+  border-color: var(--chip-bd-l);
+  --chip-swc: var(--chip-sw-l);
+}
+[data-brand='systems'] .chip-sw {
+  background-color: var(--chip-swc);
 }

@@ -79,7 +79,7 @@ function SummaryCard({ summary, linkLabel }: { summary: MorningSummaryIllustrati
   return (
     <article
       aria-label={summary.subject}
-      className="rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
+      className="lit lit-screen rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
     >
       <dl className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-3 gap-y-1 border-b border-[var(--hairline)] px-5 py-4 pr-24 text-[0.8125rem]">
         <dt className="text-[var(--muted)]">From</dt>

@@ -132,13 +132,13 @@ export function ButtonLink({
   className?: string
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-[background-color,color,transform] duration-150 ease-out hover:-translate-y-px'
+    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-[background-color,color,transform,box-shadow,filter] duration-150 ease-out hover:-translate-y-px'
   const styles =
     variant === 'primary'
-      ? 'bg-[var(--primary)] text-white shadow-[0_1px_2px_rgba(15,23,42,0.12)] hover:bg-[var(--primary-deep)]'
+      ? 'bg-gradient-to-r from-[var(--primary)] to-[var(--primary-deep)] text-white shadow-[0_0_35px_rgb(37_99_235/0.4)] hover:shadow-[0_0_55px_rgb(37_99_235/0.65)] hover:brightness-110'
       : variant === 'inverse'
-        ? 'border border-white/70 bg-transparent text-white hover:border-white hover:bg-white/10'
-        : 'border border-[var(--frame-strong)] bg-[var(--surface)] text-[var(--ink)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
+        ? 'border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/[0.04]'
+        : 'border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/[0.04]'
   return (
     <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>
       {link.label}

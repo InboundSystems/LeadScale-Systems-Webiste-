@@ -28,7 +28,7 @@ export default function SiteFooter() {
       <Container className="relative">
         <div aria-hidden="true" className="absolute -top-14 flex -translate-y-1/2 gap-1.5">
           {TONE_SEQUENCE.map((tone) => (
-            <span key={tone} className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].swatch }} />
+            <span key={tone} className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].dark.swatch }} />
           ))}
         </div>
 

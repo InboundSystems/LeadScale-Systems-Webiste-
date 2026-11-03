@@ -258,7 +258,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
         ref={windowRef}
         data-view={view}
         data-autoplay={autoplay}
-        className="inbox-demo inbox-window overflow-hidden rounded-[8px] border border-t-[3px] border-[var(--frame)] border-t-[var(--primary)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_12px_32px_rgba(15,23,42,0.10)]"
+        className="lit lit-screen inbox-demo inbox-window overflow-hidden rounded-[8px] border border-t-[3px] border-[var(--frame)] border-t-[var(--primary)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_12px_32px_rgba(15,23,42,0.10)]"
         style={outlookFace}
       >
         <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1 text-[0.75rem] text-[var(--muted)]">
@@ -403,7 +403,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
               })}
             </ul>
 
-            <p data-counter aria-live="polite" className="v-mono border-t border-[var(--hairline)] bg-[var(--chrome-soft)] px-4 py-1.5 text-[0.75rem] tabular-nums">
+            <p data-counter aria-live="polite" className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)] px-4 py-1.5 text-[0.75rem] tabular-nums">
               <span data-after-only>{counter(true)}</span>
               <span data-before-only>{counter(false)}</span>
             </p>

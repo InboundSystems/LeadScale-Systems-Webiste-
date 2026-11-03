@@ -63,12 +63,15 @@ function MailSection({
   ground,
   sent,
   heading,
+  stars,
   children,
 }: {
   index: number
   ground: keyof typeof bg
   sent: string
   heading: string
+  /** A very sparse, very faint static sky behind the section. */
+  stars?: number
   children: ReactNode
 }) {
   const { id, tone } = SECTIONS[index]
@@ -77,8 +80,9 @@ function MailSection({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={`scroll-mt-28 py-16 sm:py-24 xl:scroll-mt-20 ${index === 0 ? '' : 'border-t border-[var(--hairline)]'} ${bg[ground]}`}
+      className={`relative isolate scroll-mt-28 py-16 sm:py-24 xl:scroll-mt-20 ${index === 0 ? '' : 'border-t border-[var(--hairline)]'} ${stars ? 'overflow-hidden' : ''} ${bg[ground]}`}
     >
+      {stars ? <StarField seed={1100 + index} count={stars} maxOpacity={0.28} className="-z-10" /> : null}
       <Column>
         <MailHeader
           sent={sent}
@@ -124,14 +128,11 @@ export default function HomeContent() {
         </div>
       </header>
 
-      {/* First light: the page brightens from ink to the first light section. */}
-      <div aria-hidden="true" className="first-light" />
-
       <FolderStrip folders={folders} label={home.foldersLabel} />
 
       <div className="relative">
         {/* The rail rides in the left gutter of the sections, over their grounds. */}
-        <div className="pointer-events-none absolute inset-0 hidden xl:block">
+        <div className="pointer-events-none absolute inset-0 z-10 hidden xl:block">
           <div className="mx-auto h-full w-full max-w-[84rem] px-8 pt-16">
             <FolderRail folders={folders} label={home.foldersLabel} />
           </div>
@@ -155,7 +156,7 @@ export default function HomeContent() {
           <p className="v-pull mt-16 max-w-[20ch] sm:mt-24">{home.work.closing}</p>
         </MailSection>
 
-        <MailSection index={1} ground="band" sent={home.method.sent} heading={home.method.heading}>
+        <MailSection index={1} ground="band" stars={22} sent={home.method.sent} heading={home.method.heading}>
           <ol className="mt-10 grid gap-x-12 sm:grid-cols-2">
             {home.method.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-t border-white/20 py-6">
@@ -174,13 +175,13 @@ export default function HomeContent() {
           </p>
         </MailSection>
 
-        <MailSection index={2} ground="ground" sent={home.principles.sent} heading={home.principles.heading}>
+        <MailSection index={2} ground="ground" stars={14} sent={home.principles.sent} heading={home.principles.heading}>
           <ul className="mt-10 flex flex-col gap-7">
             {home.principles.items.map((item, i) => {
               const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
               return (
                 <li key={text} className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-4">
-                  <EyeDot colour={CATEGORY_TONES[SECTIONS[2].tone].swatch} size={14} className="mt-[0.5em]" />
+                  <EyeDot colour={CATEGORY_TONES[SECTIONS[2].tone].dark.swatch} size={14} className="mt-[0.5em]" />
                   <div>
                     <p className="v-serif max-w-[34ch] text-[1.5rem] leading-[1.2] sm:text-[1.875rem]">{text}</p>
                     {detail && <p className="mt-2 max-w-[60ch] text-[var(--muted)]">{detail}</p>}

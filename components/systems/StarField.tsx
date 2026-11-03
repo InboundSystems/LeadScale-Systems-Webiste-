@@ -12,15 +12,30 @@ function mulberry32(seed: number) {
   }
 }
 
-const rand = mulberry32(20261107)
-const STARS = Array.from({ length: 70 }, () => ({
-  x: +(rand() * 1440).toFixed(1),
-  y: +(rand() * 760).toFixed(1),
-  r: +(0.5 + rand() * 0.45).toFixed(2),
-  o: +(0.12 + rand() * 0.3).toFixed(2),
-}))
+function stars(seed: number, count: number, maxOpacity: number) {
+  const rand = mulberry32(seed)
+  return Array.from({ length: count }, () => ({
+    x: +(rand() * 1440).toFixed(1),
+    y: +(rand() * 760).toFixed(1),
+    r: +(0.5 + rand() * 0.45).toFixed(2),
+    o: +(0.08 + rand() * (maxOpacity - 0.08)).toFixed(2),
+  }))
+}
 
-export default function StarField({ className = '' }: { className?: string }) {
+/** The hero uses the defaults; other sections pass their own seed and a
+ *  much sparser, fainter sky. */
+export default function StarField({
+  seed = 20261107,
+  count = 70,
+  maxOpacity = 0.42,
+  className = '',
+}: {
+  seed?: number
+  count?: number
+  maxOpacity?: number
+  className?: string
+}) {
+  const STARS = stars(seed, count, maxOpacity)
   return (
     <svg
       aria-hidden="true"

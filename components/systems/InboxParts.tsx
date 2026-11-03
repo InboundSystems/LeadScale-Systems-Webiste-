@@ -7,7 +7,8 @@ import CategoryChip from './CategoryChip'
 // components can use them. Outlook is evoked through layout and the system UI
 // face; no Microsoft marks.
 
-export const outlookFace = { fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }
+// One font on the flagship: the windows are set in Plus Jakarta Sans too.
+export const outlookFace = { fontFamily: 'var(--font-sans), system-ui, sans-serif' }
 
 /** The panel: 1px var(--frame) border, 8px radius, and the site's only shadow.
  *  A muted, non-interactive toolbar row, then the mailbox › folder line. */
@@ -27,7 +28,7 @@ export function InboxFrame({
 }) {
   return (
     <div
-      className="overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] shadow-[0_1px_2px_rgba(22,35,43,0.06),0_8px_24px_rgba(22,35,43,0.06)]"
+      className="lit lit-screen overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
       style={outlookFace}
     >
       <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1.5 text-[0.75rem] text-[var(--muted)]">

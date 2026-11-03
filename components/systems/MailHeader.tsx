@@ -25,11 +25,11 @@ export default function MailHeader({
     >
       <dl className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
         <div className="flex items-baseline gap-1.5">
-          <dt className={`v-mono text-[0.75rem] ${label}`}>{site.mail.fromLabel}:</dt>
+          <dt className={`text-[0.75rem] font-medium ${label}`}>{site.mail.fromLabel}:</dt>
           <dd className="font-semibold">{site.mail.from}</dd>
         </div>
         <div className="flex items-baseline gap-1.5">
-          <dt className={`v-mono text-[0.75rem] ${label}`}>{site.mail.toLabel}:</dt>
+          <dt className={`text-[0.75rem] font-medium ${label}`}>{site.mail.toLabel}:</dt>
           <dd>{site.mail.to}</dd>
         </div>
         <div className="flex items-baseline">

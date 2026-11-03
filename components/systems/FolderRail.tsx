@@ -37,9 +37,9 @@ function useActive(folders: Folder[]) {
 
 /** A colour square, or the owl's eye for the current folder. */
 function Square({ tone, current = false }: { tone: CategoryTone; current?: boolean }) {
-  if (current) return <EyeDot colour={CATEGORY_TONES[tone].swatch} />
+  if (current) return <EyeDot colour={CATEGORY_TONES[tone].dark.swatch} />
   return (
-    <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].swatch }} />
+    <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].dark.swatch }} />
   )
 }
 
@@ -49,7 +49,6 @@ export function FolderRail({ folders, label }: { folders: Folder[]; label: strin
     <nav
       aria-label={label}
       className="pointer-events-auto sticky top-24 w-[13rem] overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] py-2"
-      style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}
     >
       <ul>
         {folders.map((f) => {
@@ -82,7 +81,6 @@ export function FolderStrip({ folders, label }: { folders: Folder[]; label: stri
     <nav
       aria-label={label}
       className="sticky top-16 z-30 border-b border-[var(--hairline)] bg-[var(--surface)] xl:hidden"
-      style={{ fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }}
     >
       <ul className="mx-auto flex max-w-[84rem] gap-1 overflow-x-auto px-3 py-1.5 sm:px-5 lg:px-7">
         {folders.map((f) => {

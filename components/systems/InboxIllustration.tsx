@@ -5,7 +5,8 @@ import CategoryChip, { personLabelTone } from './CategoryChip'
 // Outlook through layout and the system UI face only; no Microsoft marks.
 // Every sender and subject comes from content/systems.ts and is fictional.
 
-const outlookFace = { fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }
+// One font on the flagship: Plus Jakarta Sans.
+const outlookFace = { fontFamily: 'var(--font-sans), system-ui, sans-serif' }
 
 function Row({ message, category, stacked }: { message: InboxMessage; category: CategoryDef; stacked: boolean }) {
   const weight = message.unread ? 'font-semibold text-[var(--ink)]' : 'text-[var(--ink)]'
@@ -62,7 +63,7 @@ export default function InboxIllustration({
       <div
         role="group"
         aria-label={`Illustration: the ${inbox.folderName} of ${inbox.mailboxName}, ${inbox.arrangedBy.toLowerCase()}`}
-        className="overflow-hidden rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--surface)]"
+        className="lit lit-screen overflow-hidden rounded-[8px] border border-[var(--hairline)] bg-[var(--surface)]"
         style={outlookFace}
       >
         <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[var(--chrome)] px-4 py-2.5">

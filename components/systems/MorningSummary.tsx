@@ -93,7 +93,7 @@ export default function MorningSummary({
     <figure className={className}>
       <article
         aria-label={`Illustration: ${summary.subject}`}
-        className="rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--surface)]"
+        className="lit lit-screen rounded-[8px] border border-[var(--hairline)] bg-[var(--surface)]"
       >
         <dl className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-3 gap-y-1 border-b border-[var(--hairline)] px-5 py-4 text-[0.8125rem] sm:px-7">
           <dt className="text-[var(--muted)]">From</dt>

@@ -21,7 +21,7 @@ export default function NotFoundNotice() {
         <h1 className="v-h1 max-w-[22ch]">{notFound.heading}</h1>
 
         <div
-          className="mt-10 max-w-[40rem] overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
+          className="lit lit-screen mt-10 max-w-[40rem] overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
           style={outlookFace}
         >
           <dl className="grid grid-cols-[5.5rem_minmax(0,1fr)] gap-x-3 gap-y-1.5 border-b border-[var(--hairline)] bg-[var(--chrome)] px-5 py-4 text-[0.875rem]">
