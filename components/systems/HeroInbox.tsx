@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { DemoEmail, InboxDemo } from '@/content/types'
 import CategoryChip, { personLabelTone } from './CategoryChip'
+import { InboxFrame, PaneSubject, ReadingPane } from './InboxParts'
 
 // The homepage hero demo: one Monday-morning Inbox, before and after The Front
 // Office marks it.
@@ -21,7 +22,6 @@ import CategoryChip, { personLabelTone } from './CategoryChip'
 type View = 'before' | 'after'
 type Autoplay = 'pending' | 'waiting' | 'done'
 
-const outlookFace = { fontFamily: '"Segoe UI", system-ui, -apple-system, sans-serif' }
 const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)'
 const DURATION = 520
 const START_DELAY = 700
@@ -61,6 +61,19 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
   const firstAfter = items.find((i): i is Extract<Item, { kind: 'email' }> => i.kind === 'email')?.email
   const [selectedId, setSelectedId] = useState<string | undefined>(firstAfter?.id)
   const selected = demo.emails.find((e) => e.id === selectedId)
+
+  // The counter under the panel. Before: nothing marked yet. After: what
+  // the system did. Nothing is ever moved out of the Inbox.
+  const unclearLabel = demo.categories[0]?.label
+  const labelled = demo.emails.filter((e) => e.personLabel)
+  const labelName = labelled[0]?.personLabel ?? ''
+  const counter = (after: boolean) =>
+    [
+      `${demo.emails.length} ${demo.counter.emails}`,
+      `${after ? demo.emails.filter((e) => e.category.label === unclearLabel).length : 0} ${demo.counter.unclear}`,
+      `${after ? labelled.length : 0} ${demo.counter.labelled} ${labelName}`,
+      `0 ${demo.counter.moved}`,
+    ].join(' · ')
 
   const figureRef = useRef<HTMLElement>(null)
   const els = useRef(new Map<string, HTMLElement>())
@@ -212,20 +225,17 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
         </div>
       </div>
 
-      <div
-        className="overflow-hidden rounded-[var(--radius-card)] border border-[var(--hairline)] bg-[var(--surface)]"
-        style={outlookFace}
-      >
-        <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-2">
-          <p className="truncate text-[0.8125rem] text-[var(--muted)]">
-            {demo.mailboxName} <span aria-hidden="true">›</span>{' '}
-            <span className="font-semibold text-[var(--ink)]">{demo.folderName}</span>
-          </p>
-          <p className="shrink-0 text-[0.75rem] text-[var(--muted)]">
+      <InboxFrame
+        toolbar={demo.toolbar}
+        mailboxName={demo.mailboxName}
+        folderName={demo.folderName}
+        right={
+          <>
             <span data-after-only>{demo.arrangedByCategory}</span>
             <span data-before-only>{demo.arrangedByDate}</span>
-          </p>
-        </div>
+          </>
+        }
+      >
 
         <ul data-list aria-label={`${demo.folderName}, ${isAfter ? demo.arrangedByCategory : demo.arrangedByDate}`}>
           {items.map((item) => {
@@ -297,28 +307,39 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
           })}
         </ul>
 
-        <div aria-live="polite" className="border-t border-[var(--hairline)] bg-[#fafbfb] px-4 py-3.5">
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
+        <ReadingPane
+          heading={demo.paneHeading}
+          category={
+            selected && (
+              <span data-after-only>
+                <CategoryChip category={selected.category} />
+              </span>
+            )
+          }
+        >
           <div data-after-only>
             {selected && (
-              <div className="mt-1.5">
-                <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--ink)]">
-                  <span className="font-semibold">{selected.sender}</span>
-                  <span className="text-[var(--muted)]">{selected.subject}</span>
-                  {selected.personLabel && (
-                    <CategoryChip category={{ label: selected.personLabel, tone: personLabelTone }} />
-                  )}
-                </p>
+              <>
+                <PaneSubject
+                  sender={selected.sender}
+                  subject={selected.subject}
+                  personLabel={selected.personLabel ? { label: selected.personLabel, tone: personLabelTone } : undefined}
+                />
                 <p className="mt-1 text-[0.875rem] leading-snug text-[var(--ink)]">{selected.outcome}</p>
-              </div>
+              </>
             )}
           </div>
-          <p data-before-only className="mt-1.5 text-[0.875rem] leading-snug text-[var(--muted)]">
+          <p data-before-only className="text-[0.875rem] leading-snug text-[var(--muted)]">
             {demo.beforeHint}
           </p>
-        </div>
-      </div>
-      <figcaption className="v-small mt-3">{demo.caption}</figcaption>
+        </ReadingPane>
+      </InboxFrame>
+
+      <p aria-live="polite" className="v-mono mt-3 text-[0.75rem] tabular-nums text-[var(--ink)]">
+        <span data-after-only>{counter(true)}</span>
+        <span data-before-only>{counter(false)}</span>
+      </p>
+      <figcaption className="v-small mt-1.5">{demo.caption}</figcaption>
     </figure>
   )
 }

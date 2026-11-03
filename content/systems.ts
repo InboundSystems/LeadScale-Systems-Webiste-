@@ -100,6 +100,8 @@ export const systems: SystemContent[] = [
       arrangedByCategory: 'Arranged by: Categories',
       beforeHint: 'Every email in one list, newest first. Select After to see each one marked.',
       paneHeading: 'What the system did',
+      toolbar: ['New mail', 'Reply', 'Categorise'],
+      counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
       categories: [unclear, appointments, enquiries, referrals, accounts],
       emails: [
         {

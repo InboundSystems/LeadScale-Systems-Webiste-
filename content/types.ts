@@ -137,6 +137,11 @@ export interface InboxDemo {
   /** Shown in the reading pane in the before state. */
   beforeHint: string
   paneHeading: string
+  /** The muted, non-interactive Outlook toolbar items. */
+  toolbar: string[]
+  /** The counter under the panel, e.g. "10 emails · 2 Unclear · 1 labelled
+   *  For Dr Smith · 0 moved out of the Inbox". Numbers are computed. */
+  counter: { emails: string; unclear: string; labelled: string; moved: string }
   /** Category order, 00 Unclear first. */
   categories: CategoryDef[]
   /** Newest first, as the unsorted Inbox lists them. */
