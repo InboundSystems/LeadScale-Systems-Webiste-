@@ -434,6 +434,9 @@ export interface AboutContent {
   paragraphs: string[]
   foundersHeading: string
   founders: { name: string; role: string }[]
+  /** The founders are shown as email signatures: "Vicaria Systems ·
+   *  Brisbane", a thin rule, then the sent-from line. */
+  signature: { company: string; place: string; sentFrom: string }
   detailsHeading: string
   detailLabels: { legalName: string; abn: string; location: string; email: string }
   end: PageEnd

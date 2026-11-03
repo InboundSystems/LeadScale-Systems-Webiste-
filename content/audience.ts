@@ -279,6 +279,7 @@ export const about: AboutContent = {
     { name: 'Sam Hindmarsh', role: 'Development' },
     { name: 'Blake Russell', role: 'Client communications' },
   ],
+  signature: { company: 'Vicaria Systems', place: 'Brisbane', sentFrom: 'Sent from Brisbane' },
   detailsHeading: 'Business details',
   detailLabels: { legalName: 'Trading name', abn: 'ABN', location: 'Location', email: 'Email' },
   end: {
