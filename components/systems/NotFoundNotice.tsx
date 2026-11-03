@@ -14,7 +14,7 @@ export default function NotFoundNotice() {
   return (
     <section className="pb-20 pt-12 sm:pb-28 sm:pt-20">
       <Container>
-        <SectionChip n={1} label={notFound.eyebrow} tone="rose" />
+        <SectionChip label={notFound.eyebrow} tone="rose" />
         <h1 className="v-h1 max-w-[22ch]">{notFound.heading}</h1>
 
         <div

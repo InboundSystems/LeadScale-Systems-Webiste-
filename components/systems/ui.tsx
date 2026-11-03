@@ -134,14 +134,14 @@ export function PageHeader({
   children,
 }: {
   header: PageHeaderContent
-  /** Set the eyebrow as a numbered category chip ("01 About") in this colour. */
+  /** Set the eyebrow as a category chip ("About") in this colour. */
   chipTone?: CategoryTone
   children?: ReactNode
 }) {
   return (
     <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
       <Container>
-        {chipTone ? <SectionChip n={1} label={header.eyebrow} tone={chipTone} /> : <Eyebrow>{header.eyebrow}</Eyebrow>}
+        {chipTone ? <SectionChip label={header.eyebrow} tone={chipTone} /> : <Eyebrow>{header.eyebrow}</Eyebrow>}
         <h1 className="v-h1 max-w-[22ch]">{header.heading}</h1>
         {header.intro && <p className="v-lead mt-6">{header.intro}</p>}
         {children}

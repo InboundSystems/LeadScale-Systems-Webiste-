@@ -39,8 +39,8 @@ export default function HomeContent() {
       </header>
 
       {/* Section eyebrows are category chips, numbered in page order, one
-          colour each. Grounds: amber tint, teal band, warm, sky tint, then
-          plain for the summary. */}
+          colour each. Grounds: amber tint, teal band, plain, sky tint, plain,
+          so no two coloured sections touch after the band. */}
       <Section tone="amber" labelledBy="work-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
@@ -83,7 +83,7 @@ export default function HomeContent() {
         </p>
       </Section>
 
-      <Section tone="warm" labelledBy="principles-heading">
+      <Section labelledBy="principles-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <SectionChip n={3} label={home.principles.eyebrow} tone="plum" />
