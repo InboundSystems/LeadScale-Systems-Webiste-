@@ -306,6 +306,9 @@ export interface HomeContent {
   /** Principles true of every system, not of one. */
   principles: { email: SectionEmail; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
   systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
+  /** The Front Office's morning summary, arriving as a new email below the
+   *  systems section. The summary itself comes from content/systems.ts. */
+  nextMorning: { eyebrow: string; heading: string; caption: string; newLabel: string }
   end: PageEnd
 }
 

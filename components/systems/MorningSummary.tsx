@@ -32,7 +32,16 @@ function Pre({ children, className = '' }: { children: string; className?: strin
   return <pre className={`v-mono m-0 whitespace-pre ${className}`}>{children}</pre>
 }
 
-export default function MorningSummary({ summary, className = '' }: { summary: MorningSummaryIllustration; className?: string }) {
+export default function MorningSummary({
+  summary,
+  caption,
+  className = '',
+}: {
+  summary: MorningSummaryIllustration
+  /** Replaces summary.caption. */
+  caption?: string
+  className?: string
+}) {
   return (
     <figure className={className}>
       <article
@@ -82,7 +91,7 @@ export default function MorningSummary({ summary, className = '' }: { summary: M
           </div>
         </div>
       </article>
-      <figcaption className="v-small mt-3">{summary.caption}</figcaption>
+      <figcaption className="v-small mt-3">{caption ?? summary.caption}</figcaption>
     </figure>
   )
 }

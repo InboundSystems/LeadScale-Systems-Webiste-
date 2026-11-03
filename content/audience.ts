@@ -150,6 +150,13 @@ export const home: HomeContent = {
     linkLabel: 'What it does',
   },
 
+  nextMorning: {
+    eyebrow: 'The next morning',
+    heading: 'One email says what is still waiting.',
+    caption: 'The Front Office morning summary. Fictional practice.',
+    newLabel: 'New',
+  },
+
   end: {
     line: 'Tell us which administrative job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },

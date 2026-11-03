@@ -1,12 +1,15 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import ArrivingEmail from './ArrivingEmail'
 import EmailHeader from './EmailHeader'
 import HeroInbox from './HeroInbox'
+import MorningSummary from './MorningSummary'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
 const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
+const summary = systems.find((s) => s.illustrations)?.illustrations?.summary
 const principleMarkers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
 // Company level throughout (docs/REPLY-2026-11-03-company-first.md). The H1
@@ -103,6 +106,18 @@ export default function HomeContent() {
           </ul>
         </div>
       </Section>
+
+      {summary && (
+        <Section tone="surface" labelledBy="next-morning-heading">
+          <Eyebrow>{home.nextMorning.eyebrow}</Eyebrow>
+          <h2 id="next-morning-heading" className="v-h2 max-w-[26ch]">
+            {home.nextMorning.heading}
+          </h2>
+          <ArrivingEmail newLabel={home.nextMorning.newLabel} className="mt-10 max-w-[48rem]">
+            <MorningSummary summary={summary} caption={home.nextMorning.caption} />
+          </ArrivingEmail>
+        </Section>
+      )}
 
       <PageEnd end={home.end} />
     </>

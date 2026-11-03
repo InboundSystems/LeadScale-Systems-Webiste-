@@ -337,3 +337,34 @@ html.js .inbox-demo[data-autoplay='pending'] [data-for='before'] {
   border-radius: 9999px;
   background-color: var(--saffron);
 }
+
+/* ---------------------------------------------------------------------------
+   Arriving email (components/systems/ArrivingEmail.tsx). Hidden only under
+   html.js, so without JavaScript it is simply there.
+   --------------------------------------------------------------------------- */
+.arriving-email {
+  transition:
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.js .arriving-email[data-state='pending'] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.arriving-badge {
+  display: none;
+}
+html.js .arriving-badge {
+  display: flex;
+  transition: opacity 300ms ease-out;
+}
+html.js .arriving-email[data-state='pending'] .arriving-badge,
+html.js .arriving-email[data-state='read'] .arriving-badge {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .arriving-email[data-state='pending'] {
+    opacity: 1;
+    transform: none;
+  }
+}
