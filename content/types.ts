@@ -150,6 +150,8 @@ export interface InboxDemo {
   arrangedByCategory: string
   /** Shown in the reading pane in the before state. */
   beforeHint: string
+  /** Shown in the reading pane in the after state, before a row is chosen. */
+  paneHint: string
   paneHeading: string
   /** The muted, non-interactive Outlook toolbar items. */
   toolbar: string[]
@@ -351,19 +353,33 @@ export interface SummaryAnnotation {
   note: string
 }
 
+/** The hero's Monday list. Only repetitive correspondence jobs may be
+ *  crossed off ("off your desk"): nothing else is a system Vicaria runs.
+ *  Everything that needs judgement stays unticked ("needs a person"). */
+export interface HeroList {
+  title: string
+  /** Done items first, then the ones that need a person. */
+  items: { text: string; done: boolean }[]
+  doneNote: string
+  personNote: string
+  /** Screen-reader prefix for a crossed-off item, e.g. "Off your desk:". */
+  doneLabel: string
+  caption: string
+}
+
 export interface HomeContent {
   hero: {
-    /** The H1: the subject of the open email in the hero's reading pane. */
+    /** The sent time on the hero's From / To line. */
+    sent: string
     heading: string
     /** The word in the heading that gets the saffron marker stroke. */
     markedWord: string
     body: string
     primary: LinkItem
     secondary: LinkItem
-    /** "Back to our email", shown when a row's explanation is open. */
-    backLabel: string
-    /** Accessible name of the reading pane. */
-    paneLabel: string
+    /** The hero picture: a Monday to-do list for a fictional service
+     *  business. Company level: no sector, no business name, no system. */
+    list: HeroList
   }
   /** Accessible name of the folder rail / tab strip. */
   foldersLabel: string
@@ -377,18 +393,6 @@ export interface HomeContent {
   systems: { eyebrow: string; sent: string; heading: string; intro: string; linkLabel: string }
   /** The Front Office's morning summary, arriving as a new email below the
    *  systems section. The summary itself comes from content/systems.ts. */
-  nextMorning: {
-    eyebrow: string
-    sent: string
-    heading: string
-    caption: string
-    newLabel: string
-    /** Accessible name of the notes list. */
-    notesLabel: string
-    /** Margin notes beside the email. Not email text. Each points to the
-     *  first summary line that contains `match`. */
-    annotations: SummaryAnnotation[]
-  }
   end: PageEnd
 }
 

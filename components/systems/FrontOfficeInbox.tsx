@@ -1,36 +1,34 @@
 'use client'
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import type { CategoryDef, DemoEmail, HomeContent, InboxDemo, SiteChrome } from '@/content/types'
+import type { CategoryDef, DemoEmail, InboxDemo } from '@/content/types'
 import CategoryChip, { personLabelTone } from './CategoryChip'
 import CategoryMenu from './CategoryMenu'
 import { HeroNotesList, HeroNotesMargin } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
-import MarkedHeading from './MarkedHeading'
-import { ButtonLink } from './ui'
 
-// The homepage hero: one large Outlook-style window on deep ink.
+// The Front Office's interactive inbox: its illustration in the homepage's
+// Systems section (never the hero; docs/REPLY-2026-11-03-company-first.md).
 //
-//   left   the message list: The Front Office's Monday-morning Inbox, sorted
-//          Before → After (the existing demo: chips, unread dots, counter);
-//   right  the reading pane, open on our email to you. Its subject is the
-//          page's real H1; its body is the subhead and the two buttons.
-//          Choosing a row swaps the pane to what the system did with that
-//          email, with "Back to our email".
-//          Each row's chip opens a category menu (CategoryMenu): choosing a
-//          category moves the row to that group (FLIP), the pane says the
-//          correction is recorded and never changed back, and the change is
-//          announced (aria-live). Reset undoes the visitor's corrections;
-//          they survive Replay, as reception's corrections would.
-//   mobile the pane (and the H1) first, the list below.
+//   - The message list: a Monday-morning Inbox at a fictional practice,
+//     sorted Before -> After, with Replay, Reset, chips, unread dots and the
+//     counts line.
+//   - A reading pane under it: choose a row to see what the system did.
+//   - Each row's chip opens a category menu (CategoryMenu): choosing one moves
+//     the row to that group (FLIP), the pane says the correction is recorded
+//     and never changed back, and the change is announced. Reset undoes the
+//     visitor's corrections; they survive Replay, as reception's would.
+//   - Three handwritten notes with arrows in the gutter at 1280px+, a short
+//     handwritten list below that (HeroNotes).
 //
 // The list's view is driven by CSS from data attributes (app/globals.css,
 // "Inbox demo"), so one DOM serves three states: no JavaScript (the
-// server-rendered After state and our email), JavaScript before hydration
-// (html.js: CSS shows Before, no flash), and hydrated (React plays Before →
-// After once, 700ms after the window is 40% in view; FLIP, 520ms ease-out,
-// transform and opacity only; reduced motion skips straight to After).
-// Every sender is fictional (content/systems.ts).
+// server-rendered After state), JavaScript before hydration (html.js: CSS
+// shows Before, no flash), and hydrated (React plays Before -> After once,
+// 700ms after the window is 40% in view; FLIP, 520ms ease-out, transform and
+// opacity only; reduced motion skips straight to After). The window tilts
+// -1.5deg on desktop and straightens on hover or focus. Every sender is
+// fictional (content/systems.ts).
 
 type View = 'before' | 'after'
 type Autoplay = 'pending' | 'waiting' | 'done'
@@ -47,22 +45,14 @@ function reducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-export default function HeroWindow({
-  hero,
-  demo,
-  mail,
-}: {
-  hero: HomeContent['hero']
-  demo: InboxDemo
-  mail: SiteChrome['mail']
-}) {
+export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
   const [view, setView] = useState<View>('after')
   const [autoplay, setAutoplay] = useState<Autoplay>('pending')
   const [hovered, setHovered] = useState<string | null>(null)
   const [pulse, setPulse] = useState(0)
   // How many handwritten notes are showing (they follow the sort).
   const [notesShown, setNotesShown] = useState(0)
-  // null: the pane shows our email (with the H1). Otherwise a row's id.
+  // The row whose explanation the reading pane shows, if any.
   const [paneId, setPaneId] = useState<string | null>(null)
   // The visitor's corrections: row id → category label, and what it was.
   const [overrides, setOverrides] = useState<Record<string, string>>({})
@@ -105,7 +95,6 @@ export default function HeroWindow({
 
   const rootRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
-  const backRef = useRef<HTMLButtonElement>(null)
   const els = useRef(new Map<string, HTMLElement>())
   const lastRects = useRef<Map<string, DOMRect> | null>(null)
   const viewRef = useRef<View>('after')
@@ -222,13 +211,6 @@ export default function HeroWindow({
     }
   }, [view, overrides])
 
-  // When a row's explanation opens, bring the pane's Back link into view
-  // (on mobile the pane sits above the list). Focus stays on the row.
-  useEffect(() => {
-    if (paneId === null) return
-    backRef.current?.scrollIntoView({ block: 'nearest' })
-  }, [paneId])
-
   function choose(next: View) {
     timers.current.forEach((t) => window.clearTimeout(t))
     setAutoplay('done')
@@ -280,7 +262,7 @@ export default function HeroWindow({
         ref={windowRef}
         data-view={view}
         data-autoplay={autoplay}
-        className="inbox-demo hero-window overflow-hidden rounded-[8px] border-t-[6px] border-[var(--saffron)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_24px_60px_rgba(0,0,0,0.35)]"
+        className="inbox-demo inbox-window overflow-hidden rounded-[8px] border-t-[6px] border-[var(--saffron)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_18px_44px_rgba(22,35,43,0.18)]"
         style={outlookFace}
       >
         <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1.5 text-[0.75rem] text-[#6b787d]">
@@ -292,9 +274,8 @@ export default function HeroWindow({
           ))}
         </div>
 
-        <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]">
-          {/* The message list. Second on mobile, left on desktop. */}
-          <section aria-label={`${demo.mailboxName} ${demo.folderName}`} className="order-2 border-t border-[var(--hairline)] lg:order-1 lg:border-r lg:border-t-0">
+        <div>
+          <section aria-label={`${demo.mailboxName} ${demo.folderName}`}>
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-[var(--hairline)] px-4 py-2.5">
               <p className="v-mono text-[0.8125rem] font-semibold tabular-nums">{demo.moment}</p>
               <div className="flex items-center gap-3">
@@ -431,68 +412,47 @@ export default function HeroWindow({
             </p>
           </section>
 
-          {/* The reading pane. First on mobile, right on desktop. */}
-          <section aria-label={hero.paneLabel} className="order-1 lg:order-2">
-            <div hidden={opened !== undefined} className="px-6 py-7 sm:px-9 sm:py-9">
-              <MarkedHeading text={hero.heading} marked={hero.markedWord} className="v-h1 xl:text-[3.25rem]" />
-              <dl className="mt-5 flex flex-wrap gap-x-5 gap-y-1 border-b border-[var(--hairline)] pb-4 text-[0.875rem]">
-                <div className="flex gap-1.5">
-                  <dt className="v-mono text-[0.75rem] leading-[1.6] text-[var(--muted)]">{mail.fromLabel}:</dt>
-                  <dd className="font-semibold">{mail.from}</dd>
-                </div>
-                <div className="flex gap-1.5">
-                  <dt className="v-mono text-[0.75rem] leading-[1.6] text-[var(--muted)]">{mail.toLabel}:</dt>
-                  <dd>{mail.to}</dd>
-                </div>
-              </dl>
-              <p className="v-lead mt-5">{hero.body}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink link={hero.primary} />
-                <ButtonLink link={hero.secondary} variant="secondary" />
-              </div>
-            </div>
-
-            <div hidden={opened === undefined} aria-live="polite" className="px-6 py-7 sm:px-9 sm:py-9">
+          {/* The reading pane, under the list. */}
+          <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[#fafbfb]">
+            <div className="flex min-h-[2.25rem] items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
               {opened && (
-                <>
-                  <button
-                    ref={backRef}
-                    type="button"
-                    onClick={() => setPaneId(null)}
-                    className="v-link text-[0.875rem] font-semibold"
-                  >
-                    <span aria-hidden="true">← </span>
-                    {hero.backLabel}
-                  </button>
-                  <div className="mt-6 flex items-center justify-between gap-3 border-b border-[var(--hairline)] pb-3">
-                    <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">
-                      {demo.paneHeading}
-                    </p>
-                    <CategoryChip category={categoryOf(opened)} />
-                  </div>
-                  <div className="mt-4">
+                <span data-after-only>
+                  <CategoryChip category={categoryOf(opened)} />
+                </span>
+              )}
+            </div>
+            <div aria-live="polite" className="px-4 py-3.5">
+              <div data-after-only>
+                {opened ? (
+                  <>
                     <PaneSubject
                       sender={opened.sender}
                       subject={opened.subject}
                       personLabel={opened.personLabel ? { label: opened.personLabel, tone: personLabelTone } : undefined}
                     />
-                  </div>
-                  {corrections[opened.id] ? (
-                    <>
-                      <p className="mt-4 flex flex-wrap items-center gap-2">
-                        <CategoryChip category={corrections[opened.id].from} />
-                        <span aria-hidden="true" className="text-[var(--muted)]">
-                          →
-                        </span>
-                        <CategoryChip category={corrections[opened.id].to} />
-                      </p>
-                      <p className="v-serif mt-4 text-[1.375rem] leading-snug">{demo.correctionText}</p>
-                    </>
-                  ) : (
-                    <p className="v-serif mt-4 text-[1.375rem] leading-snug">{opened.outcome}</p>
-                  )}
-                </>
-              )}
+                    {corrections[opened.id] ? (
+                      <>
+                        <p className="mt-2 flex flex-wrap items-center gap-2">
+                          <CategoryChip category={corrections[opened.id].from} />
+                          <span aria-hidden="true" className="text-[var(--muted)]">
+                            →
+                          </span>
+                          <CategoryChip category={corrections[opened.id].to} />
+                        </p>
+                        <p className="mt-2 text-[0.9375rem] leading-snug">{demo.correctionText}</p>
+                      </>
+                    ) : (
+                      <p className="mt-1.5 text-[0.9375rem] leading-snug">{opened.outcome}</p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-[0.9375rem] leading-snug text-[var(--muted)]">{demo.paneHint}</p>
+                )}
+              </div>
+              <p data-before-only className="text-[0.9375rem] leading-snug text-[var(--muted)]">
+                {demo.beforeHint}
+              </p>
             </div>
           </section>
         </div>
@@ -501,7 +461,7 @@ export default function HeroWindow({
         {announcement}
       </p>
       <HeroNotesMargin notes={demo.notes} label={demo.notesLabel} shown={notesShown} rootRef={rootRef} version={overrides} />
-      <p className="mt-4 text-[0.875rem] text-[#a7b4b9]">{demo.caption}</p>
+      <p className="v-small mt-4">{demo.caption}</p>
       <HeroNotesList notes={demo.notes} label={demo.notesLabel} />
     </div>
   )

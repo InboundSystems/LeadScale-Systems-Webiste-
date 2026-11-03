@@ -61,14 +61,27 @@ export const site: SiteChrome = {
 
 export const home: HomeContent = {
   hero: {
+    sent: 'Today, 8:00 am',
     heading: 'Nobody started a business to do the admin.',
     markedWord: 'the admin',
     body:
       'We take the repetitive admin off your desk and run it inside the software you already use. You keep the judgement calls. We handle the rest.',
     primary: { label: 'Tell us what’s eating your week', href: '/enquire' },
     secondary: { label: 'See how it works', href: '/how-it-works' },
-    backLabel: 'Back to our email',
-    paneLabel: 'Reading pane',
+    list: {
+      title: 'Monday',
+      items: [
+        { text: 'Sort the weekend’s email', done: true },
+        { text: 'Work out who’s still waiting for a reply', done: true },
+        { text: 'Call back about the complaint', done: false },
+        { text: 'Decide on the new supplier quote', done: false },
+        { text: 'Approve the roster change', done: false },
+      ],
+      doneNote: 'off your desk',
+      personNote: 'needs a person',
+      doneLabel: 'Off your desk:',
+      caption: 'A Monday list. Fictional business.',
+    },
   },
 
   foldersLabel: 'Folders on this page',
@@ -95,8 +108,7 @@ export const home: HomeContent = {
         body: 'Done by hand, it takes hours a week from people with other work to do.',
       },
     ],
-    closing:
-      'Sorting the inbox. Keeping track of who’s still waiting for a reply. The same questions answered every day.',
+    closing: 'The same work, every day, done the same way, by people with other work to do.',
   },
 
   method: {
@@ -143,9 +155,9 @@ export const home: HomeContent = {
       'We sign a services agreement and a data processing agreement before anything connects.',
       'Your data is stored and processed in Australia.',
       {
-        text: 'An engagement has no minimum term. Either party can end it at any time by written notice.',
+        text: 'There’s no minimum term. Either of us can end it at any time, in writing.',
         detail:
-          'The client’s own administrator can withdraw access immediately, without going through Vicaria, and data is returned or deleted at the client’s election, within 30 days of a request.',
+          'Your own IT administrator can withdraw our access at any time, without asking us, and it takes effect immediately. Your data is returned or deleted, whichever you choose, within 30 days of asking.',
       },
     ],
     link: { label: 'How data is handled', href: '/data-handling' },
@@ -157,21 +169,6 @@ export const home: HomeContent = {
     heading: 'Systems we run.',
     intro: 'Each system takes one recurring admin job off your desk. We list a system here once it’s available.',
     linkLabel: 'What it does',
-  },
-
-  nextMorning: {
-    eyebrow: 'The next morning',
-    sent: 'Tomorrow, 7:00 am',
-    heading: 'The next morning, one email.',
-    caption: 'The Front Office morning summary. Fictional practice.',
-    newLabel: 'New',
-    notesLabel: 'Notes on the summary',
-    annotations: [
-      { match: 'Time counts open hours only', note: 'counts open hours only' },
-      { match: '00 Unclear', note: 'unclear sits first, so a person looks' },
-      { match: 'Passed on, no reply to the sender yet', note: 'optional: passed on, no reply yet' },
-      { match: 'Possibly misfiled in Junk Email', note: 'listed only, nothing moved out of Junk' },
-    ],
   },
 
   end: {
@@ -245,8 +242,8 @@ export const howItWorks: HowItWorksContent = {
     {
       heading: 'Ending an engagement.',
       paragraphs: [
-        'An engagement has no minimum term. Either party can end it at any time by written notice.',
-        'The client’s own administrator can withdraw access immediately, without going through Vicaria, and data is returned or deleted at the client’s election, within 30 days of a request.',
+        'There’s no minimum term. Either of us can end it at any time, in writing.',
+        'Your own IT administrator can withdraw our access at any time, without asking us, and it takes effect immediately. Your data is returned or deleted, whichever you choose, within 30 days of asking.',
       ],
       link: { label: 'How data is handled', href: '/data-handling' },
     },

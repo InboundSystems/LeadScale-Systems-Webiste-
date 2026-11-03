@@ -279,7 +279,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
 }
 
 /* ---------------------------------------------------------------------------
-   Inbox demo (components/systems/HeroWindow.tsx). One DOM in the After order;
+   Inbox demo (components/systems/FrontOfficeInbox.tsx). One DOM in the After order;
    these rules give the Before view. "Before mode" is data-view="before", or,
    before hydration, html.js with data-autoplay="pending" (the inline script
    in app/(systems)/layout.tsx sets html.js before first paint). Without
@@ -410,21 +410,6 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
   }
 }
 
-/* Summary notes (components/systems/AnnotatedSummary.tsx): margin notes at
-   1280px and up when JavaScript can position them; otherwise a numbered list
-   under the email. */
-.summary-margin {
-  display: none;
-}
-@media (min-width: 1280px) {
-  html.js .summary-margin {
-    display: block;
-  }
-  html.js .summary-list {
-    display: none;
-  }
-}
-
 /* Focus on dark grounds: the teal ring would fall below 3:1, so it uses
    the light teal (5.63 on the footer ink). Still teal, still visible. */
 [data-brand='systems'] footer :focus-visible {
@@ -468,7 +453,7 @@ html[data-nf='media'] .nf-flagship {
   display: none;
 }
 
-/* Unread pulse (HeroWindow): the dots pulse once when the sort finishes.
+/* Unread pulse (FrontOfficeInbox): the dots pulse once when the sort finishes.
    Transform only; none under reduced motion. */
 @keyframes unread-pulse {
   0%,
@@ -488,21 +473,25 @@ html[data-nf='media'] .nf-flagship {
   }
 }
 
-/* The hero window (components/systems/HeroWindow.tsx): tilted -1.5deg on
-   desktop, straightening on hover or focus. Upright on mobile and under
-   reduced motion. Transform only. */
+/* Tilted cards: The Front Office's inbox window and the hero's Monday
+   list, -1.5deg on desktop, straightening on hover or focus. Upright on
+   mobile and under reduced motion. Transform only. */
 @media (min-width: 1024px) {
-  .hero-window {
+  .inbox-window,
+  .tilt-card {
     transform: rotate(-1.5deg);
     transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .hero-window:hover,
-  .hero-window:focus-within {
+  .inbox-window:hover,
+  .inbox-window:focus-within,
+  .tilt-card:hover,
+  .tilt-card:focus-within {
     transform: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-window {
+  .inbox-window,
+  .tilt-card {
     transform: none !important;
   }
 }
@@ -531,4 +520,35 @@ html:has([data-brand='systems']) body {
   html.js .hero-notes-list {
     display: none;
   }
+}
+
+/* Hand strike (components/systems/HeroList.tsx): a slightly uneven pen line
+   through a crossed-off item, as a background image so it follows each line
+   of wrapped text (box-decoration-break). It draws in once, left to right,
+   on load; static under reduced motion. Pen colour #946827. */
+.hand-strike {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 6.2 C 18 4.6, 34 6.8, 52 5.3 S 84 4.4, 99 5.6' fill='none' stroke='%23946827' stroke-width='2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 56%;
+  background-size: 100% 0.55em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: var(--muted);
+  animation: hand-strike 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes hand-strike {
+  from {
+    background-size: 0% 0.55em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hand-strike {
+    animation: none;
+  }
+}
+
+/* Focus on the dark hero: the teal ring would fall below 3:1 on the ink,
+   so it uses the light teal (5.64). */
+[data-brand='systems'] .on-dark :focus-visible {
+  outline-color: var(--accent-light);
 }

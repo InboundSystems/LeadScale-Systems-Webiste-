@@ -4,8 +4,8 @@ import { useLayoutEffect, useState, type RefObject } from 'react'
 import type { InboxDemo } from '@/content/types'
 import HandArrow from './HandArrow'
 
-// Handwritten notes on the hero inbox, in Caveat and saffron (#E8A33D, 7.44
-// on the deep ink they sit on).
+// Handwritten notes on The Front Office's inbox, in Caveat and saffron
+// darkened to #8A5E1F (5.01 on the sky tint of the Systems section).
 //   - 1280px and up, with JavaScript: in the gutter left of the window, each
 //     with a hand-drawn arrow to what it explains (the 00 Unclear group, the
 //     For Dr Smith label, the counter). They fade in one by one, 200ms apart,
@@ -15,7 +15,7 @@ import HandArrow from './HandArrow'
 // Positions are measured from the targets, relative to the window's wrapper,
 // and re-measured on resize and when the window's tilt changes.
 
-const SAFFRON = '#e8a33d'
+const SAFFRON = '#8a5e1f'
 const SELECTOR = {
   unclear: '[data-group="00 Unclear"]',
   label: '[data-person-label]',
@@ -67,7 +67,7 @@ export function HeroNotesMargin({
     document.fonts?.ready.then(measure)
     const observer = new ResizeObserver(measure)
     observer.observe(root)
-    const win = root.querySelector('.hero-window')
+    const win = root.querySelector('.inbox-window')
     win?.addEventListener('transitionend', measure)
     return () => {
       observer.disconnect()
@@ -90,7 +90,7 @@ export function HeroNotesMargin({
         {notes.map((note, i) => (
           <li
             key={note.target}
-            className="v-hand absolute right-0 w-full text-right text-[1.375rem] leading-[1.05] text-[#e8a33d] transition-opacity duration-300 ease-out"
+            className="v-hand absolute right-0 w-full text-right text-[1.375rem] leading-[1.05] text-[#8a5e1f] transition-opacity duration-300 ease-out"
             style={{ top: spots?.[i]?.noteTop ?? 0, opacity: spots && shown > i && !spots[i].missing ? 1 : 0 }}
           >
             {note.text}
@@ -106,7 +106,7 @@ export function HeroNotesList({ notes, label }: { notes: InboxDemo['notes']; lab
   return (
     <ul aria-label={label} className="hero-notes-list mt-5 flex flex-col gap-1">
       {notes.map((note) => (
-        <li key={note.target} className="v-hand text-[1.375rem] leading-tight text-[#e8a33d]">
+        <li key={note.target} className="v-hand text-[1.375rem] leading-tight text-[#8a5e1f]">
           <span aria-hidden="true">↳ </span>
           {note.text}
         </li>

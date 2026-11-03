@@ -49,9 +49,12 @@ Positioning is split into two levels. Keep them distinct:
   morning summary on open days, lists known senders in Junk, prepares approved replies for a named
   sender into Drafts, and never overrides reception's corrections.
 
-The homepage hero shows The Front Office as a worked example, under the company-level H1. The H1
-and subhead stay company-level. Elsewhere on the homepage it appears as a card in the systems
-section and as the morning summary that follows it, both labelled as The Front Office. Its details (installation steps, measure, permissions, what it stores) live
+**The Front Office never sits in the homepage hero** (docs/REPLY-2026-11-03-company-first.md;
+reaffirmed 6 November 2026 after it had drifted in). The hero is company level: the H1, subhead,
+both buttons, and a hand-made Monday to-do list for a fictional business (no sector, no name)
+where only repetitive correspondence jobs are crossed off. On the homepage The Front Office
+appears only in the Systems section: its card, with its interactive inbox as the card's
+illustration. Its details (installation steps, measure, permissions, what it stores) live
 on system-level pages: `/systems/front-office`, `/it-providers` ("For IT providers: The Front
 Office"), and the labelled Front Office subsection of `/data-handling`.
 
@@ -67,7 +70,7 @@ These are absolute. Violations have already required correction rounds.
 - **No unbuilt features.** Later stages and add-ons that do not exist are not described at all.
 - **No promise to reduce staff.** Hours given back and order restored, not headcount.
 - **No pricing** published anywhere. `pricingStatement` in `content/pricing.ts` is the only pricing line.
-- **Ending an engagement — use only this wording** (services agreement clauses 4.1 and 4.2): "An engagement has no minimum term. Either party can end it at any time by written notice. The client's own administrator can withdraw access immediately, without going through Vicaria, and data is returned or deleted at the client's election, within 30 days of a request." There is no fixed term. The twelve-month figure in the agreement is a fee hold (a price lock), not a term: never mention it, or any price.
+- **Ending an engagement — use only this wording** (services agreement clauses 4.1 and 4.2; rewritten in the you/we voice 6 November 2026, same facts): "There's no minimum term. Either of us can end it at any time, in writing. Your own IT administrator can withdraw our access at any time, without asking us, and it takes effect immediately. Your data is returned or deleted, whichever you choose, within 30 days of asking." There is no fixed term. The twelve-month figure in the agreement is a fee hold (a price lock), not a term: never mention it, or any price.
 - **No blog or resources section. No phone number.**
 - **Voice:** plain-spoken and direct, like two capable people explaining their work (docs/VOICE.md, rewritten 5 November 2026). "We", "you" and contractions are allowed; short sentences and concrete examples (sorting the inbox, keeping track of who's still waiting for a reply) beat abstract nouns. Vicaria no longer has to be the grammatical subject. Founders are still never the trust argument, and are named on About only. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
 - **Sentence case** for every flagship heading, button and nav label.
@@ -95,4 +98,4 @@ Flagship pages: Home, Systems, The Front Office (`/systems/front-office`), How i
 
 ## Design
 
-Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components, no framer-motion). Tokens: accent in `components/brand/tokens.ts`, neutrals scoped to `[data-brand='systems']` in `app/globals.css`. Fonts (Source Serif 4, Source Sans 3, Source Code Pro) load in `app/(systems)/layout.tsx`. See `docs/brand/leadscale-systems.md`.
+Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components, no framer-motion). Tokens: accent in `components/brand/tokens.ts`, neutrals scoped to `[data-brand='systems']` in `app/globals.css`. Fonts (Fraunces headings, Instrument Sans body, Caveat for handwritten notes only, Source Code Pro for chips and the summary) are defined in `components/brand/flagshipFonts.ts` and loaded by `app/(systems)/layout.tsx` and the flagship 404 only. See `docs/brand/leadscale-systems.md`.

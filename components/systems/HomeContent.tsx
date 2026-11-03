@@ -1,34 +1,34 @@
 import type { ReactNode } from 'react'
-import { home, site } from '@/content/audience'
+import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
 import type { CategoryTone } from '@/content/types'
-import AnnotatedSummary from './AnnotatedSummary'
-import ArrivingEmail from './ArrivingEmail'
 import { FolderRail, FolderStrip, type Folder } from './FolderRail'
-import HeroWindow from './HeroWindow'
+import FrontOfficeInbox from './FrontOfficeInbox'
+import HeroList from './HeroList'
 import MailHeader from './MailHeader'
+import MarkedHeading from './MarkedHeading'
 import SectionChip from './SectionChip'
 import SystemCard from './SystemCard'
-import { PageEnd, TextLink } from './ui'
+import { ButtonLink, PageEnd, TextLink } from './ui'
 
-// The homepage is an inbox.
+// The homepage reads as an inbox, and stays company level
+// (docs/REPLY-2026-11-03-company-first.md): The Front Office never sits in
+// the hero.
 //
-//   - Hero: one large Outlook-style window on deep ink. The message list is
-//     The Front Office's sorting demo; the reading pane is open on our email,
-//     whose subject is the page's H1. (The H1 and subhead are company level;
-//     the inbox is a worked example, captioned as such.)
-//   - Then five sections, each an opened email: a From / To / sent row with
+//   - Hero, on deep ink: our email to you (From / To, the H1, the subhead and
+//     both buttons) beside a hand-made picture, a Monday to-do list for a
+//     fictional business with its correspondence jobs crossed off.
+//   - Then four sections, each an opened email: a From / To / sent row with
 //     its numbered chip, then full-width content in a different layout:
 //       01 The work            grid, then the one oversized pull line
 //       02 How it runs         numbered list on the teal band
 //       03 What never changes  oversized typographic statements
-//       04 Systems             The Front Office card
-//       05 The next morning    the annotated morning summary
+//       04 Systems             The Front Office card, with its interactive
+//                              inbox as the card's illustration
 //   - Folders: a sticky rail at 1280px+, a sticky tab strip below that.
 
 const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
-const summary = systems.find((s) => s.illustrations)?.illustrations?.summary
 const markers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
 const SECTIONS: { id: string; tone: CategoryTone }[] = [
@@ -36,10 +36,9 @@ const SECTIONS: { id: string; tone: CategoryTone }[] = [
   { id: 'how-it-runs', tone: 'teal' },
   { id: 'what-never-changes', tone: 'plum' },
   { id: 'systems', tone: 'sky' },
-  { id: 'the-next-morning', tone: 'sage' },
 ]
-const labels = [home.work.eyebrow, home.method.eyebrow, home.principles.eyebrow, home.systems.eyebrow, home.nextMorning.eyebrow]
-const counts = [home.work.items.length, home.method.items.length, home.principles.items.length, systems.length, 1]
+const labels = [home.work.eyebrow, home.method.eyebrow, home.principles.eyebrow, home.systems.eyebrow]
+const counts = [home.work.items.length, home.method.items.length, home.principles.items.length, systems.length]
 const folders: Folder[] = SECTIONS.map((s, i) => ({
   id: s.id,
   tone: s.tone,
@@ -98,13 +97,18 @@ function MailSection({
 export default function HomeContent() {
   return (
     <>
-      <header className="bg-[#16232b] pb-16 pt-10 sm:pb-24 sm:pt-16">
-        <div className="mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-8">
-          {heroDemo && (
-            <div className="xl:ml-[11rem]">
-              <HeroWindow hero={home.hero} demo={heroDemo} mail={site.mail} />
+      <header className="on-dark bg-[#16232b] pb-16 pt-12 text-white sm:pb-24 sm:pt-20">
+        <div className="mx-auto grid w-full max-w-[84rem] gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8">
+          <div className="lg:col-span-6 xl:col-span-6">
+            <MailHeader sent={home.hero.sent} inverse />
+            <MarkedHeading text={home.hero.heading} marked={home.hero.markedWord} className="v-display max-w-[16ch] !text-white" />
+            <p className="v-lead mt-6 !text-[#e4eeed]">{home.hero.body}</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <ButtonLink link={home.hero.primary} />
+              <ButtonLink link={home.hero.secondary} variant="inverse" />
             </div>
-          )}
+          </div>
+          <HeroList list={home.hero.list} className="lg:col-span-6 xl:col-span-5 xl:col-start-8" />
         </div>
       </header>
 
@@ -184,20 +188,15 @@ export default function HomeContent() {
               </li>
             ))}
           </ul>
+          {/* The Front Office card's illustration: its interactive inbox. The
+              gutter at 1280px+ holds the handwritten notes. */}
+          {heroDemo && (
+            <div className="mt-12 max-w-[56rem] xl:ml-[11rem]">
+              <FrontOfficeInbox demo={heroDemo} />
+            </div>
+          )}
         </MailSection>
 
-        {summary && (
-          <MailSection index={4} ground="ground" sent={home.nextMorning.sent} heading={home.nextMorning.heading}>
-            <ArrivingEmail newLabel={home.nextMorning.newLabel} className="mt-10 max-w-[44rem]">
-              <AnnotatedSummary
-                summary={summary}
-                caption={home.nextMorning.caption}
-                annotations={home.nextMorning.annotations}
-                notesLabel={home.nextMorning.notesLabel}
-              />
-            </ArrivingEmail>
-          </MailSection>
-        )}
       </div>
 
       <PageEnd end={home.end} />

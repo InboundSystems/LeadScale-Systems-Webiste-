@@ -129,7 +129,8 @@ export function ButtonLink({
   className = '',
 }: {
   link: LinkItem
-  variant?: 'primary' | 'secondary'
+  /** inverse: a white outline, for the dark hero. */
+  variant?: 'primary' | 'secondary' | 'inverse'
   className?: string
 }) {
   const base =
@@ -137,7 +138,9 @@ export function ButtonLink({
   const styles =
     variant === 'primary'
       ? 'bg-[var(--teal)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'
-      : 'border border-[var(--teal)] bg-transparent text-[var(--teal)] hover:bg-[var(--row-selected)]'
+      : variant === 'inverse'
+        ? 'border border-white/70 bg-transparent text-white hover:border-white hover:bg-white/10'
+        : 'border border-[var(--teal)] bg-transparent text-[var(--teal)] hover:bg-[var(--row-selected)]'
   return (
     <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>
       {link.label}

@@ -41,7 +41,7 @@ export default function CategoryMenu({
   function toggle() {
     if (open) return close()
     // Open upwards when there is not room below inside the window.
-    const win = buttonRef.current?.closest('.hero-window')?.getBoundingClientRect()
+    const win = buttonRef.current?.closest('.inbox-window')?.getBoundingClientRect()
     const r = buttonRef.current?.getBoundingClientRect()
     setUp(!!win && !!r && r.bottom + 32 * categories.length + 16 > win.bottom)
     setActive(Math.max(0, categories.findIndex((c) => c.label === current.label)))
