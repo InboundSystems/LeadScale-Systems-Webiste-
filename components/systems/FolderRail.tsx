@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import type { CategoryTone } from '@/content/types'
 import { CATEGORY_TONES } from '@/components/brand/categories'
+import EyeDot from './EyeDot'
 
 // The homepage's folders: one per section, with its category colour square
 // and an item count, like an Outlook folder pane.
@@ -34,7 +35,9 @@ function useActive(folders: Folder[]) {
   return active
 }
 
-function Square({ tone }: { tone: CategoryTone }) {
+/** A colour square, or the owl's eye for the current folder. */
+function Square({ tone, current = false }: { tone: CategoryTone; current?: boolean }) {
+  if (current) return <EyeDot colour={CATEGORY_TONES[tone].swatch} />
   return (
     <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].swatch }} />
   )
@@ -60,8 +63,8 @@ export function FolderRail({ folders, label }: { folders: Folder[]; label: strin
                   current ? 'bg-[var(--row-selected)] font-semibold text-[var(--ink)]' : 'text-[var(--ink)] hover:bg-[var(--row-hover)]'
                 }`}
               >
-                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--indigo)]" />}
-                <Square tone={f.tone} />
+                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--violet)]" />}
+                <Square tone={f.tone} current={current} />
                 <span className="min-w-0 flex-1 truncate">{f.label}</span>
                 <span className="text-[0.75rem] tabular-nums text-[var(--muted)]">{f.count}</span>
               </a>
@@ -93,7 +96,7 @@ export function FolderStrip({ folders, label }: { folders: Folder[]; label: stri
                   current ? 'bg-[var(--row-selected)] font-semibold text-[var(--ink)]' : 'text-[var(--ink)] hover:bg-[var(--row-hover)]'
                 }`}
               >
-                <Square tone={f.tone} />
+                <Square tone={f.tone} current={current} />
                 {f.label}
                 <span className="text-[0.75rem] tabular-nums text-[var(--muted)]">{f.count}</span>
               </a>

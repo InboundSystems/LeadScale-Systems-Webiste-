@@ -9,7 +9,7 @@ export default function HowItWorksContent() {
 
   return (
     <>
-      <PageHeader header={howItWorks.header} chipTone="indigo" />
+      <PageHeader header={howItWorks.header} chipTone="violet" />
 
       <Section labelledBy="steps-heading" sent={sentAt(0)}>
         <h2 id="steps-heading" className="v-h2">

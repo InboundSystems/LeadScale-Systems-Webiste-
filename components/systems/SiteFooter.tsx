@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { business, site } from '@/content/audience'
 import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import VicariaOwl from '@/components/brand/VicariaOwl'
+import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import BrisbaneClock from './BrisbaneClock'
 import { Container } from './ui'
 
@@ -10,14 +12,21 @@ import { Container } from './ui'
 // Dark ground (var(--dark), near-black with a blue tint) with light text:
 // var(--on-dark) 15.74, muted var(--on-dark-muted) 7.57, a light-blue hover
 // underline. A row of the six category colour squares sits on its top edge.
+//
+// The logo: the full lockup (owl, a thin vertical rule, wordmark) in white.
+// Behind it, the owl mark very large and faint (4%) on the right, cropped by
+// the footer: the night closing the page. Decorative, aria-hidden.
 const LINK =
   'underline decoration-transparent decoration-1 underline-offset-[3px] transition-[color,text-decoration-color] duration-150 ease-out hover:text-white hover:decoration-[var(--accent-light)]'
 
 export default function SiteFooter() {
   return (
     <footer className="relative bg-[var(--dark)] pb-10 pt-14 text-[var(--on-dark)]">
-      <Container>
-        <div aria-hidden="true" className="absolute top-0 flex -translate-y-1/2 gap-1.5">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <VicariaOwl className="absolute -right-24 top-1/2 h-[150%] w-auto -translate-y-1/2 text-white opacity-[0.04]" />
+      </div>
+      <Container className="relative">
+        <div aria-hidden="true" className="absolute -top-14 flex -translate-y-1/2 gap-1.5">
           {TONE_SEQUENCE.map((tone) => (
             <span key={tone} className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].swatch }} />
           ))}
@@ -25,7 +34,11 @@ export default function SiteFooter() {
 
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="v-serif text-[1.25rem] font-semibold text-white">Vicaria</p>
+            <p className="flex items-center gap-4 text-white" role="img" aria-label="Vicaria Systems">
+              <VicariaOwl className="h-10 w-auto" />
+              <span aria-hidden="true" className="h-10 w-px bg-white/40" />
+              <VicariaWordmark className="h-8 w-auto" />
+            </p>
             <p className="mt-3 max-w-[34ch] text-[0.875rem] text-[var(--on-dark-muted)]">{site.footerTagline}</p>
           </div>
 

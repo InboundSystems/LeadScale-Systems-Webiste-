@@ -26,7 +26,7 @@ const toneClass: Record<Tone, string> = {
   ground: 'bg-[var(--ground)]',
   surface: 'bg-[var(--surface)]',
   warm: 'bg-[var(--warm)]',
-  // The deep indigo band (#1E1B4B): white 15.99, soft text #CBD5E1 11+.
+  // The dark band (#0B0B18, the second night): white 19.53, soft text 13.15.
   band: 'on-band bg-[var(--band)] text-white',
   white: 'bg-[var(--surface)]',
 }
@@ -109,7 +109,7 @@ export function TextLink({
   className = '',
 }: {
   link: LinkItem
-  /** White, for the indigo band. */
+  /** Light blue, for the dark band. */
   inverse?: boolean
   className?: string
 }) {

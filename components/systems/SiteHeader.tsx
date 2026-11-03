@@ -1,17 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { site } from '@/content/audience'
+import VicariaOwl from '@/components/brand/VicariaOwl'
+import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import { ButtonLink, Container } from './ui'
 
-// Flagship header. Media keeps components/Navbar.tsx. The logo image is white
-// on transparent and made for Media's dark base, so the flagship uses a text
-// wordmark set in the heading serif.
+// Flagship header. Media keeps components/Navbar.tsx and its own wordmark.
+// The logo: the owl mark (28px tall) and the VICARIA SYSTEMS wordmark, in ink
+// on the light header, from components/brand (generated from
+// public/brand/*.svg, never redrawn). The lockup is about 151px wide, over the
+// 140px minimum, and fits at 400px.
+//
+// The owl blinks once per visit (sessionStorage), after the hero's own
+// animation has finished: a 150ms dip in scaleY (app/globals.css, "Owl
+// blink"). Never repeats; nothing under prefers-reduced-motion.
 export default function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+
+  const [blink, setBlink] = useState(false)
+  useEffect(() => {
+    try {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      if (sessionStorage.getItem('vicaria-owl-blinked')) return
+      sessionStorage.setItem('vicaria-owl-blinked', '1')
+      setBlink(true)
+    } catch {
+      // Storage unavailable: no blink, which is fine.
+    }
+  }, [])
 
   const isCurrent = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(`${href}/`))
 
@@ -24,8 +44,9 @@ export default function SiteHeader() {
         Skip to content
       </a>
       <Container className="flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="v-serif text-[1.375rem] font-semibold tracking-[-0.01em] text-[var(--ink)]">
-          Vicaria
+        <Link href="/" aria-label="Vicaria" className="flex shrink-0 items-center gap-2.5 text-[var(--ink)]">
+          <VicariaOwl className={`owl-mark h-7 w-auto ${blink ? 'owl-blink' : ''}`} />
+          <VicariaWordmark className="h-6 w-auto" />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">

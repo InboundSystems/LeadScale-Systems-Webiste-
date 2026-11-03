@@ -26,6 +26,7 @@ export default function SectionChip({
         category={{ label: n === undefined ? label : `${String(n).padStart(2, '0')} ${label}`, tone }}
         size="md"
         inverse={inverse}
+        eye
       />
     </p>
   )

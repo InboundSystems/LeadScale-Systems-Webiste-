@@ -58,7 +58,7 @@ html {
 [data-brand='systems'] {
   /* The original site's colours (7 November 2026). Light grounds are white
      and a very light cool grey; dark grounds are near-black with a slight
-     blue tint. Blue (#2563EB) for buttons and links; indigo for secondary
+     blue tint. Blue (#2563EB) for buttons and links; violet for secondary
      emphasis. Retired: teal, saffron, amber, cream, green. */
   --ground: #f6f7fb; /* light cool grey */
   --surface: #ffffff;
@@ -76,16 +76,20 @@ html {
      hover (#1d4ed8) 6.70. */
   --primary: #2563eb;
   --primary-deep: #1d4ed8;
-  /* Indigo: secondary emphasis (annotations, ticks, strikes, the current
-     folder). 6.29 on white. Light indigo for the marker on dark. */
-  --indigo: #4f46e5;
-  --indigo-light: #818cf8;
-  /* Dark grounds: the hero and footer, and the deep indigo band. */
-  --dark: #0a0c1c; /* near-black, slight blue tint */
-  --band: #1e1b4b; /* deep indigo: How it runs */
-  --on-dark: #e2e8f0; /* 15.74 on --dark */
-  --on-dark-soft: #cbd5e1; /* body text on dark and on the band */
-  --on-dark-muted: #94a3b8; /* 7.57 on --dark */
+  /* Violet: secondary emphasis (annotations, ticks, strikes, the current
+     folder, the eye motif). 5.70 on white, 5.32 on the ground. Light violet
+     for the marker on dark (7.46 on ink). Indigo is reserved for Vicaria
+     Media and is never used on the flagship. */
+  --violet: #7c3aed;
+  --violet-deep: #6d28d9;
+  --violet-light: #a78bfa;
+  /* Dark grounds: the night. Ink for the hero and footer, the original
+     surface for the How it runs band (the second night). */
+  --dark: #05050f; /* ink */
+  --band: #0b0b18; /* surface */
+  --on-dark: #e2e8f0; /* 17+ on ink */
+  --on-dark-soft: #cbd5e1; /* 13.67 on ink, 13.15 on the band */
+  --on-dark-muted: #94a3b8; /* 7.91 on ink */
   /* Inbox rows: hover and selected. */
   --row-hover: #f8fafc;
   --row-selected: #eff6ff;
@@ -231,7 +235,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     color: var(--accent);
   }
   /* Links: blue, underlined 3px below the text; on hover the underline
-     turns indigo and thickens. The text stays blue, so contrast holds. */
+     turns violet and thickens. The text stays blue, so contrast holds. */
   .v-link {
     color: var(--accent);
     text-decoration: underline;
@@ -241,7 +245,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     transition: text-decoration-color 150ms ease-out;
   }
   .v-link:hover {
-    text-decoration-color: var(--indigo);
+    text-decoration-color: var(--violet);
     text-decoration-thickness: 2px;
   }
   .v-link-inverse {
@@ -424,12 +428,12 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
 [data-brand='systems'] footer :focus-visible {
   outline-color: var(--accent-light);
 }
-/* On the indigo band: the light blue ring (6.29). */
+/* On the dark band: the light blue ring (7.68). */
 [data-brand='systems'] .on-band :focus-visible {
   outline-color: var(--accent-light);
 }
 
-/* Marker stroke (components/systems/MarkedHeading.tsx): an indigo underline
+/* Marker stroke (components/systems/MarkedHeading.tsx): a violet underline
    that draws in once, left to right, 600ms ease-out, shortly after load.
    Static under reduced motion. */
 .marker-stroke {
@@ -520,12 +524,12 @@ html:has([data-brand='systems']) body {
   overflow-y: visible;
 }
 
-/* Strike (components/systems/HeroList.tsx): a crisp indigo line through a
+/* Strike (components/systems/HeroList.tsx): a crisp violet line through a
    crossed-off item, as a background image so it follows each line of wrapped
    text (box-decoration-break). It draws in once, left to right, on load;
    static under reduced motion. */
 .strike {
-  background-image: linear-gradient(var(--indigo), var(--indigo));
+  background-image: linear-gradient(var(--violet), var(--violet));
   background-repeat: no-repeat;
   background-position: left 58%;
   background-size: 100% 1.5px;
@@ -548,4 +552,27 @@ html:has([data-brand='systems']) body {
 /* Focus on the dark hero: the light blue ring (7.63 on the ink). */
 [data-brand='systems'] .on-dark :focus-visible {
   outline-color: var(--accent-light);
+}
+
+/* Owl blink (components/systems/SiteHeader.tsx): the navbar owl's one gentle
+   blink, a 150ms dip in scaleY after the hero's own animation has finished.
+   Once per visit (the header adds the class once); none under reduced
+   motion. */
+@keyframes owl-blink {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.15);
+  }
+}
+.owl-blink {
+  transform-origin: 50% 62%;
+  animation: owl-blink 150ms ease-in-out 1500ms 1 both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .owl-blink {
+    animation: none;
+  }
 }

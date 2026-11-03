@@ -14,9 +14,9 @@ import { pricingStatement } from './pricing'
 const unclear: CategoryDef = { label: '00 Unclear', tone: 'violet' }
 const appointments: CategoryDef = { label: '01 Appointments', tone: 'blue' }
 const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
-const referrals: CategoryDef = { label: '03 Referrals', tone: 'indigo' }
+const referrals: CategoryDef = { label: '03 Referrals', tone: 'cyan' }
 const accounts: CategoryDef = { label: '04 Accounts', tone: 'slate' }
-const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'cyan' }
+const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'fuchsia' }
 
 export const systems: SystemContent[] = [
   {

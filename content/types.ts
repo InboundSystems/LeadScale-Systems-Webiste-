@@ -89,7 +89,7 @@ export interface SiteChrome {
 // patient or sender, and no clinical detail in any subject line.
 // ---------------------------------------------------------------------------
 /** The category palette (components/brand/categories.ts). */
-export type CategoryTone = 'blue' | 'indigo' | 'violet' | 'sky' | 'slate' | 'cyan' | 'neutral'
+export type CategoryTone = 'blue' | 'violet' | 'sky' | 'cyan' | 'fuchsia' | 'slate' | 'neutral'
 
 export interface CategoryDef {
   /** e.g. "01 Appointments". The number is the practice's own order. */
@@ -366,7 +366,7 @@ export interface HomeContent {
     /** The sent time on the hero's From / To line. */
     sent: string
     heading: string
-    /** The word in the heading that gets the indigo marker underline. */
+    /** The word in the heading that gets the violet marker underline. */
     markedWord: string
     body: string
     primary: LinkItem

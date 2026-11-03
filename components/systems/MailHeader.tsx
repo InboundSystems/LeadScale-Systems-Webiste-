@@ -4,7 +4,7 @@ import { site } from '@/content/audience'
 // The row that opens every section set as an opened email:
 // "From: Vicaria  To: You  Today, 8:02 am", with the section's chip on the
 // right. Used on the homepage and the main flagship pages, so the whole site
-// reads as one inbox. On the indigo band it is inverse (white text, soft
+// reads as one inbox. On the dark band it is inverse (white text, soft
 // slate labels, 20% white rule).
 export default function MailHeader({
   sent,

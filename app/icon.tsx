@@ -1,31 +1,19 @@
 import { ImageResponse } from 'next/og'
-import { ACCENTS } from '@/components/brand/tokens'
+import { owlDataUri } from '@/components/brand/markDataUri'
+import { VICARIAOWL_ASPECT } from '@/components/brand/VicariaOwl'
 
-// Flagship / company-level favicon. Also the site-wide fallback for any
-// route not under /media (see app/media/icon.tsx for the override).
+// Flagship favicon: the owl mark, white on ink (#05050F). Also the site-wide
+// fallback for any route not under /media (app/media/icon.tsx overrides it).
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
 export default function Icon() {
-  const background = (ACCENTS.systems as Record<string, string>)['--accent']
-
+  const w = 26
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background,
-          color: '#ffffff',
-          fontSize: 16,
-          fontWeight: 700,
-          letterSpacing: '-0.5px',
-        }}
-      >
-        V
+      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#05050F', borderRadius: 6 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={owlDataUri('#FFFFFF')} width={w} height={Math.round(w / VICARIAOWL_ASPECT)} alt="" />
       </div>
     ),
     { ...size }

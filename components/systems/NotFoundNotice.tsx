@@ -1,4 +1,5 @@
 import { notFound } from '@/content/not-found'
+import VicariaOwl from '@/components/brand/VicariaOwl'
 import { outlookFace } from './InboxParts'
 import SectionChip from './SectionChip'
 import { ButtonLink, Container } from './ui'
@@ -14,6 +15,8 @@ export default function NotFoundNotice() {
   return (
     <section className="pb-20 pt-12 sm:pb-28 sm:pt-20">
       <Container>
+        {/* The owl mark above the message, in ink (16.68 on the ground). */}
+        <VicariaOwl className="mb-8 h-12 w-auto text-[var(--ink)]" />
         <SectionChip label={notFound.eyebrow} tone="violet" />
         <h1 className="v-h1 max-w-[22ch]">{notFound.heading}</h1>
 

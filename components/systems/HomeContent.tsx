@@ -1,14 +1,17 @@
 import type { ReactNode } from 'react'
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
-import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import { CATEGORY_TONES } from '@/components/brand/categories'
+import VicariaOwl from '@/components/brand/VicariaOwl'
 import type { CategoryTone } from '@/content/types'
 import { FolderRail, FolderStrip, type Folder } from './FolderRail'
 import FrontOfficeInbox from './FrontOfficeInbox'
 import HeroList from './HeroList'
 import MailHeader from './MailHeader'
 import MarkedHeading from './MarkedHeading'
+import EyeDot from './EyeDot'
 import SectionChip from './SectionChip'
+import StarField from './StarField'
 import SystemCard from './SystemCard'
 import { ButtonLink, PageEnd, TextLink } from './ui'
 
@@ -22,18 +25,17 @@ import { ButtonLink, PageEnd, TextLink } from './ui'
 //   - Then four sections, each an opened email: a From / To / sent row with
 //     its numbered chip, then full-width content in a different layout:
 //       01 The work            grid, then the one oversized pull line
-//       02 How it runs         numbered list on the deep indigo band
+//       02 How it runs         numbered list on the dark band (the second night)
 //       03 What never changes  oversized typographic statements
 //       04 Systems             The Front Office card, with its interactive
 //                              inbox as the card's illustration
 //   - Folders: a sticky rail at 1280px+, a sticky tab strip below that.
 
-const markers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
 const SECTIONS: { id: string; tone: CategoryTone }[] = [
   { id: 'the-work', tone: 'blue' },
-  { id: 'how-it-runs', tone: 'indigo' },
-  { id: 'what-never-changes', tone: 'violet' },
+  { id: 'how-it-runs', tone: 'violet' },
+  { id: 'what-never-changes', tone: 'cyan' },
   { id: 'systems', tone: 'sky' },
 ]
 const labels = [home.work.eyebrow, home.method.eyebrow, home.principles.eyebrow, home.systems.eyebrow]
@@ -95,7 +97,11 @@ function MailSection({
 export default function HomeContent() {
   return (
     <>
-      <header className="on-dark bg-[var(--dark)] pb-16 pt-12 text-white sm:pb-24 sm:pt-20">
+      {/* Night: ink, a faint static star field, and the owl mark very large
+          and faint (4%) behind the illustration, cropped by the hero's edge. */}
+      <header className="on-dark relative isolate overflow-hidden bg-[var(--dark)] pb-16 pt-12 text-white sm:pb-24 sm:pt-20">
+        <StarField className="-z-10" />
+        <VicariaOwl className="pointer-events-none absolute -right-[18%] top-1/2 -z-10 h-[135%] w-auto -translate-y-1/2 text-white opacity-[0.04] lg:-right-[8%]" />
         <div className="mx-auto grid w-full max-w-[84rem] gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8">
           <div className="lg:col-span-6 xl:col-span-6">
             <MailHeader sent={home.hero.sent} inverse />
@@ -118,6 +124,9 @@ export default function HomeContent() {
         </div>
       </header>
 
+      {/* First light: the page brightens from ink to the first light section. */}
+      <div aria-hidden="true" className="h-[120px] bg-gradient-to-b from-[var(--dark)] to-[var(--surface)]" />
+
       <FolderStrip folders={folders} label={home.foldersLabel} />
 
       <div className="relative">
@@ -132,7 +141,7 @@ export default function HomeContent() {
           <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {home.work.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-3">
-                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[var(--indigo)]">
+                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[var(--violet)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
@@ -171,7 +180,7 @@ export default function HomeContent() {
               const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
               return (
                 <li key={text} className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-4">
-                  <span aria-hidden="true" className="mt-[0.55em] h-3 w-3 rounded-[1px]" style={{ backgroundColor: markers[i % markers.length] }} />
+                  <EyeDot colour={CATEGORY_TONES[SECTIONS[2].tone].swatch} size={14} className="mt-[0.5em]" />
                   <div>
                     <p className="v-serif max-w-[34ch] text-[1.5rem] leading-[1.2] sm:text-[1.875rem]">{text}</p>
                     {detail && <p className="mt-2 max-w-[60ch] text-[var(--muted)]">{detail}</p>}
