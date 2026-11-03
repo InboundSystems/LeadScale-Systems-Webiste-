@@ -345,6 +345,8 @@ export interface HomeContent {
   hero: {
     eyebrow: string
     heading: string
+    /** The word in the heading that gets the saffron marker stroke. */
+    markedWord: string
     body: string
     primary: LinkItem
     secondary: LinkItem

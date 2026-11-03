@@ -5,6 +5,7 @@ import AnnotatedSummary from './AnnotatedSummary'
 import ArrivingEmail from './ArrivingEmail'
 import EmailHeader from './EmailHeader'
 import HeroInbox from './HeroInbox'
+import MarkedHeading from './MarkedHeading'
 import SectionChip from './SectionChip'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
@@ -25,7 +26,7 @@ export default function HomeContent() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-12">
             <div className="lg:col-span-5 lg:pt-14">
               <Eyebrow>{home.hero.eyebrow}</Eyebrow>
-              <h1 className="v-display max-w-[22ch]">{home.hero.heading}</h1>
+              <MarkedHeading text={home.hero.heading} marked={home.hero.markedWord} className="v-display max-w-[22ch]" />
               <p className="v-lead mt-7">{home.hero.body}</p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <ButtonLink link={home.hero.primary} />

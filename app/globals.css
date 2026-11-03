@@ -412,3 +412,24 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
 [data-brand='systems'] .on-teal :focus-visible {
   outline-color: #fff;
 }
+
+/* Marker stroke (components/systems/MarkedHeading.tsx): draws in once, left
+   to right, 600ms ease-out, shortly after load. Static under reduced motion. */
+.marker-stroke {
+  stroke-width: 0.2em;
+  stroke-opacity: 0.9;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: marker-draw 600ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+@keyframes marker-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marker-stroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}

@@ -61,6 +61,7 @@ export const home: HomeContent = {
   hero: {
     eyebrow: 'Administrative systems, built and operated',
     heading: 'Recurring administrative work leaves the desk and comes back finished.',
+    markedWord: 'finished',
     body:
       'Vicaria builds and operates systems that take on the repetitive administrative work in a service business, inside the software it already uses. That leaves the business’s people free for work that needs a person.',
     primary: { label: 'Enquire', href: '/enquire' },
