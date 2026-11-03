@@ -138,37 +138,44 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
 /* Type scale: a 1.25 ratio on an 18px body (17px under 640px). Headings in
    Source Serif 4, body in Source Sans 3, category labels in Source Code Pro. */
 @layer components {
-  .v-serif {
+  /* Fraunces: optical size follows the font size; SOFT 50 rounds the
+     terminals a little, WONK 0 keeps the leaning letters upright. */
+  .v-serif,
+  .v-display,
+  .v-h1,
+  .v-h2,
+  .v-pull {
     font-family: var(--font-serif), Georgia, serif;
     font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 50, 'WONK' 0;
+  }
+  .v-hand {
+    font-family: var(--font-hand), 'Comic Sans MS', cursive;
   }
   .v-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
   }
   .v-display {
-    font-family: var(--font-serif), Georgia, serif;
     font-weight: 600;
     font-size: 2.25rem;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .v-h1 {
+    font-weight: 600;
+    font-size: 2rem;
     line-height: 1.12;
     letter-spacing: -0.015em;
     color: var(--ink);
     text-wrap: balance;
   }
-  .v-h1 {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 600;
-    font-size: 2rem;
+  .v-h2 {
+    font-weight: 500;
+    font-size: 1.75rem;
     line-height: 1.15;
     letter-spacing: -0.01em;
-    color: var(--ink);
-    text-wrap: balance;
-  }
-  .v-h2 {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 600;
-    font-size: 1.625rem;
-    line-height: 1.2;
-    letter-spacing: -0.005em;
     color: var(--ink);
     text-wrap: balance;
   }
@@ -181,9 +188,18 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   }
   .v-lead {
     font-size: 1.1875rem;
-    line-height: 1.55;
+    line-height: 1.5;
     color: var(--ink);
-    max-width: 38em;
+    max-width: 36em;
+  }
+  /* The one oversized pull line on the homepage. */
+  .v-pull {
+    font-weight: 500;
+    font-size: 2.25rem;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: balance;
   }
   .v-body {
     color: var(--ink);
@@ -243,7 +259,10 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
       font-size: 2.75rem;
     }
     .v-h2 {
-      font-size: 2rem;
+      font-size: 2.25rem;
+    }
+    .v-pull {
+      font-size: 3.5rem;
     }
     .v-h3 {
       font-size: 1.125rem;
@@ -252,6 +271,9 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
   @media (min-width: 1024px) {
     .v-display {
       font-size: 3.5rem;
+    }
+    .v-pull {
+      font-size: 4.75rem;
     }
   }
 }
