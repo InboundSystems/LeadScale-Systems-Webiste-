@@ -8,7 +8,7 @@ export const notFound: NotFoundContent = {
   subjectPrefix: 'Undeliverable:',
   pathLabel: 'Requested',
   fallbackPath: 'this address',
-  body: 'There is no page at this address. It may have moved, or the address may be mistyped.',
+  body: 'There’s no page at this address. It may have moved, or the address may be mistyped.',
   links: [
     { label: 'Home', href: '/' },
     { label: 'Systems', href: '/systems' },

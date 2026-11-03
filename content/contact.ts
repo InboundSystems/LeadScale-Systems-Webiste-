@@ -6,8 +6,8 @@ import type { ContactPageContent } from './types'
 export const contact: ContactPageContent = {
   header: {
     eyebrow: 'Enquire',
-    heading: 'Email Vicaria directly.',
-    intro: 'Enquiries are by email. Every email is read and answered.',
+    heading: 'Email us.',
+    intro: 'We take enquiries by email, and we read and answer every one.',
   },
   compose: {
     windowTitle: 'New message',
@@ -23,14 +23,10 @@ export const contact: ContactPageContent = {
     sendLabel: 'Open in your email',
     note: 'This opens a new message in your own email, with the prompts filled in. Nothing on this page is sent or stored.',
   },
-  helpfulIntro: 'A reply is quicker with a few details, where they are available:',
-  helpfulItems: [
-    'What the business is',
-    'Which administrative job takes the most time',
-    'What software the business uses',
-  ],
+  helpfulIntro: 'We can reply faster if you tell us a little, where you can:',
+  helpfulItems: ['What your business does', 'Which admin job takes the most time', 'What software you use'],
   systemNote: 'For The Front Office, it also helps to know whether the practice uses Microsoft 365.',
-  closing: 'None of this is required. An email asking for a conversation is a complete enquiry.',
+  closing: 'None of it is required. An email asking for a conversation is a complete enquiry.',
   links: [
     { label: 'How it works', href: '/how-it-works' },
     { label: 'How data is handled', href: '/data-handling' },

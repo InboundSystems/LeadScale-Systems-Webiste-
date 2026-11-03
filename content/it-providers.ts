@@ -12,14 +12,14 @@ export const itProviders: ItProvidersContent = {
     eyebrow: 'Access',
     heading: 'For IT providers: The Front Office',
     intro:
-      'Each system Vicaria operates has its own access page. This one is for the IT provider of a practice considering The Front Office. It sets out the access requested, the permissions and their reasons, how access is restricted to one mailbox, how the system runs and how access is withdrawn.',
+      'Each system we run has its own access page. This one’s for the IT provider of a practice considering The Front Office. It covers the access we ask for, the permissions and why, how access is restricted to one mailbox, how the system runs, and how to withdraw access.',
   },
 
   asked: {
     heading: 'What is being asked.',
     paragraphs: [
       'Admin consent for one registered application, Vicaria Front Office, to access one shared mailbox.',
-      'Consent is granted once, in the Microsoft Entra admin centre. It can be withdrawn at any time without involving Vicaria.',
+      'You grant consent once, in the Microsoft Entra admin centre. You can withdraw it at any time without involving us.',
     ],
   },
 
@@ -61,7 +61,7 @@ export const itProviders: ItProvidersContent = {
       'Apply an Exchange Online application access restriction scoped to the one shared mailbox.',
       'Test that a second mailbox is refused.',
     ],
-    closing: 'Vicaria asks for the connection to stay off until that test passes.',
+    closing: 'We ask that the connection stays off until that test passes.',
   },
 
   howItRuns: {
@@ -80,7 +80,7 @@ export const itProviders: ItProvidersContent = {
   },
 
   end: {
-    line: 'Questions go to admin@vicaria.com.au. The full access request document is available on request.',
+    line: 'Send questions to admin@vicaria.com.au. We’ll send the full access request document on request.',
     link: { label: 'Email admin@vicaria.com.au', href: 'mailto:admin@vicaria.com.au?subject=Access%20request%20document' },
   },
 }

@@ -34,7 +34,7 @@ export const audience = {
 export const site: SiteChrome = {
   metaTitle: 'Vicaria: administrative systems for service businesses',
   metaDescription:
-    'Vicaria takes recurring administrative work off service businesses. It builds and operates systems for that work inside the software a business already uses. Brisbane, Australia.',
+    'We take the repetitive admin off service businesses and run it inside the software you already use. Brisbane, Australia.',
   navLinks: [
     { label: 'Systems', href: '/systems' },
     { label: 'How it works', href: '/how-it-works' },
@@ -54,90 +54,90 @@ export const site: SiteChrome = {
     { label: 'Privacy', href: '/privacy' },
   ],
   crossBrand: { label: 'Vicaria Media', href: '/media' },
-  footerTagline: 'Vicaria takes recurring administrative work off service businesses.',
+  footerTagline: 'We take the repetitive admin off service businesses.',
   clockPlace: 'Brisbane',
 }
 
 export const home: HomeContent = {
   hero: {
     eyebrow: 'Administrative systems, built and operated',
-    heading: 'Recurring administrative work leaves the desk and comes back finished.',
-    markedWord: 'finished',
+    heading: 'Nobody started a business to do the admin.',
+    markedWord: 'the admin',
     body:
-      'Vicaria builds and operates systems that take on the repetitive administrative work in a service business, inside the software it already uses. That leaves the business’s people free for work that needs a person.',
-    primary: { label: 'Enquire', href: '/enquire' },
-    secondary: { label: 'How it works', href: '/how-it-works' },
+      'We take the repetitive admin off your desk and run it inside the software you already use. You keep the judgement calls. We handle the rest.',
+    primary: { label: 'Tell us what’s eating your week', href: '/enquire' },
+    secondary: { label: 'See how it works', href: '/how-it-works' },
   },
 
   work: {
     eyebrow: 'The work',
     email: { from: 'Vicaria', to: 'You', subject: 'The work on your desk' },
-    heading: 'The kind of work Vicaria takes on.',
+    heading: 'The kind of work we take on.',
     items: [
       {
-        heading: 'It arrives every day',
-        body: 'The same kinds of item come in daily, and each one has to be dealt with.',
+        heading: 'It turns up every day',
+        body: 'The same kinds of thing land on the desk daily, and every one has to be dealt with.',
       },
       {
-        heading: 'It follows the business’s own rules',
-        body: 'How each item is handled is already settled, and the rules can be written down.',
+        heading: 'It follows your rules',
+        body: 'You already know how each one should be handled. The rules fit on a page.',
       },
       {
         heading: 'It needs no judgement',
-        body: 'Nothing in it calls for a decision that belongs to a person.',
+        body: 'None of it calls for a decision only a person should make.',
       },
       {
         heading: 'It still takes hours',
-        body: 'Done by hand, it takes hours each week from people with other work to do.',
+        body: 'Done by hand, it takes hours a week from people with other work to do.',
       },
     ],
     closing:
-      'Sorting the correspondence a business receives, and keeping track of what is still waiting for a reply, is work of this kind.',
+      'Sorting the inbox. Keeping track of who’s still waiting for a reply. The same questions answered every day.',
   },
 
   method: {
-    eyebrow: 'The method',
+    eyebrow: 'How it runs',
     email: { from: 'Vicaria', subject: 'How every system runs' },
     heading: 'Every system runs the same way.',
     items: [
       {
-        heading: 'The job is identified',
-        body: 'Vicaria and the business agree which recurring job the system takes on.',
+        heading: 'We agree the job',
+        body: 'Together we pick the one recurring job the system takes on.',
       },
       {
-        heading: 'The rules are written down',
-        body: 'The system is configured to the business’s own rules, recorded in one document.',
+        heading: 'We write your rules down',
+        body: 'The system is set up to your own rules, recorded in one document.',
       },
       {
-        heading: 'Vicaria installs and operates it',
-        body: 'The system runs inside the software the business already uses.',
+        heading: 'We install it and run it',
+        body: 'It runs inside the software you already use.',
       },
       {
-        heading: 'The client administers nothing',
-        body: 'The client receives completed work. There is nothing to set up or maintain.',
+        heading: 'You administer nothing',
+        body: 'You get the work back done. There’s nothing to set up or maintain.',
       },
       {
-        heading: 'One figure, reported monthly',
-        body: 'One measure is agreed in writing before the system operates, then reported each month.',
+        heading: 'One number, every month',
+        body: 'Before it starts, we agree one measure in writing. We report it every month.',
       },
       {
-        heading: 'Changes approved by the client',
-        body: 'A change to the configuration takes effect when the client approves it by email.',
+        heading: 'You approve every change',
+        body: 'A change to the setup takes effect when you approve it by email.',
       },
     ],
     link: { label: 'How an engagement runs', href: '/how-it-works' },
   },
 
   principles: {
-    eyebrow: 'Principles',
-    email: { from: 'Vicaria', subject: 'What holds for every system' },
-    heading: 'What holds for every system.',
+    eyebrow: 'What never changes',
+    email: { from: 'Vicaria', subject: 'The things that don’t change' },
+    heading: 'What never changes.',
     items: [
-      'Existing software is kept. Nothing is replaced.',
+      'You keep your software. We don’t replace anything.',
       'Anything that needs judgement stays with a person.',
-      'Vicaria operates the system. The client has nothing to administer.',
-      'An agreement and a data processing agreement are signed before anything connects.',
-      'All data is stored and processed in Australia.',
+      'We run the system. You have nothing to administer.',
+      'We sign a services agreement and a data processing agreement before anything connects.',
+      'Your data is stored and processed in Australia.',
       {
         text: 'An engagement has no minimum term. Either party can end it at any time by written notice.',
         detail:
@@ -149,28 +149,27 @@ export const home: HomeContent = {
 
   systems: {
     eyebrow: 'Systems',
-    heading: 'Systems Vicaria operates.',
-    intro:
-      'Each system takes one recurring administrative job off a business. Systems are listed here when they are available.',
+    heading: 'Systems we run.',
+    intro: 'Each system takes one recurring admin job off your desk. We list a system here once it’s available.',
     linkLabel: 'What it does',
   },
 
   nextMorning: {
     eyebrow: 'The next morning',
-    heading: 'One email says what is still waiting.',
+    heading: 'The next morning, one email.',
     caption: 'The Front Office morning summary. Fictional practice.',
     newLabel: 'New',
     notesLabel: 'Notes on the summary',
     annotations: [
-      { match: 'Time counts open hours only', note: 'Counts open hours only' },
-      { match: '00 Unclear', note: 'Unclear sits first, so a person looks at it' },
-      { match: 'Passed on, no reply to the sender yet', note: 'Optional: mail passed on with no reply yet' },
-      { match: 'Possibly misfiled in Junk Email', note: 'Listed only. Nothing is moved out of Junk' },
+      { match: 'Time counts open hours only', note: 'counts open hours only' },
+      { match: '00 Unclear', note: 'unclear sits first, so a person looks' },
+      { match: 'Passed on, no reply to the sender yet', note: 'optional: passed on, no reply yet' },
+      { match: 'Possibly misfiled in Junk Email', note: 'listed only, nothing moved out of Junk' },
     ],
   },
 
   end: {
-    line: 'Tell us which administrative job takes the most time in your business.',
+    line: 'Tell us which admin job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -178,13 +177,13 @@ export const home: HomeContent = {
 export const systemsIndex: SystemsIndexContent = {
   header: {
     eyebrow: 'Systems',
-    heading: 'Systems Vicaria builds and operates.',
+    heading: 'Systems we build and run.',
     intro:
-      'Each system takes one recurring administrative job off a business. It is one product, configured from a written record of the business’s own rules, and operated by Vicaria. Systems are listed here when they are available.',
+      'Each system takes one recurring admin job off your desk. Each is one product, set up from a written record of your own rules, and we run it. We list a system here once it’s available.',
   },
   linkLabel: 'What it does',
   end: {
-    line: 'Tell us which administrative job takes the most time in your business.',
+    line: 'Tell us which admin job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -193,53 +192,49 @@ export const howItWorks: HowItWorksContent = {
   header: {
     eyebrow: 'How it works',
     heading: 'How an engagement runs.',
-    intro: 'Every system Vicaria operates follows the same method, whatever job it takes on.',
+    intro: 'Every system we run goes in the same way, whatever job it takes on.',
   },
 
   steps: {
-    heading: 'From the first conversation to operation.',
+    heading: 'From the first conversation to a running system.',
     steps: [
       {
-        title: 'The job is identified',
-        description:
-          'Vicaria and the business identify one recurring administrative job and look at how it is done today.',
+        title: 'We agree the job',
+        description: 'We sit down with you, pick one recurring admin job, and look at how it’s done today.',
       },
       {
-        title: 'The rules are written down',
-        description:
-          'The system is configured to the business’s own rules. They are agreed and recorded in one configuration record.',
+        title: 'We write your rules down',
+        description: 'We set the system up to your own rules. We agree them with you and record them in one configuration record.',
       },
       {
-        title: 'The agreements are signed',
-        description: 'A services agreement and a data processing agreement are signed. Nothing connects before that.',
+        title: 'We sign the agreements',
+        description: 'We sign a services agreement and a data processing agreement. Nothing connects before that.',
       },
       {
-        title: 'Vicaria installs and operates it',
+        title: 'We install it and run it',
         description:
-          'The system is installed inside the software the business already uses. From then on Vicaria operates it, and the client receives completed work.',
+          'We install the system inside the software you already use. From then on we run it, and you get the work back done.',
       },
     ],
   },
 
   sections: [
     {
-      heading: 'One product, one configuration record.',
+      heading: 'One product. One record of your rules.',
       paragraphs: [
-        'Each system is one product. Nothing is a custom build. Everything that differs between businesses is written in the configuration record.',
-        'Once the system operates, a change to that record takes effect when the client approves it by email.',
+        'Each system is one product. Nothing is a custom build. Everything that’s different about your business goes in the configuration record.',
+        'Once it’s running, a change to that record takes effect when you approve it by email.',
       ],
     },
     {
-      heading: 'One measure, agreed in writing.',
+      heading: 'One number, agreed up front.',
       paragraphs: [
-        'Before a system first operates, one measure of its work is agreed with the client in writing. It is reported monthly, from the system’s own record.',
+        'Before a system starts, we agree one measure of its work with you, in writing. We report it every month, from the system’s own record.',
       ],
     },
     {
-      heading: 'Nothing to administer.',
-      paragraphs: [
-        'Vicaria operates every system it installs. The client has no software to learn and nothing to maintain.',
-      ],
+      heading: 'Nothing for you to run.',
+      paragraphs: ['We run every system we install. You’ve no software to learn and nothing to maintain.'],
     },
     {
       heading: 'Ending an engagement.',
@@ -254,13 +249,13 @@ export const howItWorks: HowItWorksContent = {
   example: {
     heading: 'An example: The Front Office.',
     paragraphs: [
-      'The Front Office is installed in six steps, from a conversation about the shared inbox to a quiet test week and switch-on. Its page sets out each step.',
+      'The Front Office goes in over six steps, from a conversation about the practice’s shared inbox to a quiet test week and switch-on. Its page walks through each one.',
     ],
     link: { label: 'The Front Office installation', href: '/systems/front-office#installation' },
   },
 
   end: {
-    line: 'Tell us which administrative job takes the most time in your business.',
+    line: 'Tell us which admin job takes the most time in your business.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -268,12 +263,12 @@ export const howItWorks: HowItWorksContent = {
 export const about: AboutContent = {
   header: {
     eyebrow: 'About',
-    heading: 'Vicaria.',
+    heading: 'We’re Vicaria.',
   },
   paragraphs: [
-    'Vicaria is a Brisbane firm that takes recurring administrative work off service businesses. It builds systems for that work and operates them inside the software each business already uses.',
-    'Its clients are service businesses where administrative work has no one dedicated to it, or where reception carries more than the role allows.',
-    'Each system is one product, configured from a written record of the business’s own rules. Vicaria operates it, and the client receives completed work.',
+    'We’re a Brisbane firm. We take the repetitive admin off service businesses: we build systems for it, and we run them inside the software each business already uses.',
+    'It’s for service businesses where nobody is dedicated to the admin, or where reception is carrying more than the role allows.',
+    'Each system is one product, set up from a written record of your own rules. We run it, and you get the work back done.',
   ],
   foundersHeading: 'Founders',
   founders: [
@@ -284,7 +279,7 @@ export const about: AboutContent = {
   detailsHeading: 'Business details',
   detailLabels: { legalName: 'Trading name', abn: 'ABN', location: 'Location', email: 'Email' },
   end: {
-    line: 'Enquiries are by email, to admin@vicaria.com.au.',
+    line: 'The best way to reach us is email: admin@vicaria.com.au.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -295,12 +290,12 @@ export const about: AboutContent = {
 export const pageMeta = {
   systems: {
     title: 'Systems',
-    description: 'The systems Vicaria builds and operates, each taking one recurring administrative job off a business.',
+    description: 'The systems we build and run, each taking one recurring admin job off a business’s desk.',
   },
   howItWorks: {
     title: 'How it works',
     description:
-      'How an engagement with Vicaria runs, for every system: the job identified, the rules written down, the system operated by Vicaria, one measure agreed.',
+      'How working with us runs, for every system: we agree the job, write your rules down, install and run it, and report one agreed number each month.',
   },
   itProviders: {
     title: 'For IT providers: The Front Office',
@@ -310,9 +305,9 @@ export const pageMeta = {
   dataHandling: {
     title: 'Data handling',
     description:
-      'How Vicaria handles data in every system it operates: stored and processed in Australia, never used to train a model, returned or deleted on request.',
+      'How we handle data in every system we run: stored and processed in Australia, never used to train a model, returned or deleted on request.',
   },
-  privacy: { title: 'Privacy policy', description: 'What personal information Vicaria collects, why, and what happens to it.' },
+  privacy: { title: 'Privacy policy', description: 'What personal information we collect, why, and what happens to it.' },
   about: { title: 'About', description: 'Vicaria Systems, Brisbane. ABN 67 221 728 299.' },
-  enquire: { title: 'Enquire', description: 'How to reach Vicaria, by email.' },
+  enquire: { title: 'Enquire', description: 'How to reach us: by email.' },
 }

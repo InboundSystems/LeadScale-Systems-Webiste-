@@ -25,15 +25,15 @@ export const systems: SystemContent[] = [
     slug: 'front-office',
     cardFor: 'for practices with a shared Microsoft 365 inbox',
     shortDescription:
-      'Marks every email with the practice’s own categories, keeps track of what is still waiting for a reply, and reports it each morning.',
+      'Marks every email with your practice’s own categories, keeps track of what’s still waiting for a reply, and tells you each morning.',
     heroLine:
-      'Every new email in the shared inbox is marked with one of the practice’s own categories, where it sits. On open days, one email each morning lists what is still waiting for a reply.',
+      'Every new email in the shared inbox gets one of your practice’s own categories, right where it sits. On open days, one email each morning lists what’s still waiting for a reply.',
 
     theProblem: {
-      heading: 'One inbox, every kind of email.',
+      heading: 'One inbox. Every kind of email.',
       paragraphs: [
-        'A specialist practice’s shared inbox receives bookings, referrals, results, scripts, invoices, supplier mail and marketing in one list.',
-        'Knowing what each email is, and what is still waiting for an answer, depends on whoever is on the desk. The Front Office does the sorting and the keeping track.',
+        'A specialist practice’s shared inbox gets bookings, referrals, results, scripts, invoices, supplier mail and marketing, all in one list.',
+        'Knowing what each one is, and what’s still waiting for an answer, depends on whoever’s on the desk. The Front Office does the sorting and the keeping track.',
       ],
     },
 
@@ -50,39 +50,38 @@ export const systems: SystemContent[] = [
       heading: 'What it does.',
       items: [
         {
-          heading: 'Marks every new email with one of the practice’s own categories',
+          heading: 'Marks every new email with one of your categories',
           body:
-            'Each email is marked where it sits in the Inbox. Nothing is moved. Categories are numbered in the practice’s own order, such as 01 Appointments and 02 Patient Enquiries, so sorting the Inbox by category puts them in the order the practice works.',
+            'Each email is marked where it sits in the Inbox. Nothing is moved. Categories are numbered in your own order, like 01 Appointments and 02 Patient Enquiries, so sorting the Inbox by category puts it in the order you work.',
         },
         {
-          heading: 'Says so when it cannot tell',
-          body:
-            'An email it cannot place is marked 00 Unclear and sits at the top, so a person looks at it first. The system does not guess.',
+          heading: 'Says so when it can’t tell',
+          body: 'If it can’t place an email, it marks it 00 Unclear, which sits at the top, so a person looks first. It doesn’t guess.',
         },
         {
-          heading: 'Labels mail for the person it is for',
+          heading: 'Labels mail for the person it’s for',
           body:
-            'Where an email makes it clear by name or email address, it is labelled for that person, such as For Dr Smith. The label never depends on what the message is about. Reception still forwards it.',
+            'When an email makes it clear by name or email address, it’s labelled for that person, like For Dr Smith. The label never depends on what the message is about. Reception still forwards it.',
         },
         {
           heading: 'Sends one morning summary on open days',
           body:
-            'The summary goes to the person the practice chooses. It lists what is still waiting for a reply, oldest first, counting only open hours. Two further blocks can be switched on: mail passed on to a colleague where the sender has not yet had a reply, and mail that has been answered but is still sitting in the Inbox.',
+            'It goes to whoever you choose, and lists what’s still waiting for a reply, oldest first, counting only open hours. You can switch on two more blocks: mail passed on to a colleague where the sender hasn’t had a reply yet, and mail that’s been answered but is still sitting in the Inbox.',
         },
         {
           heading: 'Lists mail from known senders that landed in Junk',
           body:
-            'The morning summary lists mail from people the practice already deals with that landed in Junk. Nothing is moved out of Junk.',
+            'The morning summary lists mail from people you already deal with that ended up in Junk. Nothing is moved out of Junk.',
         },
         {
-          heading: 'Prepares approved replies for a sender the practice names',
+          heading: 'Prepares approved replies for a sender you name',
           body:
-            'For a sender such as the website booking form, the system prepares a reply in the exact wording the practice approved, addressed to the person who filled in the form. It waits in Drafts until a person checks it and presses Send.',
+            'For a sender like your website booking form, it prepares a reply in the exact wording you approved, addressed to the person who filled in the form. It waits in Drafts until someone checks it and presses Send.',
         },
         {
           heading: 'Respects reception’s corrections',
           body:
-            'If reception changes a category, the system never changes it back. Every correction is recorded, never overwritten, and reviewed with the practice at a monthly review.',
+            'If reception changes a category, the system never changes it back. Every correction is recorded, never overwritten, and we go through them with you at a monthly review.',
         },
       ],
     },
@@ -92,7 +91,7 @@ export const systems: SystemContent[] = [
     // The homepage hero demo. Same fictional practice and Monday morning as
     // the illustrations below. Every outcome line is a section 4 fact.
     heroDemo: {
-      caption: 'The Front Office, the first Vicaria system. Fictional practice.',
+      caption: 'The Front Office, our first system. Fictional practice.',
       mailboxName: 'reception@',
       folderName: 'Inbox',
       moment: 'Monday, 8:00am',
@@ -101,7 +100,7 @@ export const systems: SystemContent[] = [
       replayLabel: 'Replay',
       arrangedByDate: 'Arranged by: Date',
       arrangedByCategory: 'Arranged by: Categories',
-      beforeHint: 'Every email in one list, newest first. Select After to see each one marked.',
+      beforeHint: 'Every email in one list, newest first. Press After to see each one marked.',
       paneHeading: 'What the system did',
       toolbar: ['New mail', 'Reply', 'Categorise'],
       counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
@@ -115,7 +114,7 @@ export const systems: SystemContent[] = [
           unread: true,
           category: unclear,
           outcome:
-            'Marked 00 Unclear. The system could not tell what kind of email this is, so it sits at the top for a person to look at first.',
+            'Marked 00 Unclear. The system couldn’t tell what kind of email this is, so it sits at the top for a person to look at first.',
         },
         {
           id: 'booking',
@@ -135,7 +134,7 @@ export const systems: SystemContent[] = [
           unread: true,
           category: appointments,
           outcome:
-            'Marked 01 Appointments and left in the Inbox. If it still has no reply, it appears in tomorrow’s morning summary.',
+            'Marked 01 Appointments and left in the Inbox. If it still has no reply, it’s in tomorrow’s morning summary.',
         },
         {
           id: 'collins',
@@ -144,7 +143,7 @@ export const systems: SystemContent[] = [
           received: 'Sun 6:14 pm',
           unread: true,
           category: unclear,
-          outcome: 'Marked 00 Unclear. Nothing in it shows what it concerns, so the system does not guess.',
+          outcome: 'Marked 00 Unclear. Nothing in it says what it’s about, so the system doesn’t guess.',
         },
         {
           id: 'avery',
@@ -172,7 +171,7 @@ export const systems: SystemContent[] = [
           received: 'Fri 2:15 pm',
           category: enquiries,
           outcome:
-            'Marked 02 Patient Enquiries. While it waits for a reply, the morning summary counts open hours only, so the weekend is not counted.',
+            'Marked 02 Patient Enquiries. While it waits for a reply, the morning summary counts open hours only, so the weekend doesn’t count.',
         },
         {
           id: 'kestrel',
@@ -204,7 +203,7 @@ export const systems: SystemContent[] = [
 
     whatItNeverDoes: {
       heading: 'What it never does.',
-      intro: 'These limits are fixed for every practice and cannot be configured.',
+      intro: 'These limits are the same for every practice. They can’t be configured.',
       items: [
         { text: 'Never sends an email.', detail: 'Mail.Send is not requested and not held.' },
         { text: 'Never deletes mail or moves it out of the mailbox.' },
@@ -225,7 +224,7 @@ export const systems: SystemContent[] = [
     illustrations: {
       heading: 'What reception and the practice manager see.',
       intro:
-        'Both illustrations use a fictional practice, open from 8:00am to 5:00pm, Monday to Friday. Every sender is fictional.',
+        'Both use a fictional practice, open 8:00am to 5:00pm, Monday to Friday. Every sender is fictional.',
       inbox: {
         caption:
           'The shared Inbox in Outlook at 8:00am on a Monday, arranged by category. Illustration with fictional senders.',
@@ -367,10 +366,10 @@ export const systems: SystemContent[] = [
     // email, not Kestrel, which the summary still lists under 04 Accounts.
     dayTimeline: {
       heading: 'A working day.',
-      intro: 'The same fictional practice, from before opening on Friday to the morning summary on Monday, the next open day.',
+      intro: 'Same fictional practice, from before opening on Friday to the morning summary on Monday, the next open day.',
       hint: 'Press Next, or use the arrow keys.',
       startClock: 'Friday, 7:45am',
-      startNote: 'The practice opens at 8:00am. Press Next to see the day’s email arrive.',
+      startNote: 'The practice opens at 8:00am. Press Next to watch the day’s email arrive.',
       nextLabel: 'Next',
       backLabel: 'Back',
       restartLabel: 'Start again',
@@ -387,7 +386,7 @@ export const systems: SystemContent[] = [
           clock: 'Friday, 7:48am',
           arrival: { id: 'moreau', sender: 'A. Moreau', subject: 'Checking in', received: '7:48 am', category: unclear },
           outcome:
-            'Marked 00 Unclear. The system could not tell what kind of email this is, so it sits at the top and a person looks first.',
+            'Marked 00 Unclear. The system couldn’t tell what kind of email this is, so it sits at the top and a person looks first.',
         },
         {
           clock: 'Friday, 9:40am',
@@ -398,7 +397,7 @@ export const systems: SystemContent[] = [
             received: '9:40 am',
             category: appointments,
           },
-          outcome: 'Marked 01 Appointments where it sits. Nothing is moved. Until it has a reply, it counts as waiting.',
+          outcome: 'Marked 01 Appointments where it sits. Nothing is moved. Until it gets a reply, it counts as waiting.',
         },
         {
           clock: 'Friday, 11:00am',
@@ -426,7 +425,7 @@ export const systems: SystemContent[] = [
           clock: 'Friday, 2:45pm',
           correction: { id: 'bayside', to: suppliers },
           outcome:
-            'Reception changes the category to 05 Suppliers. The system records the correction and never changes it back. Corrections are reviewed with the practice each month.',
+            'Reception changes the category to 05 Suppliers. The system records the correction and never changes it back. We go through corrections with the practice every month.',
         },
         {
           clock: 'Friday, 4:40pm',
@@ -463,7 +462,7 @@ export const systems: SystemContent[] = [
             category: enquiries,
           },
           outcome:
-            'Arrives while the practice is closed and is marked all the same. The weekend does not count as waiting.',
+            'Arrives while the practice is closed and gets marked all the same. The weekend doesn’t count as waiting.',
         },
         {
           clock: 'Monday, 7:00am',
@@ -477,50 +476,50 @@ export const systems: SystemContent[] = [
     installation: {
       heading: 'Installation, in six steps.',
       intro: [
-        'The Front Office is one product. Everything that differs between practices is written in the configuration record agreed at step two.',
-        'Once the system operates, a change to that record takes effect when the practice approves it by email.',
+        'The Front Office is one product. Everything that’s different about your practice goes in the configuration record we agree at step two.',
+        'Once it’s running, a change to that record takes effect when you approve it by email.',
       ],
       steps: [
         {
           title: 'A conversation about the inbox',
-          description: 'Vicaria and the practice discuss how the shared inbox is used today, and look at its shape.',
+          description: 'We talk through how your shared inbox is used today, and look at its shape.',
         },
         {
           title: 'The settings are written down',
           description:
-            'The practice’s settings are agreed and recorded in one configuration record: the categories and their order, the people mail is labelled for, opening hours, closures, who receives the summary, and any approved reply wording.',
+            'We agree your settings and record them in one configuration record: the categories and their order, the people mail is labelled for, opening hours, closures, who gets the summary, and any approved reply wording.',
         },
         {
           title: 'The agreements are signed',
-          description: 'A services agreement and a data processing agreement are signed. Nothing connects before that.',
+          description: 'We sign a services agreement and a data processing agreement. Nothing connects before that.',
         },
         {
-          title: 'The IT administrator grants access',
-          description: 'The practice’s IT administrator grants access to one mailbox and restricts it to that mailbox.',
+          title: 'Your IT administrator grants access',
+          description: 'Your IT administrator grants access to one mailbox, and restricts it to that mailbox.',
           link: { label: 'What is granted', href: '/it-providers' },
         },
         {
           title: 'A quiet test week',
-          description: 'The system records what it would have done. Nothing appears in the mailbox.',
+          description: 'The system records what it would have done. Nothing shows up in the mailbox.',
         },
         {
-          title: 'Switched on when the practice says so',
+          title: 'Switched on when you say so',
           description: 'Reception adds the category names to Outlook once, using a one-page guide.',
         },
       ],
     },
 
     judged: {
-      heading: 'How it is judged.',
+      heading: 'How it’s judged.',
       paragraphs: [
-        'Before the system first operates, one measure is agreed in writing: the proportion of emails whose category nobody at the practice changes. It is reported monthly, from the system’s own record.',
-        'A second figure is reported beside it: the median time from arrival to first reply, by category, counted in open hours.',
-        'Every correction is recorded, never overwritten, and reviewed with the practice at a monthly review.',
+        'Before it starts, we agree one measure in writing: the proportion of emails whose category nobody at the practice changes. We report it monthly, from the system’s own record.',
+        'Beside it we report a second figure: the median time from arrival to first reply, by category, counted in open hours.',
+        'Every correction is recorded, never overwritten, and we go through them with you at a monthly review.',
       ],
     },
 
     whoThisIsntFor: {
-      heading: 'Practices it does not suit.',
+      heading: 'Practices it doesn’t suit.',
       criteria: [
         'Practices not on Microsoft 365',
         'Practices wanting clinical triage, urgency scoring or risk ranking',
@@ -535,30 +534,30 @@ export const systems: SystemContent[] = [
       heading: 'Questions about The Front Office.',
       items: [
         {
-          question: 'Does it decide what is urgent?',
+          question: 'Does it decide what’s urgent?',
           answer:
             'No. It sorts by what kind of email it is. It assigns no priority and makes no clinical judgement.',
         },
         {
           question: 'Can it send email?',
           answer:
-            'No. Mail.Send is not requested and not held. A prepared reply waits in Drafts until a person presses Send.',
+            'No. It doesn’t request or hold Mail.Send. A prepared reply waits in Drafts until a person presses Send.',
         },
         {
           question: 'What changes for reception?',
           answer:
-            'Reception keeps working in the Outlook they already use. The category names are added to Outlook once, using a one-page guide.',
+            'Reception keeps working in the Outlook they already use. The category names go into Outlook once, using a one-page guide.',
         },
         {
           question: 'What does our IT provider need to do?',
           answer:
-            'Grant one registered application access to the one shared mailbox, then restrict it to that mailbox and test that a second mailbox is refused.',
+            'Grant one registered application access to the one shared mailbox, then restrict it to that mailbox and check that a second mailbox is refused.',
           answerLink: { label: 'For IT providers', href: '/it-providers' },
         },
         {
           question: 'Where is our data held?',
           answer:
-            'In Australia, in the Sydney region. Message contents are not stored. Email bodies are read at the moment of categorising and not kept.',
+            'In Australia, in the Sydney region. We don’t store message contents. Email bodies are read at the moment of categorising and not kept.',
           answerLink: { label: 'Data handling', href: '/data-handling' },
         },
         {
@@ -569,7 +568,7 @@ export const systems: SystemContent[] = [
     },
 
     end: {
-      line: 'To ask whether The Front Office suits a practice, email admin@vicaria.com.au with the practice name and how the shared inbox is used today.',
+      line: 'To ask whether The Front Office suits your practice, email admin@vicaria.com.au with the practice name and how the shared inbox is used today.',
       link: { label: 'Enquire', href: '/enquire' },
     },
   },

@@ -69,7 +69,7 @@ These are absolute. Violations have already required correction rounds.
 - **No pricing** published anywhere. `pricingStatement` in `content/pricing.ts` is the only pricing line.
 - **Ending an engagement — use only this wording** (services agreement clauses 4.1 and 4.2): "An engagement has no minimum term. Either party can end it at any time by written notice. The client's own administrator can withdraw access immediately, without going through Vicaria, and data is returned or deleted at the client's election, within 30 days of a request." There is no fixed term. The twelve-month figure in the agreement is a fee hold (a price lock), not a term: never mention it, or any price.
 - **No blog or resources section. No phone number.**
-- **Voice:** a firm, not its founders. Vicaria is the subject. Founders are never the trust argument. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
+- **Voice:** plain-spoken and direct, like two capable people explaining their work (docs/VOICE.md, rewritten 5 November 2026). "We", "you" and contractions are allowed; short sentences and concrete examples (sorting the inbox, keeping track of who's still waiting for a reply) beat abstract nouns. Vicaria no longer has to be the grammatical subject. Founders are still never the trust argument, and are named on About only. A draft leaning on "two real people, not a call centre" was already rejected — don't go back there.
 - **Sentence case** for every flagship heading, button and nav label.
 
 ## Deliberate states — do not "fix" these
