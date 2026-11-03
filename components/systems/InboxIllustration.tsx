@@ -11,7 +11,7 @@ function Row({ message, category, stacked }: { message: InboxMessage; category: 
   const weight = message.unread ? 'font-semibold text-[var(--ink)]' : 'text-[var(--ink)]'
   return (
     <li className="relative border-b border-[var(--hairline)] last:border-b-0">
-      {message.unread && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--accent)]" />}
+      {message.unread && <span aria-hidden="true" className="unread-dot top-[16px] sm:top-[15px]" />}
       {message.unread && <span className="sr-only">Unread. </span>}
       <div
         className={

@@ -63,9 +63,17 @@ html {
   --hairline: #e3e8e8;
   --accent-tint: #e6efee; /* accent on tint 5.04 */
   --warm: #f3efe7; /* ink 13.98, muted 4.82, accent 5.15 */
-  /* Saffron: the one warm accent, for highlights and the primary button's
-     hover. Ink on saffron 7.71. Never text on the light ground (1.99). */
-  --saffron: #e8a838;
+  /* Strong teal: the primary button, the method band and the teal
+     category. White on it 5.92; at 88% white (#e4eeed) 5.01. On the ground
+     5.65. --accent (#2e6e6b) stays the brand anchor for links and focus. */
+  --teal: #1f6f6b;
+  /* Saffron: the one warm accent, for unread dots, the primary button's
+     hover and link-hover underlines. Ink on saffron 7.44. Never text on the
+     light ground. */
+  --saffron: #e8a33d;
+  /* Inbox rows: hover and selected. */
+  --row-hover: #f4f7f7;
+  --row-selected: #eaf3f2;
   --radius-btn: 4px;
   --radius-card: 6px;
 
@@ -205,6 +213,18 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
     color: var(--accent-deep);
     text-decoration-thickness: 2px;
   }
+  .v-link-inverse {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgb(255 255 255 / 0.6);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 150ms ease-out;
+  }
+  .v-link-inverse:hover {
+    text-decoration-color: var(--saffron);
+    text-decoration-thickness: 2px;
+  }
   .v-rule {
     border-top: 1px solid var(--hairline);
   }
@@ -267,16 +287,28 @@ html.js .inbox-demo[data-autoplay='pending'] [data-mark] {
 .inbox-row > button {
   transition: background-color 120ms ease-out;
 }
-.inbox-demo .inbox-row > button:hover {
-  background-color: #f4f7f7;
+.inbox-row > button:hover {
+  background-color: var(--row-hover);
 }
 .inbox-row[data-selected='true'] > button {
-  background-color: var(--accent-tint);
+  background-color: var(--row-selected);
+}
+.inbox-row[data-selected='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: 3px;
+  background-color: var(--teal);
 }
 .inbox-demo[data-view='before'] .inbox-row > button,
 html.js .inbox-demo[data-autoplay='pending'] .inbox-row > button {
   background-color: transparent;
   cursor: default;
+}
+.inbox-demo[data-view='before'] .inbox-row::before,
+html.js .inbox-demo[data-autoplay='pending'] .inbox-row::before {
+  display: none;
 }
 
 /* Toggle: the pressed button follows the mode, including before hydration. */
@@ -292,6 +324,16 @@ html:not(.js) .inbox-demo [data-for='after'],
 .inbox-demo[data-view='after']:not([data-autoplay='pending']) [data-for='after'],
 .inbox-demo[data-view='before'] [data-for='before'],
 html.js .inbox-demo[data-autoplay='pending'] [data-for='before'] {
-  background-color: var(--accent);
+  background-color: var(--teal);
   color: #fff;
+}
+
+/* Unread: a 6px saffron dot in the row's left gutter. */
+.unread-dot {
+  position: absolute;
+  left: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--saffron);
 }

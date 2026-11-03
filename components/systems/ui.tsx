@@ -16,12 +16,13 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 }
 
-type Tone = 'ground' | 'surface' | 'warm'
+type Tone = 'ground' | 'surface' | 'warm' | 'teal'
 
 const toneClass: Record<Tone, string> = {
   ground: 'bg-[var(--ground)]',
   surface: 'bg-[var(--surface)]',
   warm: 'bg-[var(--warm)]',
+  teal: 'bg-[var(--teal)] text-white',
 }
 
 export function Section({
@@ -81,9 +82,18 @@ export function SmartLink({
   )
 }
 
-export function TextLink({ link, className = '' }: { link: LinkItem; className?: string }) {
+export function TextLink({
+  link,
+  inverse = false,
+  className = '',
+}: {
+  link: LinkItem
+  /** White, for the teal band. */
+  inverse?: boolean
+  className?: string
+}) {
   return (
-    <SmartLink href={link.href} className={`v-link font-semibold ${className}`}>
+    <SmartLink href={link.href} className={`${inverse ? 'v-link-inverse' : 'v-link'} font-semibold ${className}`}>
       {link.label}
       <span aria-hidden="true"> →</span>
     </SmartLink>
@@ -103,8 +113,8 @@ export function ButtonLink({
     'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-colors duration-150'
   const styles =
     variant === 'primary'
-      ? 'bg-[var(--accent)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'
-      : 'border border-[var(--muted)] bg-transparent text-[var(--ink)] hover:border-[var(--ink)] hover:bg-[var(--surface)]'
+      ? 'bg-[var(--teal)] text-white hover:bg-[var(--saffron)] hover:text-[var(--ink)]'
+      : 'border border-[var(--teal)] bg-transparent text-[var(--teal)] hover:bg-[var(--row-selected)]'
   return (
     <SmartLink href={link.href} className={`${base} ${styles} ${className}`}>
       {link.label}
@@ -140,15 +150,35 @@ export function PageEnd({ end }: { end: PageEndContent }) {
 }
 
 /** A plain list with hairline separators. Not cards. */
-export function RuledList({ items, className = '' }: { items: (string | DetailedItem)[]; className?: string }) {
+export function RuledList({
+  items,
+  markers,
+  className = '',
+}: {
+  items: (string | DetailedItem)[]
+  /** Optional colour squares, one per item in order (e.g. the category
+   *  palette on the homepage principles). */
+  markers?: string[]
+  className?: string
+}) {
   return (
     <ul className={`border-t border-[var(--hairline)] ${className}`}>
-      {items.map((item) => {
+      {items.map((item, i) => {
         const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
+        const marker = markers?.[i % markers.length]
         return (
-          <li key={text} className="border-b border-[var(--hairline)] py-4">
-            <p className="text-[var(--ink)]">{text}</p>
-            {detail && <p className="v-small mt-1">{detail}</p>}
+          <li key={text} className={`border-b border-[var(--hairline)] py-4 ${marker ? 'flex gap-4' : ''}`}>
+            {marker && (
+              <span
+                aria-hidden="true"
+                className="mt-[0.5em] h-2.5 w-2.5 shrink-0 rounded-[1px]"
+                style={{ backgroundColor: marker }}
+              />
+            )}
+            <div>
+              <p className="text-[var(--ink)]">{text}</p>
+              {detail && <p className="v-small mt-1">{detail}</p>}
+            </div>
           </li>
         )
       })}

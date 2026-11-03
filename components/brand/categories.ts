@@ -1,17 +1,26 @@
 import type { CategoryTone } from '@/content/types'
 
-// The flagship category palette, used only for Outlook-style category chips
-// and the states they mark. Colour means something here: a category, never
-// decoration. Each tone has a swatch (the square), a text colour and a tint
-// (the chip ground). Contrast, text on tint: teal 7.10, amber 6.48, plum 8.20,
-// sky 6.36, sage 6.23, rose 6.73, slate 7.75 — all AA. The label always
-// carries the meaning, so colour is never the only signal.
+// The flagship category palette, used for Outlook-style category chips and
+// the states they mark (and, in order, the markers on the homepage
+// principles). Colour means something here, never decoration.
+//
+// swatch: the 10×10 square, Sam's values (3 November 2026).
+// tint:   the chip ground, Sam's values.
+// text:   the swatch darkened to 72%, so the label reads as the same colour.
+//         Contrast on the tint: teal 7.59, amber 5.50, plum 8.17, sky 7.15,
+//         sage 6.78, rose 6.99, slate 9.23 — all AA. (The swatches themselves
+//         are not text colours: amber's swatch on its tint is only 3.2.)
+// border: 32% swatch over the tint.
+// The label always carries the meaning, so colour is never the only signal.
 export const CATEGORY_TONES: Record<CategoryTone, { swatch: string; text: string; tint: string; border: string }> = {
-  teal: { swatch: '#2E6E6B', text: '#1F5754', tint: '#E7F0EF', border: '#B9D2D0' },
-  amber: { swatch: '#B57A12', text: '#7A4D05', tint: '#FBF1DD', border: '#EBCB8E' },
-  plum: { swatch: '#85508F', text: '#5F3469', tint: '#F3EAF5', border: '#D7BEDD' },
-  sky: { swatch: '#3A84BA', text: '#1C5A86', tint: '#E5F0F8', border: '#B5D2E8' },
-  sage: { swatch: '#6F9562', text: '#40603A', tint: '#EBF2E7', border: '#C3D6BC' },
-  rose: { swatch: '#C25B70', text: '#8C3145', tint: '#F9E8EC', border: '#E8BCC6' },
-  slate: { swatch: '#6B7A80', text: '#3F4C52', tint: '#EDF0F1', border: '#CBD3D6' },
+  teal: { swatch: '#1F6F6B', text: '#16504D', tint: '#DCEDEC', border: '#A0C5C3' },
+  amber: { swatch: '#B7791F', text: '#845716', tint: '#FBEFD9', border: '#E5C99D' },
+  plum: { swatch: '#7B4A8C', text: '#593565', tint: '#F0E6F4', border: '#CBB4D3' },
+  sky: { swatch: '#2B6CB0', text: '#1F4E7F', tint: '#E1ECF7', border: '#A7C3E0' },
+  sage: { swatch: '#4F7A4A', text: '#395835', tint: '#E5EFE2', border: '#B5CAB1' },
+  rose: { swatch: '#B2455A', text: '#803241', tint: '#F8E3E7', border: '#E2B0BA' },
+  slate: { swatch: '#4A5568', text: '#353D4B', tint: '#E9ECF0', border: '#B6BCC4' },
 }
+
+/** The six category colours in order, for sequences such as the principles. */
+export const TONE_SEQUENCE: CategoryTone[] = ['teal', 'amber', 'plum', 'sky', 'sage', 'rose']

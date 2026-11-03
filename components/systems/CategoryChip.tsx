@@ -22,7 +22,7 @@ export default function CategoryChip({
       onMouseEnter={onHover ? () => onHover(category.label) : undefined}
       onMouseLeave={onHover ? () => onHover(null) : undefined}
     >
-      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-[1px]" style={{ backgroundColor: tone.swatch }} />
+      <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: tone.swatch }} />
       {category.label}
     </span>
   )

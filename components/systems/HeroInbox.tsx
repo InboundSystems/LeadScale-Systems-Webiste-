@@ -263,7 +263,7 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
                 style={{ ['--before-order' as string]: item.beforeOrder }}
                 className={`inbox-row relative border-b border-[var(--hairline)] transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
               >
-                {email.unread && <span aria-hidden="true" className="absolute inset-y-0 left-0 z-10 w-[3px] bg-[var(--accent)]" />}
+                {email.unread && <span aria-hidden="true" className="unread-dot top-[14px]" />}
                 <button
                   type="button"
                   tabIndex={isAfter ? 0 : -1}
@@ -278,7 +278,7 @@ export default function HeroInbox({ demo, className = '' }: { demo: InboxDemo; c
                   <span className="text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last">
                     {email.received}
                   </span>
-                  <span className={`truncate text-[0.8125rem] ${email.unread ? 'text-[var(--ink)]' : 'text-[var(--muted)]'}`}>
+                  <span className={`truncate text-[0.8125rem] ${email.unread ? 'font-semibold text-[var(--ink)]' : 'text-[var(--muted)]'}`}>
                     {email.subject}
                   </span>
                   <span className="flex min-h-[1.25rem] justify-end gap-1">

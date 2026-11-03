@@ -1,15 +1,17 @@
 import { home } from '@/content/audience'
 import { systems } from '@/content/systems'
-
-const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
+import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
 import HeroInbox from './HeroInbox'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
-// Company level throughout (docs/REPLY-2026-11-03-company-first.md). The page
-// sells what Vicaria is: the work it takes on, how every system runs, and the
-// principles every system keeps. A system appears once, as a card in the
-// systems section, never in the hero.
+const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
+const principleMarkers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
+
+// Company level throughout (docs/REPLY-2026-11-03-company-first.md). The H1
+// and subhead sell what Vicaria is; the hero's inbox is The Front Office as a
+// worked example, captioned as such. The rest: the work Vicaria takes on, how
+// every system runs, the principles every system keeps, then the systems.
 export default function HomeContent() {
   return (
     <>
@@ -52,21 +54,22 @@ export default function HomeContent() {
         </div>
       </Section>
 
-      <Section tone="surface" labelledBy="method-heading">
-        <Eyebrow>{home.method.eyebrow}</Eyebrow>
-        <h2 id="method-heading" className="v-h2 max-w-[26ch]">
+      {/* The one full-width teal band: white text, hairlines at 20% white. */}
+      <Section tone="teal" rule={false} labelledBy="method-heading">
+        <Eyebrow className="!text-[#e4eeed]">{home.method.eyebrow}</Eyebrow>
+        <h2 id="method-heading" className="v-h2 max-w-[26ch] !text-white">
           {home.method.heading}
         </h2>
         <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {home.method.items.map((item) => (
-            <div key={item.heading} className="border-t-2 border-[var(--accent-light)] pt-5">
-              <h3 className="v-h3">{item.heading}</h3>
-              <p className="mt-2 text-[var(--muted)]">{item.body}</p>
+            <div key={item.heading} className="border-t border-white/20 pt-5">
+              <h3 className="v-h3 !text-white">{item.heading}</h3>
+              <p className="mt-2 text-[#e4eeed]">{item.body}</p>
             </div>
           ))}
         </div>
         <p className="mt-10">
-          <TextLink link={home.method.link} />
+          <TextLink link={home.method.link} inverse />
         </p>
       </Section>
 
@@ -81,7 +84,7 @@ export default function HomeContent() {
               <TextLink link={home.principles.link} />
             </p>
           </div>
-          <RuledList items={home.principles.items} className="lg:col-span-7" />
+          <RuledList items={home.principles.items} markers={principleMarkers} className="lg:col-span-7" />
         </div>
       </Section>
 
