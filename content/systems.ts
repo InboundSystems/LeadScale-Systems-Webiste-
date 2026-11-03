@@ -86,8 +86,6 @@ export const systems: SystemContent[] = [
       ],
     },
 
-    cardChips: [unclear, appointments, enquiries, referrals, accounts, { label: 'For Dr Smith', tone: 'slate' }],
-
     // The homepage hero demo. Same fictional practice and Monday morning as
     // the illustrations below. Every outcome line is a section 4 fact.
     heroDemo: {
@@ -104,9 +102,8 @@ export const systems: SystemContent[] = [
       movedToLabel: 'Moved to',
       arrangedByDate: 'Arranged by: Date',
       arrangedByCategory: 'Arranged by: Categories',
-      beforeHint: 'Every email in one list, newest first. Press After to see each one marked.',
-      paneHint: 'Choose an email to see what the system did with it.',
       paneHeading: 'What the system did',
+      closeLabel: 'Close',
       toolbar: ['New mail', 'Reply', 'Categorise'],
       counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
       // "Reception still forwards it" is the fact (section 4): the system

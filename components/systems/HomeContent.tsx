@@ -28,7 +28,6 @@ import { ButtonLink, PageEnd, TextLink } from './ui'
 //                              inbox as the card's illustration
 //   - Folders: a sticky rail at 1280px+, a sticky tab strip below that.
 
-const heroDemo = systems.find((s) => s.heroDemo)?.heroDemo
 const markers = TONE_SEQUENCE.map((tone) => CATEGORY_TONES[tone].swatch)
 
 const SECTIONS: { id: string; tone: CategoryTone }[] = [
@@ -181,20 +180,17 @@ export default function HomeContent() {
 
         <MailSection index={3} ground="sky" sent={home.systems.sent} heading={home.systems.heading}>
           <p className="v-lead mt-4">{home.systems.intro}</p>
-          <ul className="mt-10 flex flex-col gap-6">
+          {/* One entry in a list of systems: the card (about 40%) beside its
+              illustration, the interactive inbox (about 60%), top-aligned.
+              Stacked below 1024px, card first. */}
+          <ul className="mt-10 flex flex-col gap-12">
             {systems.map((system) => (
-              <li key={system.name}>
-                <SystemCard system={system} linkLabel={home.systems.linkLabel} showChips />
+              <li key={system.name} className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-10">
+                <SystemCard system={system} linkLabel={home.systems.linkLabel} />
+                {system.heroDemo && <FrontOfficeInbox demo={system.heroDemo} />}
               </li>
             ))}
           </ul>
-          {/* The Front Office card's illustration: its interactive inbox. The
-              gutter at 1280px+ holds the handwritten notes. */}
-          {heroDemo && (
-            <div className="mt-12 max-w-[56rem] xl:ml-[11rem]">
-              <FrontOfficeInbox demo={heroDemo} />
-            </div>
-          )}
         </MailSection>
 
       </div>

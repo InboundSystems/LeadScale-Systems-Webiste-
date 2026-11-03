@@ -148,18 +148,16 @@ export interface InboxDemo {
   movedToLabel: string
   arrangedByDate: string
   arrangedByCategory: string
-  /** Shown in the reading pane in the before state. */
-  beforeHint: string
-  /** Shown in the reading pane in the after state, before a row is chosen. */
-  paneHint: string
+  /** The reading pane opens only once an email is chosen. */
   paneHeading: string
+  closeLabel: string
   /** The muted, non-interactive Outlook toolbar items. */
   toolbar: string[]
   /** The counter under the panel, e.g. "10 emails · 2 Unclear · 1 labelled
    *  For Dr Smith · 0 moved out of the Inbox". Numbers are computed. */
   counter: { emails: string; unclear: string; labelled: string; moved: string }
-  /** Handwritten notes beside the list (1280px+, with arrows) or under it.
-   *  Each points at: the 00 Unclear group, the person label, or the counter. */
+  /** Handwritten notes under the window, each about one thing in it: the
+   *  00 Unclear group, the person label, the counts line. */
   notes: { target: 'unclear' | 'label' | 'counter'; text: string }[]
   notesLabel: string
   /** Category order, 00 Unclear first. */
@@ -312,10 +310,6 @@ export interface SystemContent {
     inbox: InboxIllustration
     summary: MorningSummaryIllustration
   }
-
-  /** A thin row of category chips along the top of this system's card on
-   *  the homepage, in the same colour language as the hero. */
-  cardChips?: CategoryDef[]
 
   /** The interactive before-and-after inbox in the homepage hero. Only one
    *  system carries it. */

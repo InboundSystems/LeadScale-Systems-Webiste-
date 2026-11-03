@@ -4,7 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import type { CategoryDef, DemoEmail, InboxDemo } from '@/content/types'
 import CategoryChip, { personLabelTone } from './CategoryChip'
 import CategoryMenu from './CategoryMenu'
-import { HeroNotesList, HeroNotesMargin } from './HeroNotes'
+import { HeroNotesList } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
 
 // The Front Office's interactive inbox: its illustration in the homepage's
@@ -13,13 +13,15 @@ import { outlookFace, PaneSubject } from './InboxParts'
 //   - The message list: a Monday-morning Inbox at a fictional practice,
 //     sorted Before -> After, with Replay, Reset, chips, unread dots and the
 //     counts line.
-//   - A reading pane under it: choose a row to see what the system did.
+//   - A reading pane under it, only once a row is chosen (so it adds no
+//     height at rest): what the system did, or the visitor's correction.
 //   - Each row's chip opens a category menu (CategoryMenu): choosing one moves
 //     the row to that group (FLIP), the pane says the correction is recorded
 //     and never changed back, and the change is announced. Reset undoes the
 //     visitor's corrections; they survive Replay, as reception's would.
-//   - Three handwritten notes with arrows in the gutter at 1280px+, a short
-//     handwritten list below that (HeroNotes).
+//   - Three handwritten notes, as a short list under the window (HeroNotes).
+//   - Compact row density, so it sits beside The Front Office card at about
+//     1.3x the card's height.
 //
 // The list's view is driven by CSS from data attributes (app/globals.css,
 // "Inbox demo"), so one DOM serves three states: no JavaScript (the
@@ -50,8 +52,6 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
   const [autoplay, setAutoplay] = useState<Autoplay>('pending')
   const [hovered, setHovered] = useState<string | null>(null)
   const [pulse, setPulse] = useState(0)
-  // How many handwritten notes are showing (they follow the sort).
-  const [notesShown, setNotesShown] = useState(0)
   // The row whose explanation the reading pane shows, if any.
   const [paneId, setPaneId] = useState<string | null>(null)
   // The visitor's corrections: row id → category label, and what it was.
@@ -93,7 +93,6 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
       `0 ${demo.counter.moved}`,
     ].join(' · ')
 
-  const rootRef = useRef<HTMLDivElement>(null)
   const windowRef = useRef<HTMLDivElement>(null)
   const els = useRef(new Map<string, HTMLElement>())
   const lastRects = useRef<Map<string, DOMRect> | null>(null)
@@ -115,29 +114,17 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
     if (moving) capture()
     viewRef.current = next
     setHovered(null)
-    if (next === 'before') {
-      setPaneId(null)
-      setNotesShown(0)
-    }
+    if (next === 'before') setPaneId(null)
     setView(next)
-    if (next === 'after') {
-      if (moving) {
-        timers.current.push(window.setTimeout(() => setPulse((n) => n + 1), DURATION))
-        // The notes follow the sort, one by one, 200ms apart.
-        demo.notes.forEach((_, i) => {
-          timers.current.push(window.setTimeout(() => setNotesShown(i + 1), DURATION + i * 200))
-        })
-      } else {
-        setNotesShown(demo.notes.length)
-      }
+    if (next === 'after' && moving) {
+      timers.current.push(window.setTimeout(() => setPulse((n) => n + 1), DURATION))
     }
-  }, [demo.notes])
+  }, [])
 
   // Hydrated: take over from the CSS pre-hydration state.
   useLayoutEffect(() => {
     if (!document.documentElement.classList.contains('js') || reducedMotion()) {
       setAutoplay('done')
-      setNotesShown(demo.notes.length)
       return
     }
     viewRef.current = 'before'
@@ -240,6 +227,15 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
     setAnnouncement(`${demo.movedToLabel} ${to.label}. ${demo.correctionText}`)
   }
 
+  // Closing the pane removes its Close button, so focus goes back to the row.
+  function closePane() {
+    const id = paneId
+    setPaneId(null)
+    requestAnimationFrame(() =>
+      windowRef.current?.querySelector<HTMLButtonElement>(`[data-row-id="${id}"] > button`)?.focus()
+    )
+  }
+
   function reset() {
     flipReason.current = 'move'
     if (!reducedMotion()) capture()
@@ -257,7 +253,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
   const isAfter = view === 'after'
 
   return (
-    <div ref={rootRef} className="relative">
+    <div className="relative">
       <div
         ref={windowRef}
         data-view={view}
@@ -265,7 +261,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
         className="inbox-demo inbox-window overflow-hidden rounded-[8px] border-t-[6px] border-[var(--saffron)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_18px_44px_rgba(22,35,43,0.18)]"
         style={outlookFace}
       >
-        <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1.5 text-[0.75rem] text-[#6b787d]">
+        <div aria-hidden="true" className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-1 text-[0.75rem] text-[#6b787d]">
           {demo.toolbar.map((item, i) => (
             <span key={item} className="flex items-center gap-2">
               {i > 0 && <span className="text-[#b9c3c5]">·</span>}
@@ -276,7 +272,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
 
         <div>
           <section aria-label={`${demo.mailboxName} ${demo.folderName}`}>
-            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-[var(--hairline)] px-4 py-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-[var(--hairline)] px-4 py-1.5">
               <p className="v-mono text-[0.8125rem] font-semibold tabular-nums">{demo.moment}</p>
               <div className="flex items-center gap-3">
                 <button type="button" onClick={replay} className="v-link text-[0.8125rem] font-semibold">
@@ -311,7 +307,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-2">
+            <div className="flex items-center justify-between gap-4 border-b border-[var(--hairline)] bg-[#f3f6f6] px-4 py-1.5">
               <p className="truncate text-[0.8125rem] text-[var(--muted)]">
                 {demo.mailboxName} <span aria-hidden="true">›</span>{' '}
                 <span className="font-semibold text-[var(--ink)]">{demo.folderName}</span>
@@ -332,7 +328,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                       key={item.key}
                       ref={register(item.key)}
                       data-group={item.label}
-                      className={`border-b border-[var(--hairline)] bg-[#fafbfb] px-4 py-1 transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
+                      className={`border-b border-[var(--hairline)] bg-[#fafbfb] px-4 py-0.5 transition-opacity duration-150 ease-out ${dim ? 'opacity-40' : ''}`}
                     >
                       <span className="flex items-center gap-2">
                         <span aria-hidden="true" className="text-[0.5625rem] text-[var(--muted)]">
@@ -355,15 +351,16 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                     key={item.key}
                     ref={register(item.key)}
                     data-row
+                    data-row-id={email.id}
                     data-selected={email.id === paneId}
                     style={{ ['--before-order' as string]: item.beforeOrder }}
-                    className={`inbox-row relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-0.5 border-b border-[var(--hairline)] py-[7px] pl-4 pr-3 transition-opacity duration-150 ease-out sm:grid-cols-[minmax(0,1fr)_auto_4.25rem] ${dim ? 'opacity-40' : ''}`}
+                    className={`inbox-row relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2.5 gap-y-0.5 border-b border-[var(--hairline)] py-[3px] pl-4 pr-2.5 transition-opacity duration-150 ease-out sm:grid-cols-[minmax(0,1fr)_auto_auto] ${dim ? 'opacity-40' : ''}`}
                   >
                     {email.unread && (
                       <span
                         key={`dot-${pulse}`}
                         aria-hidden="true"
-                        className={`unread-dot top-[14px] ${pulse > 0 ? 'unread-pulse' : ''}`}
+                        className={`unread-dot top-[11px] ${pulse > 0 ? 'unread-pulse' : ''}`}
                       />
                     )}
                     <button
@@ -373,7 +370,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                       onClick={() => isAfter && setPaneId(email.id)}
                       className="row-span-2 min-w-0 text-left sm:row-span-1 sm:flex sm:items-center sm:gap-3"
                     >
-                      <span className={`block truncate text-[0.8125rem] sm:w-[8.5rem] sm:shrink-0 ${weight}`}>
+                      <span className={`block truncate text-[0.8125rem] sm:w-[7.25rem] sm:shrink-0 ${weight}`}>
                         {email.unread && <span className="sr-only">Unread. </span>}
                         {email.sender}
                       </span>
@@ -381,7 +378,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                         {email.subject}
                       </span>
                     </button>
-                    <span className="text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last">
+                    <span className="whitespace-nowrap text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last sm:min-w-[3.25rem]">
                       {email.received}
                     </span>
                     <span className="flex min-h-[1.25rem] justify-end gap-1">
@@ -406,61 +403,52 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
               })}
             </ul>
 
-            <p data-counter aria-live="polite" className="v-mono border-t border-[var(--hairline)] bg-[#fafbfb] px-4 py-2.5 text-[0.75rem] tabular-nums">
+            <p data-counter aria-live="polite" className="v-mono border-t border-[var(--hairline)] bg-[#fafbfb] px-4 py-1.5 text-[0.75rem] tabular-nums">
               <span data-after-only>{counter(true)}</span>
               <span data-before-only>{counter(false)}</span>
             </p>
           </section>
 
-          {/* The reading pane, under the list. */}
-          <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[#fafbfb]">
-            <div className="flex min-h-[2.25rem] items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
-              {opened && (
-                <span data-after-only>
+          {/* The reading pane, under the list: only once a row is chosen. */}
+          {isAfter && opened && (
+            <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[#fafbfb]">
+              <div className="flex items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
+                <div className="flex items-center gap-3">
                   <CategoryChip category={categoryOf(opened)} />
-                </span>
-              )}
-            </div>
-            <div aria-live="polite" className="px-4 py-3.5">
-              <div data-after-only>
-                {opened ? (
+                  <button type="button" onClick={closePane} className="v-link text-[0.75rem] font-semibold">
+                    {demo.closeLabel}
+                  </button>
+                </div>
+              </div>
+              <div aria-live="polite" className="px-4 py-3">
+                <PaneSubject
+                  sender={opened.sender}
+                  subject={opened.subject}
+                  personLabel={opened.personLabel ? { label: opened.personLabel, tone: personLabelTone } : undefined}
+                />
+                {corrections[opened.id] ? (
                   <>
-                    <PaneSubject
-                      sender={opened.sender}
-                      subject={opened.subject}
-                      personLabel={opened.personLabel ? { label: opened.personLabel, tone: personLabelTone } : undefined}
-                    />
-                    {corrections[opened.id] ? (
-                      <>
-                        <p className="mt-2 flex flex-wrap items-center gap-2">
-                          <CategoryChip category={corrections[opened.id].from} />
-                          <span aria-hidden="true" className="text-[var(--muted)]">
-                            →
-                          </span>
-                          <CategoryChip category={corrections[opened.id].to} />
-                        </p>
-                        <p className="mt-2 text-[0.9375rem] leading-snug">{demo.correctionText}</p>
-                      </>
-                    ) : (
-                      <p className="mt-1.5 text-[0.9375rem] leading-snug">{opened.outcome}</p>
-                    )}
+                    <p className="mt-2 flex flex-wrap items-center gap-2">
+                      <CategoryChip category={corrections[opened.id].from} />
+                      <span aria-hidden="true" className="text-[var(--muted)]">
+                        →
+                      </span>
+                      <CategoryChip category={corrections[opened.id].to} />
+                    </p>
+                    <p className="mt-2 text-[0.875rem] leading-snug">{demo.correctionText}</p>
                   </>
                 ) : (
-                  <p className="text-[0.9375rem] leading-snug text-[var(--muted)]">{demo.paneHint}</p>
+                  <p className="mt-1.5 text-[0.875rem] leading-snug">{opened.outcome}</p>
                 )}
               </div>
-              <p data-before-only className="text-[0.9375rem] leading-snug text-[var(--muted)]">
-                {demo.beforeHint}
-              </p>
-            </div>
-          </section>
+            </section>
+          )}
         </div>
       </div>
       <p aria-live="polite" className="sr-only">
         {announcement}
       </p>
-      <HeroNotesMargin notes={demo.notes} label={demo.notesLabel} shown={notesShown} rootRef={rootRef} version={overrides} />
       <p className="v-small mt-4">{demo.caption}</p>
       <HeroNotesList notes={demo.notes} label={demo.notesLabel} />
     </div>

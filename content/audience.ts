@@ -44,15 +44,17 @@ export const site: SiteChrome = {
     { label: 'About', href: '/about' },
   ],
   navCta: { label: 'Enquire', href: '/enquire' },
+  // Two columns, filled row by row: company links first, The Front Office
+  // at the bottom of the second column.
   footerLinks: [
     { label: 'Systems', href: '/systems' },
-    { label: 'The Front Office', href: '/systems/front-office' },
-    { label: 'How it works', href: '/how-it-works' },
     { label: 'For IT providers', href: '/it-providers' },
-    { label: 'Data handling', href: '/data-handling' },
+    { label: 'How it works', href: '/how-it-works' },
     { label: 'About', href: '/about' },
-    { label: 'Enquire', href: '/enquire' },
+    { label: 'Data handling', href: '/data-handling' },
     { label: 'Privacy', href: '/privacy' },
+    { label: 'Enquire', href: '/enquire' },
+    { label: 'The Front Office', href: '/systems/front-office' },
   ],
   crossBrand: { label: 'Vicaria Media', href: '/media' },
   footerTagline: 'We take the repetitive admin off service businesses.',

@@ -507,21 +507,6 @@ html:has([data-brand='systems']) body {
   overflow-y: visible;
 }
 
-/* Hero notes (components/systems/HeroNotes.tsx): in the margin with arrows
-   at 1280px+ when JavaScript can place them; otherwise a list under the
-   window. */
-.hero-notes-margin {
-  display: none;
-}
-@media (min-width: 1280px) {
-  html.js .hero-notes-margin {
-    display: block;
-  }
-  html.js .hero-notes-list {
-    display: none;
-  }
-}
-
 /* Hand strike (components/systems/HeroList.tsx): a slightly uneven pen line
    through a crossed-off item, as a background image so it follows each line
    of wrapped text (box-decoration-break). It draws in once, left to right,
