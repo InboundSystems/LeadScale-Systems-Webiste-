@@ -5,6 +5,7 @@ import AnnotatedSummary from './AnnotatedSummary'
 import ArrivingEmail from './ArrivingEmail'
 import EmailHeader from './EmailHeader'
 import HeroInbox from './HeroInbox'
+import SectionChip from './SectionChip'
 import SystemCard from './SystemCard'
 import { ButtonLink, Container, Eyebrow, PageEnd, RuledList, Section, TextLink } from './ui'
 
@@ -36,9 +37,13 @@ export default function HomeContent() {
         </Container>
       </header>
 
-      <Section labelledBy="work-heading">
+      {/* Section eyebrows are category chips, numbered in page order, one
+          colour each. Grounds: amber tint, teal band, warm, sky tint, then
+          plain for the summary. */}
+      <Section tone="amber" labelledBy="work-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
+            <SectionChip n={1} label={home.work.eyebrow} tone="amber" />
             <EmailHeader email={home.work.email} heading={home.work.heading} headingId="work-heading" />
           </div>
           <div className="lg:col-span-7">
@@ -57,6 +62,7 @@ export default function HomeContent() {
 
       {/* The one full-width teal band: white text, hairlines at 20% white. */}
       <Section tone="teal" rule={false} labelledBy="method-heading">
+        <SectionChip n={2} label={home.method.eyebrow} tone="teal" inverse />
         <EmailHeader
           email={home.method.email}
           heading={home.method.heading}
@@ -79,6 +85,7 @@ export default function HomeContent() {
       <Section tone="warm" labelledBy="principles-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
+            <SectionChip n={3} label={home.principles.eyebrow} tone="plum" />
             <EmailHeader email={home.principles.email} heading={home.principles.heading} headingId="principles-heading" />
             <p className="mt-6">
               <TextLink link={home.principles.link} />
@@ -88,10 +95,10 @@ export default function HomeContent() {
         </div>
       </Section>
 
-      <Section labelledBy="systems-heading">
+      <Section tone="sky" labelledBy="systems-heading">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <Eyebrow>{home.systems.eyebrow}</Eyebrow>
+            <SectionChip n={4} label={home.systems.eyebrow} tone="sky" />
             <h2 id="systems-heading" className="v-h2">
               {home.systems.heading}
             </h2>
@@ -109,7 +116,7 @@ export default function HomeContent() {
 
       {summary && (
         <Section tone="surface" labelledBy="next-morning-heading">
-          <Eyebrow>{home.nextMorning.eyebrow}</Eyebrow>
+          <SectionChip n={5} label={home.nextMorning.eyebrow} tone="sage" />
           <h2 id="next-morning-heading" className="v-h2 max-w-[26ch]">
             {home.nextMorning.heading}
           </h2>

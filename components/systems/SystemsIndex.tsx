@@ -8,7 +8,7 @@ import { Container, PageEnd, PageHeader } from './ui'
 export default function SystemsIndex() {
   return (
     <>
-      <PageHeader header={systemsIndex.header} />
+      <PageHeader header={systemsIndex.header} chipTone="sky" />
       <section aria-label="Systems" className="pb-16 sm:pb-24">
         <Container>
           <ul className="flex flex-col gap-6">

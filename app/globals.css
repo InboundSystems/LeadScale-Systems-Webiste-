@@ -74,6 +74,9 @@ html {
   /* Inbox rows: hover and selected. */
   --row-hover: #f4f7f7;
   --row-selected: #eaf3f2;
+  /* Section grounds: category tints at 60% over the ground. */
+  --tint-amber: #faf3e6;
+  --tint-sky: #eaf2f8;
   --radius-btn: 4px;
   --radius-card: 6px;
 
@@ -109,7 +112,7 @@ html:has([data-brand='systems'])::-webkit-scrollbar-thumb {
 }
 
 [data-brand='systems'] ::selection {
-  background: var(--accent-tint);
+  background: rgb(232 163 61 / 0.35); /* saffron at 35%; ink on it 12.4 */
   color: var(--ink);
 }
 
@@ -398,4 +401,14 @@ html.js .arriving-email[data-state='read'] .arriving-badge {
   html.js .summary-list {
     display: none;
   }
+}
+
+/* Focus on dark grounds: the teal ring would fall below 3:1, so it uses
+   the light teal (5.63 on the footer ink). Still teal, still visible. */
+[data-brand='systems'] footer :focus-visible {
+  outline-color: var(--accent-light);
+}
+/* On the teal band the teal ring would vanish (1:1); white is 5.92. */
+[data-brand='systems'] .on-teal :focus-visible {
+  outline-color: #fff;
 }

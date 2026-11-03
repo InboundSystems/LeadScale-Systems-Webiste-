@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import SectionChip from './SectionChip'
 import type {
+  CategoryTone,
   DetailedItem,
   LinkItem,
   PageEnd as PageEndContent,
@@ -16,13 +18,17 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 }
 
-type Tone = 'ground' | 'surface' | 'warm' | 'teal'
+type Tone = 'ground' | 'surface' | 'warm' | 'teal' | 'amber' | 'sky'
 
 const toneClass: Record<Tone, string> = {
   ground: 'bg-[var(--ground)]',
   surface: 'bg-[var(--surface)]',
   warm: 'bg-[var(--warm)]',
-  teal: 'bg-[var(--teal)] text-white',
+  teal: 'on-teal bg-[var(--teal)] text-white',
+  // Category tints at 60% over the ground: amber #FAF3E6, sky #EAF2F8.
+  // Ink 14.5 / 14.2, muted 5.0 / 4.89, accent 5.35 / 5.21.
+  amber: 'bg-[var(--tint-amber)]',
+  sky: 'bg-[var(--tint-sky)]',
 }
 
 export function Section({
@@ -122,11 +128,20 @@ export function ButtonLink({
   )
 }
 
-export function PageHeader({ header, children }: { header: PageHeaderContent; children?: ReactNode }) {
+export function PageHeader({
+  header,
+  chipTone,
+  children,
+}: {
+  header: PageHeaderContent
+  /** Set the eyebrow as a numbered category chip ("01 About") in this colour. */
+  chipTone?: CategoryTone
+  children?: ReactNode
+}) {
   return (
     <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
       <Container>
-        <Eyebrow>{header.eyebrow}</Eyebrow>
+        {chipTone ? <SectionChip n={1} label={header.eyebrow} tone={chipTone} /> : <Eyebrow>{header.eyebrow}</Eyebrow>}
         <h1 className="v-h1 max-w-[22ch]">{header.heading}</h1>
         {header.intro && <p className="v-lead mt-6">{header.intro}</p>}
         {children}

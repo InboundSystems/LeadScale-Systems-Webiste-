@@ -13,7 +13,7 @@ export default function AboutContent() {
 
   return (
     <>
-      <PageHeader header={about.header}>
+      <PageHeader header={about.header} chipTone="plum">
         <div className="mt-6 flex flex-col gap-4">
           {about.paragraphs.map((p) => (
             <p key={p} className="v-lead">

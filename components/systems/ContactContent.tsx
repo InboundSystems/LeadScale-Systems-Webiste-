@@ -7,7 +7,7 @@ import { Container, PageHeader, TextLink } from './ui'
 export default function ContactContent() {
   return (
     <>
-      <PageHeader header={contact.header}>
+      <PageHeader header={contact.header} chipTone="amber">
         <p className="mt-10">
           <a
             href={`mailto:${business.email}?subject=Enquiry`}

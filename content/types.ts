@@ -351,11 +351,11 @@ export interface HomeContent {
   }
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */
-  work: { email: SectionEmail; heading: string; items: HeadedItem[]; closing: string }
+  work: { eyebrow: string; email: SectionEmail; heading: string; items: HeadedItem[]; closing: string }
   /** How Vicaria works, for every system. */
-  method: { email: SectionEmail; heading: string; items: HeadedItem[]; link: LinkItem }
+  method: { eyebrow: string; email: SectionEmail; heading: string; items: HeadedItem[]; link: LinkItem }
   /** Principles true of every system, not of one. */
-  principles: { email: SectionEmail; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
+  principles: { eyebrow: string; email: SectionEmail; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
   systems: { eyebrow: string; heading: string; intro: string; linkLabel: string }
   /** The Front Office's morning summary, arriving as a new email below the
    *  systems section. The summary itself comes from content/systems.ts. */

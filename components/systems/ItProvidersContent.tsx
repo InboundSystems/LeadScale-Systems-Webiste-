@@ -8,7 +8,7 @@ export default function ItProvidersContent() {
 
   return (
     <>
-      <PageHeader header={itProviders.header} />
+      <PageHeader header={itProviders.header} chipTone="rose" />
 
       <Section>
         <SplitBlock heading={asked.heading}>

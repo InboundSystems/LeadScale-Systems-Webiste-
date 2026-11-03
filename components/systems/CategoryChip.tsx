@@ -4,21 +4,33 @@ import { CATEGORY_TONES } from '@/components/brand/categories'
 // An Outlook-style category tag: the category's colour as a square swatch,
 // its numbered name in monospace, set in the tone's own AA text colour. The
 // label carries the meaning, so colour is never the only signal.
+//
+// The same chip labels sections ("01 The work"), in size md. On the teal
+// band it is inverse: a white chip, teal-dark text (9.18 on white).
 export default function CategoryChip({
   category,
+  size = 'sm',
+  inverse = false,
   className = '',
   onHover,
 }: {
   category: CategoryDef
+  size?: 'sm' | 'md'
+  inverse?: boolean
   className?: string
   /** Called with the label on pointer enter, and null on leave. */
   onHover?: (label: string | null) => void
 }) {
   const tone = CATEGORY_TONES[category.tone]
+  const sizing =
+    size === 'md' ? 'gap-2 px-2 py-[5px] text-[0.8125rem]' : 'gap-1.5 px-1.5 py-[3px] text-[0.75rem]'
+  const colours = inverse
+    ? { backgroundColor: '#fff', borderColor: '#fff', color: CATEGORY_TONES.teal.text }
+    : { backgroundColor: tone.tint, borderColor: tone.border, color: tone.text }
   return (
     <span
-      className={`v-mono inline-flex max-w-full items-center gap-1.5 whitespace-nowrap rounded-[3px] border px-1.5 py-[3px] text-[0.75rem] leading-none ${className}`}
-      style={{ backgroundColor: tone.tint, borderColor: tone.border, color: tone.text }}
+      className={`v-mono inline-flex max-w-full items-center whitespace-nowrap rounded-[3px] border leading-none ${sizing} ${className}`}
+      style={colours}
       onMouseEnter={onHover ? () => onHover(category.label) : undefined}
       onMouseLeave={onHover ? () => onHover(null) : undefined}
     >

@@ -1,24 +1,38 @@
 import Link from 'next/link'
 import { business, site } from '@/content/audience'
+import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
 import { Container } from './ui'
 
 // Flagship footer. Media keeps components/Footer.tsx. No social or client
 // portal links here; the cross-link to Media lives in the footer only.
+//
+// Dark ink ground (#16232B) with light text: #E6ECEE 13.44, muted #A7B4B9
+// 7.54, saffron hover 7.44. A thin row of the six category colour squares
+// sits on its top edge.
+const LINK =
+  'underline decoration-transparent decoration-1 underline-offset-[3px] transition-[color,text-decoration-color] duration-150 ease-out hover:text-white hover:decoration-[var(--saffron)]'
+
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--hairline)] bg-[var(--ground)] pb-10 pt-14">
+    <footer className="relative bg-[#16232b] pb-10 pt-14 text-[#e6ecee]">
       <Container>
+        <div aria-hidden="true" className="absolute top-0 flex -translate-y-1/2 gap-1.5">
+          {TONE_SEQUENCE.map((tone) => (
+            <span key={tone} className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].swatch }} />
+          ))}
+        </div>
+
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="v-serif text-[1.25rem] font-semibold text-[var(--ink)]">Vicaria</p>
-            <p className="v-small mt-3 max-w-[34ch]">{site.footerTagline}</p>
+            <p className="v-serif text-[1.25rem] font-semibold text-white">Vicaria</p>
+            <p className="mt-3 max-w-[34ch] text-[0.875rem] text-[#a7b4b9]">{site.footerTagline}</p>
           </div>
 
           <nav aria-label="Footer" className="md:col-span-4">
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
               {site.footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-[0.9375rem] text-[var(--muted)] hover:text-[var(--ink)]">
+                  <Link href={link.href} className={`text-[0.9375rem] text-[#e6ecee] ${LINK}`}>
                     {link.label}
                   </Link>
                 </li>
@@ -27,7 +41,7 @@ export default function SiteFooter() {
           </nav>
 
           <div className="md:col-span-3">
-            <dl className="v-small flex flex-col gap-1">
+            <dl className="flex flex-col gap-1 text-[0.875rem] text-[#a7b4b9]">
               <dt className="sr-only">Trading name</dt>
               <dd>{business.legalName}</dd>
               <dt className="sr-only">ABN</dt>
@@ -36,7 +50,7 @@ export default function SiteFooter() {
               <dd>{business.location}</dd>
               <dt className="sr-only">Email</dt>
               <dd>
-                <a href={`mailto:${business.email}`} className="hover:text-[var(--ink)]">
+                <a href={`mailto:${business.email}`} className={LINK}>
                   {business.email}
                 </a>
               </dd>
@@ -44,11 +58,11 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-[var(--hairline)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="v-small">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-[0.875rem] text-[#a7b4b9] sm:flex-row sm:items-center sm:justify-between">
+          <p>
             © {new Date().getFullYear()} {business.legalName}
           </p>
-          <Link href={site.crossBrand.href} className="v-small hover:text-[var(--ink)]">
+          <Link href={site.crossBrand.href} className={LINK}>
             {site.crossBrand.label}
           </Link>
         </div>

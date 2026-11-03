@@ -5,7 +5,7 @@ import { PageEnd, PageHeader, Section } from './ui'
 export default function PrivacyContent() {
   return (
     <>
-      <PageHeader header={privacy.header}>
+      <PageHeader header={privacy.header} chipTone="slate">
         <p className="v-small mt-6">{privacy.lastUpdatedLabel} {privacy.lastUpdated}.</p>
       </PageHeader>
       <Section>
