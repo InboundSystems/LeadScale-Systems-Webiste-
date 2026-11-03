@@ -22,18 +22,21 @@ const SELECTOR = {
   counter: '[data-counter]',
 } as const
 
-type Spot = { noteTop: number; targetY: number; targetX: number }
+type Spot = { noteTop: number; targetY: number; targetX: number; missing: boolean }
 
 export function HeroNotesMargin({
   notes,
   label,
   shown,
   rootRef,
+  version,
 }: {
   notes: InboxDemo['notes']
   label: string
   shown: number
   rootRef: RefObject<HTMLDivElement>
+  /** Changes when the list's layout changes (a correction), to re-measure. */
+  version: unknown
 }) {
   const [spots, setSpots] = useState<Spot[] | null>(null)
 
@@ -49,9 +52,10 @@ export function HeroNotesMargin({
         const targetY = r ? r.top - base.top + r.height / 2 : 0
         // The arrow lands just inside the window's left edge, beside the target.
         const targetX = r ? Math.max(6, Math.min(r.left - base.left - 4, 24)) : 6
+        const missing = !r || r.height === 0
         const noteTop = Math.max(targetY - 22, prevBottom + 18)
-        prevBottom = noteTop + 52
-        return { noteTop, targetY, targetX }
+        if (!missing) prevBottom = noteTop + 52
+        return { noteTop, targetY, targetX, missing }
       })
       setSpots((old) =>
         old && old.every((o, i) => Math.abs(o.noteTop - next[i].noteTop) < 0.5 && Math.abs(o.targetY - next[i].targetY) < 0.5)
@@ -69,14 +73,14 @@ export function HeroNotesMargin({
       observer.disconnect()
       win?.removeEventListener('transitionend', measure)
     }
-  }, [notes, rootRef, shown])
+  }, [notes, rootRef, shown, version])
 
   return (
     <div className="hero-notes-margin pointer-events-none absolute inset-0">
       {spots && (
         <svg aria-hidden="true" className="absolute left-0 top-0 h-full w-full overflow-visible">
           {spots.map((s, i) => (
-            <g key={i} className="transition-opacity duration-300 ease-out" style={{ opacity: shown > i ? 1 : 0 }}>
+            <g key={i} className="transition-opacity duration-300 ease-out" style={{ opacity: shown > i && !s.missing ? 1 : 0 }}>
               <HandArrow x1={-18} y1={s.noteTop + 16} x2={s.targetX} y2={s.targetY} colour={SAFFRON} bow={i % 2 ? -12 : 12} />
             </g>
           ))}
@@ -87,7 +91,7 @@ export function HeroNotesMargin({
           <li
             key={note.target}
             className="v-hand absolute right-0 w-full text-right text-[1.375rem] leading-[1.05] text-[#e8a33d] transition-opacity duration-300 ease-out"
-            style={{ top: spots?.[i]?.noteTop ?? 0, opacity: spots && shown > i ? 1 : 0 }}
+            style={{ top: spots?.[i]?.noteTop ?? 0, opacity: spots && shown > i && !spots[i].missing ? 1 : 0 }}
           >
             {note.text}
           </li>

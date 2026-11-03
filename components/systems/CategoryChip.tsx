@@ -29,7 +29,7 @@ export default function CategoryChip({
     : { backgroundColor: tone.tint, borderColor: tone.border, color: tone.text }
   return (
     <span
-      className={`v-mono inline-flex max-w-full items-center whitespace-nowrap rounded-[3px] border leading-none ${sizing} ${className}`}
+      className={`v-mono inline-flex max-w-full items-center whitespace-nowrap rounded-[3px] border leading-none transition-colors duration-300 ease-out ${sizing} ${className}`}
       style={colours}
       onMouseEnter={onHover ? () => onHover(category.label) : undefined}
       onMouseLeave={onHover ? () => onHover(null) : undefined}

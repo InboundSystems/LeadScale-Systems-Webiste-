@@ -1,8 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import type { DemoEmail, HomeContent, InboxDemo, SiteChrome } from '@/content/types'
+import type { CategoryDef, DemoEmail, HomeContent, InboxDemo, SiteChrome } from '@/content/types'
 import CategoryChip, { personLabelTone } from './CategoryChip'
+import CategoryMenu from './CategoryMenu'
 import { HeroNotesList, HeroNotesMargin } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
 import MarkedHeading from './MarkedHeading'
@@ -16,6 +17,11 @@ import { ButtonLink } from './ui'
 //          page's real H1; its body is the subhead and the two buttons.
 //          Choosing a row swaps the pane to what the system did with that
 //          email, with "Back to our email".
+//          Each row's chip opens a category menu (CategoryMenu): choosing a
+//          category moves the row to that group (FLIP), the pane says the
+//          correction is recorded and never changed back, and the change is
+//          announced (aria-live). Reset undoes the visitor's corrections;
+//          they survive Replay, as reception's corrections would.
 //   mobile the pane (and the H1) first, the list below.
 //
 // The list's view is driven by CSS from data attributes (app/globals.css,
@@ -58,11 +64,19 @@ export default function HeroWindow({
   const [notesShown, setNotesShown] = useState(0)
   // null: the pane shows our email (with the H1). Otherwise a row's id.
   const [paneId, setPaneId] = useState<string | null>(null)
+  // The visitor's corrections: row id → category label, and what it was.
+  const [overrides, setOverrides] = useState<Record<string, string>>({})
+  const [corrections, setCorrections] = useState<Record<string, { from: CategoryDef; to: CategoryDef }>>({})
+  const [announcement, setAnnouncement] = useState('')
+  const categoryOf = useCallback(
+    (email: DemoEmail) => demo.categories.find((c) => c.label === overrides[email.id]) ?? email.category,
+    [demo.categories, overrides]
+  )
 
   const items = useMemo<Item[]>(
     () =>
       demo.categories.flatMap((category) => {
-        const emails = demo.emails.filter((e) => e.category.label === category.label)
+        const emails = demo.emails.filter((e) => categoryOf(e).label === category.label)
         if (emails.length === 0) return []
         return [
           { kind: 'group' as const, key: `group-${category.label}`, label: category.label, count: emails.length },
@@ -74,7 +88,7 @@ export default function HeroWindow({
           })),
         ]
       }),
-    [demo]
+    [demo, categoryOf]
   )
   const opened = paneId ? demo.emails.find((e) => e.id === paneId) : undefined
 
@@ -84,7 +98,7 @@ export default function HeroWindow({
   const counter = (after: boolean) =>
     [
       `${demo.emails.length} ${demo.counter.emails}`,
-      `${after ? demo.emails.filter((e) => e.category.label === unclearLabel).length : 0} ${demo.counter.unclear}`,
+      `${after ? demo.emails.filter((e) => categoryOf(e).label === unclearLabel).length : 0} ${demo.counter.unclear}`,
       `${after ? labelled.length : 0} ${demo.counter.labelled} ${labelName}`,
       `0 ${demo.counter.moved}`,
     ].join(' · ')
@@ -95,6 +109,8 @@ export default function HeroWindow({
   const els = useRef(new Map<string, HTMLElement>())
   const lastRects = useRef<Map<string, DOMRect> | null>(null)
   const viewRef = useRef<View>('after')
+  // Why the last FLIP ran: the chips only fade in on a sort, not a correction.
+  const flipReason = useRef<'view' | 'move'>('view')
   const timers = useRef<number[]>([])
 
   const capture = () => {
@@ -106,6 +122,7 @@ export default function HeroWindow({
   const go = useCallback((next: View, animate: boolean) => {
     if (next === viewRef.current) return
     const moving = animate && !reducedMotion()
+    flipReason.current = 'view'
     if (moving) capture()
     viewRef.current = next
     setHovered(null)
@@ -193,7 +210,7 @@ export default function HeroWindow({
         easing: EASE_OUT,
       })
     })
-    if (view === 'after') {
+    if (view === 'after' && flipReason.current === 'view') {
       windowRef.current?.querySelectorAll<HTMLElement>('[data-mark]').forEach((mark) =>
         mark.animate?.([{ opacity: 0 }, { opacity: 1 }], {
           duration: 300,
@@ -203,7 +220,7 @@ export default function HeroWindow({
         })
       )
     }
-  }, [view])
+  }, [view, overrides])
 
   // When a row's explanation opens, bring the pane's Back link into view
   // (on mobile the pane sits above the list). Focus stays on the row.
@@ -228,6 +245,26 @@ export default function HeroWindow({
     }
     go('before', false)
     timers.current.push(window.setTimeout(() => go('after', true), 380))
+  }
+
+  function recategorise(email: DemoEmail, to: CategoryDef) {
+    const from = categoryOf(email)
+    if (to.label === from.label) return
+    flipReason.current = 'move'
+    if (!reducedMotion()) capture()
+    setOverrides((o) => ({ ...o, [email.id]: to.label }))
+    setCorrections((c) => ({ ...c, [email.id]: { from: c[email.id]?.from ?? email.category, to } }))
+    setPaneId(email.id)
+    setAnnouncement(`${demo.movedToLabel} ${to.label}. ${demo.correctionText}`)
+  }
+
+  function reset() {
+    flipReason.current = 'move'
+    if (!reducedMotion()) capture()
+    setOverrides({})
+    setCorrections({})
+    setPaneId(null)
+    setAnnouncement('')
   }
 
   const register = (key: string) => (el: HTMLElement | null) => {
@@ -263,6 +300,14 @@ export default function HeroWindow({
               <div className="flex items-center gap-3">
                 <button type="button" onClick={replay} className="v-link text-[0.8125rem] font-semibold">
                   {demo.replayLabel}
+                </button>
+                <button
+                  type="button"
+                  onClick={reset}
+                  disabled={Object.keys(overrides).length === 0}
+                  className="v-link text-[0.8125rem] font-semibold disabled:cursor-default disabled:text-[var(--muted)] disabled:no-underline"
+                >
+                  {demo.resetLabel}
                 </button>
                 <div
                   role="group"
@@ -321,7 +366,8 @@ export default function HeroWindow({
                   )
                 }
                 const { email } = item
-                const dim = isAfter && hovered !== null && hovered !== email.category.label
+                const current = categoryOf(email)
+                const dim = isAfter && hovered !== null && hovered !== current.label
                 const weight = email.unread ? 'font-semibold' : 'font-normal'
                 return (
                   <li
@@ -364,7 +410,14 @@ export default function HeroWindow({
                         </span>
                       )}
                       <span data-mark className="inline-flex">
-                        <CategoryChip category={email.category} onHover={setHovered} />
+                        <CategoryMenu
+                          current={current}
+                          categories={demo.categories}
+                          label={`${demo.changeCategoryLabel}, ${email.sender}`}
+                          disabled={!isAfter}
+                          onChoose={(c) => recategorise(email, c)}
+                          onHover={setHovered}
+                        />
                       </span>
                     </span>
                   </li>
@@ -415,7 +468,7 @@ export default function HeroWindow({
                     <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">
                       {demo.paneHeading}
                     </p>
-                    <CategoryChip category={opened.category} />
+                    <CategoryChip category={categoryOf(opened)} />
                   </div>
                   <div className="mt-4">
                     <PaneSubject
@@ -424,14 +477,30 @@ export default function HeroWindow({
                       personLabel={opened.personLabel ? { label: opened.personLabel, tone: personLabelTone } : undefined}
                     />
                   </div>
-                  <p className="v-serif mt-4 text-[1.375rem] leading-snug">{opened.outcome}</p>
+                  {corrections[opened.id] ? (
+                    <>
+                      <p className="mt-4 flex flex-wrap items-center gap-2">
+                        <CategoryChip category={corrections[opened.id].from} />
+                        <span aria-hidden="true" className="text-[var(--muted)]">
+                          →
+                        </span>
+                        <CategoryChip category={corrections[opened.id].to} />
+                      </p>
+                      <p className="v-serif mt-4 text-[1.375rem] leading-snug">{demo.correctionText}</p>
+                    </>
+                  ) : (
+                    <p className="v-serif mt-4 text-[1.375rem] leading-snug">{opened.outcome}</p>
+                  )}
                 </>
               )}
             </div>
           </section>
         </div>
       </div>
-      <HeroNotesMargin notes={demo.notes} label={demo.notesLabel} shown={notesShown} rootRef={rootRef} />
+      <p aria-live="polite" className="sr-only">
+        {announcement}
+      </p>
+      <HeroNotesMargin notes={demo.notes} label={demo.notesLabel} shown={notesShown} rootRef={rootRef} version={overrides} />
       <p className="mt-4 text-[0.875rem] text-[#a7b4b9]">{demo.caption}</p>
       <HeroNotesList notes={demo.notes} label={demo.notesLabel} />
     </div>

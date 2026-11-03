@@ -137,6 +137,15 @@ export interface InboxDemo {
   beforeLabel: string
   afterLabel: string
   replayLabel: string
+  /** Undo the visitor's own corrections. */
+  resetLabel: string
+  /** Accessible name of a row's category button and its menu. */
+  changeCategoryLabel: string
+  /** Shown in the pane, and announced, when the visitor recategorises a row.
+   *  Section 4: reception's corrections are recorded and never reverted. */
+  correctionText: string
+  /** Announced when a correction is made: "Moved to". */
+  movedToLabel: string
   arrangedByDate: string
   arrangedByCategory: string
   /** Shown in the reading pane in the before state. */
