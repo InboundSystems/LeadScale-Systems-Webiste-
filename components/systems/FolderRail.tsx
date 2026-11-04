@@ -12,7 +12,7 @@ import EyeDot from './EyeDot'
 // The folder for the section in view is highlighted (IntersectionObserver on
 // the sections' ids). Each folder is an ordinary in-page link, so it works
 // with the keyboard and without JavaScript; aria-current marks the active one.
-export type Folder = { id: string; label: string; tone: CategoryTone; count: number }
+export type Folder = { id: string; label: string; tone: CategoryTone; count?: number }
 
 function useActive(folders: Folder[]) {
   const [active, setActive] = useState<string | null>(null)

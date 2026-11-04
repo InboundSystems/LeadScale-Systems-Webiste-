@@ -6,16 +6,18 @@ import type {
   SiteChrome,
   SystemsIndexContent,
 } from './types'
+import { accounts, appointments, frontOfficeCategories, pharmacy, referrals, unclear } from './systems'
 
-// Company-level content: what Vicaria is, independent of which systems it
-// currently runs. Vicaria takes recurring administrative work off service
-// businesses; The Front Office is one system it operates, never the brand.
-// Nothing here describes email, inboxes or one system's details, except
-// where a system is named as an example and linked. content/systems.ts holds
-// everything system-specific.
+// Company-level content (clinics, 10 November 2026). Vicaria builds and runs
+// systems that take the administrative work off specialist medical
+// practices' front desks, inside the Microsoft 365 they already use. Vicaria
+// is the subject and the brand; The Front Office is named as our first
+// system, so a second can be added later. The practice inbox may appear at
+// company level, including the homepage hero.
 //
-// Positioning: docs/REPLY-2026-11-03-company-first.md, which overrides
-// sections 3 and 7 of docs/WEBSITE-REWORK-2026-11.md. Facts: sections 4 and 5.
+// Source of truth: docs/WHAT-WE-DO-2026-11.md, then sections 4 to 6 of
+// docs/WEBSITE-REWORK-2026-11.md. Where they differ, WHAT-WE-DO wins.
+// content/systems.ts holds The Front Office's own detail.
 
 export const business: BusinessDetails = {
   legalName: 'Vicaria Systems',
@@ -31,11 +33,16 @@ export const audience = {
   contact: { email: business.email, location: business.location },
 }
 
+const enquireEnd = {
+  line: 'Tell us how your practice’s shared inbox is used today.',
+  link: { label: 'Enquire', href: '/enquire' },
+}
+
 export const site: SiteChrome = {
   mail: { fromLabel: 'From', toLabel: 'To', from: 'Vicaria', to: 'You', today: 'Today' },
-  metaTitle: 'Vicaria: administrative systems for service businesses',
+  metaTitle: 'Vicaria: administrative systems for specialist medical practices',
   metaDescription:
-    'We take the repetitive admin off service businesses and run it inside the software you already use. Brisbane, Australia.',
+    'We build and run systems that take the administrative work off a specialist practice’s front desk, inside the Microsoft 365 it already uses. Brisbane, Australia.',
   navLinks: [
     { label: 'Systems', href: '/systems' },
     { label: 'How it works', href: '/how-it-works' },
@@ -57,193 +64,218 @@ export const site: SiteChrome = {
     { label: 'The Front Office', href: '/systems/front-office' },
   ],
   crossBrand: { label: 'Vicaria Media', href: '/media' },
-  footerTagline: 'We take the repetitive admin off service businesses.',
+  footerTagline: 'Administrative systems for specialist medical practices.',
   clockPlace: 'Brisbane',
 }
 
 export const home: HomeContent = {
+  // H1, three options (VOICE.md: plain, concrete, no hedges):
+  //   A  "The practice inbox, sorted before reception arrives."   (picked)
+  //   B  "Your front desk’s inbox, ready at 7:00 am."
+  //   C  "We take the inbox off your front desk."
   hero: {
-    // The hero agrees with the notepad beside it: the story starts as the
-    // business closes. Later sections read as the next morning.
-    sent: 'Monday, 6:00 pm',
-    heading: 'Nobody started a business to do the admin.',
-    markedWord: 'the admin',
+    line: 'There when you aren’t.',
+    heading: 'The practice inbox, sorted before reception arrives.',
+    markedWord: 'sorted',
     body:
-      'We take the repetitive admin off your desk and run it inside the software you already use. You keep the judgement calls. We handle the rest.',
-    primary: { label: 'Tell us what’s eating your week', href: '/enquire' },
-    secondary: { label: 'See how it works', href: '/how-it-works' },
-    list: {
-      title: 'Monday',
-      items: [
-        { text: 'Sort the weekend’s email', done: true },
-        { text: 'Work out who’s still waiting for a reply', done: true },
-        { text: 'Call back about the complaint', done: false },
-        { text: 'Decide on the new supplier quote', done: false },
-        { text: 'Approve the roster change', done: false },
-      ],
-      doneNote: 'off your desk',
-      personNote: 'needs a person',
-      doneLabel: 'Off your desk:',
-      caption: 'A Monday list. Fictional business.',
-    },
-  },
-
-  // The first story, "One night". The opening line, two options (VOICE.md;
-  // claim limited to: our systems keep working while the business is closed):
-  //   A  "There when you aren’t."            (picked: the brand idea in four words)
-  //   B  "Still working after you lock up."
-  night: {
-    heading: 'There when you aren’t.',
-    clock: { days: ['Monday', 'Tuesday'], start: 18 * 60 },
-    watch: { off: 'Vicaria', on: 'Vicaria · on watch' },
-    beats: [
-      { key: 'close', minute: 18 * 60, heading: 'Closed for the day', text: 'Closed. Five things still on the list.', target: 'title' },
-      {
-        key: 'the-work',
-        id: 'the-work',
-        minute: 18 * 60 + 20,
-        heading: 'The kind of work we take on',
-        text: 'Two of them are the kind of work we take on. Three need a person.',
-        target: 'none',
-        showsWork: true,
-      },
-      { key: 'sorted', minute: 23 * 60 + 40, heading: 'Overnight', text: 'While you’re closed, we sort the email.', target: 0, crosses: [0] },
-      {
-        key: 'waiting',
-        minute: 24 * 60 + 150,
-        heading: 'Overnight',
-        text: 'Then we work out who’s still waiting for a reply.',
-        target: 1,
-        crosses: [1],
-      },
-      { key: 'judgement', minute: 24 * 60 + 285, heading: 'Before morning', text: 'The judgement calls wait for a person.', target: 'person', waits: true },
-      { key: 'morning', minute: 24 * 60 + 7 * 60, heading: 'Morning', text: 'Two done. Three waiting for you.', target: 'none', morning: true },
-    ],
-    tags: [
-      { item: 0, text: 'turns up every day' },
-      { item: 0, text: 'follows your rules' },
-      { item: 1, text: 'needs no judgement' },
-      { item: 1, text: 'still takes hours' },
-    ],
-    personTag: 'needs a person',
-    morningLine: 'Two done. Three waiting for you.',
+      'For specialist practices on Microsoft 365. We mark every email in your shared inbox with your own categories, where it sits, and at 7:00 am we send a summary of what’s still waiting for a reply. Nothing is moved. Nothing is sent.',
+    primary: { label: 'Email us about your inbox', href: '/enquire' },
+    secondary: { label: 'See what it does', href: '#what-we-do' },
   },
 
   foldersLabel: 'Folders on this page',
 
-  work: {
-    eyebrow: 'The work',
-    sent: 'Today, 8:02 am',
-    heading: 'The kind of work we take on.',
-    items: [
-      {
-        heading: 'It turns up every day',
-        body: 'The same kinds of thing land on the desk daily, and every one has to be dealt with.',
-      },
-      {
-        heading: 'It follows your rules',
-        body: 'You already know how each one should be handled. The rules fit on a page.',
-      },
-      {
-        heading: 'It needs no judgement',
-        body: 'None of it calls for a decision only a person should make.',
-      },
-      {
-        heading: 'It still takes hours',
-        body: 'Done by hand, it takes hours a week from people with other work to do.',
-      },
+  inbox: {
+    eyebrow: 'One inbox',
+    heading: 'One inbox, everything in it.',
+    kinds: [
+      'Referrals from GPs and hospitals',
+      'Booking and rescheduling requests',
+      'Patients’ questions',
+      'Pathology and imaging results',
+      'Script requests',
+      'Pharmacy and supplier mail',
+      'Invoices, Medicare and health fund mail',
+      'Fax-to-email notifications',
+      'Software and business mail',
+      'Marketing',
     ],
-    closing: 'The same work, every day, done the same way, by people with other work to do.',
+    paragraphs: [
+      'It all arrives as one list, around the clock, including when the practice is closed.',
+      'What each email is, who it’s for and what’s still waiting for a reply depends on whoever is on the desk. Practices improvise with red flags, blue flags and coloured categories to keep up.',
+    ],
   },
 
-  method: {
-    eyebrow: 'How it runs',
-    sent: 'Today, 8:09 am',
-    heading: 'Every system runs the same way.',
+  whatWeDo: {
+    eyebrow: 'What we do',
+    heading: 'What we do about it.',
+    intro: 'The Front Office, our first system, works in that inbox. It does seven things.',
     items: [
       {
-        heading: 'We agree the job',
-        body: 'Together we pick the one recurring job the system takes on.',
+        heading: 'Every email gets one of your categories',
+        body: 'It’s marked where it sits in the Inbox, with your own numbered categories. Nothing is moved.',
+        detail: { kind: 'categories', title: 'Your categories, in your order', categories: frontOfficeCategories },
       },
       {
-        heading: 'We write your rules down',
-        body: 'The system is set up to your own rules, recorded in one document.',
+        heading: 'Unclear goes to the top',
+        body: 'If it can’t tell what an email is, it marks it 00 Unclear, so a person looks first. It doesn’t guess.',
+        detail: {
+          kind: 'row',
+          folder: 'Inbox',
+          sender: 'Alex',
+          subject: 'Quick question',
+          received: '7:41 am',
+          category: unclear,
+          note: 'Top of the Inbox',
+        },
       },
       {
-        heading: 'We install it and run it',
-        body: 'It runs inside the software you already use.',
+        heading: 'Labelled for the doctor it’s for',
+        body: 'When an email names a doctor or staff member, it’s labelled for them. Reception still forwards it.',
+        detail: {
+          kind: 'row',
+          folder: 'Inbox',
+          sender: 'Wattlebrook Family Medical',
+          subject: 'Referral for Dr Smith',
+          received: 'Fri 4:40 pm',
+          category: referrals,
+          personLabel: 'For Dr Smith',
+          note: 'Named in the email',
+        },
       },
       {
-        heading: 'You administer nothing',
-        body: 'You get the work back done. There’s nothing to set up or maintain.',
+        heading: 'A summary at 7:00 am',
+        body: 'On open days, before reception arrives: what’s still waiting for a reply, oldest first, counting open hours only.',
+        detail: {
+          kind: 'summary',
+          title: 'Inbox summary, Monday 7:00 am',
+          groups: [
+            {
+              heading: appointments.label,
+              lines: [
+                { first: '7h 20m', subject: 'Request to move my appointment', sender: 'd.ng@example.com' },
+                { first: '10m', subject: 'New booking request', sender: 'bookings@example.com' },
+              ],
+            },
+            {
+              heading: accounts.label,
+              lines: [{ first: '6h', subject: 'Question about invoice 2041', sender: 'accounts@example.com' }],
+            },
+          ],
+          note: 'Oldest first. Open hours only.',
+        },
       },
       {
-        heading: 'One number, every month',
-        body: 'Before it starts, we agree one measure in writing. We report it every month.',
+        heading: 'Known senders in Junk, listed',
+        body: 'Mail from people you already deal with that landed in Junk is listed in the summary. Nothing is moved out of Junk.',
+        detail: {
+          kind: 'summary',
+          title: 'Possibly misfiled in Junk Email',
+          groups: [
+            {
+              heading: 'From someone who has written to the practice before',
+              lines: [{ first: 'Sun 18:03', subject: 'Collection booked for Tuesday', sender: 'dispatch@example.com' }],
+            },
+          ],
+          note: 'Listed. Not moved.',
+        },
       },
       {
-        heading: 'You approve every change',
-        body: 'A change to the setup takes effect when you approve it by email.',
+        heading: 'Approved replies, left in Drafts',
+        body: 'For a sender you name, like your booking form, it prepares your approved wording. Someone at the practice checks it and presses Send.',
+        detail: {
+          kind: 'drafts',
+          folder: 'Drafts',
+          to: 'Jordan Lee',
+          subject: 'Re: New booking request',
+          status: 'Not sent',
+          preview: 'Thanks for your booking request. Please call reception Monday to Thursday, 8:00 am to 4:00 pm…',
+        },
+      },
+      {
+        heading: 'Reception’s changes stick',
+        body: 'If reception changes a category, the system never changes it back. We go through the corrections with you each month.',
+        detail: {
+          kind: 'correction',
+          sender: 'Bayside Linen Service',
+          subject: 'Delivery schedule for December',
+          from: accounts,
+          to: pharmacy,
+          note: 'Changed by reception. Kept.',
+        },
       },
     ],
-    link: { label: 'How an engagement runs', href: '/how-it-works' },
-    // The artifact in the second story. Fictional and generic: no sector,
-    // no business, no product names, no figures.
-    story: {
-      jobTitle: 'The job',
-      rulesTitle: 'Your rules',
-      rules: [
-        'Every email → one of your own categories',
-        'Waiting for a reply → listed, oldest first',
-        'Can’t tell → a person looks first',
-        'Needs judgement → left for you',
-      ],
-      windowTitle: 'Your software',
-      doneRows: ['Sort the weekend’s email', 'Work out who’s still waiting for a reply'],
-      runBy: 'Run by Vicaria',
-      monthlyTitle: 'Every month',
-      monthlyText: 'One measure, agreed before we start. Reported every month.',
-      change: {
-        from: 'Vicaria',
-        subject: 'Proposed change to your setup',
-        body: 'It takes effect when you approve it.',
-        approve: 'Approve',
-        notNow: 'Not now',
-        applied: 'Change approved. In effect.',
-      },
-    },
+    link: { label: 'The Front Office in full', href: '/systems/front-office' },
   },
 
-  principles: {
-    eyebrow: 'What never changes',
-    sent: 'Today, 8:15 am',
-    heading: 'What never changes.',
+  never: {
+    eyebrow: 'What it never does',
+    heading: 'What it never does.',
+    intro: 'These limits are fixed. No practice can switch them on.',
     items: [
-      'You keep your software. We don’t replace anything.',
-      'Anything that needs judgement stays with a person.',
-      'We run the system. You have nothing to administer.',
-      'We sign a services agreement and a data processing agreement before anything connects.',
-      'Your data is stored and processed in Australia.',
-      {
-        text: 'There’s no minimum term. Either of us can end it at any time, in writing.',
-        detail:
-          'Your own IT administrator can withdraw our access at any time, without asking us, and it takes effect immediately. Your data is returned or deleted, whichever you choose, within 30 days of asking.',
-      },
+      'It never sends an email.',
+      'It never deletes mail or moves it out of the mailbox.',
+      'It makes no clinical judgement, assigns no priority and never decides what’s urgent.',
+      'It works in one mailbox, the one your IT provider grants.',
+      'It never stores what a message says.',
+      'Everything is stored and processed in Australia.',
     ],
     link: { label: 'How data is handled', href: '/data-handling' },
   },
 
-  systems: {
-    eyebrow: 'Systems',
-    sent: 'Today, 8:21 am',
-    heading: 'Systems we run.',
-    intro: 'Each system takes one recurring admin job off your desk. We list a system here once it’s available.',
-    linkLabel: 'What it does',
-    previewLinkLabel: 'See a night at the practice',
+  start: {
+    eyebrow: 'Getting started',
+    heading: 'How a practice starts.',
+    steps: [
+      { title: 'A conversation', description: 'We talk through how your shared inbox is used today.' },
+      {
+        title: 'Your settings, written down',
+        description:
+          'Categories and their order, the people mail is labelled for, opening hours, closures, who gets the summary, any approved reply wording. All in one record.',
+      },
+      {
+        title: 'The agreements',
+        description: 'We sign a services agreement and a data processing agreement. Nothing connects before that.',
+      },
+      {
+        title: 'Your IT provider grants access',
+        description: 'Two Microsoft permissions, restricted to the one mailbox.',
+        link: { label: 'For your IT provider', href: '/it-providers' },
+      },
+      {
+        title: 'A quiet test week',
+        description: 'The system records what it would have done. Nothing appears in your mailbox, and the summary comes to us.',
+      },
+      {
+        title: 'Switched on when you say so',
+        description: 'Reception adds the category names to Outlook once, with a one-page guide.',
+      },
+    ],
+    closing: 'Later changes, like a new category, a new doctor or holiday dates, are approved by email. You administer nothing.',
+  },
+
+  judged: {
+    eyebrow: 'How it’s judged',
+    heading: 'One measure, every month.',
+    paragraphs: [
+      'Before it starts, we agree one measure in writing: the share of emails whose category nobody at the practice changes. We report it monthly.',
+      'Beside it, the median time from arrival to first reply, by category, counted in open hours.',
+    ],
+  },
+
+  notFor: {
+    eyebrow: 'Not for every practice',
+    heading: 'It isn’t for every practice.',
+    items: [
+      'Practices not on Microsoft 365',
+      'Practices wanting clinical triage, urgency scoring or risk ranking',
+      'Inboxes too quiet to justify it',
+      'Practices wanting software to run themselves',
+    ],
   },
 
   end: {
-    line: 'Tell us which admin job takes the most time in your business.',
+    line: 'Practice managers: email us about your shared inbox.',
     link: { label: 'Enquire', href: '/enquire' },
   },
 }
@@ -253,50 +285,51 @@ export const systemsIndex: SystemsIndexContent = {
     eyebrow: 'Systems',
     heading: 'Systems we build and run.',
     intro:
-      'Each system takes one recurring admin job off your desk. Each is one product, set up from a written record of your own rules, and we run it. We list a system here once it’s available.',
+      'Each system takes one piece of administrative work off a specialist practice’s front desk, inside the Microsoft 365 it already uses. Each is one product, set up from a written record of your practice’s settings, and we run it. The Front Office is our first. We list a system here once it’s available.',
   },
   linkLabel: 'What it does',
-  end: {
-    line: 'Tell us which admin job takes the most time in your business.',
-    link: { label: 'Enquire', href: '/enquire' },
-  },
+  end: enquireEnd,
 }
 
 export const howItWorks: HowItWorksContent = {
   header: {
     eyebrow: 'How it works',
     heading: 'How an engagement runs.',
-    intro: 'Every system we run goes in the same way, whatever job it takes on.',
+    intro: 'Every system we run goes into a practice the same way.',
   },
 
   steps: {
     heading: 'From the first conversation to a running system.',
     steps: [
       {
-        title: 'We agree the job',
-        description: 'We sit down with you, pick one recurring admin job, and look at how it’s done today.',
+        title: 'We talk through the work',
+        description: 'We look at how the work is done at your front desk today.',
       },
       {
-        title: 'We write your rules down',
-        description: 'We set the system up to your own rules. We agree them with you and record them in one configuration record.',
+        title: 'We write your settings down',
+        description: 'We agree the settings with you and record them in one configuration record.',
       },
       {
         title: 'We sign the agreements',
         description: 'We sign a services agreement and a data processing agreement. Nothing connects before that.',
       },
       {
+        title: 'Your IT provider grants access',
+        description: 'Only to what the system needs, and your IT provider can withdraw it at any time.',
+      },
+      {
         title: 'We install it and run it',
         description:
-          'We install the system inside the software you already use. From then on we run it, and you get the work back done.',
+          'After a quiet test, the system goes live inside the Microsoft 365 you already use. From then on we run it, and you get the work back done.',
       },
     ],
   },
 
   sections: [
     {
-      heading: 'One product. One record of your rules.',
+      heading: 'One product. One record of your settings.',
       paragraphs: [
-        'Each system is one product. Nothing is a custom build. Everything that’s different about your business goes in the configuration record.',
+        'Each system is one product. Nothing is a custom build. Everything that’s different about your practice goes in the configuration record.',
         'Once it’s running, a change to that record takes effect when you approve it by email.',
       ],
     },
@@ -308,7 +341,7 @@ export const howItWorks: HowItWorksContent = {
     },
     {
       heading: 'Nothing for you to run.',
-      paragraphs: ['We run every system we install. You’ve no software to learn and nothing to maintain.'],
+      paragraphs: ['We run every system we install. Reception has no software to learn and you have nothing to maintain.'],
     },
     {
       heading: 'Ending an engagement.',
@@ -321,17 +354,14 @@ export const howItWorks: HowItWorksContent = {
   ],
 
   example: {
-    heading: 'An example: The Front Office.',
+    heading: 'Our first system: The Front Office.',
     paragraphs: [
-      'The Front Office goes in over six steps, from a conversation about the practice’s shared inbox to a quiet test week and switch-on. Its page walks through each one.',
+      'The Front Office goes in over six steps, from a conversation about your shared inbox to a quiet test week and switch-on. Its page walks through each one.',
     ],
     link: { label: 'The Front Office installation', href: '/systems/front-office#installation' },
   },
 
-  end: {
-    line: 'Tell us which admin job takes the most time in your business.',
-    link: { label: 'Enquire', href: '/enquire' },
-  },
+  end: enquireEnd,
 }
 
 export const about: AboutContent = {
@@ -340,9 +370,9 @@ export const about: AboutContent = {
     heading: 'We’re Vicaria.',
   },
   paragraphs: [
-    'We’re a Brisbane firm. We take the repetitive admin off service businesses: we build systems for it, and we run them inside the software each business already uses.',
-    'It’s for service businesses where nobody is dedicated to the admin, or where reception is carrying more than the role allows.',
-    'Each system is one product, set up from a written record of your own rules. We run it, and you get the work back done.',
+    'We’re a Brisbane firm. We build and run systems that take the administrative work off specialist medical practices’ front desks, inside the Microsoft 365 they already use.',
+    'They’re for practices where reception carries the shared inbox alongside the phones, the front counter and the day’s patients.',
+    'Each system is one product, set up from a written record of your practice’s settings. We run it, and you get the work back done. The Front Office is our first.',
   ],
   foundersHeading: 'Founders',
   founders: [
@@ -359,17 +389,16 @@ export const about: AboutContent = {
 }
 
 // <title> and meta description per flagship route. The layout appends
-// " | Vicaria" to each title. Company-level routes carry no email or inbox
-// wording; /it-providers is a system page and names its system.
+// " | Vicaria" to each title.
 export const pageMeta = {
   systems: {
     title: 'Systems',
-    description: 'The systems we build and run, each taking one recurring admin job off a business’s desk.',
+    description: 'The systems we build and run for specialist medical practices. The Front Office is our first.',
   },
   howItWorks: {
     title: 'How it works',
     description:
-      'How working with us runs, for every system: we agree the job, write your rules down, install and run it, and report one agreed number each month.',
+      'How working with us runs, for every system: we write your settings down, sign the agreements, install it and run it, and report one agreed number each month.',
   },
   itProviders: {
     title: 'For IT providers: The Front Office',
@@ -379,9 +408,9 @@ export const pageMeta = {
   dataHandling: {
     title: 'Data handling',
     description:
-      'How we handle data in every system we run: stored and processed in Australia, never used to train a model, returned or deleted on request.',
+      'How we handle practice data in every system we run: stored and processed in Australia, never used to train a model, returned or deleted on request.',
   },
   privacy: { title: 'Privacy policy', description: 'What personal information we collect, why, and what happens to it.' },
-  about: { title: 'About', description: 'Vicaria Systems, Brisbane. ABN 67 221 728 299.' },
+  about: { title: 'About', description: 'Vicaria Systems, Brisbane. ABN 67 221 728 299. Administrative systems for specialist medical practices.' },
   enquire: { title: 'Enquire', description: 'How to reach us: by email.' },
 }

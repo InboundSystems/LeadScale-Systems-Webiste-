@@ -17,24 +17,10 @@ import { ButtonLink, Container } from './ui'
 // public/brand/*.svg, never redrawn). The lockup is about 170px wide, over the
 // 140px minimum, and fits at 400px.
 //
-// The owl blinks once per visit (sessionStorage), after the hero's own
-// animation has finished: a 150ms dip in scaleY (app/globals.css, "Owl
-// blink"). Never repeats; nothing under prefers-reduced-motion.
+// Nothing in the header moves on its own (clinics, 10 November 2026).
 export default function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
-
-  const [blink, setBlink] = useState(false)
-  useEffect(() => {
-    try {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-      if (sessionStorage.getItem('vicaria-owl-blinked')) return
-      sessionStorage.setItem('vicaria-owl-blinked', '1')
-      setBlink(true)
-    } catch {
-      // Storage unavailable: no blink, which is fine.
-    }
-  }, [])
 
   // Night: ink at the top of the page; translucent ink with a blur once the
   // page has scrolled under it.
@@ -64,7 +50,7 @@ export default function SiteHeader() {
       </a>
       <Container className="flex h-16 items-center justify-between gap-6">
         <Link href="/" aria-label="Vicaria" className="flex shrink-0 items-center gap-2.5 text-white">
-          <VicariaOwl className={`owl-mark h-8 w-auto ${blink ? 'owl-blink' : ''}`} />
+          <VicariaOwl className="owl-mark h-8 w-auto" />
           <VicariaWordmark className="h-[27px] w-auto" />
         </Link>
 

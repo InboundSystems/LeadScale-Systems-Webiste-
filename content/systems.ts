@@ -9,30 +9,52 @@ import { pricingStatement } from './pricing'
 // The Booking Line was removed in November 2026 and lives in
 // archive/booking-line/. It must not reappear here.
 
-// Fictional categories for the illustrations. Numbered in a practice's own
-// order, as the system does; 00 Unclear always sorts first.
-const unclear: CategoryDef = { label: '00 Unclear', tone: 'outline' }
-const appointments: CategoryDef = { label: '01 Appointments', tone: 'blue' }
-const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
-const referrals: CategoryDef = { label: '03 Referrals', tone: 'navy' }
-const accounts: CategoryDef = { label: '04 Accounts', tone: 'slate' }
+// The Front Office's categories: a typical set (docs/WHAT-WE-DO-2026-11.md),
+// numbered in the order a practice works, so sorting by category puts the
+// Inbox in that order. Every practice chooses its own categories, names and
+// order; 00 Unclear always sorts first. Chips are shades of the blue family,
+// a white outline and slate; the number tells one from another.
+export const unclear: CategoryDef = { label: '00 Unclear', tone: 'outline' }
+export const appointments: CategoryDef = { label: '01 Appointments', tone: 'blue' }
+export const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
+export const results: CategoryDef = { label: '03 Results & Clinical Correspondence', tone: 'navy' }
+export const scripts: CategoryDef = { label: '04 Scripts', tone: 'blue' }
+export const pharmacy: CategoryDef = { label: '05 Pharmacy & Suppliers', tone: 'sky' }
+export const accounts: CategoryDef = { label: '06 Accounts & Billing', tone: 'slate' }
+export const faxes: CategoryDef = { label: '07 Faxes & Scans', tone: 'slate' }
+export const referrals: CategoryDef = { label: '08 Referrals', tone: 'navy' }
+export const businessAdmin: CategoryDef = { label: '09 Business Admin', tone: 'slate' }
+export const marketing: CategoryDef = { label: '10 Marketing & Promotions', tone: 'slate' }
+export const frontOfficeCategories: CategoryDef[] = [
+  unclear,
+  appointments,
+  enquiries,
+  results,
+  scripts,
+  pharmacy,
+  accounts,
+  faxes,
+  referrals,
+  businessAdmin,
+  marketing,
+]
 
 export const systems: SystemContent[] = [
   {
     name: 'The Front Office',
-    sector: 'Specialist medical and allied health practices',
+    sector: 'Our first system · Specialist medical practices',
     slug: 'front-office',
-    cardFor: 'for practices with a shared Microsoft 365 inbox',
+    cardFor: 'for specialist practices with a shared Microsoft 365 inbox',
     shortDescription:
-      'Marks every email with your practice’s own categories, keeps track of what’s still waiting for a reply, and tells you each morning.',
+      'Marks every email in the practice’s shared inbox with its own categories, keeps track of what’s still waiting for a reply, and sends a summary at 7:00 am.',
     heroLine:
-      'Every new email in the shared inbox gets one of your practice’s own categories, right where it sits. On open days, one email each morning lists what’s still waiting for a reply.',
+      'It works in the shared inbox your front desk already uses, in Outlook, on Microsoft 365. It marks each email where it sits, labels mail for the doctor it’s for, and has a list of what’s still waiting ready before reception arrives.',
 
     theProblem: {
-      heading: 'One inbox. Every kind of email.',
+      heading: 'One shared inbox, and reception carrying it.',
       paragraphs: [
-        'A specialist practice’s shared inbox gets bookings, referrals, results, scripts, invoices, supplier mail and marketing, all in one list.',
-        'Knowing what each one is, and what’s still waiting for an answer, depends on whoever’s on the desk. The Front Office does the sorting and the keeping track.',
+        'It’s built for practices whose front desk works out of one shared mailbox, such as bookings@ or reception@, opened in Outlook on the reception computers. Reception looks after it alongside the phones, the front counter and the day’s patients.',
+        'Everything lands there as one list, at any hour. Who it’s for and whether anyone has answered it is worked out by hand, often with flags and coloured categories made up along the way. The Front Office does the sorting and the keeping track.',
       ],
     },
 
@@ -46,52 +68,56 @@ export const systems: SystemContent[] = [
     },
 
     whatItDoes: {
-      heading: 'What it does.',
+      heading: 'What it does, in full.',
       items: [
         {
           heading: 'Marks every new email with one of your categories',
           body:
-            'Each email is marked where it sits in the Inbox. Nothing is moved. Categories are numbered in your own order, like 01 Appointments and 02 Patient Enquiries, so sorting the Inbox by category puts it in the order you work.',
+            'Each email gets one of your practice’s own categories where it sits in the Inbox. Nothing is moved. Your categories are numbered in the order you work, so sorting the Inbox by category puts it in that order. You choose the categories, their names and their order.',
         },
         {
           heading: 'Says so when it can’t tell',
-          body: 'If it can’t place an email, it marks it 00 Unclear, which sits at the top, so a person looks first. It doesn’t guess.',
+          body: 'If it can’t place an email, it marks it 00 Unclear. That category always sorts to the top, so a person looks first. It doesn’t guess.',
         },
         {
           heading: 'Labels mail for the person it’s for',
           body:
-            'When an email makes it clear by name or email address, it’s labelled for that person, like For Dr Smith. The label never depends on what the message is about. Reception still forwards it.',
+            'When an email names a doctor or staff member, or is addressed to them, it’s labelled for them, like For Dr Smith. The label never depends on what the message is about. Reception still forwards it.',
         },
         {
           heading: 'Sends one morning summary on open days',
           body:
-            'It goes to whoever you choose, and lists what’s still waiting for a reply, oldest first, counting only open hours. You can switch on two more blocks: mail passed on to a colleague where the sender hasn’t had a reply yet, and mail that’s been answered but is still sitting in the Inbox.',
+            'At 7:00 am, before reception arrives, it emails the person you choose (usually the practice manager) a list of what’s still waiting for a reply, oldest first within each category. Waiting time counts open hours only, so evenings, days you don’t open and closures such as Christmas don’t add to it. Categories that never need a reply, such as Faxes & Scans and Marketing, are left out. Two optional blocks: mail passed on to a colleague where the sender hasn’t had a reply, and mail that’s been answered but is still in the Inbox.',
         },
         {
-          heading: 'Lists mail from known senders that landed in Junk',
+          heading: 'Lists known senders that landed in Junk',
           body:
-            'The morning summary lists mail from people you already deal with that ended up in Junk. Nothing is moved out of Junk.',
+            'The summary lists mail from people the practice already deals with that ended up in Junk. Nothing is moved out of Junk.',
         },
         {
           heading: 'Prepares approved replies for a sender you name',
           body:
-            'For a sender like your website booking form, it prepares a reply in the exact wording you approved, addressed to the person who filled in the form. It waits in Drafts until someone checks it and presses Send.',
+            'For a sender like your website booking form, it prepares a reply in the exact wording you approved, addressed to the person who filled in the form. It waits in Drafts until someone at the practice checks it and presses Send. It never prepares replies to clinical mail, such as results, scripts or referrals.',
         },
         {
           heading: 'Respects reception’s corrections',
           body:
-            'If reception changes a category, the system never changes it back. Every correction is recorded, never overwritten, and we go through them with you at a monthly review.',
+            'If reception changes a category, the system never changes it back. Every correction is recorded, and we go through them with you at a monthly review.',
         },
       ],
     },
 
-    // The homepage hero demo. Same fictional practice and Monday morning as
-    // the illustrations below. Every outcome line is a section 4 fact.
+    // The practice inbox: the homepage hero (Before / After only) and "Try
+    // it yourself" on this system's page. A fictional specialist practice
+    // (no specialty named) at 7:55 am on a Monday: overnight and weekend
+    // mail already marked, 00 Unclear at the top, one email labelled For Dr
+    // Smith. No clinical detail in any subject. Every outcome line is a
+    // fact from docs/WHAT-WE-DO-2026-11.md.
     heroDemo: {
-      caption: 'The Front Office, our first system. Fictional practice.',
+      caption: 'The practice’s shared Inbox at 7:55 am on a Monday. Fictional practice and senders.',
       mailboxName: 'reception@',
       folderName: 'Inbox',
-      moment: 'Monday, 8:00am',
+      moment: 'Monday, 7:55 am',
       beforeLabel: 'Before',
       afterLabel: 'After',
       replayLabel: 'Replay',
@@ -105,21 +131,19 @@ export const systems: SystemContent[] = [
       closeLabel: 'Close',
       toolbar: ['New mail', 'Reply', 'Categorise'],
       counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
-      // "Reception still forwards it" is the fact (section 4): the system
-      // labels, it never forwards.
       notes: [
         { target: 'unclear', text: 'can’t tell? a person looks first' },
         { target: 'label', text: 'labelled for Dr Smith, reception still forwards it' },
         { target: 'counter', text: 'nothing leaves the Inbox' },
       ],
       notesLabel: 'Notes on the inbox',
-      categories: [unclear, appointments, enquiries, referrals, accounts],
+      categories: frontOfficeCategories,
       emails: [
         {
           id: 'alex',
           sender: 'Alex',
           subject: 'Quick question',
-          received: '7:48 am',
+          received: '7:41 am',
           unread: true,
           category: unclear,
           outcome:
@@ -129,11 +153,19 @@ export const systems: SystemContent[] = [
           id: 'booking',
           sender: 'Website booking form',
           subject: 'New booking request',
-          received: '7:31 am',
+          received: '7:12 am',
           unread: true,
           category: appointments,
           outcome:
-            'Marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until a person checks it and presses Send.',
+            'Marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until someone checks it and presses Send.',
+        },
+        {
+          id: 'fax',
+          sender: 'Fax to email',
+          subject: 'Fax received, 2 pages',
+          received: 'Sun 11:48 pm',
+          category: faxes,
+          outcome: 'Marked 07 Faxes & Scans. It never needs a reply, so the morning summary leaves it out.',
         },
         {
           id: 'raman',
@@ -143,16 +175,16 @@ export const systems: SystemContent[] = [
           unread: true,
           category: appointments,
           outcome:
-            'Marked 01 Appointments and left in the Inbox. If it still has no reply, it’s in tomorrow’s morning summary.',
+            'Marked 01 Appointments where it sits. If it still has no reply, it’s in tomorrow’s morning summary.',
         },
         {
-          id: 'collins',
-          sender: 'R. Collins',
-          subject: 'Following up',
-          received: 'Sun 6:14 pm',
+          id: 'chen',
+          sender: 'M. Chen',
+          subject: 'Repeat script request',
+          received: 'Sun 9:30 am',
           unread: true,
-          category: unclear,
-          outcome: 'Marked 00 Unclear. Nothing in it says what it’s about, so the system doesn’t guess.',
+          category: scripts,
+          outcome: 'Marked 04 Scripts. No reply is ever prepared for clinical mail.',
         },
         {
           id: 'avery',
@@ -161,7 +193,18 @@ export const systems: SystemContent[] = [
           received: 'Sat 10:22 am',
           unread: true,
           category: enquiries,
-          outcome: 'Marked 02 Patient Enquiries where it sits. Nothing is moved and nothing is sent.',
+          outcome:
+            'Arrived on Saturday, while the practice was closed, and was marked where it sits. The weekend doesn’t count as waiting.',
+        },
+        {
+          id: 'pathology',
+          sender: 'Northside Pathology',
+          subject: 'Results available',
+          received: 'Sat 6:12 am',
+          unread: true,
+          category: results,
+          outcome:
+            'Marked 03 Results & Clinical Correspondence, by what kind of email it is. The system makes no clinical judgement and assigns no priority.',
         },
         {
           id: 'wattlebrook',
@@ -171,41 +214,7 @@ export const systems: SystemContent[] = [
           category: referrals,
           personLabel: 'For Dr Smith',
           outcome:
-            'Marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
-        },
-        {
-          id: 'hill',
-          sender: 'Margaret Hill',
-          subject: 'Parking near the rooms',
-          received: 'Fri 2:15 pm',
-          category: enquiries,
-          outcome:
-            'Marked 02 Patient Enquiries. While it waits for a reply, the morning summary counts open hours only, so the weekend doesn’t count.',
-        },
-        {
-          id: 'kestrel',
-          sender: 'Kestrel Office Supplies',
-          subject: 'Question about invoice 2041',
-          received: 'Fri 11:00 am',
-          category: accounts,
-          outcome: 'Marked 04 Accounts. The reply is left to a person. The system never sends an email.',
-        },
-        {
-          id: 'ng',
-          sender: 'Daniel Ng',
-          subject: 'Request to move my appointment',
-          received: 'Fri 9:40 am',
-          category: appointments,
-          outcome: 'Marked 01 Appointments. If reception changes the category, the system never changes it back.',
-        },
-        {
-          id: 'northgate',
-          sender: 'Northgate Medical Centre',
-          subject: 'Referral: new patient',
-          received: 'Thu 2:05 pm',
-          category: referrals,
-          outcome:
-            'Marked 03 Referrals, by what kind of email it is. The system makes no clinical judgement and assigns no priority.',
+            'Marked 08 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
         },
       ],
     },
@@ -219,7 +228,7 @@ export const systems: SystemContent[] = [
         { text: 'Never touches any mailbox but the one it was granted.' },
         {
           text: 'Never stores the contents of a message.',
-          detail: 'It keeps a record of what it did: sender, subject line, time and category.',
+          detail: 'It keeps a record of what it did: sender, subject line, time, category, and whether it has been replied to.',
         },
         { text: 'Never processes information outside Australia.' },
         { text: 'Never writes into a colour, flag or category the practice already uses.' },
@@ -263,6 +272,12 @@ export const systems: SystemContent[] = [
             ],
           },
           {
+            category: accounts,
+            messages: [
+              { sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Fri 11:00 am' },
+            ],
+          },
+          {
             category: referrals,
             messages: [
               {
@@ -271,12 +286,6 @@ export const systems: SystemContent[] = [
                 received: 'Thu 4:40 pm',
                 personLabel: 'For Dr Smith',
               },
-            ],
-          },
-          {
-            category: accounts,
-            messages: [
-              { sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Fri 11:00 am' },
             ],
           },
         ],
@@ -367,108 +376,31 @@ export const systems: SystemContent[] = [
       },
     },
 
-    // "A night at the practice" (night story, 9 November 2026). The same
-    // fictional practice, open 8:00am to 5:00pm, from Friday's close to
-    // Monday morning. Every row agrees with the morning summary it arrives
-    // at (illustrations.summary above): Daniel Ng (Fri 9:40am) waits 7h 20m,
-    // Kestrel (Fri 11:00am) 6h, the booking form (Fri 4:50pm) 10m; Tom Avery
-    // (Saturday) and R. Collins (Sunday) arrive while the practice is closed,
-    // 0m; the referral for Dr Smith has been passed on; Margaret Hill has had
-    // a reply; the courier's mail is the one in Junk (Sun 1 Nov 18:03). The
-    // correction comes after the summary, at 8:05am, because reception isn't
-    // in before opening. Every sentence is a fact from section 4.
-    // Minutes are counted from midnight at the start of Friday.
-    night: {
-      heading: 'A night at the practice.',
+    // The categories in full, each with what it covers (docs/WHAT-WE-DO-
+    // 2026-11.md). An example set: every practice chooses its own.
+    categoryList: {
+      heading: 'Your categories, in your order.',
       intro:
-        'Same fictional practice, open 8:00am to 5:00pm, Monday to Friday, from Friday’s close to Monday morning. Every sender is fictional.',
-      clock: { days: ['Friday', 'Saturday', 'Sunday', 'Monday'], start: 17 * 60 },
-      toolbar: ['New mail', 'Reply', 'Categorise'],
-      mailboxName: 'reception@',
-      folderName: 'Inbox',
-      arrangedBy: 'Arranged by: Categories',
-      folders: { inbox: 'Inbox', drafts: 'Drafts', junk: 'Junk Email' },
-      startRows: [
-        { id: 'booking', sender: 'Website booking form', subject: 'New booking request', received: 'Fri 4:50 pm', category: appointments },
-        { id: 'ng', sender: 'Daniel Ng', subject: 'Request to move my appointment', received: 'Fri 9:40 am', category: appointments },
-        { id: 'hill', sender: 'Margaret Hill', subject: 'Parking near the rooms', received: 'Fri 2:15 pm', category: enquiries },
-        {
-          id: 'wattlebrook',
-          sender: 'Wattlebrook Family Medical',
-          subject: 'Referral for Dr Smith',
-          received: 'Fri 4:40 pm',
-          category: referrals,
-          personLabel: 'For Dr Smith',
-        },
-        { id: 'kestrel', sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Fri 11:00 am', category: accounts },
+        'A typical set for a specialist practice. You choose the categories, what they’re called and the order they sort in. Each email gets exactly one.',
+      items: [
+        { category: unclear, covers: 'Anything the system can’t place. It sorts to the top so a person looks first.' },
+        { category: appointments, covers: 'Booking, rescheduling and cancellation requests.' },
+        { category: enquiries, covers: 'Patients’ questions and updates, such as new contact details.' },
+        { category: results, covers: 'Pathology and imaging results, and other clinical correspondence.' },
+        { category: scripts, covers: 'Script requests.' },
+        { category: pharmacy, covers: 'Mail from pharmacies and suppliers.' },
+        { category: accounts, covers: 'Invoices, and Medicare and health fund mail.' },
+        { category: faxes, covers: 'Fax-to-email notifications and scans. They never need a reply, so the morning summary leaves them out.' },
+        { category: referrals, covers: 'Referrals from GPs and hospitals.' },
+        { category: businessAdmin, covers: 'Software and other business mail.' },
+        { category: marketing, covers: 'Marketing and promotions. Left out of the morning summary.' },
       ],
-      beats: [
-        {
-          key: 'referral',
-          minute: 17 * 60,
-          heading: 'Closed for the weekend',
-          target: 'wattlebrook',
-          text: 'The practice closes. A referral from the afternoon is marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
-        },
-        {
-          key: 'booking',
-          minute: 17 * 60,
-          heading: 'A booking request',
-          target: 'booking',
-          draft: true,
-          text: 'A website booking form enquiry is marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until a person checks it and presses Send.',
-        },
-        {
-          key: 'avery',
-          minute: 1440 + 10 * 60 + 22,
-          heading: 'After hours',
-          arrival: {
-            id: 'avery',
-            sender: 'Tom Avery',
-            subject: 'Updating my contact details',
-            received: 'Sat 10:22 am',
-            category: enquiries,
-          },
-          target: 'avery',
-          text: 'An email arrives while the practice is closed. It’s marked 02 Patient Enquiries where it sits in the Inbox. Nothing is moved, and the weekend doesn’t count as waiting.',
-        },
-        {
-          key: 'junk',
-          minute: 2 * 1440 + 18 * 60 + 3,
-          heading: 'In Junk',
-          junk: { sender: 'Dispatch', subject: 'Collection booked for Tuesday', received: 'Sun 6:03 pm' },
-          text: 'Mail from a sender the practice already deals with lands in Junk. The morning summary lists it. Nothing is moved out of Junk.',
-        },
-        {
-          key: 'collins',
-          minute: 2 * 1440 + 18 * 60 + 14,
-          heading: 'Can’t tell',
-          arrival: { id: 'collins', sender: 'R. Collins', subject: 'Following up', received: 'Sun 6:14 pm', category: unclear },
-          target: 'collins',
-          text: 'Nothing in this one says what it’s about, so the system doesn’t guess. It’s marked 00 Unclear, which sits at the top, so a person looks first.',
-        },
-        {
-          key: 'summary',
-          minute: 3 * 1440 + 7 * 60,
-          heading: 'The morning summary',
-          summary: true,
-          text: 'The morning summary reaches the practice manager: what’s still waiting for a reply, oldest first, counting open hours only.',
-        },
-        {
-          key: 'correction',
-          minute: 3 * 1440 + 8 * 60 + 5,
-          heading: 'Reception opens up',
-          correction: { id: 'collins', to: appointments },
-          target: 'collins',
-          text: 'Reception opens up, reads it, and changes the category to 01 Appointments. The system never changes it back. Every correction is recorded.',
-        },
-      ],
-      tryIt: {
-        heading: 'Try it yourself.',
-        intro:
-          'A Monday-morning Inbox at a fictional practice. Switch between Before and After, replay the sort, or change a category the way reception would.',
-      },
-      summaryLinkLabel: 'Read the full summary',
+    },
+
+    tryIt: {
+      heading: 'Try it yourself.',
+      intro:
+        'A Monday-morning Inbox at a fictional practice. Switch between Before and After, replay the sort, or change a category the way reception would.',
     },
 
     installation: {
@@ -492,13 +424,13 @@ export const systems: SystemContent[] = [
           description: 'We sign a services agreement and a data processing agreement. Nothing connects before that.',
         },
         {
-          title: 'Your IT administrator grants access',
-          description: 'Your IT administrator grants access to one mailbox, and restricts it to that mailbox.',
+          title: 'Your IT provider grants access',
+          description: 'Your IT provider grants two Microsoft permissions, restricted to the one mailbox.',
           link: { label: 'What is granted', href: '/it-providers' },
         },
         {
           title: 'A quiet test week',
-          description: 'The system records what it would have done. Nothing shows up in the mailbox.',
+          description: 'The system records what it would have done. Nothing shows up in the mailbox, and the summary comes to us, not to you.',
         },
         {
           title: 'Switched on when you say so',
@@ -535,6 +467,11 @@ export const systems: SystemContent[] = [
           question: 'Does it decide what’s urgent?',
           answer:
             'No. It sorts by what kind of email it is. It assigns no priority and makes no clinical judgement.',
+        },
+        {
+          question: 'Does it reply to patients?',
+          answer:
+            'No. For a sender you name, such as your booking form, it prepares your approved wording in Drafts, and someone at the practice checks it and presses Send. It never prepares replies to clinical mail.',
         },
         {
           question: 'Can it send email?',
