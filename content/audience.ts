@@ -86,6 +86,46 @@ export const home: HomeContent = {
     },
   },
 
+  // The first story, "One night". The opening line, two options (VOICE.md;
+  // claim limited to: our systems keep working while the business is closed):
+  //   A  "There when you aren’t."            (picked: the brand idea in four words)
+  //   B  "Still working after you lock up."
+  night: {
+    heading: 'There when you aren’t.',
+    clock: { days: ['Monday', 'Tuesday'], start: 18 * 60 },
+    watch: { off: 'Vicaria', on: 'Vicaria · on watch' },
+    beats: [
+      { key: 'close', minute: 18 * 60, text: 'Closed. Five things still on the list.', target: 'title' },
+      {
+        key: 'the-work',
+        id: 'the-work',
+        minute: 18 * 60 + 20,
+        text: 'Two of them are the kind of work we take on. Three need a person.',
+        target: 'none',
+        showsWork: true,
+      },
+      { key: 'sorted', minute: 23 * 60 + 40, label: 'Overnight', text: 'While you’re closed, we sort the email.', target: 0, crosses: [0] },
+      {
+        key: 'waiting',
+        minute: 24 * 60 + 150,
+        label: 'Overnight',
+        text: 'Then we work out who’s still waiting for a reply.',
+        target: 1,
+        crosses: [1],
+      },
+      { key: 'judgement', minute: 24 * 60 + 285, text: 'The judgement calls wait for a person.', target: 'person', waits: true },
+      { key: 'morning', minute: 24 * 60 + 7 * 60, text: 'Two done. Three waiting for you.', target: 'none', morning: true },
+    ],
+    tags: [
+      { item: 0, text: 'turns up every day' },
+      { item: 0, text: 'follows your rules' },
+      { item: 1, text: 'needs no judgement' },
+      { item: 1, text: 'still takes hours' },
+    ],
+    personTag: 'needs a person',
+    morningLine: 'Two done. Three waiting for you.',
+  },
+
   foldersLabel: 'Folders on this page',
 
   work: {
@@ -144,6 +184,31 @@ export const home: HomeContent = {
       },
     ],
     link: { label: 'How an engagement runs', href: '/how-it-works' },
+    // The artifact in the second story. Fictional and generic: no sector,
+    // no business, no product names, no figures.
+    story: {
+      jobTitle: 'The job',
+      rulesTitle: 'Your rules',
+      rules: [
+        'Every email → one of your own categories',
+        'Waiting for a reply → listed, oldest first',
+        'Can’t tell → a person looks first',
+        'Needs judgement → left for you',
+      ],
+      windowTitle: 'Your software',
+      doneRows: ['Sort the weekend’s email', 'Work out who’s still waiting for a reply'],
+      runBy: 'Run by Vicaria',
+      monthlyTitle: 'Every month',
+      monthlyText: 'One measure, agreed before we start. Reported every month.',
+      change: {
+        from: 'Vicaria',
+        subject: 'Proposed change to your setup',
+        body: 'It takes effect when you approve it.',
+        approve: 'Approve',
+        notNow: 'Not now',
+        applied: 'Change approved. In effect.',
+      },
+    },
   },
 
   principles: {
@@ -171,6 +236,7 @@ export const home: HomeContent = {
     heading: 'Systems we run.',
     intro: 'Each system takes one recurring admin job off your desk. We list a system here once it’s available.',
     linkLabel: 'What it does',
+    previewLinkLabel: 'See a night at the practice',
   },
 
   end: {

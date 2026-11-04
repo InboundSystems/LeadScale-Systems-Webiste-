@@ -17,7 +17,7 @@ export default function NotFoundNotice() {
       <Container>
         {/* The owl mark above the message, in ink (16.68 on the ground). */}
         <VicariaOwl className="mb-8 h-12 w-auto text-[var(--ink)]" />
-        <SectionChip label={notFound.eyebrow} tone="violet" />
+        <SectionChip label={notFound.eyebrow} tone="navy" />
         <h1 className="v-h1 max-w-[22ch]">{notFound.heading}</h1>
 
         <div

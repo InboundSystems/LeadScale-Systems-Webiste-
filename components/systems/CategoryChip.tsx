@@ -51,7 +51,7 @@ export default function CategoryChip({
       {eye ? (
         <EyeDot colour="var(--chip-swc)" size={11} />
       ) : (
-        <span aria-hidden="true" className="chip-sw h-2.5 w-2.5 shrink-0 rounded-[2px]" />
+        <span aria-hidden="true" className={`chip-sw h-2.5 w-2.5 shrink-0 rounded-[2px] ${tone.hollow ? 'chip-sw-hollow' : ''}`} />
       )}
       {category.label}
     </span>

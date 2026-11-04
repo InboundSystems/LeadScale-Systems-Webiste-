@@ -11,12 +11,11 @@ import { pricingStatement } from './pricing'
 
 // Fictional categories for the illustrations. Numbered in a practice's own
 // order, as the system does; 00 Unclear always sorts first.
-const unclear: CategoryDef = { label: '00 Unclear', tone: 'violet' }
+const unclear: CategoryDef = { label: '00 Unclear', tone: 'outline' }
 const appointments: CategoryDef = { label: '01 Appointments', tone: 'blue' }
 const enquiries: CategoryDef = { label: '02 Patient Enquiries', tone: 'sky' }
-const referrals: CategoryDef = { label: '03 Referrals', tone: 'cyan' }
+const referrals: CategoryDef = { label: '03 Referrals', tone: 'navy' }
 const accounts: CategoryDef = { label: '04 Accounts', tone: 'slate' }
-const suppliers: CategoryDef = { label: '05 Suppliers', tone: 'fuchsia' }
 
 export const systems: SystemContent[] = [
   {
@@ -368,102 +367,58 @@ export const systems: SystemContent[] = [
       },
     },
 
-    // The working day, step by step. The same fictional practice, open
-    // 8:00am to 5:00pm. It is the Friday before the Monday shown in the
-    // illustrations, so it agrees with the summary it ends on: Daniel Ng
-    // (9:40am) waits 7h 20m, Kestrel (11:00am) 6h, the booking form (4:50pm)
-    // 10m, and Tom Avery (Saturday) 0m. The correction is made to a supplier
-    // email, not Kestrel, which the summary still lists under 04 Accounts.
-    dayTimeline: {
-      heading: 'A working day.',
-      intro: 'Same fictional practice, from before opening on Friday to the morning summary on Monday, the next open day.',
-      hint: 'Press Next, or use the arrow keys.',
-      startClock: 'Friday, 7:45am',
-      startNote: 'The practice opens at 8:00am. Press Next to watch the day’s email arrive.',
-      nextLabel: 'Next',
-      backLabel: 'Back',
-      restartLabel: 'Start again',
-      ofLabel: 'of',
-      paneHeading: 'What the system did',
+    // "A night at the practice" (night story, 9 November 2026). The same
+    // fictional practice, open 8:00am to 5:00pm, from Friday's close to
+    // Monday morning. Every row agrees with the morning summary it arrives
+    // at (illustrations.summary above): Daniel Ng (Fri 9:40am) waits 7h 20m,
+    // Kestrel (Fri 11:00am) 6h, the booking form (Fri 4:50pm) 10m; Tom Avery
+    // (Saturday) and R. Collins (Sunday) arrive while the practice is closed,
+    // 0m; the referral for Dr Smith has been passed on; Margaret Hill has had
+    // a reply; the courier's mail is the one in Junk (Sun 1 Nov 18:03). The
+    // correction comes after the summary, at 8:05am, because reception isn't
+    // in before opening. Every sentence is a fact from section 4.
+    // Minutes are counted from midnight at the start of Friday.
+    night: {
+      heading: 'A night at the practice.',
+      intro:
+        'Same fictional practice, open 8:00am to 5:00pm, Monday to Friday, from Friday’s close to Monday morning. Every sender is fictional.',
+      clock: { days: ['Friday', 'Saturday', 'Sunday', 'Monday'], start: 17 * 60 },
       toolbar: ['New mail', 'Reply', 'Categorise'],
       mailboxName: 'reception@',
       folderName: 'Inbox',
-      arrangedBy: 'Arranged by: Date',
-      summaryLinkLabel: 'Read the full summary',
-      newLabel: 'New',
-      steps: [
+      arrangedBy: 'Arranged by: Categories',
+      folders: { inbox: 'Inbox', drafts: 'Drafts', junk: 'Junk Email' },
+      startRows: [
+        { id: 'booking', sender: 'Website booking form', subject: 'New booking request', received: 'Fri 4:50 pm', category: appointments },
+        { id: 'ng', sender: 'Daniel Ng', subject: 'Request to move my appointment', received: 'Fri 9:40 am', category: appointments },
+        { id: 'hill', sender: 'Margaret Hill', subject: 'Parking near the rooms', received: 'Fri 2:15 pm', category: enquiries },
         {
-          clock: 'Friday, 7:48am',
-          arrival: { id: 'moreau', sender: 'A. Moreau', subject: 'Checking in', received: '7:48 am', category: unclear },
-          outcome:
-            'Marked 00 Unclear. The system couldn’t tell what kind of email this is, so it sits at the top and a person looks first.',
+          id: 'wattlebrook',
+          sender: 'Wattlebrook Family Medical',
+          subject: 'Referral for Dr Smith',
+          received: 'Fri 4:40 pm',
+          category: referrals,
+          personLabel: 'For Dr Smith',
+        },
+        { id: 'kestrel', sender: 'Kestrel Office Supplies', subject: 'Question about invoice 2041', received: 'Fri 11:00 am', category: accounts },
+      ],
+      beats: [
+        {
+          key: 'referral',
+          minute: 17 * 60,
+          target: 'wattlebrook',
+          text: 'The practice closes. A referral from the afternoon is marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
         },
         {
-          clock: 'Friday, 9:40am',
-          arrival: {
-            id: 'ng',
-            sender: 'Daniel Ng',
-            subject: 'Request to move my appointment',
-            received: '9:40 am',
-            category: appointments,
-          },
-          outcome: 'Marked 01 Appointments where it sits. Nothing is moved. Until it gets a reply, it counts as waiting.',
+          key: 'booking',
+          minute: 17 * 60,
+          target: 'booking',
+          draft: true,
+          text: 'A website booking form enquiry is marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until a person checks it and presses Send.',
         },
         {
-          clock: 'Friday, 11:00am',
-          arrival: {
-            id: 'kestrel',
-            sender: 'Kestrel Office Supplies',
-            subject: 'Question about invoice 2041',
-            received: '11:00 am',
-            category: accounts,
-          },
-          outcome: 'Marked 04 Accounts. The reply is left to a person. The system never sends an email.',
-        },
-        {
-          clock: 'Friday, 2:30pm',
-          arrival: {
-            id: 'bayside',
-            sender: 'Bayside Linen Service',
-            subject: 'Delivery schedule for December',
-            received: '2:30 pm',
-            category: accounts,
-          },
-          outcome: 'Marked 04 Accounts where it sits in the Inbox.',
-        },
-        {
-          clock: 'Friday, 2:45pm',
-          correction: { id: 'bayside', to: suppliers },
-          outcome:
-            'Reception changes the category to 05 Suppliers. The system records the correction and never changes it back. We go through corrections with the practice every month.',
-        },
-        {
-          clock: 'Friday, 4:40pm',
-          arrival: {
-            id: 'harbourside',
-            sender: 'Harbourside Family Practice',
-            subject: 'Referral for Dr Smith',
-            received: '4:40 pm',
-            category: referrals,
-            personLabel: 'For Dr Smith',
-          },
-          outcome:
-            'Marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
-        },
-        {
-          clock: 'Friday, 4:50pm',
-          arrival: {
-            id: 'booking',
-            sender: 'Website booking form',
-            subject: 'New booking request',
-            received: '4:50 pm',
-            category: appointments,
-          },
-          outcome:
-            'Marked 01 Appointments. A reply in the practice’s approved wording, addressed to the person who filled in the form, waits in Drafts until a person checks it and presses Send.',
-        },
-        {
-          clock: 'Saturday, 10:22am',
+          key: 'avery',
+          minute: 1440 + 10 * 60 + 22,
           arrival: {
             id: 'avery',
             sender: 'Tom Avery',
@@ -471,16 +426,42 @@ export const systems: SystemContent[] = [
             received: 'Sat 10:22 am',
             category: enquiries,
           },
-          outcome:
-            'Arrives while the practice is closed and gets marked all the same. The weekend doesn’t count as waiting.',
+          target: 'avery',
+          text: 'An email arrives while the practice is closed. It’s marked 02 Patient Enquiries where it sits in the Inbox. Nothing is moved, and the weekend doesn’t count as waiting.',
         },
         {
-          clock: 'Monday, 7:00am',
+          key: 'junk',
+          minute: 2 * 1440 + 18 * 60 + 3,
+          junk: { sender: 'Dispatch', subject: 'Collection booked for Tuesday', received: 'Sun 6:03 pm' },
+          text: 'Mail from a sender the practice already deals with lands in Junk. The morning summary lists it. Nothing is moved out of Junk.',
+        },
+        {
+          key: 'collins',
+          minute: 2 * 1440 + 18 * 60 + 14,
+          arrival: { id: 'collins', sender: 'R. Collins', subject: 'Following up', received: 'Sun 6:14 pm', category: unclear },
+          target: 'collins',
+          text: 'Nothing in this one says what it’s about, so the system doesn’t guess. It’s marked 00 Unclear, which sits at the top, so a person looks first.',
+        },
+        {
+          key: 'summary',
+          minute: 3 * 1440 + 7 * 60,
           summary: true,
-          outcome:
-            'The morning summary reaches the practice manager. The booking form email from 4:50pm on Friday shows as waiting ten minutes, because only open hours count.',
+          text: 'The morning summary reaches the practice manager: what’s still waiting for a reply, oldest first, counting open hours only.',
+        },
+        {
+          key: 'correction',
+          minute: 3 * 1440 + 8 * 60 + 5,
+          correction: { id: 'collins', to: appointments },
+          target: 'collins',
+          text: 'Reception opens up, reads it, and changes the category to 01 Appointments. The system never changes it back. Every correction is recorded.',
         },
       ],
+      tryIt: {
+        heading: 'Try it yourself.',
+        intro:
+          'A Monday-morning Inbox at a fictional practice. Switch between Before and After, replay the sort, or change a category the way reception would.',
+      },
+      summaryLinkLabel: 'Read the full summary',
     },
 
     installation: {

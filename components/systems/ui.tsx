@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { site } from '@/content/audience'
 import MailHeader from './MailHeader'
 import SectionChip from './SectionChip'
+import StarField from './StarField'
 import type {
   CategoryTone,
   DetailedItem,
@@ -11,6 +12,23 @@ import type {
   PageHeader as PageHeaderContent,
   StepItem,
 } from '@/content/types'
+
+/** A stable seed from a string, so each section draws its own sky. */
+function seedOf(key: string) {
+  let h = 2166136261
+  for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 16777619)
+  return h >>> 0
+}
+
+/** Night throughout (night story, 9 November 2026): a sparse, faint, static
+ *  sky behind every dark section. Decorative. */
+export function SectionSky({ seedKey, count = 12 }: { seedKey: string; count?: number }) {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-clip">
+      <StarField seed={seedOf(seedKey)} count={count} maxOpacity={0.22} />
+    </div>
+  )
+}
 
 // Flagship-only primitives. Server components, no motion. Media keeps its own
 // shared components (components/ui, components/home, Navbar, Footer); nothing
@@ -66,8 +84,9 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={`${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
+      className={`relative isolate ${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
     >
+      <SectionSky seedKey={labelledBy ?? id ?? sent ?? tone} />
       <Container reveal>
         {sent && <MailHeader sent={sent} inverse={tone === 'band'} />}
         {children}
@@ -170,7 +189,8 @@ export function PageHeader({
   children?: ReactNode
 }) {
   return (
-    <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
+    <header className="relative isolate pb-14 pt-12 sm:pb-20 sm:pt-20">
+      <SectionSky seedKey={header.heading} count={16} />
       <Container reveal>
         {chipTone ? <SectionChip label={header.eyebrow} tone={chipTone} /> : <Eyebrow>{header.eyebrow}</Eyebrow>}
         <h1 className="v-h1 max-w-[22ch]">{header.heading}</h1>
@@ -184,7 +204,8 @@ export function PageHeader({
 /** The one line every page ends on, and its action (docs/VOICE.md §10). */
 export function PageEnd({ end }: { end: PageEndContent }) {
   return (
-    <section className="border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-16">
+    <section className="relative isolate border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-16">
+      <SectionSky seedKey={end.line} count={8} />
       <Container reveal className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="v-serif max-w-[40ch] text-[1.5rem] leading-snug text-[var(--ink)]">
           {end.line}
