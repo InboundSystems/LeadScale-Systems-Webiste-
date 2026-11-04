@@ -534,31 +534,8 @@ html[data-nf='media'] .nf-flagship {
   }
 }
 
-/* Tilted cards: the hero's Monday list (-1.5deg) and The Front Office's
-   inbox window (-1deg) on desktop, straightening on hover or focus. Upright
-   on mobile and under reduced motion. Transform only. */
-@media (min-width: 1024px) {
-  .inbox-window {
-    transform: rotate(-1deg);
-    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .tilt-card {
-    transform: rotate(-1.5deg);
-    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .inbox-window:hover,
-  .inbox-window:focus-within,
-  .tilt-card:hover,
-  .tilt-card:focus-within {
-    transform: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .inbox-window,
-  .tilt-card {
-    transform: none !important;
-  }
-}
+/* The mock windows (the Monday notepad, the inbox) sit straight: no tilt.
+   .inbox-window and .tilt-card remain as hooks only. */
 
 /* Sticky elements (the site header, the folder rail and strip) need no
    scrolling ancestor. The shared base sets overflow-x: hidden on html and
@@ -640,4 +617,42 @@ html:has([data-brand='systems']) body {
 }
 [data-brand='systems'] .chip-sw {
   background-color: var(--chip-swc);
+}
+
+/* Scroll reveal (components/systems/ScrollReveal.tsx): content fades in and
+   rises 18px as it reaches the viewport, once; staggered lists 70ms apart.
+   Hidden only under html.js, so no-JS shows everything; a failsafe shows
+   anything still hidden after 2.5s; nothing moves under reduced motion.
+   Anchor links (the folder rail) scroll smoothly, except under reduced
+   motion (see the reduced-motion rule above). */
+@media (prefers-reduced-motion: no-preference) {
+  html:has([data-brand='systems']) {
+    scroll-behavior: smooth;
+  }
+}
+html.js [data-brand='systems'] [data-reveal] {
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.js [data-brand='systems'] [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: reveal-failsafe 0s linear 2.5s forwards;
+}
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-brand='systems'] [data-reveal],
+  html.js [data-brand='systems'] [data-reveal]:not(.is-revealed) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
 }

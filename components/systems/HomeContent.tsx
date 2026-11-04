@@ -49,7 +49,11 @@ const folders: Folder[] = SECTIONS.map((s, i) => ({
 
 /** The homepage column: wide, with room for the folder rail at 1280px+. */
 function Column({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-8 xl:pl-[17rem] ${className}`}>{children}</div>
+  return (
+    <div data-reveal className={`mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-8 xl:pl-[17rem] ${className}`}>
+      {children}
+    </div>
+  )
 }
 
 const bg = {
@@ -139,14 +143,14 @@ export default function HomeContent() {
         </div>
 
         <MailSection index={0} ground="white" sent={home.work.sent} heading={home.work.heading}>
-          <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+          <ul data-reveal-stagger className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {home.work.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-x-3">
-                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.75rem] leading-none text-[var(--violet)]">
+                <span aria-hidden="true" className="v-serif pt-0.5 text-[1.5rem] leading-none text-[var(--violet)]">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <h3 className="v-serif text-[1.375rem] font-semibold leading-snug">{item.heading}</h3>
+                  <h3 className="v-serif text-[1.5rem] font-semibold leading-snug">{item.heading}</h3>
                   <p className="mt-1.5 text-[var(--muted)]">{item.body}</p>
                 </div>
               </li>
@@ -157,10 +161,10 @@ export default function HomeContent() {
         </MailSection>
 
         <MailSection index={1} ground="band" stars={22} sent={home.method.sent} heading={home.method.heading}>
-          <ol className="mt-10 grid gap-x-12 sm:grid-cols-2">
+          <ol data-reveal-stagger className="mt-10 grid gap-x-12 sm:grid-cols-2">
             {home.method.items.map((item, i) => (
               <li key={item.heading} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-t border-white/20 py-6">
-                <span aria-hidden="true" className="v-serif text-[2.5rem] font-semibold leading-none text-white">
+                <span aria-hidden="true" className="v-serif text-[1.5rem] font-semibold leading-none text-white">
                   {i + 1}
                 </span>
                 <div>
@@ -176,14 +180,14 @@ export default function HomeContent() {
         </MailSection>
 
         <MailSection index={2} ground="ground" stars={14} sent={home.principles.sent} heading={home.principles.heading}>
-          <ul className="mt-10 flex flex-col gap-7">
+          <ul data-reveal-stagger className="mt-10 flex flex-col gap-7">
             {home.principles.items.map((item, i) => {
               const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
               return (
                 <li key={text} className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-4">
                   <EyeDot colour={CATEGORY_TONES[SECTIONS[2].tone].dark.swatch} size={14} className="mt-[0.5em]" />
                   <div>
-                    <p className="v-serif max-w-[34ch] text-[1.5rem] leading-[1.2] sm:text-[1.875rem]">{text}</p>
+                    <p className="v-serif max-w-[34ch] text-[1.5rem] leading-[1.2]">{text}</p>
                     {detail && <p className="mt-2 max-w-[60ch] text-[var(--muted)]">{detail}</p>}
                   </div>
                 </li>
@@ -200,7 +204,7 @@ export default function HomeContent() {
           {/* One entry in a list of systems: the card (about 40%) beside its
               illustration, the interactive inbox (about 60%), top-aligned.
               Stacked below 1024px, card first. */}
-          <ul className="mt-10 flex flex-col gap-12">
+          <ul data-reveal-stagger className="mt-10 flex flex-col gap-12">
             {systems.map((system) => (
               <li key={system.name} className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-10">
                 <SystemCard system={system} linkLabel={home.systems.linkLabel} />

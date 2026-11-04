@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import BrandProvider from '@/components/brand/BrandProvider'
 import { flagshipFontVariables } from '@/components/brand/flagshipFonts'
 import SiteHeader from '@/components/systems/SiteHeader'
+import ScrollReveal from '@/components/systems/ScrollReveal'
 import SiteFooter from '@/components/systems/SiteFooter'
 import { site } from '@/content/audience'
 
@@ -38,6 +39,7 @@ export default function SystemsLayout({ children }: { children: React.ReactNode 
           {children}
         </main>
         <SiteFooter />
+        <ScrollReveal />
       </div>
     </BrandProvider>
   )

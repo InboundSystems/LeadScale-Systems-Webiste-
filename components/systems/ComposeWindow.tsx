@@ -47,7 +47,7 @@ export default function ComposeWindow({ compose }: { compose: ContactPageContent
           </div>
         </dl>
 
-        <ul className="flex min-h-[13rem] flex-col gap-5 px-4 py-5 text-[0.9375rem] text-[var(--muted)]">
+        <ul className="flex min-h-[13rem] flex-col gap-5 px-4 py-5 text-[0.875rem] text-[var(--muted)]">
           {compose.prompts.map((p) => (
             <li key={p}>{p}:</li>
           ))}

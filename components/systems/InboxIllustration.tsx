@@ -77,7 +77,7 @@ export default function InboxIllustration({
         {!stacked && (
           <div
             aria-hidden="true"
-            className="hidden grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto_6.25rem] gap-4 border-b border-[var(--hairline)] py-1.5 pl-4 pr-3 text-[0.6875rem] text-[var(--muted)] sm:grid"
+            className="hidden grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto_6.25rem] gap-4 border-b border-[var(--hairline)] py-1.5 pl-4 pr-3 text-[0.75rem] text-[var(--muted)] sm:grid"
           >
             <span>From</span>
             <span>Subject</span>

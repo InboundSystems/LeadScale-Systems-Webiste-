@@ -78,7 +78,7 @@ export default function ArrivingEmail({
     <div ref={ref} data-state={state} className={`arriving-email relative ${className}`}>
       <div aria-hidden="true" className="arriving-badge absolute right-4 top-3.5 z-10 items-center gap-2">
         <span className="h-1.5 w-1.5 rounded-full bg-[var(--primary)]" />
-        <span className="rounded-full bg-[var(--primary)] px-2 py-0.5 text-[0.6875rem] font-semibold leading-none text-white">
+        <span className="rounded-full bg-[var(--primary)] px-2 py-0.5 text-[0.75rem] font-semibold leading-none text-white">
           {newLabel}
         </span>
       </div>

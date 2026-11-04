@@ -77,7 +77,7 @@ export default function SiteHeader() {
                   <Link
                     href={link.href}
                     aria-current={current ? 'page' : undefined}
-                    className={`text-[0.9375rem] transition-colors duration-150 hover:text-[var(--ink)] ${
+                    className={`text-[0.875rem] transition-colors duration-150 hover:text-[var(--ink)] ${
                       current
                         ? 'font-semibold text-white underline decoration-[var(--link)] decoration-2 underline-offset-[0.4em]'
                         : 'text-[var(--muted)]'
@@ -95,7 +95,7 @@ export default function SiteHeader() {
           <ButtonLink link={site.navCta} className="hidden !px-4 !py-2.5 sm:inline-flex" />
           <button
             type="button"
-            className="rounded-[var(--radius-btn)] border border-white/25 px-3 py-2 text-[0.9375rem] font-semibold text-white lg:hidden"
+            className="rounded-[var(--radius-btn)] border border-white/25 px-3 py-2 text-[0.875rem] font-semibold text-white lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -115,7 +115,7 @@ export default function SiteHeader() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     aria-current={isCurrent(link.href) ? 'page' : undefined}
-                    className={`block py-3 text-[1.0625rem] ${
+                    className={`block py-3 text-[1rem] ${
                       isCurrent(link.href) ? 'font-semibold text-[var(--ink)]' : 'text-[var(--ink)]'
                     }`}
                   >

@@ -36,7 +36,7 @@ export default function NotFoundNotice() {
             </dd>
           </dl>
           <div className="px-5 py-5">
-            <p className="text-[0.9375rem] text-[var(--ink)]">{notFound.body}</p>
+            <p className="text-[0.875rem] text-[var(--ink)]">{notFound.body}</p>
             <p className="mt-4 grid grid-cols-[5.5rem_minmax(0,1fr)] gap-3 text-[0.875rem]">
               <span className="text-[var(--muted)]">{notFound.pathLabel}</span>
               <span data-nf-path suppressHydrationWarning className="tabular-nums min-w-0 break-all text-[var(--ink)]">

@@ -378,7 +378,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                         {email.subject}
                       </span>
                     </button>
-                    <span className="whitespace-nowrap text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last sm:min-w-[3.25rem]">
+                    <span className="whitespace-nowrap text-right text-[0.75rem] tabular-nums text-[var(--muted)] sm:order-last sm:min-w-[3.25rem]">
                       {email.received}
                     </span>
                     <span className="flex min-h-[1.25rem] justify-end gap-1">
@@ -413,7 +413,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
           {isAfter && opened && (
             <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)]">
               <div className="flex items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
-                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
+                <p className="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
                 <div className="flex items-center gap-3">
                   <CategoryChip category={categoryOf(opened)} />
                   <button type="button" onClick={closePane} className="v-link text-[0.75rem] font-semibold">

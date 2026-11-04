@@ -31,8 +31,8 @@ export default function AboutContent() {
             <ul className="mt-4 grid gap-4 sm:grid-cols-2">
               {about.founders.map((f) => (
                 <li key={f.name} className="rounded-[var(--radius-card)] border border-[var(--frame)] bg-[var(--card)] px-5 py-5">
-                  <p className="v-serif text-[1.25rem] font-semibold leading-snug text-[var(--ink)]">{f.name}</p>
-                  <p className="mt-0.5 text-[0.9375rem] text-[var(--muted)]">{f.role}</p>
+                  <p className="v-serif text-[1.5rem] font-semibold leading-snug text-[var(--ink)]">{f.name}</p>
+                  <p className="mt-0.5 text-[0.875rem] text-[var(--muted)]">{f.role}</p>
                   <p className="mt-3 text-[0.875rem] text-[var(--ink)]">
                     {about.signature.company} <span aria-hidden="true" className="text-[var(--faint)]">·</span>{' '}
                     {about.signature.place}

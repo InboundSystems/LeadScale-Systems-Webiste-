@@ -56,7 +56,7 @@ function Row({
           {unread && <span className="sr-only">Unread. </span>}
           {arrival.sender}
         </span>
-        <span className="text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last">{arrival.received}</span>
+        <span className="text-right text-[0.75rem] tabular-nums text-[var(--muted)] sm:order-last">{arrival.received}</span>
         <span className={`truncate text-[0.8125rem] ${unread ? 'font-semibold text-[var(--ink)]' : 'text-[var(--muted)]'}`}>
           {arrival.subject}
         </span>
@@ -117,7 +117,7 @@ function StaticSteps({ timeline, summary }: { timeline: DayTimelineContent; summ
             <span className="tabular-nums pt-[0.15em] text-[0.8125rem] font-semibold tabular-nums text-[var(--accent)]">{step.clock}</span>
             <div>
               {subject && (
-                <p className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[0.9375rem]">
+                <p className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-[0.875rem]">
                   <span className="font-semibold text-[var(--ink)]">{subject.sender}</span>
                   <span className="text-[var(--muted)]">{subject.subject}</span>
                   {before && <CategoryChip category={before} />}

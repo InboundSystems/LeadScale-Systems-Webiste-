@@ -46,7 +46,7 @@ export default function SiteFooter() {
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
               {site.footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className={`text-[0.9375rem] text-[var(--on-dark)] ${LINK}`}>
+                  <Link href={link.href} className={`text-[0.875rem] text-[var(--on-dark)] ${LINK}`}>
                     {link.label}
                   </Link>
                 </li>

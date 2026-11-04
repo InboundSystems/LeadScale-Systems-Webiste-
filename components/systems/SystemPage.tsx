@@ -109,7 +109,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
                 {system.dayTimeline.heading}
               </h2>
               <p className="mt-4 text-[var(--muted)]">{system.dayTimeline.intro}</p>
-              <p className="js-only mt-3 text-[0.9375rem] text-[var(--muted)]">{system.dayTimeline.hint}</p>
+              <p className="js-only mt-3 text-[0.875rem] text-[var(--muted)]">{system.dayTimeline.hint}</p>
             </div>
             <div className="lg:col-span-8">
               <DayTimeline timeline={system.dayTimeline} summary={system.illustrations?.summary} />
