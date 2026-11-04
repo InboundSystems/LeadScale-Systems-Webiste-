@@ -84,29 +84,61 @@ function useActiveBeat(introRef: React.RefObject<HTMLElement>, beatRefs: React.M
 
 /** Scales its content down (never up) to fit the box it sits in. Transform
  *  only; measured with a ResizeObserver, not per frame. */
-export function Fit({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function Fit({
+  children,
+  className = '',
+  max = 1,
+  gutter = false,
+}: {
+  children: ReactNode
+  className?: string
+  /** At 1024px and up, scale up to this (the artifact's size on a desktop
+   *  stage, e.g. 540 / 416 for the notepad). Never above 1 below 1024px. */
+  max?: number
+  /** At 1024px and up, keep the story's annotation gutter (--gut) free on
+   *  the left and set the artifact against the right edge. */
+  gutter?: boolean
+}) {
   const box = useRef<HTMLDivElement>(null)
   const inner = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
+  const [wide, setWide] = useState(false)
   useLayoutEffect(() => {
     const b = box.current
     const c = inner.current
     if (!b || !c || typeof ResizeObserver === 'undefined') return
+    const mq = window.matchMedia('(min-width: 1024px)')
     const measure = () => {
-      // The inner box is as wide as its content (a fixed-width artifact can
-      // be wider than a phone), and at least as wide as the box.
-      const s = Math.min(1, b.clientHeight / Math.max(1, c.offsetHeight), b.clientWidth / Math.max(1, c.offsetWidth))
+      const isWide = mq.matches
+      const gut = isWide && gutter ? parseFloat(getComputedStyle(b).getPropertyValue('--gut')) || 0 : 0
+      const s = Math.min(
+        isWide ? max : 1,
+        b.clientHeight / Math.max(1, c.offsetHeight),
+        (b.clientWidth - gut) / Math.max(1, c.offsetWidth)
+      )
+      setWide(isWide)
       setScale(Number.isFinite(s) && s > 0 ? +s.toFixed(3) : 1)
     }
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(b)
     ro.observe(c)
-    return () => ro.disconnect()
-  }, [])
+    mq.addEventListener('change', measure)
+    return () => {
+      ro.disconnect()
+      mq.removeEventListener('change', measure)
+    }
+  }, [max, gutter])
+  const right = wide && gutter
+  // --fit lets annotations inside the scaled artifact keep a constant
+  // on-screen size (app/globals.css, "Annotations").
   return (
-    <div ref={box} className={`flex min-h-0 items-center justify-center ${className}`}>
-      <div ref={inner} className="w-max min-w-full shrink-0 origin-center" style={{ transform: scale < 1 ? `scale(${scale})` : undefined }}>
+    <div ref={box} className={`flex min-h-0 items-center ${right ? 'justify-end' : 'justify-center'} ${className}`}>
+      <div
+        ref={inner}
+        className="w-max shrink-0"
+        style={{ transform: scale !== 1 ? `scale(${scale})` : undefined, transformOrigin: right ? 'right center' : 'center', ['--fit' as string]: scale }}
+      >
         {children}
       </div>
     </div>
@@ -126,6 +158,8 @@ export default function Story({
   beatClassName = '',
   stageClassName = '',
   finalBeat,
+  introSpan = false,
+  introClassName = '',
 }: {
   /** Accessible name of the list of beats. */
   label: string
@@ -146,6 +180,11 @@ export default function Story({
   stageClassName?: string
   /** The beat the static (no-JS, reduced motion) stage shows. */
   finalBeat?: number
+  /** The intro spans both columns (a section heading); the stage starts
+   *  beside the first beat. Otherwise the stage sits beside the intro (the
+   *  homepage hero). */
+  introSpan?: boolean
+  introClassName?: string
 }) {
   const introRef = useRef<HTMLDivElement>(null)
   const beatsRef = useRef<HTMLOListElement>(null)
@@ -173,22 +212,25 @@ export default function Story({
           {backdrop(scrollYProgress)}
         </div>
       )}
-      <div className={`story-grid mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-12 lg:px-8 ${gridClassName}`}>
+      <div className={`story-grid mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-x-8 lg:px-8 xl:grid-cols-[19rem_minmax(0,1fr)] ${gridClassName}`}>
         {intro && (
-          <div ref={introRef} data-beat-index="-1" className="lg:col-start-1 lg:row-start-1">
+          <div ref={introRef} data-beat-index="-1" className={`relative z-20 lg:col-start-1 lg:row-start-1 ${introSpan ? 'lg:col-span-2' : ''} ${introClassName}`}>
             {intro}
           </div>
         )}
         <div
           aria-hidden="true"
-          className={`story-live sticky top-[var(--story-top)] z-10 h-[45svh] self-start lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:h-[calc(100svh-var(--story-top))] ${stageClassName}`}
+          className={`story-live sticky top-[var(--story-top)] z-10 h-[45svh] self-start lg:col-start-2 lg:h-[calc(100svh-var(--story-top))] ${introSpan ? 'lg:row-start-2' : 'lg:row-span-2 lg:row-start-1'} ${stageClassName}`}
         >
           {stage(active, 'live', scrollYProgress)}
         </div>
-        <div aria-hidden="true" className="story-static lg:col-start-2 lg:row-start-1 lg:self-center">
+        <div aria-hidden="true" className={`story-static lg:col-start-2 lg:self-center ${introSpan ? 'lg:row-start-2 lg:self-start lg:pt-16' : 'lg:row-start-1'}`}>
           {stage(last, 'static')}
         </div>
-        <ol ref={beatsRef} aria-label={label} className="story-beats lg:col-start-1 lg:row-start-2">
+        {/* With the intro above both columns, the stage starts beside the first
+            beat: a lead-in lets it reach its pinned place before that beat
+            becomes the active one. */}
+        <ol ref={beatsRef} aria-label={label} className={`story-beats lg:col-start-1 lg:row-start-2 ${introSpan ? 'story-lead' : ''}`}>
           {beats.map((beat, i) => (
             <li
               key={beat.key}

@@ -9,6 +9,7 @@ import StarField from '../StarField'
 import Tilt from '../Tilt'
 import { Readout, formatClock } from './clock'
 import Story, { Fit, type StageMode } from './Story'
+import BeatClock from './BeatClock'
 
 // The homepage's first story, "One night" (night story, 9 November 2026).
 // It opens as the hero: the H1, the subhead and both buttons beside the
@@ -67,13 +68,13 @@ function Box({ ticked }: { ticked: boolean }) {
 function Callout({ show, children, line = true, at = 'right-[calc(100%-0.25rem)]' }: { show: boolean; children?: ReactNode; line?: boolean; at?: string }) {
   return (
     <span
-      className={`stage-callout stage-fade pointer-events-none absolute ${at} top-1/2 w-[15.5rem] -translate-y-1/2 items-center justify-end gap-2 xl:w-[18rem] ${
+      className={`stage-callout anno-box stage-fade pointer-events-none absolute ${at} top-1/2 -translate-y-1/2 items-center justify-end gap-[calc(10px/var(--fit,1))] ${
         show ? '' : 'stage-off translate-x-2'
       }`}
     >
-      {children && <span className="flex max-w-[11.5rem] flex-col items-end gap-1 text-right xl:max-w-[13.5rem]">{children}</span>}
+      {children && <span className="anno-text flex flex-col items-end gap-[calc(5px/var(--fit,1))] text-right">{children}</span>}
       {line && (
-        <span className="relative h-px min-w-[2.5rem] flex-1 bg-[#93C5FD]/70">
+        <span className="anno-line relative min-w-[2rem] flex-1 bg-[#93C5FD]">
           <span className="absolute -right-0.5 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-[#93C5FD]" />
         </span>
       )}
@@ -82,12 +83,12 @@ function Callout({ show, children, line = true, at = 'right-[calc(100%-0.25rem)]
 }
 
 function Words({ children }: { children: ReactNode }) {
-  return <span className="text-[0.875rem] font-medium leading-snug text-[#BFDBFE]">{children}</span>
+  return <span>{children}</span>
 }
 
 function Tag({ children }: { children: ReactNode }) {
   return (
-    <span className="whitespace-nowrap rounded-[4px] border border-[#93C5FD]/50 bg-[rgb(147_197_253/0.08)] px-1.5 py-[3px] text-[0.75rem] font-medium leading-none text-[#DBEAFE]">
+    <span className="anno-tag whitespace-nowrap border border-[#93C5FD]/60 bg-[rgb(147_197_253/0.1)] font-medium leading-none text-[#F1F5F9]">
       {children}
     </span>
   )
@@ -127,7 +128,7 @@ export function Notepad({
   })
 
   return (
-    <figure className={`mx-auto w-full ${mode === 'snap' ? 'max-w-[24rem]' : 'max-w-[24rem] xl:max-w-[26rem]'} lg:mr-0`}>
+    <figure className={mode === 'live' ? 'w-[26rem] max-w-[calc(100vw-2rem)]' : 'mx-auto w-full max-w-[24rem]'}>
       <Tilt>
         <div className="lit lit-screen relative rounded-[10px] border border-[var(--frame)] bg-[var(--surface)] px-5 pb-5 pt-6 text-[var(--ink)] sm:px-7 sm:pb-6 sm:pt-7">
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] rounded-t-[10px] bg-gradient-to-r from-[var(--primary)] to-[#60A5FA]" />
@@ -208,7 +209,7 @@ export function Notepad({
                       (run.done ? allDone : workShown) ? '' : 'stage-off'
                     }`}
                   />
-                  <p className={`stage-fade text-[0.8125rem] font-medium leading-snug text-[var(--note)] ${(run.done ? allDone : workShown) ? '' : 'stage-off'}`}>
+                  <p className={`note-min stage-fade font-medium leading-snug text-[var(--note)] ${(run.done ? allDone : workShown) ? '' : 'stage-off'}`}>
                     {run.done ? list.doneNote : list.personNote}
                   </p>
                 </div>
@@ -216,7 +217,7 @@ export function Notepad({
             ))}
           </div>
 
-          <p className={`stage-fade mt-1 border-t border-[var(--hairline)] pt-3 text-[0.875rem] font-semibold text-[var(--note)] ${morning ? '' : 'stage-off'}`}>
+          <p className={`note-min stage-fade mt-1 border-t border-[var(--hairline)] pt-3 font-semibold text-[var(--note)] ${morning ? '' : 'stage-off'}`}>
             {night.morningLine}
           </p>
         </div>
@@ -228,7 +229,6 @@ export function Notepad({
 
 export default function NightStory({ home, intro }: { home: HomeContent; intro: ReactNode }) {
   const { night, hero, work } = home
-  const timeLabel = (b: NightStoryContent['beats'][number]) => b.label ?? formatClock(b.minute, night.clock.days, false)
   return (
     <Story
       label={night.heading}
@@ -236,9 +236,12 @@ export default function NightStory({ home, intro }: { home: HomeContent; intro: 
       style={{ '--story-top': '4rem', '--story-stage-bg': 'rgb(7 11 28 / 0.9)' } as CSSProperties}
       backdrop={(p) => <NightSky progress={p} />}
       intro={intro}
+      // The hero is wider than the clock column: it runs into the annotation
+      // gutter, which is empty until the first beat.
+      introClassName="lg:w-[calc(100%+2rem+var(--gut))]"
       stage={(beat, mode, progress) =>
         mode === 'live' ? (
-          <Fit className="h-full w-full py-3 lg:py-10">
+          <Fit className="h-full w-full py-3 lg:py-10" max={540 / 416} gutter>
             <Notepad list={hero.list} night={night} beat={beat} mode={mode} progress={progress} />
           </Fit>
         ) : (
@@ -250,24 +253,27 @@ export default function NightStory({ home, intro }: { home: HomeContent; intro: 
         id: b.id,
         content: (
           <>
-            {i === 0 && <h2 className="v-h2 mb-8 max-w-[18ch] !text-white">{night.heading}</h2>}
-            <p className="text-[1.5rem] font-semibold leading-none tabular-nums text-[#93C5FD]">{timeLabel(b)}</p>
+            {i === 0 && <h2 className="v-h2 mb-10 max-w-[18ch] !text-white">{night.heading}</h2>}
+            <BeatClock day={night.clock.days[Math.floor(b.minute / 1440)]} time={formatClock(b.minute, night.clock.days, false)} heading={b.heading} />
+          </>
+        ),
+        words: (
+          <>
+            <p className="mt-4 max-w-[30ch] text-[1.125rem] leading-snug text-[var(--on-dark-soft)]">{b.text}</p>
+            {/* The characteristics: tags on the notepad on a desktop stage,
+                here for screen readers and smaller screens. */}
             {b.showsWork && (
-              <div className="mt-6">
-                <h3 className="v-h3 !text-white">{work.heading}</h3>
-                <ul className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                  {work.items.map((item) => (
-                    <li key={item.heading}>
-                      <p className="font-semibold text-white">{item.heading}</p>
-                      <p className="mt-1 text-[0.875rem] text-[var(--on-dark-muted)]">{item.body}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="mt-5 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {work.items.map((item) => (
+                  <li key={item.heading}>
+                    <p className="font-semibold text-white">{item.heading}</p>
+                    <p className="mt-1 text-[0.875rem] text-[var(--on-dark-muted)]">{item.body}</p>
+                  </li>
+                ))}
+              </ul>
             )}
           </>
         ),
-        words: <p className="mt-4 max-w-[30ch] text-[1.125rem] leading-snug text-[var(--on-dark-soft)]">{b.text}</p>,
       }))}
       outro={
         <div className="mx-auto w-full max-w-[84rem] px-4 pb-24 pt-8 sm:px-6 sm:pb-32 lg:px-8">

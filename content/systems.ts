@@ -406,12 +406,14 @@ export const systems: SystemContent[] = [
         {
           key: 'referral',
           minute: 17 * 60,
+          heading: 'Closed for the weekend',
           target: 'wattlebrook',
           text: 'The practice closes. A referral from the afternoon is marked 03 Referrals and labelled For Dr Smith, because the email names Dr Smith. Reception still forwards it.',
         },
         {
           key: 'booking',
           minute: 17 * 60,
+          heading: 'A booking request',
           target: 'booking',
           draft: true,
           text: 'A website booking form enquiry is marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until a person checks it and presses Send.',
@@ -419,6 +421,7 @@ export const systems: SystemContent[] = [
         {
           key: 'avery',
           minute: 1440 + 10 * 60 + 22,
+          heading: 'After hours',
           arrival: {
             id: 'avery',
             sender: 'Tom Avery',
@@ -432,12 +435,14 @@ export const systems: SystemContent[] = [
         {
           key: 'junk',
           minute: 2 * 1440 + 18 * 60 + 3,
+          heading: 'In Junk',
           junk: { sender: 'Dispatch', subject: 'Collection booked for Tuesday', received: 'Sun 6:03 pm' },
           text: 'Mail from a sender the practice already deals with lands in Junk. The morning summary lists it. Nothing is moved out of Junk.',
         },
         {
           key: 'collins',
           minute: 2 * 1440 + 18 * 60 + 14,
+          heading: 'Can’t tell',
           arrival: { id: 'collins', sender: 'R. Collins', subject: 'Following up', received: 'Sun 6:14 pm', category: unclear },
           target: 'collins',
           text: 'Nothing in this one says what it’s about, so the system doesn’t guess. It’s marked 00 Unclear, which sits at the top, so a person looks first.',
@@ -445,12 +450,14 @@ export const systems: SystemContent[] = [
         {
           key: 'summary',
           minute: 3 * 1440 + 7 * 60,
+          heading: 'The morning summary',
           summary: true,
           text: 'The morning summary reaches the practice manager: what’s still waiting for a reply, oldest first, counting open hours only.',
         },
         {
           key: 'correction',
           minute: 3 * 1440 + 8 * 60 + 5,
+          heading: 'Reception opens up',
           correction: { id: 'collins', to: appointments },
           target: 'collins',
           text: 'Reception opens up, reads it, and changes the category to 01 Appointments. The system never changes it back. Every correction is recorded.',

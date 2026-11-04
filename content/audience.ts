@@ -63,7 +63,9 @@ export const site: SiteChrome = {
 
 export const home: HomeContent = {
   hero: {
-    sent: 'Today, 8:00 am',
+    // The hero agrees with the notepad beside it: the story starts as the
+    // business closes. Later sections read as the next morning.
+    sent: 'Monday, 6:00 pm',
     heading: 'Nobody started a business to do the admin.',
     markedWord: 'the admin',
     body:
@@ -95,26 +97,27 @@ export const home: HomeContent = {
     clock: { days: ['Monday', 'Tuesday'], start: 18 * 60 },
     watch: { off: 'Vicaria', on: 'Vicaria · on watch' },
     beats: [
-      { key: 'close', minute: 18 * 60, text: 'Closed. Five things still on the list.', target: 'title' },
+      { key: 'close', minute: 18 * 60, heading: 'Closed for the day', text: 'Closed. Five things still on the list.', target: 'title' },
       {
         key: 'the-work',
         id: 'the-work',
         minute: 18 * 60 + 20,
+        heading: 'The kind of work we take on',
         text: 'Two of them are the kind of work we take on. Three need a person.',
         target: 'none',
         showsWork: true,
       },
-      { key: 'sorted', minute: 23 * 60 + 40, label: 'Overnight', text: 'While you’re closed, we sort the email.', target: 0, crosses: [0] },
+      { key: 'sorted', minute: 23 * 60 + 40, heading: 'Overnight', text: 'While you’re closed, we sort the email.', target: 0, crosses: [0] },
       {
         key: 'waiting',
         minute: 24 * 60 + 150,
-        label: 'Overnight',
+        heading: 'Overnight',
         text: 'Then we work out who’s still waiting for a reply.',
         target: 1,
         crosses: [1],
       },
-      { key: 'judgement', minute: 24 * 60 + 285, text: 'The judgement calls wait for a person.', target: 'person', waits: true },
-      { key: 'morning', minute: 24 * 60 + 7 * 60, text: 'Two done. Three waiting for you.', target: 'none', morning: true },
+      { key: 'judgement', minute: 24 * 60 + 285, heading: 'Before morning', text: 'The judgement calls wait for a person.', target: 'person', waits: true },
+      { key: 'morning', minute: 24 * 60 + 7 * 60, heading: 'Morning', text: 'Two done. Three waiting for you.', target: 'none', morning: true },
     ],
     tags: [
       { item: 0, text: 'turns up every day' },

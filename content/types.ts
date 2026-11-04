@@ -196,6 +196,8 @@ export interface PracticeNightContent {
   beats: {
     key: string
     minute: number
+    /** The short heading under the clock, e.g. "After hours". */
+    heading: string
     /** An email arriving in the Inbox. */
     arrival?: PracticeRow
     /** The row the words attach to (an id in the Inbox). */
@@ -393,8 +395,8 @@ export interface NightStoryContent {
     /** Anchor id (the folder rail's "The work" points at one beat). */
     id?: string
     minute: number
-    /** Shown in place of the time, e.g. "Overnight". */
-    label?: string
+    /** The short heading under the clock, e.g. "Overnight". */
+    heading: string
     /** The beat's words: an annotation on the notepad on a live desktop
      *  stage, beat text everywhere else. */
     text: string

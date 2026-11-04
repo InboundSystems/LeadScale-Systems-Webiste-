@@ -863,3 +863,79 @@ html.js [data-reveal]:not(.is-revealed) .eye-watch .eye-glow,
   animation: approve-press 420ms cubic-bezier(0.22, 1, 0.36, 1) 900ms both;
   box-shadow: 0 0 0 3px rgb(37 99 235 / 0.25);
 }
+
+/* ---------------------------------------------------------------------------
+   Story v2 (night story, 9 November 2026): the left column's large clock, and
+   annotations that keep a constant on-screen size however the stage scales
+   the artifact (--fit is the stage's scale, set by Fit in Story.tsx). The
+   annotation gutter (--gut) is kept free beside the artifact at 1024px+.
+   --------------------------------------------------------------------------- */
+.story {
+  --gut: 0px;
+}
+@media (min-width: 1024px) {
+  .story {
+    --gut: 250px;
+  }
+}
+@media (min-width: 1280px) {
+  .story {
+    --gut: 300px;
+  }
+}
+/* The left column's clock (and How it runs' step number): a display size,
+   like .v-display, not a text size. */
+.v-clock {
+  font-size: clamp(3.5rem, 5vw, 4.75rem);
+  line-height: 1;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+  color: #93c5fd;
+}
+/* Annotation text: 16px, near-white, at most 260px wide on screen. */
+.anno-text {
+  font-size: calc(1rem / var(--fit, 1));
+  line-height: 1.35;
+  font-weight: 500;
+  color: #f1f5f9;
+  max-width: calc(min(260px, var(--gut) - 40px) / var(--fit, 1));
+}
+.anno-box {
+  width: calc(var(--gut) / var(--fit, 1));
+}
+/* The four characteristics as tags: 13px. */
+.anno-tag {
+  font-size: calc(0.8125rem / var(--fit, 1));
+  padding: calc(4px / var(--fit, 1)) calc(7px / var(--fit, 1));
+  border-radius: calc(4px / var(--fit, 1));
+}
+.anno-line {
+  height: calc(1px / var(--fit, 1));
+}
+/* Notes inside an artifact stay at least 14px on screen on a small stage. */
+.note-min {
+  font-size: max(0.875rem, calc(0.875rem / var(--fit, 1)));
+}
+/* The left column's clock stays level with the pinned artifact while its
+   beat is shown: it is sticky within its beat, centred on the stage. Live
+   desktop stage only. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  html.js .story-beat {
+    justify-content: flex-start;
+  }
+  /* Only the beat being shown: one clock at a time. */
+  html.js .story-beat:not([data-active]) .story-beat-body {
+    opacity: 0.08;
+  }
+  html.js .story-beat .story-beat-body {
+    position: sticky;
+    top: calc(50svh + var(--story-top, 4rem) / 2 - 5.5rem);
+  }
+}
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  html.js .story-lead {
+    margin-top: calc(50svh - var(--story-top, 4rem) + 1rem);
+  }
+}

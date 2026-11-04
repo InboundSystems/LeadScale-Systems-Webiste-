@@ -141,13 +141,18 @@ function Artifact({ home, beat }: { home: HomeContent; beat: number }) {
       </div>
 
       {/* The monthly card, from step 5. No figures. */}
-      <div className={`${T} lit lit-screen absolute -bottom-6 -right-8 w-[13.5rem] rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] px-4 py-3.5 ${off(monthly, 'translate-y-4')}`}>
+      {/* Below the window, on the left; it fades back once the approval lands. */}
+      <div
+        className={`${T} lit lit-screen absolute -bottom-6 -right-8 w-[13.5rem] rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] px-4 py-3.5 lg:bottom-auto lg:left-0 lg:right-auto lg:top-[calc(100%+1.25rem)] ${off(monthly, 'translate-y-4')}`}
+        style={change ? { opacity: 0.35, transitionDelay: '1700ms' } : undefined}
+      >
         <p className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-[var(--note)]">{s.monthlyTitle}</p>
         <p className="mt-1.5 text-[0.8125rem] leading-snug">{s.monthlyText}</p>
       </div>
 
       {/* The change email, step 6: it lands, Approve is pressed, the window updates. */}
-      <div className={`${T} lit lit-screen absolute -right-12 -top-14 w-[17rem] rounded-[8px] border border-[var(--frame)] bg-[var(--surface)] ${off(change, '-translate-y-6')}`}>
+      {/* Above the window's top-right corner, clear of its content. */}
+      <div className={`${T} lit lit-screen absolute -right-12 -top-14 w-[17rem] rounded-[8px] lg:-right-6 lg:-top-[8.25rem] border border-[var(--frame)] bg-[var(--surface)] ${off(change, '-translate-y-6')}`}>
         <div className="border-b border-[var(--hairline)] px-4 py-2.5 text-[0.75rem]">
           <p className="text-[var(--muted)]">
             From <span className="font-semibold text-[var(--ink)]">{s.change.from}</span>
@@ -170,21 +175,17 @@ function Artifact({ home, beat }: { home: HomeContent; beat: number }) {
   )
 }
 
-/** The step's own words on the stage, joined to the artifact by a short
- *  leader line (live desktop stage only). */
+/** The step's sentence, once, as an annotation under the artifact's
+ *  bottom-right edge, joined to it by a short light-blue leader line (live
+ *  desktop stage only; the left column carries the number and title). */
 function StepCallout({ home, beat }: { home: HomeContent; beat: number }) {
   return (
-    <div className="stage-callout relative mx-auto mt-14 h-16 w-[30rem] flex-col">
+    <div className="stage-callout pointer-events-none absolute right-0 top-[calc(100%+1.25rem)] h-0 w-[calc(260px/var(--fit,1))]">
       {home.method.items.map((item, i) => (
-        <p
-          key={item.heading}
-          className={`${T} absolute inset-x-0 top-0 flex items-start gap-3 text-[0.875rem] font-medium leading-snug text-[#BFDBFE] ${off(beat === i, 'translate-y-2')}`}
-        >
-          <span aria-hidden="true" className="mt-[0.6em] h-px w-8 shrink-0 bg-[#93C5FD]/70" />
-          <span>
-            <span className="mr-2 tabular-nums text-[#93C5FD]">{i + 1}</span>
-            {item.body}
-          </span>
+        <p key={item.heading} className={`${T} anno-text absolute right-0 top-0 w-full !max-w-none text-right ${off(beat === i, 'translate-y-2')}`}>
+          <span aria-hidden="true" className="absolute -top-[1.25rem] right-[1.5rem] h-[1.1rem] w-px bg-[#93C5FD]" />
+          <span aria-hidden="true" className="absolute -top-[1.35rem] right-[calc(1.5rem-2.5px)] h-1.5 w-1.5 rounded-full bg-[#93C5FD]" />
+          {item.body}
         </p>
       ))}
     </div>
@@ -205,10 +206,12 @@ function Stage({ home, beat, mode }: { home: HomeContent; beat: number; mode: St
     )
   }
   return (
-    <Fit className="h-full w-full px-2 py-6 lg:py-12">
-      <div className="px-10 pt-10">
-        {art}
-        <StepCallout home={home} beat={beat} />
+    <Fit className="h-full w-full px-2 py-4 lg:py-8" max={620 / 480}>
+      <div className="px-10 pt-10 lg:px-6 lg:pb-[8.5rem] lg:pt-[8.5rem]">
+        <div className="relative">
+          {art}
+          <StepCallout home={home} beat={beat} />
+        </div>
       </div>
     </Fit>
   )
@@ -221,20 +224,19 @@ export default function MethodStory({ home, intro, outro, className = '' }: { ho
       label={method.heading}
       className={`[--story-stage-bg:rgb(10_22_48/0.92)] [--story-top:6.9rem] xl:[--story-top:4rem] ${className}`}
       gridClassName="xl:pl-[17rem]"
+      introSpan
       intro={intro}
       stage={(beat, mode) => <Stage home={home} beat={beat} mode={mode} />}
       beats={method.items.map((item, i) => ({
         key: item.heading,
         content: (
-          <div className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-t border-white/20 pt-6">
-            <span aria-hidden="true" className="text-[1.5rem] font-semibold leading-none tabular-nums text-white">
+          <div>
+            <span aria-hidden="true" className="v-clock block">
               {i + 1}
             </span>
-            <div>
-              <h3 className="v-h3 !text-white">{item.heading}</h3>
-              <div className="story-words">
-                <p className="mt-1.5 text-[var(--on-dark-soft)]">{item.body}</p>
-              </div>
+            <h3 className="mt-4 max-w-[16ch] text-[1.5rem] font-semibold leading-tight text-white">{item.heading}</h3>
+            <div className="story-words">
+              <p className="mt-3 max-w-[30ch] text-[var(--on-dark-soft)]">{item.body}</p>
             </div>
           </div>
         ),
