@@ -1,6 +1,7 @@
 import { business } from '@/content/audience'
 import type { ContactPageContent } from '@/content/types'
 import { outlookFace } from './InboxParts'
+import Tilt from './Tilt'
 
 // /enquire as an Outlook-style "New message" window, in HTML/CSS. It is a
 // picture of a message, not a form: the one action is a mailto link that
@@ -12,6 +13,7 @@ export default function ComposeWindow({ compose }: { compose: ContactPageContent
 
   return (
     <div className="max-w-[44rem]">
+      <Tilt>
       <section
         aria-labelledby="compose-title"
         className="lit lit-screen overflow-hidden rounded-[8px] border border-[var(--frame)] bg-[var(--surface)]"
@@ -47,12 +49,13 @@ export default function ComposeWindow({ compose }: { compose: ContactPageContent
           </div>
         </dl>
 
-        <ul className="flex min-h-[13rem] flex-col gap-5 px-4 py-5 text-[0.9375rem] text-[var(--muted)]">
+        <ul className="flex min-h-[13rem] flex-col gap-5 px-4 py-5 text-[0.875rem] text-[var(--muted)]">
           {compose.prompts.map((p) => (
             <li key={p}>{p}:</li>
           ))}
         </ul>
       </section>
+      </Tilt>
       <p className="v-small mt-3">{compose.note}</p>
     </div>
   )

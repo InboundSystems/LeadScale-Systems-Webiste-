@@ -16,7 +16,7 @@ export default function SystemCard({
   return (
     <article className="max-w-[48rem] rounded-[var(--radius-card)] border border-[var(--frame)] bg-[var(--card)] p-6 sm:p-9">
       <p className="v-eyebrow mb-3">{system.sector}</p>
-      <Heading className="v-serif text-[1.5rem] leading-snug text-[var(--ink)] sm:text-[1.75rem]">
+      <Heading className="v-serif text-[1.5rem] leading-snug text-[var(--ink)]">
         <span className="font-semibold">{system.name}</span>: {system.cardFor}
       </Heading>
       <p className="mt-3 text-[var(--ink)]">{system.shortDescription}</p>

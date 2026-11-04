@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { business, site } from '@/content/audience'
-import { CATEGORY_TONES, TONE_SEQUENCE } from '@/components/brand/categories'
+import { TONE_SEQUENCE } from '@/components/brand/categories'
+import { ToneSquare } from './FolderRail'
 import VicariaOwl from '@/components/brand/VicariaOwl'
 import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import BrisbaneClock from './BrisbaneClock'
@@ -11,7 +12,8 @@ import { Container } from './ui'
 //
 // Dark ground (var(--dark), near-black with a blue tint) with light text:
 // var(--on-dark) 15.74, muted var(--on-dark-muted) 7.57, a light-blue hover
-// underline. A row of the six category colour squares sits on its top edge.
+// underline. A row of the category colour squares (dark blue to light blue,
+// white, slate) sits on its top edge.
 //
 // The logo: the full lockup (owl, a thin vertical rule, wordmark) in white.
 // Behind it, the owl mark very large and faint (4%) on the right, cropped by
@@ -28,7 +30,7 @@ export default function SiteFooter() {
       <Container className="relative">
         <div aria-hidden="true" className="absolute -top-14 flex -translate-y-1/2 gap-1.5">
           {TONE_SEQUENCE.map((tone) => (
-            <span key={tone} className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].dark.swatch }} />
+            <ToneSquare key={tone} tone={tone} />
           ))}
         </div>
 
@@ -46,7 +48,7 @@ export default function SiteFooter() {
             <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5">
               {site.footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className={`text-[0.9375rem] text-[var(--on-dark)] ${LINK}`}>
+                  <Link href={link.href} className={`text-[0.875rem] text-[var(--on-dark)] ${LINK}`}>
                     {link.label}
                   </Link>
                 </li>

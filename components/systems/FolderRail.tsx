@@ -35,12 +35,22 @@ function useActive(folders: Folder[]) {
   return active
 }
 
+/** A colour square (hollow for the outline tone), on the dark page. */
+export function ToneSquare({ tone, className = '' }: { tone: CategoryTone; className?: string }) {
+  const t = CATEGORY_TONES[tone]
+  return (
+    <span
+      aria-hidden="true"
+      className={`h-2.5 w-2.5 shrink-0 rounded-[1px] ${className}`}
+      style={t.hollow ? { border: `1.5px solid ${t.dark.swatch}` } : { backgroundColor: t.dark.swatch }}
+    />
+  )
+}
+
 /** A colour square, or the owl's eye for the current folder. */
 function Square({ tone, current = false }: { tone: CategoryTone; current?: boolean }) {
   if (current) return <EyeDot colour={CATEGORY_TONES[tone].dark.swatch} />
-  return (
-    <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: CATEGORY_TONES[tone].dark.swatch }} />
-  )
+  return <ToneSquare tone={tone} />
 }
 
 export function FolderRail({ folders, label }: { folders: Folder[]; label: string }) {
@@ -62,7 +72,7 @@ export function FolderRail({ folders, label }: { folders: Folder[]; label: strin
                   current ? 'bg-[var(--row-selected)] font-semibold text-[var(--ink)]' : 'text-[var(--ink)] hover:bg-[var(--row-hover)]'
                 }`}
               >
-                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--violet)]" />}
+                {current && <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-[var(--note)]" />}
                 <Square tone={f.tone} current={current} />
                 <span className="min-w-0 flex-1 truncate">{f.label}</span>
                 <span className="text-[0.75rem] tabular-nums text-[var(--muted)]">{f.count}</span>

@@ -6,9 +6,11 @@ import CategoryChip, { personLabelTone } from './CategoryChip'
 import CategoryMenu from './CategoryMenu'
 import { HeroNotesList } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
+import Tilt from './Tilt'
 
-// The Front Office's interactive inbox: its illustration in the homepage's
-// Systems section (never the hero; docs/REPLY-2026-11-03-company-first.md).
+// The Front Office's interactive inbox: "Try it yourself" after "A night at
+// the practice" on /systems/front-office (night story, 9 November 2026; it
+// left the homepage, which now shows a compact preview).
 //
 //   - The message list: a Monday-morning Inbox at a fictional practice,
 //     sorted Before -> After, with Replay, Reset, chips, unread dots and the
@@ -28,9 +30,9 @@ import { outlookFace, PaneSubject } from './InboxParts'
 // server-rendered After state), JavaScript before hydration (html.js: CSS
 // shows Before, no flash), and hydrated (React plays Before -> After once,
 // 700ms after the window is 40% in view; FLIP, 520ms ease-out, transform and
-// opacity only; reduced motion skips straight to After). The window tilts
-// -1.5deg on desktop and straightens on hover or focus. Every sender is
-// fictional (content/systems.ts).
+// opacity only; reduced motion skips straight to After). The window leans
+// towards a fine pointer (Tilt). Every sender is fictional
+// (content/systems.ts).
 
 type View = 'before' | 'after'
 type Autoplay = 'pending' | 'waiting' | 'done'
@@ -254,6 +256,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
 
   return (
     <div className="relative">
+      <Tilt>
       <div
         ref={windowRef}
         data-view={view}
@@ -378,7 +381,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                         {email.subject}
                       </span>
                     </button>
-                    <span className="whitespace-nowrap text-right text-[0.6875rem] tabular-nums text-[var(--muted)] sm:order-last sm:min-w-[3.25rem]">
+                    <span className="whitespace-nowrap text-right text-[0.75rem] tabular-nums text-[var(--muted)] sm:order-last sm:min-w-[3.25rem]">
                       {email.received}
                     </span>
                     <span className="flex min-h-[1.25rem] justify-end gap-1">
@@ -413,7 +416,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
           {isAfter && opened && (
             <section aria-label={demo.paneHeading} className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)]">
               <div className="flex items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
-                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
+                <p className="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{demo.paneHeading}</p>
                 <div className="flex items-center gap-3">
                   <CategoryChip category={categoryOf(opened)} />
                   <button type="button" onClick={closePane} className="v-link text-[0.75rem] font-semibold">
@@ -446,6 +449,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
           )}
         </div>
       </div>
+      </Tilt>
       <p aria-live="polite" className="sr-only">
         {announcement}
       </p>

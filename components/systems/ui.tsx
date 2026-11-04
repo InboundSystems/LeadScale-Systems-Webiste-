@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { site } from '@/content/audience'
 import MailHeader from './MailHeader'
 import SectionChip from './SectionChip'
+import StarField from './StarField'
 import type {
   CategoryTone,
   DetailedItem,
@@ -12,12 +13,42 @@ import type {
   StepItem,
 } from '@/content/types'
 
+/** A stable seed from a string, so each section draws its own sky. */
+function seedOf(key: string) {
+  let h = 2166136261
+  for (let i = 0; i < key.length; i++) h = Math.imul(h ^ key.charCodeAt(i), 16777619)
+  return h >>> 0
+}
+
+/** Night throughout (night story, 9 November 2026): a sparse, faint, static
+ *  sky behind every dark section. Decorative. */
+export function SectionSky({ seedKey, count = 12 }: { seedKey: string; count?: number }) {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-clip">
+      <StarField seed={seedOf(seedKey)} count={count} maxOpacity={0.22} />
+    </div>
+  )
+}
+
 // Flagship-only primitives. Server components, no motion. Media keeps its own
 // shared components (components/ui, components/home, Navbar, Footer); nothing
 // here is imported by /media. Tokens: app/globals.css [data-brand='systems'].
 
-export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
+export function Container({
+  children,
+  className = '',
+  reveal = false,
+}: {
+  children: ReactNode
+  className?: string
+  /** Fade and rise into place on scroll (ScrollReveal). */
+  reveal?: boolean
+}) {
+  return (
+    <div data-reveal={reveal ? '' : undefined} className={`mx-auto w-full max-w-[72rem] px-4 sm:px-6 lg:px-8 ${className}`}>
+      {children}
+    </div>
+  )
 }
 
 type Tone = 'ground' | 'surface' | 'warm' | 'band' | 'white'
@@ -53,9 +84,10 @@ export function Section({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={`${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
+      className={`relative isolate ${toneClass[tone]} ${rule ? 'border-t border-[var(--hairline)]' : ''} py-14 sm:py-20 ${className}`}
     >
-      <Container>
+      <SectionSky seedKey={labelledBy ?? id ?? sent ?? tone} />
+      <Container reveal>
         {sent && <MailHeader sent={sent} inverse={tone === 'band'} />}
         {children}
       </Container>
@@ -132,7 +164,7 @@ export function ButtonLink({
   className?: string
 }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.9375rem] font-semibold leading-none transition-[background-color,color,transform,box-shadow,filter] duration-150 ease-out hover:-translate-y-px'
+    'inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] px-5 py-3 text-[0.875rem] font-semibold leading-none transition-[background-color,color,transform,box-shadow,filter] duration-150 ease-out hover:-translate-y-px'
   const styles =
     variant === 'primary'
       ? 'bg-gradient-to-r from-[var(--primary)] to-[var(--primary-deep)] text-white shadow-[0_0_35px_rgb(37_99_235/0.4)] hover:shadow-[0_0_55px_rgb(37_99_235/0.65)] hover:brightness-110'
@@ -157,8 +189,9 @@ export function PageHeader({
   children?: ReactNode
 }) {
   return (
-    <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
-      <Container>
+    <header className="relative isolate pb-14 pt-12 sm:pb-20 sm:pt-20">
+      <SectionSky seedKey={header.heading} count={16} />
+      <Container reveal>
         {chipTone ? <SectionChip label={header.eyebrow} tone={chipTone} /> : <Eyebrow>{header.eyebrow}</Eyebrow>}
         <h1 className="v-h1 max-w-[22ch]">{header.heading}</h1>
         {header.intro && <p className="v-lead mt-6">{header.intro}</p>}
@@ -171,9 +204,10 @@ export function PageHeader({
 /** The one line every page ends on, and its action (docs/VOICE.md §10). */
 export function PageEnd({ end }: { end: PageEndContent }) {
   return (
-    <section className="border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-16">
-      <Container className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="v-serif max-w-[40ch] text-[1.25rem] leading-snug text-[var(--ink)] sm:text-[1.375rem]">
+    <section className="relative isolate border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-16">
+      <SectionSky seedKey={end.line} count={8} />
+      <Container reveal className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="v-serif max-w-[40ch] text-[1.5rem] leading-snug text-[var(--ink)]">
           {end.line}
         </p>
         <ButtonLink link={end.link} className="shrink-0" />
@@ -195,7 +229,7 @@ export function RuledList({
   className?: string
 }) {
   return (
-    <ul className={`border-t border-[var(--hairline)] ${className}`}>
+    <ul data-reveal-stagger className={`border-t border-[var(--hairline)] ${className}`}>
       {items.map((item, i) => {
         const { text, detail } = typeof item === 'string' ? { text: item, detail: undefined } : item
         const marker = markers?.[i % markers.length]
@@ -234,7 +268,7 @@ export function SplitBlock({
   const Heading = headingLevel
   return (
     <div className="grid gap-4 border-t border-[var(--hairline)] py-8 lg:grid-cols-12 lg:gap-10">
-      <Heading id={headingId} className="v-serif text-[1.375rem] font-semibold leading-snug text-[var(--ink)] lg:col-span-4">
+      <Heading id={headingId} className="v-serif text-[1.5rem] font-semibold leading-snug text-[var(--ink)] lg:col-span-4">
         {heading}
       </Heading>
       <div className="flex flex-col gap-4 lg:col-span-8">{children}</div>
@@ -246,7 +280,7 @@ export function SplitBlock({
  *  installation. */
 export function NumberedSteps({ steps, className = '' }: { steps: StepItem[]; className?: string }) {
   return (
-    <ol className={`border-t border-[var(--hairline)] ${className}`}>
+    <ol data-reveal-stagger className={`border-t border-[var(--hairline)] ${className}`}>
       {steps.map((step, i) => (
         <li
           key={step.title}

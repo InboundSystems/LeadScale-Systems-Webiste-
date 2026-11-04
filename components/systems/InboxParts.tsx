@@ -65,7 +65,7 @@ export function ReadingPane({
   return (
     <div aria-live="polite" className="border-t border-[var(--hairline)] bg-[var(--chrome-soft)]">
       <div className="flex min-h-[2.25rem] items-center justify-between gap-3 border-b border-[var(--hairline)] px-4 py-1.5">
-        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{heading}</p>
+        <p className="text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted)]">{heading}</p>
         {category}
       </div>
       <div className="px-4 py-3">{children}</div>

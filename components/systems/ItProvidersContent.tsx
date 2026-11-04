@@ -42,7 +42,7 @@ export default function ItProvidersContent() {
           <ul className="border-t border-[var(--hairline)]">
             {notRequested.items.map((item) => (
               <li key={item} className="border-b border-[var(--hairline)] py-3 text-[var(--ink)]">
-                {/^[A-Z]\w+\.\w+$/.test(item) ? <code className="v-mono text-[0.9375rem]">{item}</code> : item}
+                {/^[A-Z]\w+\.\w+$/.test(item) ? <code className="v-mono text-[0.875rem]">{item}</code> : item}
               </li>
             ))}
           </ul>

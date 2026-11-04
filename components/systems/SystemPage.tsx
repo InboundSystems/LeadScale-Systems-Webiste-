@@ -1,18 +1,22 @@
 import { intendedPurpose } from '@/content/intended-purpose'
 import type { SystemContent } from '@/content/types'
-import DayTimeline from './DayTimeline'
 import FAQList from './FAQList'
+import FrontOfficeInbox from './FrontOfficeInbox'
 import InboxIllustration from './InboxIllustration'
 import IntendedPurpose from './IntendedPurpose'
 import MorningSummary from './MorningSummary'
-import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SplitBlock, sentAt } from './ui'
+import MailHeader from './MailHeader'
+import PracticeNight from './story/PracticeNight'
+import Tilt from './Tilt'
+import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SectionSky, SplitBlock, sentAt } from './ui'
 
 // A system's own page, /systems/<slug>. Every slot is optional except the
 // header and the end line; an unset slot renders nothing.
 export default function SystemPage({ system }: { system: SystemContent }) {
   return (
     <>
-      <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
+      <header className="relative isolate pb-14 pt-12 sm:pb-20 sm:pt-20">
+        <SectionSky seedKey={system.name} count={16} />
         <Container>
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-8">
@@ -65,8 +69,12 @@ export default function SystemPage({ system }: { system: SystemContent }) {
           </h2>
           <p className="v-body mt-4 text-[var(--muted)]">{system.illustrations.intro}</p>
           <div className="mt-10 flex flex-col gap-14">
-            <InboxIllustration inbox={system.illustrations.inbox} className="max-w-[60rem]" />
-            <MorningSummary summary={system.illustrations.summary} className="max-w-[48rem] lg:ml-[12rem]" />
+            <Tilt className="max-w-[60rem]">
+              <InboxIllustration inbox={system.illustrations.inbox} />
+            </Tilt>
+            <Tilt className="max-w-[48rem] lg:ml-[12rem]">
+              <MorningSummary summary={system.illustrations.summary} />
+            </Tilt>
           </div>
         </Section>
       )}
@@ -101,21 +109,37 @@ export default function SystemPage({ system }: { system: SystemContent }) {
         </Section>
       )}
 
-      {system.dayTimeline && (
-        <Section id="working-day" labelledBy="day-heading" className="scroll-mt-20" sent={sentAt(4)}>
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-4">
-              <h2 id="day-heading" className="v-h2">
-                {system.dayTimeline.heading}
-              </h2>
-              <p className="mt-4 text-[var(--muted)]">{system.dayTimeline.intro}</p>
-              <p className="js-only mt-3 text-[0.9375rem] text-[var(--muted)]">{system.dayTimeline.hint}</p>
+      {system.night && system.illustrations && (
+        <section id="night" aria-labelledby="night-heading" className="relative scroll-mt-16 border-t border-[var(--hairline)] text-white">
+          <PracticeNight
+            night={system.night}
+            summary={system.illustrations.summary}
+            intro={
+              <div className="pb-6 pt-14 sm:pt-20">
+                <MailHeader sent={sentAt(4)} inverse />
+                <h2 id="night-heading" className="v-h2">
+                  {system.night.heading}
+                </h2>
+                <p className="mt-4 max-w-[44ch] text-[var(--muted)]">{system.night.intro}</p>
+              </div>
+            }
+          />
+          {system.heroDemo && (
+            <div className="relative border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-20">
+              <Container reveal>
+                <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+                  <div className="lg:col-span-4">
+                    <h3 className="v-serif text-[1.5rem] font-semibold leading-snug text-[var(--ink)]">{system.night.tryIt.heading}</h3>
+                    <p className="mt-3 text-[var(--muted)]">{system.night.tryIt.intro}</p>
+                  </div>
+                  <div className="lg:col-span-8">
+                    <FrontOfficeInbox demo={system.heroDemo} />
+                  </div>
+                </div>
+              </Container>
             </div>
-            <div className="lg:col-span-8">
-              <DayTimeline timeline={system.dayTimeline} summary={system.illustrations?.summary} />
-            </div>
-          </div>
-        </Section>
+          )}
+        </section>
       )}
 
       {system.installation && (

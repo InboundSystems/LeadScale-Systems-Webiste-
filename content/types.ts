@@ -89,7 +89,7 @@ export interface SiteChrome {
 // patient or sender, and no clinical detail in any subject line.
 // ---------------------------------------------------------------------------
 /** The category palette (components/brand/categories.ts). */
-export type CategoryTone = 'blue' | 'violet' | 'sky' | 'cyan' | 'fuchsia' | 'slate' | 'neutral'
+export type CategoryTone = 'outline' | 'blue' | 'sky' | 'navy' | 'slate' | 'neutral'
 
 export interface CategoryDef {
   /** e.g. "01 Appointments". The number is the practice's own order. */
@@ -166,48 +166,58 @@ export interface InboxDemo {
   emails: DemoEmail[]
 }
 
-/** One step of a system's working day. Exactly one of arrival, correction
- *  or summary is set. */
-export interface DayStep {
-  /** The clock shown for this step, e.g. "Friday, 9:40am". */
-  clock: string
-  /** An email arriving in the Inbox. */
-  arrival?: {
-    id: string
-    sender: string
-    subject: string
-    received: string
-    category: CategoryDef
-    personLabel?: string
-  }
-  /** Reception changes the category of an email that already arrived. */
-  correction?: { id: string; to: CategoryDef }
-  /** The morning summary arrives (the last step). */
-  summary?: true
-  /** What the system did, in one or two sentences. Section 4 facts only. */
-  outcome: string
+/** One email in "A night at the practice". Fictional. */
+export interface PracticeRow {
+  id: string
+  sender: string
+  subject: string
+  received: string
+  category: CategoryDef
+  personLabel?: string
 }
 
-export interface DayTimeline {
+/** "A night at the practice" (night story, 9 November 2026): The Front
+ *  Office's own story, a pinned inbox from the practice's Friday close to
+ *  Monday morning. Every sentence is a fact already on the page or in
+ *  section 4 of the rework brief; every row agrees with the morning summary
+ *  it arrives at. */
+export interface PracticeNightContent {
   heading: string
   intro: string
-  /** Shown only when the timeline is interactive. */
-  hint: string
-  startClock: string
-  startNote: string
-  nextLabel: string
-  backLabel: string
-  restartLabel: string
-  /** e.g. "of", as in "3 of 9". */
-  ofLabel: string
-  paneHeading: string
+  clock: StoryClock
   toolbar: string[]
   mailboxName: string
   folderName: string
   arrangedBy: string
+  /** The folder strip above the list. */
+  folders: { inbox: string; drafts: string; junk: string }
+  /** In the Inbox when the practice closes, already marked. */
+  startRows: PracticeRow[]
+  beats: {
+    key: string
+    minute: number
+    /** The short heading under the clock, e.g. "After hours". */
+    heading: string
+    /** An email arriving in the Inbox. */
+    arrival?: PracticeRow
+    /** The row the words attach to (an id in the Inbox). */
+    target?: string
+    /** A reply is prepared in Drafts. */
+    draft?: true
+    /** Mail from a known sender lands in Junk, and stays there. */
+    junk?: { sender: string; subject: string; received: string }
+    /** The morning summary arrives and opens. */
+    summary?: true
+    /** Reception changes a category. */
+    correction?: { id: string; to: CategoryDef }
+    /** The words: an annotation on the inbox on a live desktop stage, beat
+     *  text everywhere else. */
+    text: string
+  }[]
+  /** After the story: the interactive inbox (Before / After, Replay, and
+   *  changing categories). */
+  tryIt: { heading: string; intro: string }
   summaryLinkLabel: string
-  newLabel: string
-  steps: DayStep[]
 }
 
 /** One line of the plain-text morning summary, as the real email sets it:
@@ -315,10 +325,9 @@ export interface SystemContent {
    *  system carries it. */
   heroDemo?: InboxDemo
 
-  /** The system's working day as an interactive inbox timeline: emails
-   *  arrive one step at a time at a fictional client, each showing what the
-   *  system did. Never implies a live client. */
-  dayTimeline?: DayTimeline
+  /** "A night at the practice": the system's story on its own page, a pinned
+   *  inbox from close to the next morning. Never implies a live client. */
+  night?: PracticeNightContent
 
   /** How this system is installed, step by step. /how-it-works links here
    *  as its example. */
@@ -361,12 +370,85 @@ export interface HeroList {
   caption: string
 }
 
+/** A story's clock: minutes since midnight at the start of its first day. */
+export interface StoryClock {
+  /** Day names in turn, from the story's first day. */
+  days: string[]
+  /** Where the running clock starts (above the first beat). */
+  start: number
+}
+
+/** The homepage's first story, "One night" (night story, 9 November 2026).
+ *  The hero's Monday list stays on screen while the business closes and the
+ *  night passes. Company level: our systems keep working while the business
+ *  is closed, and nothing more. Only the two correspondence items may be
+ *  crossed off; no new tasks, no numbers. */
+export interface NightStoryContent {
+  /** The story's opening line, in the voice of the theme. */
+  heading: string
+  clock: StoryClock
+  /** The indicator on the notepad: the owl's eye and its label, closed
+   *  until the business closes. */
+  watch: { off: string; on: string }
+  beats: {
+    key: string
+    /** Anchor id (the folder rail's "The work" points at one beat). */
+    id?: string
+    minute: number
+    /** The short heading under the clock, e.g. "Overnight". */
+    heading: string
+    /** The beat's words: an annotation on the notepad on a live desktop
+     *  stage, beat text everywhere else. */
+    text: string
+    /** What the words attach to: an item on the list (by index), the
+     *  list's title, or the items that need a person. */
+    target: number | 'title' | 'person' | 'none'
+    /** Items crossed off at this beat (indexes into hero.list.items). */
+    crosses?: number[]
+    /** The judgement items dim, waiting. */
+    waits?: boolean
+    /** The notepad reads its morning line. */
+    morning?: boolean
+    /** The kind of work we take on: the characteristics, shown in this beat. */
+    showsWork?: boolean
+  }[]
+  /** The four characteristics, as small tags on the two correspondence
+   *  items (by index). */
+  tags: { item: number; text: string }[]
+  /** The tag on each item that needs a person. */
+  personTag: string
+  /** The notepad's line at 7:00 am. */
+  morningLine: string
+}
+
+/** The homepage's second story: the same notepad through the six steps
+ *  every system runs by. Only the existing step wording; the artifact's
+ *  lines are fictional and generic (no sector). */
+export interface MethodStoryContent {
+  /** "The job" card the two crossed-off items join into. */
+  jobTitle: string
+  /** The one-page rules document. */
+  rulesTitle: string
+  rules: string[]
+  /** The plain window frame. No real product names or logos. */
+  windowTitle: string
+  /** What the window shows once it runs: the two jobs, done. */
+  doneRows: string[]
+  /** The status in the window: no settings panel, just this. */
+  runBy: string
+  /** The monthly card. No figures. */
+  monthlyTitle: string
+  monthlyText: string
+  /** The change email. */
+  change: { from: string; subject: string; body: string; approve: string; notNow: string; applied: string }
+}
+
 export interface HomeContent {
   hero: {
     /** The sent time on the hero's From / To line. */
     sent: string
     heading: string
-    /** The word in the heading that gets the violet marker underline. */
+    /** The word in the heading that gets the light-blue marker underline. */
     markedWord: string
     body: string
     primary: LinkItem
@@ -375,16 +457,17 @@ export interface HomeContent {
      *  business. Company level: no sector, no business name, no system. */
     list: HeroList
   }
+  night: NightStoryContent
   /** Accessible name of the folder rail / tab strip. */
   foldersLabel: string
   /** The kind of work Vicaria takes on: characteristics, never a menu of
    *  tasks that would imply a system exists. */
   work: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; closing: string }
   /** How Vicaria works, for every system. */
-  method: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; link: LinkItem }
+  method: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; link: LinkItem; story: MethodStoryContent }
   /** Principles true of every system, not of one. */
   principles: { eyebrow: string; sent: string; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
-  systems: { eyebrow: string; sent: string; heading: string; intro: string; linkLabel: string }
+  systems: { eyebrow: string; sent: string; heading: string; intro: string; linkLabel: string; previewLinkLabel: string }
   /** The Front Office's morning summary, arriving as a new email below the
    *  systems section. The summary itself comes from content/systems.ts. */
   end: PageEnd
