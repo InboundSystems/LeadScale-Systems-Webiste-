@@ -189,12 +189,12 @@ export const home: HomeContent = {
           to: 'Jordan Lee',
           subject: 'Re: New booking request',
           status: 'Not sent',
-          preview: 'Thanks for your booking request. Please call reception Monday to Thursday, 8:00 am to 4:00 pm…',
+          preview: 'Thanks for your booking request. Please call reception on the number on our website and we’ll find you a time.',
         },
       },
       {
         heading: 'Reception’s changes stick',
-        body: 'If reception changes a category, the system never changes it back. We go through the corrections with you each month.',
+        body: 'If reception changes a category, the system never changes it back. Corrections are reviewed every month.',
         detail: {
           kind: 'correction',
           sender: 'Bayside Linen Service',

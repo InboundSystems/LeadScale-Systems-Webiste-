@@ -102,7 +102,7 @@ export const systems: SystemContent[] = [
         {
           heading: 'Respects reception’s corrections',
           body:
-            'If reception changes a category, the system never changes it back. Every correction is recorded, and we go through them with you at a monthly review.',
+            'If reception changes a category, the system never changes it back. Every correction is recorded. Corrections are reviewed every month.',
         },
       ],
     },
@@ -242,7 +242,7 @@ export const systems: SystemContent[] = [
     illustrations: {
       heading: 'What reception and the practice manager see.',
       intro:
-        'Both use a fictional practice, open 8:00am to 5:00pm, Monday to Friday. Every sender is fictional.',
+        'Both use a fictional practice, open Monday to Friday, 8:30 am to 5:00 pm. Every sender is fictional.',
       inbox: {
         caption:
           'The shared Inbox in Outlook at 8:00am on a Monday, arranged by category. Illustration with fictional senders.',
@@ -444,7 +444,7 @@ export const systems: SystemContent[] = [
       paragraphs: [
         'Before it starts, we agree one measure in writing: the proportion of emails whose category nobody at the practice changes. We report it monthly, from the system’s own record.',
         'Beside it we report a second figure: the median time from arrival to first reply, by category, counted in open hours.',
-        'Every correction is recorded, never overwritten, and we go through them with you at a monthly review.',
+        'Every correction is recorded, never overwritten. Corrections are reviewed every month.',
       ],
     },
 
