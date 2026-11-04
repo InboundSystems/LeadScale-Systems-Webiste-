@@ -5,6 +5,7 @@ import { ToneSquare } from './FolderRail'
 import VicariaOwl from '@/components/brand/VicariaOwl'
 import VicariaWordmark from '@/components/brand/VicariaWordmark'
 import BrisbaneClock from './BrisbaneClock'
+import StarField from './StarField'
 import { Container } from './ui'
 
 // Flagship footer. Media keeps components/Footer.tsx. No social or client
@@ -25,6 +26,7 @@ export default function SiteFooter() {
   return (
     <footer className="relative bg-[var(--dark)] pb-10 pt-14 text-[var(--on-dark)]">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <StarField seed={20261110} count={40} maxOpacity={0.3} />
         <VicariaOwl className="absolute -right-24 top-1/2 h-[150%] w-auto -translate-y-1/2 text-white opacity-[0.04]" />
       </div>
       <Container className="relative">

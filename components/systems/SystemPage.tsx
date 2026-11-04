@@ -1,22 +1,25 @@
 import { intendedPurpose } from '@/content/intended-purpose'
 import type { SystemContent } from '@/content/types'
+import CategoryChip from './CategoryChip'
 import FAQList from './FAQList'
 import FrontOfficeInbox from './FrontOfficeInbox'
 import InboxIllustration from './InboxIllustration'
 import IntendedPurpose from './IntendedPurpose'
 import MorningSummary from './MorningSummary'
-import MailHeader from './MailHeader'
-import PracticeNight from './story/PracticeNight'
 import Tilt from './Tilt'
-import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SectionSky, SplitBlock, sentAt } from './ui'
+import { Container, Eyebrow, NumberedSteps, PageEnd, RuledList, Section, SplitBlock, sentAt } from './ui'
 
-// A system's own page, /systems/<slug>. Every slot is optional except the
-// header and the end line; an unset slot renders nothing.
+// A system's own page, /systems/<slug> (clinics, 10 November 2026). The
+// homepage summarises; this page explains: the problem, the practice's
+// categories in full, all seven things in detail, the full inbox and morning
+// summary illustrations, what it never does, "Try it yourself", installation,
+// how it's judged, who it isn't for, the intended purpose (verbatim) and the
+// FAQ. Every slot is optional except the header and the end line; an unset
+// slot renders nothing.
 export default function SystemPage({ system }: { system: SystemContent }) {
   return (
     <>
-      <header className="relative isolate pb-14 pt-12 sm:pb-20 sm:pt-20">
-        <SectionSky seedKey={system.name} count={16} />
+      <header className="pb-14 pt-12 sm:pb-20 sm:pt-20">
         <Container>
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-8">
@@ -62,8 +65,52 @@ export default function SystemPage({ system }: { system: SystemContent }) {
         </Section>
       )}
 
+      {system.categoryList && (
+        <Section tone="surface" id="categories" labelledBy="categories-heading" className="scroll-mt-20" sent={sentAt(1)}>
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-4">
+              <h2 id="categories-heading" className="v-h2">
+                {system.categoryList.heading}
+              </h2>
+              <p className="mt-4 text-[var(--muted)]">{system.categoryList.intro}</p>
+            </div>
+            <dl className="border-t border-[var(--hairline)] lg:col-span-8">
+              {system.categoryList.items.map(({ category, covers }) => (
+                <div key={category.label} className="grid gap-2 border-b border-[var(--hairline)] py-4 sm:grid-cols-[17rem_minmax(0,1fr)] sm:gap-6">
+                  <dt>
+                    <CategoryChip category={category} size="md" />
+                  </dt>
+                  <dd className="text-[var(--body)]">{covers}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Section>
+      )}
+
+      {system.whatItDoes && (
+        <Section labelledBy="does-heading" sent={sentAt(2)}>
+          <h2 id="does-heading" className="v-h2">
+            {system.whatItDoes.heading}
+          </h2>
+          <ol className="mt-10 grid gap-x-14 md:grid-cols-2">
+            {system.whatItDoes.items.map((item, i) => (
+              <li key={item.heading} className="border-t border-[var(--hairline)] py-6">
+                <h3 className="v-h3">
+                  <span aria-hidden="true" className="mr-3 tabular-nums text-[var(--note)]">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {item.heading}
+                </h3>
+                <p className="mt-2 text-[var(--muted)]">{item.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      )}
+
       {system.illustrations && (
-        <Section tone="surface" id="illustrations" labelledBy="illustrations-heading" className="scroll-mt-20" sent={sentAt(1)}>
+        <Section tone="surface" id="illustrations" labelledBy="illustrations-heading" className="scroll-mt-20" sent={sentAt(3)}>
           <h2 id="illustrations-heading" className="v-h2 max-w-[26ch]">
             {system.illustrations.heading}
           </h2>
@@ -79,71 +126,38 @@ export default function SystemPage({ system }: { system: SystemContent }) {
         </Section>
       )}
 
-      {system.whatItDoes && (
-        <Section labelledBy="does-heading" sent={sentAt(2)}>
-          <h2 id="does-heading" className="v-h2">
-            {system.whatItDoes.heading}
-          </h2>
-          <div className="mt-10 grid gap-x-14 md:grid-cols-2">
-            {system.whatItDoes.items.map((item) => (
-              <div key={item.heading} className="border-t border-[var(--hairline)] py-6">
-                <h3 className="v-h3">{item.heading}</h3>
-                <p className="mt-2 text-[var(--muted)]">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-      )}
-
       {system.whatItNeverDoes && (
-        <Section tone="warm" labelledBy="never-heading" sent={sentAt(3)}>
+        <Section tone="band" labelledBy="never-heading" sent={sentAt(4)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-5">
-              <h2 id="never-heading" className="v-h2">
+              <h2 id="never-heading" className="v-h2 !text-white">
                 {system.whatItNeverDoes.heading}
               </h2>
-              <p className="mt-4 text-[var(--ink)]">{system.whatItNeverDoes.intro}</p>
+              <p className="mt-4 text-[var(--on-dark-soft)]">{system.whatItNeverDoes.intro}</p>
             </div>
             <RuledList items={system.whatItNeverDoes.items} className="lg:col-span-7" />
           </div>
         </Section>
       )}
 
-      {system.night && system.illustrations && (
-        <section id="night" aria-labelledby="night-heading" className="relative scroll-mt-16 border-t border-[var(--hairline)] text-white">
-          <PracticeNight
-            night={system.night}
-            summary={system.illustrations.summary}
-            intro={
-              <div className="pb-6 pt-14 sm:pt-20">
-                <MailHeader sent={sentAt(4)} inverse />
-                <h2 id="night-heading" className="v-h2">
-                  {system.night.heading}
-                </h2>
-                <p className="mt-4 max-w-[44ch] text-[var(--muted)]">{system.night.intro}</p>
-              </div>
-            }
-          />
-          {system.heroDemo && (
-            <div className="relative border-t border-[var(--hairline)] bg-[var(--surface)] py-14 sm:py-20">
-              <Container reveal>
-                <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
-                  <div className="lg:col-span-4">
-                    <h3 className="v-serif text-[1.5rem] font-semibold leading-snug text-[var(--ink)]">{system.night.tryIt.heading}</h3>
-                    <p className="mt-3 text-[var(--muted)]">{system.night.tryIt.intro}</p>
-                  </div>
-                  <div className="lg:col-span-8">
-                    <FrontOfficeInbox demo={system.heroDemo} />
-                  </div>
-                </div>
-              </Container>
+      {system.tryIt && system.heroDemo && (
+        <Section id="try-it" labelledBy="try-heading" className="scroll-mt-20" sent={sentAt(5)}>
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
+              <h2 id="try-heading" className="v-h2">
+                {system.tryIt.heading}
+              </h2>
+              <p className="mt-4 text-[var(--muted)]">{system.tryIt.intro}</p>
             </div>
-          )}
-        </section>
+            <div className="lg:col-span-8">
+              <FrontOfficeInbox demo={system.heroDemo} variant="full" />
+            </div>
+          </div>
+        </Section>
       )}
 
       {system.installation && (
-        <Section id="installation" labelledBy="installation-heading" className="scroll-mt-20" sent={sentAt(5)}>
+        <Section tone="surface" id="installation" labelledBy="installation-heading" className="scroll-mt-20" sent={sentAt(6)}>
           <h2 id="installation-heading" className="v-h2">
             {system.installation.heading}
           </h2>
@@ -159,7 +173,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.judged && (
-        <Section sent={sentAt(6)}>
+        <Section sent={sentAt(7)}>
           <SplitBlock heading={system.judged.heading}>
             {system.judged.paragraphs.map((p) => (
               <p key={p} className="v-body">
@@ -171,7 +185,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.whoThisIsntFor && (
-        <Section labelledBy="not-for-heading" sent={sentAt(7)}>
+        <Section labelledBy="not-for-heading" sent={sentAt(8)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <h2 id="not-for-heading" className="v-h2 lg:col-span-5">
               {system.whoThisIsntFor.heading}
@@ -193,7 +207,7 @@ export default function SystemPage({ system }: { system: SystemContent }) {
       )}
 
       {system.faq && system.faq.items.length > 0 && (
-        <Section labelledBy="faq-heading" sent={sentAt(8)}>
+        <Section labelledBy="faq-heading" sent={sentAt(9)}>
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
             <h2 id="faq-heading" className="v-h2 lg:col-span-5">
               {system.faq.heading}

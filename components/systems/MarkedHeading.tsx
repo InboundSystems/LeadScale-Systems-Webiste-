@@ -1,8 +1,6 @@
 // The hero H1 with one word marked: a single light-blue stroke under it, drawn
-// in inline SVG as a slightly uneven highlighter line (not a squiggle). It
-// draws in once, left to right, over 600ms on load, in CSS, so it needs no
-// JavaScript; under prefers-reduced-motion it is simply there
-// (app/globals.css, "Marker stroke"). The stroke sits behind the lower part
+// in inline SVG as a slightly uneven highlighter line (not a squiggle).
+// Static (app/globals.css, "Marker stroke"). The stroke sits behind the lower part
 // of the word (#60A5FA, light blue).
 export default function MarkedHeading({
   text,

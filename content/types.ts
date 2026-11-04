@@ -166,60 +166,6 @@ export interface InboxDemo {
   emails: DemoEmail[]
 }
 
-/** One email in "A night at the practice". Fictional. */
-export interface PracticeRow {
-  id: string
-  sender: string
-  subject: string
-  received: string
-  category: CategoryDef
-  personLabel?: string
-}
-
-/** "A night at the practice" (night story, 9 November 2026): The Front
- *  Office's own story, a pinned inbox from the practice's Friday close to
- *  Monday morning. Every sentence is a fact already on the page or in
- *  section 4 of the rework brief; every row agrees with the morning summary
- *  it arrives at. */
-export interface PracticeNightContent {
-  heading: string
-  intro: string
-  clock: StoryClock
-  toolbar: string[]
-  mailboxName: string
-  folderName: string
-  arrangedBy: string
-  /** The folder strip above the list. */
-  folders: { inbox: string; drafts: string; junk: string }
-  /** In the Inbox when the practice closes, already marked. */
-  startRows: PracticeRow[]
-  beats: {
-    key: string
-    minute: number
-    /** The short heading under the clock, e.g. "After hours". */
-    heading: string
-    /** An email arriving in the Inbox. */
-    arrival?: PracticeRow
-    /** The row the words attach to (an id in the Inbox). */
-    target?: string
-    /** A reply is prepared in Drafts. */
-    draft?: true
-    /** Mail from a known sender lands in Junk, and stays there. */
-    junk?: { sender: string; subject: string; received: string }
-    /** The morning summary arrives and opens. */
-    summary?: true
-    /** Reception changes a category. */
-    correction?: { id: string; to: CategoryDef }
-    /** The words: an annotation on the inbox on a live desktop stage, beat
-     *  text everywhere else. */
-    text: string
-  }[]
-  /** After the story: the interactive inbox (Before / After, Replay, and
-   *  changing categories). */
-  tryIt: { heading: string; intro: string }
-  summaryLinkLabel: string
-}
-
 /** One line of the plain-text morning summary, as the real email sets it:
  *  first column, subject (cut to 44 characters and padded to 44), sender
  *  email address, then any [For …] label. The first column is time waited
@@ -321,13 +267,17 @@ export interface SystemContent {
     summary: MorningSummaryIllustration
   }
 
-  /** The interactive before-and-after inbox in the homepage hero. Only one
-   *  system carries it. */
+  /** The practice inbox: the homepage hero (Before / After only) and "Try
+   *  it yourself" on the system page. Only one system carries it. */
   heroDemo?: InboxDemo
 
-  /** "A night at the practice": the system's story on its own page, a pinned
-   *  inbox from close to the next morning. Never implies a live client. */
-  night?: PracticeNightContent
+  /** The practice's categories in full, each with what it covers in one
+   *  sentence (an example set; every practice chooses its own). */
+  categoryList?: { heading: string; intro: string; items: { category: CategoryDef; covers: string }[] }
+
+  /** "Try it yourself": the interactive inbox (heroDemo) with Replay and
+   *  changing categories. */
+  tryIt?: { heading: string; intro: string }
 
   /** How this system is installed, step by step. /how-it-works links here
    *  as its example. */
@@ -356,120 +306,39 @@ export interface SummaryAnnotation {
   note: string
 }
 
-/** The hero's Monday list. Only repetitive correspondence jobs may be
- *  crossed off ("off your desk"): nothing else is a system Vicaria runs.
- *  Everything that needs judgement stays unticked ("needs a person"). */
-export interface HeroList {
-  title: string
-  /** Done items first, then the ones that need a person. */
-  items: { text: string; done: boolean }[]
-  doneNote: string
-  personNote: string
-  /** Screen-reader prefix for a crossed-off item, e.g. "Off your desk:". */
-  doneLabel: string
-  caption: string
-}
-
-/** A story's clock: minutes since midnight at the start of its first day. */
-export interface StoryClock {
-  /** Day names in turn, from the story's first day. */
-  days: string[]
-  /** Where the running clock starts (above the first beat). */
-  start: number
-}
-
-/** The homepage's first story, "One night" (night story, 9 November 2026).
- *  The hero's Monday list stays on screen while the business closes and the
- *  night passes. Company level: our systems keep working while the business
- *  is closed, and nothing more. Only the two correspondence items may be
- *  crossed off; no new tasks, no numbers. */
-export interface NightStoryContent {
-  /** The story's opening line, in the voice of the theme. */
-  heading: string
-  clock: StoryClock
-  /** The indicator on the notepad: the owl's eye and its label, closed
-   *  until the business closes. */
-  watch: { off: string; on: string }
-  beats: {
-    key: string
-    /** Anchor id (the folder rail's "The work" points at one beat). */
-    id?: string
-    minute: number
-    /** The short heading under the clock, e.g. "Overnight". */
-    heading: string
-    /** The beat's words: an annotation on the notepad on a live desktop
-     *  stage, beat text everywhere else. */
-    text: string
-    /** What the words attach to: an item on the list (by index), the
-     *  list's title, or the items that need a person. */
-    target: number | 'title' | 'person' | 'none'
-    /** Items crossed off at this beat (indexes into hero.list.items). */
-    crosses?: number[]
-    /** The judgement items dim, waiting. */
-    waits?: boolean
-    /** The notepad reads its morning line. */
-    morning?: boolean
-    /** The kind of work we take on: the characteristics, shown in this beat. */
-    showsWork?: boolean
-  }[]
-  /** The four characteristics, as small tags on the two correspondence
-   *  items (by index). */
-  tags: { item: number; text: string }[]
-  /** The tag on each item that needs a person. */
-  personTag: string
-  /** The notepad's line at 7:00 am. */
-  morningLine: string
-}
-
-/** The homepage's second story: the same notepad through the six steps
- *  every system runs by. Only the existing step wording; the artifact's
- *  lines are fictional and generic (no sector). */
-export interface MethodStoryContent {
-  /** "The job" card the two crossed-off items join into. */
-  jobTitle: string
-  /** The one-page rules document. */
-  rulesTitle: string
-  rules: string[]
-  /** The plain window frame. No real product names or logos. */
-  windowTitle: string
-  /** What the window shows once it runs: the two jobs, done. */
-  doneRows: string[]
-  /** The status in the window: no settings panel, just this. */
-  runBy: string
-  /** The monthly card. No figures. */
-  monthlyTitle: string
-  monthlyText: string
-  /** The change email. */
-  change: { from: string; subject: string; body: string; approve: string; notNow: string; applied: string }
-}
+/** A small static lit-screen detail beside one of "What we do" on the
+ *  homepage (clinics, 10 November 2026). Fictional practice, senders and
+ *  doctors; no clinical detail in any subject line. */
+export type WhatWeDoDetail =
+  | { kind: 'categories'; title: string; categories: CategoryDef[] }
+  | { kind: 'row'; folder: string; sender: string; subject: string; received: string; category: CategoryDef; personLabel?: string; note: string }
+  | { kind: 'summary'; title: string; groups: SummaryGroup[]; note: string }
+  | { kind: 'drafts'; folder: string; to: string; subject: string; status: string; preview: string }
+  | { kind: 'correction'; sender: string; subject: string; from: CategoryDef; to: CategoryDef; note: string }
 
 export interface HomeContent {
   hero: {
-    /** The sent time on the hero's From / To line. */
-    sent: string
+    /** The line above the H1, in the voice of the theme. */
+    line: string
     heading: string
-    /** The word in the heading that gets the light-blue marker underline. */
+    /** The words in the heading that get the light-blue marker underline. */
     markedWord: string
     body: string
     primary: LinkItem
     secondary: LinkItem
-    /** The hero picture: a Monday to-do list for a fictional service
-     *  business. Company level: no sector, no business name, no system. */
-    list: HeroList
   }
-  night: NightStoryContent
   /** Accessible name of the folder rail / tab strip. */
   foldersLabel: string
-  /** The kind of work Vicaria takes on: characteristics, never a menu of
-   *  tasks that would imply a system exists. */
-  work: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; closing: string }
-  /** How Vicaria works, for every system. */
-  method: { eyebrow: string; sent: string; heading: string; items: HeadedItem[]; link: LinkItem; story: MethodStoryContent }
-  /** Principles true of every system, not of one. */
-  principles: { eyebrow: string; sent: string; heading: string; items: (string | DetailedItem)[]; link: LinkItem }
-  systems: { eyebrow: string; sent: string; heading: string; intro: string; linkLabel: string; previewLinkLabel: string }
-  /** The Front Office's morning summary, arriving as a new email below the
-   *  systems section. The summary itself comes from content/systems.ts. */
+  /** "One inbox, everything in it": what a specialist practice's shared
+   *  inbox receives, and how it is kept track of today. */
+  inbox: { eyebrow: string; heading: string; kinds: string[]; paragraphs: string[] }
+  /** The seven things The Front Office does, each with a small detail. */
+  whatWeDo: { eyebrow: string; heading: string; intro: string; items: { heading: string; body: string; detail: WhatWeDoDetail }[]; link: LinkItem }
+  /** The fixed limits, short (the system page has the detail). */
+  never: { eyebrow: string; heading: string; intro: string; items: string[]; link: LinkItem }
+  start: { eyebrow: string; heading: string; steps: StepItem[]; closing: string }
+  judged: { eyebrow: string; heading: string; paragraphs: string[] }
+  notFor: { eyebrow: string; heading: string; items: string[] }
   end: PageEnd
 }
 

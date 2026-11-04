@@ -8,9 +8,11 @@ import { HeroNotesList } from './HeroNotes'
 import { outlookFace, PaneSubject } from './InboxParts'
 import Tilt from './Tilt'
 
-// The Front Office's interactive inbox: "Try it yourself" after "A night at
-// the practice" on /systems/front-office (night story, 9 November 2026; it
-// left the homepage, which now shows a compact preview).
+// The Front Office's interactive inbox (clinics, 10 November 2026):
+//   - variant "hero": the homepage hero's picture of a practice inbox, with
+//     only the Before / After toggle.
+//   - variant "full": "Try it yourself" on /systems/front-office, with
+//     Replay, Reset, changing a category, and the notes under the window.
 //
 //   - The message list: a Monday-morning Inbox at a fictional practice,
 //     sorted Before -> After, with Replay, Reset, chips, unread dots and the
@@ -26,20 +28,16 @@ import Tilt from './Tilt'
 //     1.3x the card's height.
 //
 // The list's view is driven by CSS from data attributes (app/globals.css,
-// "Inbox demo"), so one DOM serves three states: no JavaScript (the
-// server-rendered After state), JavaScript before hydration (html.js: CSS
-// shows Before, no flash), and hydrated (React plays Before -> After once,
-// 700ms after the window is 40% in view; FLIP, 520ms ease-out, transform and
-// opacity only; reduced motion skips straight to After). The window leans
-// towards a fine pointer (Tilt). Every sender is fictional
-// (content/systems.ts).
+// "Inbox demo"). It shows After by default, with or without JavaScript, and
+// changes only when someone presses Before or After (FLIP, 520ms ease-out,
+// transform and opacity only; instant under reduced motion). Nothing plays
+// on its own. The window leans towards a fine pointer (Tilt). Every sender
+// is fictional (content/systems.ts).
 
 type View = 'before' | 'after'
-type Autoplay = 'pending' | 'waiting' | 'done'
 
 const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)'
 const DURATION = 520
-const START_DELAY = 700
 
 type Item =
   | { kind: 'group'; key: string; label: string; count: number }
@@ -49,9 +47,9 @@ function reducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
+export default function FrontOfficeInbox({ demo, variant = 'full' }: { demo: InboxDemo; variant?: 'hero' | 'full' }) {
+  const full = variant === 'full'
   const [view, setView] = useState<View>('after')
-  const [autoplay, setAutoplay] = useState<Autoplay>('pending')
   const [hovered, setHovered] = useState<string | null>(null)
   const [pulse, setPulse] = useState(0)
   // The row whose explanation the reading pane shows, if any.
@@ -123,43 +121,6 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
     }
   }, [])
 
-  // Hydrated: take over from the CSS pre-hydration state.
-  useLayoutEffect(() => {
-    if (!document.documentElement.classList.contains('js') || reducedMotion()) {
-      setAutoplay('done')
-      return
-    }
-    viewRef.current = 'before'
-    setView('before')
-    setAutoplay('waiting')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Play once, 700ms after 40% of the window is in view (restarting if it
-  // leaves view first, so it only plays where it can be seen).
-  useEffect(() => {
-    if (autoplay !== 'waiting' || !windowRef.current) return
-    let timer: number | undefined
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries[entries.length - 1].isIntersecting
-        window.clearTimeout(timer)
-        if (!visible) return
-        timer = window.setTimeout(() => {
-          observer.disconnect()
-          go('after', true)
-          setAutoplay('done')
-        }, START_DELAY)
-      },
-      { threshold: 0.4 }
-    )
-    observer.observe(windowRef.current)
-    return () => {
-      window.clearTimeout(timer)
-      observer.disconnect()
-    }
-  }, [autoplay, go])
-
   useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), [])
 
   // FLIP: once the DOM shows the new view, play each element from its old place.
@@ -202,13 +163,11 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
 
   function choose(next: View) {
     timers.current.forEach((t) => window.clearTimeout(t))
-    setAutoplay('done')
     go(next, true)
   }
 
   function replay() {
     timers.current.forEach((t) => window.clearTimeout(t))
-    setAutoplay('done')
     setPaneId(null)
     if (reducedMotion()) {
       go('after', false)
@@ -260,7 +219,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
       <div
         ref={windowRef}
         data-view={view}
-        data-autoplay={autoplay}
+        data-autoplay="done"
         className="lit lit-screen inbox-demo inbox-window overflow-hidden rounded-[8px] border border-t-[3px] border-[var(--frame)] border-t-[var(--primary)] bg-[var(--surface)] text-[var(--ink)] shadow-[0_12px_32px_rgba(15,23,42,0.10)]"
         style={outlookFace}
       >
@@ -278,17 +237,21 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
             <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-b border-[var(--hairline)] px-4 py-1.5">
               <p className="tabular-nums text-[0.8125rem] font-semibold tabular-nums">{demo.moment}</p>
               <div className="flex items-center gap-3">
-                <button type="button" onClick={replay} className="v-link text-[0.8125rem] font-semibold">
-                  {demo.replayLabel}
-                </button>
-                <button
-                  type="button"
-                  onClick={reset}
-                  disabled={Object.keys(overrides).length === 0}
-                  className="v-link text-[0.8125rem] font-semibold disabled:cursor-default disabled:text-[var(--muted)] disabled:no-underline"
-                >
-                  {demo.resetLabel}
-                </button>
+                {full && (
+                  <>
+                    <button type="button" onClick={replay} className="v-link text-[0.8125rem] font-semibold">
+                      {demo.replayLabel}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={reset}
+                      disabled={Object.keys(overrides).length === 0}
+                      className="v-link text-[0.8125rem] font-semibold disabled:cursor-default disabled:text-[var(--muted)] disabled:no-underline"
+                    >
+                      {demo.resetLabel}
+                    </button>
+                  </>
+                )}
                 <div
                   role="group"
                   aria-label={`${demo.moment}: ${demo.beforeLabel} or ${demo.afterLabel}`}
@@ -391,6 +354,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                         </span>
                       )}
                       <span data-mark className="inline-flex">
+                        {full ? (
                         <CategoryMenu
                           current={current}
                           categories={demo.categories}
@@ -399,6 +363,9 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
                           onChoose={(c) => recategorise(email, c)}
                           onHover={setHovered}
                         />
+                        ) : (
+                          <CategoryChip category={current} />
+                        )}
                       </span>
                     </span>
                   </li>
@@ -454,7 +421,7 @@ export default function FrontOfficeInbox({ demo }: { demo: InboxDemo }) {
         {announcement}
       </p>
       <p className="v-small mt-4">{demo.caption}</p>
-      <HeroNotesList notes={demo.notes} label={demo.notesLabel} />
+      {full && <HeroNotesList notes={demo.notes} label={demo.notesLabel} />}
     </div>
   )
 }

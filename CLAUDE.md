@@ -5,8 +5,10 @@ Next.js 14 / Vercel. Two brands in one codebase.
 - **Vicaria Media** — live marketing agency site (SEO, paid traffic, social for tradespeople and local service businesses). Stable. Not under active development.
 - **Vicaria** — the flagship. Not launched, still `noindex`. **This is the active work.**
 
-`docs/WEBSITE-REWORK-2026-11.md` is the source of truth for the flagship: section 3 for company
-positioning, section 4 for every claim about The Front Office, section 5 for data handling,
+**`docs/WHAT-WE-DO-2026-11.md` (Sam's rundown, from our real configuration) is the first source of
+truth for every claim; where it differs from anything else, it wins.** Then
+`docs/WEBSITE-REWORK-2026-11.md`: section 3 for company
+positioning (superseded by the clinics positioning below), section 4 for every claim about The Front Office, section 5 for data handling,
 section 6 for the IT providers page, section 7 for the page table, section 8 for design.
 `docs/REPLY-2026-11-03-company-first.md` re-centred sections 3 and 7 on the company.
 `docs/POSITIONING.md` summarises the positioning. Read them before touching flagship copy.
@@ -27,36 +29,35 @@ grandfathered in just because they predate it. Note `/docs` is gitignored, so
 
 ## What the flagship is
 
-**Vicaria's brand is taking recurring administrative work off service businesses.** The Front
-Office is one system Vicaria operates, never the brand. The site must still make sense with five
-systems in different sectors.
+**Clinics positioning (10 November 2026; supersedes "service businesses" and
+docs/REPLY-2026-11-03-company-first.md where they disagree).** Vicaria builds and runs systems
+that take the administrative work off **specialist medical practices'** front desk, inside the
+**Microsoft 365** they already use. Vicaria stays the subject and the brand. **The Front Office**
+is named as **our first system** ("our first system"), so a second can be added later without
+rewriting the company. Never describe or name a second system before it exists.
 
-Vicaria Systems (ABN 67 221 728 299, Brisbane) builds and operates systems that take recurring
-administrative work off service businesses, inside the software they already use. Each system is
-one product, configured per business from a written settings record agreed at onboarding; later
-changes are approved by email. Nothing is a custom build. The client receives completed work and
-administers nothing. Founders Sam Hindmarsh and Blake Russell are named on About only.
+Vicaria Systems (ABN 67 221 728 299, Brisbane). Each system is one product, configured per
+practice from a written settings record agreed at onboarding; later changes are approved by
+email. Nothing is a custom build. The practice receives completed work and administers nothing.
+Founders Sam Hindmarsh and Blake Russell are named on About only.
 
-Positioning is split into two levels. Keep them distinct:
-
-- **Company level** — what Vicaria is: taking recurring administrative work off service
-  businesses. Home, About, How it works, the systems index, site title, meta and Open Graph. Say
-  "service businesses"; medical and allied health practices may be named only as where the first
-  system is built for. No email or inbox wording. Do not invent or name future sectors or systems.
-- **System level** — what exists today: exactly **one** system, **The Front Office**, for
-  specialist medical and allied health practices on Microsoft 365. It marks every email in a
-  shared mailbox with the practice's own numbered Outlook categories where it sits, sends one
-  morning summary on open days, lists known senders in Junk, prepares approved replies for a named
-  sender into Drafts, and never overrides reception's corrections.
-
-**The Front Office never sits in the homepage hero** (docs/REPLY-2026-11-03-company-first.md;
-reaffirmed 6 November 2026 after it had drifted in). The hero is company level: the H1, subhead,
-both buttons, and a Monday to-do list for a fictional business (no sector, no name) where
-only repetitive correspondence jobs are crossed off (overnight, in the One night story). On
-the homepage The Front Office appears only in the Systems section: its card, beside a compact
-inbox preview linking to "A night at the practice" on its own page. Its details (installation steps, measure, permissions, what it stores) live
-on system-level pages: `/systems/front-office`, `/it-providers` ("For IT providers: The Front
-Office"), and the labelled Front Office subsection of `/data-handling`.
+- **Company level** (home, About, How it works, the systems index, site title, meta, Open Graph):
+  specialist medical practices (specialists, and allied health), their front desk, their shared
+  inbox. Inbox and email wording is allowed at company level now; the retired rule ("service
+  businesses", "no email or inbox wording") must not come back.
+- **System level** (`/systems/front-office`, `/it-providers` "For IT providers: The Front Office",
+  the labelled Front Office subsection of `/data-handling`): the full detail. The homepage
+  summarises; the system page explains, without repeating the homepage word for word.
+- **The homepage hero shows the practice inbox** (a fictional specialist practice at "Monday,
+  7:55 am": overnight and weekend mail already marked, 00 Unclear at the top, one "For Dr Smith"
+  label; Before / After on click only). Homepage order: hero; One inbox, everything in it; What
+  we do (the seven things, each with a small static lit-screen detail); What it never does;
+  How a practice starts; How it's judged; Not for every practice; email enquiry.
+- **Illustrations** use a fictional specialist practice: no specialty named, fictional doctors
+  and senders, no diagnoses or clinical detail in any subject line.
+- "There when you aren't." is the theme line, true because mail is marked as it arrives,
+  overnight and at weekends, and the summary is ready at 7:00 am before reception opens. Don't
+  stretch it to anything else.
 
 ## Copy — hard constraints
 
@@ -98,20 +99,20 @@ Flagship pages: Home, Systems, The Front Office (`/systems/front-office`), How i
 
 ## Design
 
-Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components; framer-motion only in the scroll stories, `components/systems/story/`, and the hover tilt, `Tilt.tsx`). Tokens: accent in `components/brand/tokens.ts`, everything else scoped to `[data-brand='systems']` in `app/globals.css`, category chips in `components/brand/categories.ts`. See `docs/brand/leadscale-systems.md`.
+Flagship only; Media keeps its dark look and shared components (`components/Navbar`, `Footer`, `components/ui`, `components/home`). The flagship uses its own components in `components/systems/` (server components; framer-motion only in the hover tilt, `Tilt.tsx`).
+
+**Less animation (clinics, 10 November 2026): nothing moves on its own.** Allowed: the once-only fade-in on scroll (`ScrollReveal`), the hover tilt on lit screens, and the inbox Before / After toggle, which shows After by default and changes only on click (FLIP on click; no autoplay, no Replay in the hero). Removed, do not bring back: the scroll stories (One night, Every system runs the same way, A night at the practice), pinned stages, big clocks, beat annotations, scroll-linked transforms, star parallax, the looping inbox preview, the eye that opens, the navbar owl blink, the marker underline drawing in. Static stars in the hero and footer only. Tokens: accent in `components/brand/tokens.ts`, everything else scoped to `[data-brand='systems']` in `app/globals.css`, category chips in `components/brand/categories.ts`. See `docs/brand/leadscale-systems.md`.
 
 **Night (8 November 2026): the flagship is dark throughout, in one font.**
 - **Dark throughout**, on the brand guide's dark recipe (`docs/brand/shared-system.md`): page ink #05050F, alternate sections on surface #0B0B18, the How it runs band in the deep night blue #0A1630, the old "warm" slot navy #0F1729. Cards: fill rgba(255,255,255,0.024), hairline rgba(255,255,255,0.10), 12px radius; buttons 8px. Headings near-white (#F1F5F9), body #CBD5E1, secondary slate #94A3B8; links, eyebrows and focus rings light blue #60A5FA; light blue #93C5FD (`--note`; #1D4ED8 inside lit screens) for annotations, ticks, strikes, the eye motif and the underline under "the admin". Primary buttons: the guide's blue gradient (#2563EB → #1D4ED8) with its soft glow; outline buttons a white hairline. The navbar is ink (translucent with a blur once scrolled) with a white logo. **Indigo (#4F46E5) is reserved for Vicaria Media: never use it on the flagship.**
 - **Palette (night story, 9 November 2026): black, white, dark blue and light blue. Nothing else.** Black: ink #05050F, surface #0B0B18. Dark blue: navy #0F1729, night blue #0A1630. Blue #2563EB → #1D4ED8 for buttons and primary accents. Light blue #60A5FA / #93C5FD for links, eyebrows, annotations, ticks, strikes, the eye motif and focus rings. White and slate (#CBD5E1, #94A3B8) for text. **No violet, purple, fuchsia, indigo or cyan anywhere on the flagship** (not in chips, glows, tints or the footer squares).
-- **The night-to-morning fade ("first light") is retired**: night stays the focus (the story's 7:00 am is a faint horizon line, not a dawn). Sparse, faint, static stars in every dark section (`SectionSky` in `ui.tsx`), moving only inside the stories; the owl watermarks stay in the hero (now the One night sky) and footer only (the agreed exception to the logo contrast rule). No moon, cartoon owl or shooting stars.
-- **Lit screens**: the Monday notepad, the inbox demo and inbox illustrations, the morning summary email, the /enquire compose window and the undeliverable notice stay LIGHT (white / cool grey), with a soft cool glow, as the brightest things on the page. They carry `.lit lit-screen`; `.lit` re-declares the light tokens inside them. Never turn them dark.
+- **The night-to-morning fade ("first light") is retired.** Static stars in the hero and footer only; the owl watermarks in the hero and footer only (the agreed exception to the logo contrast rule). No moon, cartoon owl or shooting stars.
+- **Lit screens**: the practice inbox (hero and Try it yourself), the What we do details, the inbox illustration, the morning summary email, the /enquire compose window and the undeliverable notice stay LIGHT (white / cool grey), with a soft cool glow, as the brightest things on the page. They carry `.lit lit-screen`; `.lit` re-declares the light tokens inside them. Never turn them dark.
 - **One font**: Plus Jakarta Sans everywhere on the flagship: headings, body, category and section chips, From / To headers, the counts line, the folder rail, every label, the windows. Monospace (Source Code Pro, `.v-mono`) has exactly two exceptions: the plain-text morning summary on /systems/front-office (it mirrors the real email's fixed columns) and the Microsoft Graph permission names on /it-providers. Weights per the guide: H1 800 with tight tracking (-0.04em), H2 700, H3 600, body 400, eyebrows 12px / 600 / uppercase / 3px. Headings, buttons and nav stay sentence case (the copy rule), not the guide's Title Case / ALL CAPS.
-- Category chips, shades of the blue family plus a white outline and slate, told apart by their numbers: 00 Unclear outline (hollow swatch), 01 Appointments blue, 02 Patient Enquiries light blue (`sky`), 03 Referrals dark blue (`navy`, a solid chip in lit screens), 04 Accounts slate, person labels neutral. Each tone has a dark set (on the page) and a light set (inside lit screens); `CategoryChip` carries both and CSS picks. All AA (6.16+ light, 11.9+ dark).
+- Category chips, shades of the blue family plus a white outline and slate, told apart by their numbers (The Front Office's typical set, `content/systems.ts`): 00 Unclear outline, 01 Appointments blue, 02 Patient Enquiries light blue, 03 Results & Clinical Correspondence dark blue, 04 Scripts blue, 05 Pharmacy & Suppliers light blue, 06 Accounts & Billing, 07 Faxes & Scans, 09 Business Admin and 10 Marketing & Promotions slate, 08 Referrals dark blue; person labels neutral. Each tone has a dark set (on the page) and a light set (inside lit screens); `CategoryChip` carries both and CSS picks. All AA (6.16+ light, 11.9+ dark).
 - **Logo:** `public/brand/vicaria-owl.svg` and `vicaria-wordmark.svg` (currentColor), used through the generated `components/brand/VicariaOwl.tsx` / `VicariaWordmark.tsx` (never redraw or alter; regenerate from the SVGs). Clear space: the owl's eye-circle height (about 37% of the owl's height) on all sides. Minimum sizes: owl 16px tall, lockup 140px wide. Never a gradient, outline or glow on the mark, never on a busy background or below 4.5:1 (the 4% hero and footer watermarks are decorative texture, the agreed exception). Navbar: owl 32px + wordmark, white; footer and OG image: owl, thin rule, wordmark; favicon and apple icon: white owl on ink (in `app/(systems)/`, so /media is untouched); 404: owl above the message. /media keeps its own wordmark.
-- **The owl's eye motif:** a small ring-and-pupil eye (`components/systems/EyeDot.tsx`, not the logo) in light blue or the section colour, for the folder rail's current item, the section chips, the "What never changes" bullets (each opens as it scrolls into view) and the "on watch" indicator on the story stages (opens when the business closes) only. The navbar owl blinks once per visit, never under reduced motion.
-- **Lit screens sit straight at rest and tilt on hover** (night story): with a fine pointer over a lit screen (the notepad, the inboxes and preview, the summary, the compose window) it leans towards the pointer, at most 6 degrees in perspective, with a soft sheen that follows, and springs back on leave (`components/systems/Tilt.tsx`, framer-motion springs, transform and opacity only). Never on touch, never under reduced motion. No resting tilt.
-- **The scroll stories** (night story, 9 November 2026; `components/systems/story/`, copy in `content/`): the site is built into its illustrations, and the explanation happens inside them as you scroll. Homepage: **One night** (`NightStory`: the hero beside the Monday notepad, pinned while the business closes and the night passes, Monday 6:00 pm to Tuesday 7:00 am; it absorbs "The kind of work we take on"; only the two correspondence items are ever crossed off) and **Every system runs the same way** (`MethodStory`, in the night-blue band: one artifact through the six steps, only the existing step wording). /systems/front-office: **A night at the practice** (`PracticeNight`: a pinned inbox, Friday 5:00 pm close to Monday morning; every row agrees with the morning summary; then "Try it yourself" with the interactive inbox). The homepage's Systems section shows a compact looping preview (`InboxPreview`) linking to it; the full inbox demo is not on the homepage. Rules (`Story.tsx`): native scroll, `position: sticky`, nothing traps wheel or touch; beats are real, focusable text in an `<ol>`; the stage is aria-hidden; transform and opacity only. 1024px+: beats left, stage right, the beat words as annotations on the artifact with thin light-blue leader lines. Below 1024px: a compact sticky stage (max 45% of the screen) with the beats scrolling under it. Reduced motion: no sticky stage, a static snapshot in each beat. No JavaScript: the final state and every beat's text.
-- **Story stage v2** (9 November 2026): on a desktop stage the artifacts are large (notepad about 540px, the How it runs artifact about 620px, the Front Office inbox as wide as the column allows beside the annotation gutter, about 650px at 1440) and scale as a whole (`Fit` with `max` and `gutter`). Annotations stay 16px near-white, at most 260px wide, tags 13px, joined to the exact item by a light-blue leader line, never over the artifact's content or each other (`.anno-text`, `.anno-tag`, `--fit`). The left column is a large light-blue clock (`.v-clock`, a display size like `.v-display`) with the beat's short heading, sticky and level with the artifact, one beat at a time; How it runs shows the step number and title there, and the step sentence once, as an annotation. The hero's sent time is "Monday, 6:00 pm" (it agrees with the notepad); later sections read as the next morning. Junk Email is its own grey strip under the Inbox. On small screens, notes inside an artifact stay at least 14px (`.note-min`).
+- **The owl's eye motif:** a small static ring-and-pupil eye (`components/systems/EyeDot.tsx`, not the logo), for the folder rail's current item, the section chips and the "What it never does" bullets only.
+- **Lit screens sit straight at rest and tilt on hover** (night story): with a fine pointer over a lit screen (the inboxes, the What we do details, the summary, the compose window) it leans towards the pointer, at most 6 degrees in perspective, with a soft sheen that follows, and springs back on leave (`components/systems/Tilt.tsx`, framer-motion springs, transform and opacity only). Never on touch, never under reduced motion. No resting tilt.
 - **Type scale, six text sizes plus the heading classes:** 0.75rem (window metadata, chip text), 0.8125rem (window rows, rail, annotations), 0.875rem (small text, nav, buttons, captions), 1rem, 1.125rem (h3), 1.5rem (card titles, statements, page-end lines); then .v-lead, .v-h2, .v-h1, .v-display, .v-pull. Do not add in-between sizes.
-- **Scroll reveal** (`components/systems/ScrollReveal.tsx`): `[data-reveal]` fades and rises 18px into place once, 600ms ease-out; `[data-reveal-stagger]` reveals its children 70ms apart. Hidden only under html.js, with a 2.5s failsafe; nothing moves under reduced motion. Section, PageHeader and PageEnd reveal via `Container reveal`; the stories never do (a tall hidden element would stay hidden). Anchor links scroll smoothly (not under reduced motion).
-- **Retired, do not bring back:** Fraunces, Instrument Sans, Caveat (and any handwriting), saffron, amber, cream / warm grounds, teal, green / sage, plum, rose, violet, purple, fuchsia, cyan, indigo on the flagship, the light page, the "first light" fade, the static hero illustration and the step-through "A working day" timeline. No cartoon owls, moons or emoji.
+- **Scroll reveal** (`components/systems/ScrollReveal.tsx`): `[data-reveal]` fades and rises 18px into place once, 600ms ease-out; `[data-reveal-stagger]` reveals its children 70ms apart. Hidden only under html.js, with a 2.5s failsafe; nothing moves under reduced motion. Section, PageHeader and PageEnd reveal via `Container reveal`; the hero does not. Anchor links scroll smoothly (not under reduced motion).
+- **Retired, do not bring back:** Fraunces, Instrument Sans, Caveat (and any handwriting), saffron, amber, cream / warm grounds, teal, green / sage, plum, rose, violet, purple, fuchsia, cyan, indigo on the flagship, the light page, the "first light" fade, the static hero illustration, the step-through "A working day" timeline, the scroll stories and the Monday to-do list. No cartoon owls, moons or emoji.
