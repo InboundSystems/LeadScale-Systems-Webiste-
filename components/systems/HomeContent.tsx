@@ -21,16 +21,18 @@ import { ButtonLink, NumberedSteps, PageEnd, RuledList, TextLink } from './ui'
 //   Hero                    the H1 and subhead beside the practice inbox at
 //                           7:55 am on a Monday (Before / After)
 //   01 One inbox            what a specialist practice's shared inbox gets
-//   02 What we do           the seven things, each with a small static detail
-//   03 What it never does   the fixed limits, on the night-blue band
-//   04 How a practice starts  the six steps
-//   05 How it's judged      the one measure
-//   06 Not for every practice
+//   02 Your order           why the sorting helps: you decide what comes first
+//   03 What we do           the seven things, each with a small static detail
+//   04 What it never does   the fixed limits, on the night-blue band
+//   05 How a practice starts  the six steps
+//   06 How it's judged      the one measure
+//   07 Not for every practice
 // Copy: content/audience.ts (home); The Front Office's data:
 // content/systems.ts. Folders: a sticky rail at 1280px+, a tab strip below.
 
 const SECTIONS: { id: string; tone: CategoryTone; label: string; count?: number }[] = [
   { id: 'one-inbox', tone: 'blue', label: home.inbox.eyebrow, count: home.inbox.kinds.length },
+  { id: 'your-order', tone: 'navy', label: home.order.eyebrow },
   { id: 'what-we-do', tone: 'sky', label: home.whatWeDo.eyebrow, count: home.whatWeDo.items.length },
   { id: 'never', tone: 'outline', label: home.never.eyebrow, count: home.never.items.length },
   { id: 'getting-started', tone: 'navy', label: home.start.eyebrow, count: home.start.steps.length },
@@ -135,7 +137,17 @@ export default function HomeContent() {
           </div>
         </HomeSection>
 
-        <HomeSection index={1} ground="ground" heading={home.whatWeDo.heading}>
+        <HomeSection index={1} ground="ground" heading={home.order.heading}>
+          <div className="mt-8 flex max-w-[60ch] flex-col gap-4">
+            {home.order.paragraphs.map((p) => (
+              <p key={p} className="v-lead">
+                {p}
+              </p>
+            ))}
+          </div>
+        </HomeSection>
+
+        <HomeSection index={2} ground="surface" heading={home.whatWeDo.heading}>
           <p className="v-lead mt-5">{home.whatWeDo.intro}</p>
           <ol className="mt-12 border-t border-[var(--hairline)]">
             {home.whatWeDo.items.map((item, i) => (
@@ -163,7 +175,7 @@ export default function HomeContent() {
           </p>
         </HomeSection>
 
-        <HomeSection index={2} ground="band" heading={home.never.heading}>
+        <HomeSection index={3} ground="band" heading={home.never.heading}>
           <p className="v-lead mt-5 !text-[var(--on-dark-soft)]">{home.never.intro}</p>
           <ul className="mt-12 grid gap-x-14 gap-y-8 md:grid-cols-2">
             {home.never.items.map((item) => (
@@ -178,12 +190,12 @@ export default function HomeContent() {
           </p>
         </HomeSection>
 
-        <HomeSection index={3} ground="surface" heading={home.start.heading}>
+        <HomeSection index={4} ground="surface" heading={home.start.heading}>
           <NumberedSteps steps={home.start.steps} className="mt-10" />
           <p className="v-body mt-8 text-[var(--muted)]">{home.start.closing}</p>
         </HomeSection>
 
-        <HomeSection index={4} ground="ground" heading={home.judged.heading}>
+        <HomeSection index={5} ground="ground" heading={home.judged.heading}>
           <div className="mt-8 flex max-w-[60ch] flex-col gap-4">
             {home.judged.paragraphs.map((p) => (
               <p key={p} className="v-lead">
@@ -193,7 +205,7 @@ export default function HomeContent() {
           </div>
         </HomeSection>
 
-        <HomeSection index={5} ground="surface" heading={home.notFor.heading}>
+        <HomeSection index={6} ground="surface" heading={home.notFor.heading}>
           <RuledList items={home.notFor.items} className="mt-10 max-w-[48rem]" />
         </HomeSection>
       </div>

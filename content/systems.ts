@@ -54,7 +54,7 @@ export const systems: SystemContent[] = [
       heading: 'One shared inbox, and reception carrying it.',
       paragraphs: [
         'It’s built for practices whose front desk works out of one shared mailbox, such as bookings@ or reception@, opened in Outlook on the reception computers. Reception looks after it alongside the phones, the front counter and the day’s patients.',
-        'Everything lands there as one list, at any hour. Who it’s for and whether anyone has answered it is worked out by hand, often with flags and coloured categories made up along the way. The Front Office does the sorting and the keeping track.',
+        'Everything lands there as one list, at any hour. Who it’s for and whether anyone has answered it is worked out by hand, often with flags and coloured categories made up along the way. The Front Office does the sorting and the keeping track. What to deal with first stays reception’s call.',
       ],
     },
 

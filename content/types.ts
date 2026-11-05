@@ -332,6 +332,10 @@ export interface HomeContent {
   /** "One inbox, everything in it": what a specialist practice's shared
    *  inbox receives, and how it is kept track of today. */
   inbox: { eyebrow: string; heading: string; kinds: string[]; paragraphs: string[] }
+  /** "You decide what comes first": why the sorting helps. Sorted by kind,
+   *  the oldest waiting listed first, the order of work left to the practice.
+   *  Never priority or urgency. */
+  order: { eyebrow: string; heading: string; paragraphs: string[] }
   /** The seven things The Front Office does, each with a small detail. */
   whatWeDo: { eyebrow: string; heading: string; intro: string; items: { heading: string; body: string; detail: WhatWeDoDetail }[]; link: LinkItem }
   /** The fixed limits, short (the system page has the detail). */

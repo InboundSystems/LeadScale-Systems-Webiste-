@@ -106,6 +106,14 @@ export const home: HomeContent = {
     ],
   },
 
+  order: {
+    eyebrow: 'Your order',
+    heading: 'You decide what comes first.',
+    paragraphs: [
+      'Every email is sorted by what kind it is, and at 7:00 am on open days the summary shows what’s still waiting for a reply, oldest first. Reception sees the whole inbox, sorted, and works through it in the order they choose. The judgement stays with the people who know your patients.',
+    ],
+  },
+
   whatWeDo: {
     eyebrow: 'What we do',
     heading: 'What we do about it.',
