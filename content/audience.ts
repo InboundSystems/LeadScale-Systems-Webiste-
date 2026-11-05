@@ -78,7 +78,7 @@ export const home: HomeContent = {
     heading: 'The practice inbox, sorted before reception arrives.',
     markedWord: 'sorted',
     body:
-      'For specialist practices on Microsoft 365. We mark every email in your shared inbox with your own categories, where it sits, and at 7:00 am we send a summary of what’s still waiting for a reply. Nothing is moved. Nothing is sent.',
+      'We sort your practice’s shared inbox and keep track of what’s still waiting for a reply, inside the Microsoft 365 you already use. Nothing is moved. Nothing is sent.',
     primary: { label: 'Email us about your inbox', href: '/enquire' },
     secondary: { label: 'See what it does', href: '#what-we-do' },
   },
