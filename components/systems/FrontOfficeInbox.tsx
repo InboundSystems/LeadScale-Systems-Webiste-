@@ -23,7 +23,7 @@ import Tilt from './Tilt'
 //     the row to that group (FLIP), the pane says the correction is recorded
 //     and never changed back, and the change is announced. Reset undoes the
 //     visitor's corrections; they survive Replay, as reception's would.
-//   - Three handwritten notes, as a short list under the window (HeroNotes).
+//   - Two handwritten notes, as a short list under the window (HeroNotes).
 //   - Compact row density, so it sits beside The Front Office card at about
 //     1.3x the card's height.
 //
@@ -90,7 +90,6 @@ export default function FrontOfficeInbox({ demo, variant = 'full' }: { demo: Inb
       `${demo.emails.length} ${demo.counter.emails}`,
       `${after ? demo.emails.filter((e) => categoryOf(e).label === unclearLabel).length : 0} ${demo.counter.unclear}`,
       `${after ? labelled.length : 0} ${demo.counter.labelled} ${labelName}`,
-      `0 ${demo.counter.moved}`,
     ].join(' · ')
 
   const windowRef = useRef<HTMLDivElement>(null)

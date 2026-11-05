@@ -78,7 +78,7 @@ export const home: HomeContent = {
     heading: 'The practice inbox, sorted before reception arrives.',
     markedWord: 'sorted',
     body:
-      'We sort your practice’s shared inbox and keep track of what’s still waiting for a reply, inside the Microsoft 365 you already use. Nothing is moved. Nothing is sent.',
+      'We sort your practice’s shared inbox and keep track of what’s still waiting for a reply, inside the Microsoft 365 you already use.',
     primary: { label: 'Email us about your inbox', href: '/enquire' },
     secondary: { label: 'See what it does', href: '#what-we-do' },
   },
@@ -113,7 +113,7 @@ export const home: HomeContent = {
     items: [
       {
         heading: 'Every email gets one of your categories',
-        body: 'It’s marked where it sits in the Inbox, with your own numbered categories. Nothing is moved.',
+        body: 'It’s marked where it sits in the Inbox, with your own numbered categories.',
         detail: { kind: 'categories', title: 'Your categories, in your order', categories: frontOfficeCategories },
       },
       {
@@ -167,7 +167,7 @@ export const home: HomeContent = {
       },
       {
         heading: 'Known senders in Junk, listed',
-        body: 'Mail from people you already deal with that landed in Junk is listed in the summary. Nothing is moved out of Junk.',
+        body: 'Mail from people you already deal with that landed in Junk is listed in the summary.',
         detail: {
           kind: 'summary',
           title: 'Possibly misfiled in Junk Email',
@@ -177,7 +177,7 @@ export const home: HomeContent = {
               lines: [{ first: 'Sun 18:03', subject: 'Collection booked for Tuesday', sender: 'dispatch@example.com' }],
             },
           ],
-          note: 'Listed. Not moved.',
+          note: 'Listed in the summary.',
         },
       },
       {
@@ -188,7 +188,6 @@ export const home: HomeContent = {
           folder: 'Drafts',
           to: 'Jordan Lee',
           subject: 'Re: New booking request',
-          status: 'Not sent',
           preview: 'Thanks for your booking request. Please call reception on the number on our website and we’ll find you a time.',
         },
       },

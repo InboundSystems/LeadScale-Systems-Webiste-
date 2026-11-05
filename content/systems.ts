@@ -73,7 +73,7 @@ export const systems: SystemContent[] = [
         {
           heading: 'Marks every new email with one of your categories',
           body:
-            'Each email gets one of your practice’s own categories where it sits in the Inbox. Nothing is moved. Your categories are numbered in the order you work, so sorting the Inbox by category puts it in that order. You choose the categories, their names and their order.',
+            'Each email gets one of your practice’s own categories where it sits in the Inbox. Your categories are numbered in the order you work, so sorting the Inbox by category puts it in that order. You choose the categories, their names and their order.',
         },
         {
           heading: 'Says so when it can’t tell',
@@ -92,7 +92,7 @@ export const systems: SystemContent[] = [
         {
           heading: 'Lists known senders that landed in Junk',
           body:
-            'The summary lists mail from people the practice already deals with that ended up in Junk. Nothing is moved out of Junk.',
+            'The summary lists mail from people the practice already deals with that ended up in Junk.',
         },
         {
           heading: 'Prepares approved replies for a sender you name',
@@ -130,11 +130,10 @@ export const systems: SystemContent[] = [
       paneHeading: 'What the system did',
       closeLabel: 'Close',
       toolbar: ['New mail', 'Reply', 'Categorise'],
-      counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled', moved: 'moved out of the Inbox' },
+      counter: { emails: 'emails', unclear: 'Unclear', labelled: 'labelled' },
       notes: [
         { target: 'unclear', text: 'can’t tell? a person looks first' },
         { target: 'label', text: 'labelled for Dr Smith, reception still forwards it' },
-        { target: 'counter', text: 'nothing leaves the Inbox' },
       ],
       notesLabel: 'Notes on the inbox',
       categories: frontOfficeCategories,
@@ -157,7 +156,7 @@ export const systems: SystemContent[] = [
           unread: true,
           category: appointments,
           outcome:
-            'Marked 01 Appointments. A reply in the practice’s approved wording waits in Drafts until someone checks it and presses Send.',
+            'Marked 01 Appointments. A reply in the practice’s approved wording is ready in Drafts.',
         },
         {
           id: 'fax',
@@ -471,12 +470,7 @@ export const systems: SystemContent[] = [
         {
           question: 'Does it reply to patients?',
           answer:
-            'No. For a sender you name, such as your booking form, it prepares your approved wording in Drafts, and someone at the practice checks it and presses Send. It never prepares replies to clinical mail.',
-        },
-        {
-          question: 'Can it send email?',
-          answer:
-            'No. It doesn’t request or hold Mail.Send. A prepared reply waits in Drafts until a person presses Send.',
+            'No: for a sender you name, such as your booking form, it prepares your approved wording in Drafts, and someone at the practice checks it and presses Send.',
         },
         {
           question: 'What changes for reception?',

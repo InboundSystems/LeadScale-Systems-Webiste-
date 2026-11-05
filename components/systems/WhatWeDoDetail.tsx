@@ -97,12 +97,9 @@ export default function WhatWeDoDetail({ detail }: { detail: Detail }) {
       return (
         <Frame
           bar={
-            <>
-              <span>
-                reception@ › <span className="font-semibold text-[var(--ink)]">{detail.folder}</span>
-              </span>
-              <span className="rounded-[4px] border border-[var(--frame-strong)] bg-[var(--surface)] px-1.5 py-0.5 font-semibold text-[var(--ink)]">{detail.status}</span>
-            </>
+            <span>
+              reception@ › <span className="font-semibold text-[var(--ink)]">{detail.folder}</span>
+            </span>
           }
         >
           <div className="px-4 py-2.5 text-[0.8125rem]">

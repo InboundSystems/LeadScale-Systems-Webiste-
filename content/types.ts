@@ -154,8 +154,8 @@ export interface InboxDemo {
   /** The muted, non-interactive Outlook toolbar items. */
   toolbar: string[]
   /** The counter under the panel, e.g. "10 emails · 2 Unclear · 1 labelled
-   *  For Dr Smith · 0 moved out of the Inbox". Numbers are computed. */
-  counter: { emails: string; unclear: string; labelled: string; moved: string }
+   *  For Dr Smith". Numbers are computed. */
+  counter: { emails: string; unclear: string; labelled: string }
   /** Handwritten notes under the window, each about one thing in it: the
    *  00 Unclear group, the person label, the counts line. */
   notes: { target: 'unclear' | 'label' | 'counter'; text: string }[]
@@ -313,7 +313,7 @@ export type WhatWeDoDetail =
   | { kind: 'categories'; title: string; categories: CategoryDef[] }
   | { kind: 'row'; folder: string; sender: string; subject: string; received: string; category: CategoryDef; personLabel?: string; note: string }
   | { kind: 'summary'; title: string; groups: SummaryGroup[]; note: string }
-  | { kind: 'drafts'; folder: string; to: string; subject: string; status: string; preview: string }
+  | { kind: 'drafts'; folder: string; to: string; subject: string; preview: string }
   | { kind: 'correction'; sender: string; subject: string; from: CategoryDef; to: CategoryDef; note: string }
 
 export interface HomeContent {
